@@ -8,6 +8,10 @@ public interface IProxy {
     default void registerEventHandlers() {
     }
 
+    default void init() {
+
+    }
+
     default PlayerEntity getClientPlayer() {
         return null;
     }

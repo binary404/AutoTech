@@ -1,8 +1,8 @@
 package binary404.autotech.common.core.logistics;
 
-import binary404.autotech.common.tile.AbstractTileEntity;
-import binary404.autotech.common.tile.IInventoryHolder;
-import com.google.common.base.Predicate;
+import binary404.autotech.common.tile.TileCore;
+import binary404.autotech.common.tile.util.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,9 +21,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
-@SuppressWarnings("unchecked")
-public class Inventory<I extends AbstractTileEntity & IInventoryHolder> extends ItemStackHandler {
+public class Inventory<I extends TileCore & IInventory> extends ItemStackHandler {
 
     @Nullable
     private I tile;
@@ -37,11 +37,11 @@ public class Inventory<I extends AbstractTileEntity & IInventoryHolder> extends 
         this.tile = tile;
     }
 
-    public static <I extends AbstractTileEntity & IInventoryHolder> Inventory create(int size, @Nullable I tile) {
+    public static <I extends TileCore & IInventory> Inventory create(int size, @Nullable I tile) {
         return new Inventory(size, tile);
     }
 
-    public static <I extends AbstractTileEntity & IInventoryHolder> Inventory createBlank(@Nullable I tile) {
+    public static <I extends TileCore & IInventory> Inventory createBlank(@Nullable I tile) {
         return new Inventory(0, tile);
     }
 
@@ -116,7 +116,7 @@ public class Inventory<I extends AbstractTileEntity & IInventoryHolder> extends 
     }
 
     @Nullable
-    public AbstractTileEntity getTile() {
+    public TileCore getTile() {
         return this.tile;
     }
 

@@ -2,6 +2,7 @@ package binary404.autotech.common.block;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.item.ModItems;
+import binary404.autotech.common.tile.TileSmelter;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
@@ -45,6 +46,9 @@ public class ModBlocks {
     @ObjectHolder("autotech:titanium_ore")
     public static OreBlock titanium_ore;
 
+    @ObjectHolder("autotech:smelter")
+    public static BlockTile smelter;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
@@ -58,6 +62,8 @@ public class ModBlocks {
         register(r, new OreBlock(p), "nickel_ore");
         register(r, new OreBlock(p), "platinum_ore");
         register(r, new OreBlock(p), "titanium_ore");
+
+        register(r, new BlockSmelter(p), "smelter");
     }
 
     @SubscribeEvent
@@ -72,6 +78,8 @@ public class ModBlocks {
         register(r, new BlockItem(nickel_ore, ModItems.properties), "nickel_ore");
         register(r, new BlockItem(platinum_ore, ModItems.properties), "platinum_ore");
         register(r, new BlockItem(titanium_ore, ModItems.properties), "titanium_ore");
+
+        register(r, new BlockItem(smelter, ModItems.properties), "smelter");
     }
 
 }

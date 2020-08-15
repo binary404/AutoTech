@@ -1,5 +1,6 @@
 package binary404.autotech.proxy;
 
+import binary404.autotech.client.gui.Screens;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
@@ -14,6 +15,11 @@ public class ClientProxy implements IProxy {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
+    }
+
+    @Override
+    public void init() {
+        Screens.register();
     }
 
     @Override

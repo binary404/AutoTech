@@ -1,6 +1,7 @@
 package binary404.autotech;
 
 import binary404.autotech.common.block.ModBlocks;
+import binary404.autotech.common.network.PacketHandler;
 import binary404.autotech.common.world.ModFeatures;
 import binary404.autotech.proxy.ClientProxy;
 import binary404.autotech.proxy.CommonProxy;
@@ -37,11 +38,14 @@ public class AutoTech {
         instance = this;
         proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         proxy.registerEventHandlers();
+        proxy.init();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     }
 
     private void setup(FMLCommonSetupEvent event) {
         ModFeatures.registerFeaturesToBiome();
+
+        PacketHandler.init();
 
         DeferredWorkQueue.runLater(() -> {
         });

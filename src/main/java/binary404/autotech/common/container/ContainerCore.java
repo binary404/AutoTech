@@ -10,16 +10,16 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractContainer extends Container {
+public class ContainerCore extends Container {
 
     public final PlayerEntity player;
     public final World world;
 
-    public AbstractContainer(@Nullable ContainerType<?> containerType, int id, PlayerInventory inventory, PacketBuffer buffer) {
+    public ContainerCore(@Nullable ContainerType<?> containerType, int id, PlayerInventory inventory, PacketBuffer buffer) {
         this(containerType, id, inventory);
     }
 
-    public AbstractContainer(@Nullable ContainerType<?> type, int id, PlayerInventory inventory) {
+    public ContainerCore(@Nullable ContainerType<?> type, int id, PlayerInventory inventory) {
         super(type, id);
         this.player = inventory.player;
         this.world = this.player.world;

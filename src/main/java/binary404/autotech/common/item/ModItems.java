@@ -22,6 +22,21 @@ public class ModItems {
     @ObjectHolder("autotech:lead_ingot")
     public static Item lead_ingot;
 
+    @ObjectHolder("autotech:silver_ingot")
+    public static Item silver_ingot;
+
+    @ObjectHolder("autotech:uranium_ingot")
+    public static Item uranium_ingot;
+
+    @ObjectHolder("autotech:nickel_ingot")
+    public static Item nickel_ingot;
+
+    @ObjectHolder("autotech:platinum_ingot")
+    public static Item platinum_ingot;
+
+    @ObjectHolder("autotech:titanium_ingot")
+    public static Item titanium_ingot;
+
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
     @SubscribeEvent
@@ -31,6 +46,11 @@ public class ModItems {
         register(r, new Item(properties), "copper_ingot");
         register(r, new Item(properties), "tin_ingot");
         register(r, new Item(properties), "lead_ingot");
+        register(r, new Item(properties), "silver_ingot");
+        register(r, new Item(properties), "uranium_ingot");
+        register(r, new Item(properties), "nickel_ingot");
+        register(r, new Item(properties), "platinum_ingot");
+        register(r, new Item(properties), "titanium_ingot");
     }
 
 }

@@ -1,12 +1,10 @@
 package binary404.autotech.common.tile;
 
-import binary404.autotech.common.block.AbstractBlock;
-import binary404.autotech.common.block.IBlockEntity;
-import binary404.autotech.common.core.logistics.Inventory;
-import binary404.autotech.common.core.logistics.Redstone;
-import binary404.autotech.common.core.logistics.Tank;
+import binary404.autotech.common.block.BlockTile;
+import binary404.autotech.common.core.logistics.*;
 import binary404.autotech.common.core.util.NBTUtil;
 import binary404.autotech.common.core.util.StackUtil;
+import binary404.autotech.common.tile.util.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluids;
@@ -27,17 +25,19 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 
-@SuppressWarnings("unchecked")
-public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity implements IBlockEntity, IRedstoneInteract {
+public class TileCore<B extends BlockTile> extends TileEntity implements IBlockEntity {
 
     /**
-     * Used when this is instance of {@link IInventoryHolder}
+     * Used when this is instance of {@link IInventory}
      **/
     protected final Inventory inv = Inventory.createBlank();
     private final LazyOptional<Inventory> invHolder = LazyOptional.of(() -> this.inv);
     /**
-     * Used when this is instance of {@link ITankHolder}
+     * Used when this is instance of {@link ITank}
      **/
+
+    public SideConfigItem itemConfig = new SideConfigItem(this);
+
     protected final Tank tank = new Tank(0);
     private final LazyOptional<FluidTank> tankHolder = LazyOptional.of(() -> this.tank);
 
@@ -47,9 +47,10 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
      **/
     private Redstone redstone = Redstone.IGNORE;
 
-    public AbstractTileEntity(TileEntityType<?> type) {
+    public TileCore(TileEntityType<?> type) {
         super(type);
-        if (this instanceof IInventoryHolder) {
+        this.tank.validate(stack -> stack.getFluid() == Fluids.LAVA);
+        if (this instanceof IInventory) {
             this.inv.setTile(this);
         }
     }
@@ -59,9 +60,9 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
     }
 
     @Override
-    public void read(BlockState stateIn, CompoundNBT nbtIn) {
-        super.read(stateIn, nbtIn);
-        readSync(nbtIn);
+    public void read(BlockState state, CompoundNBT compound) {
+        super.read(state, compound);
+        readSync(compound);
     }
 
     @Override
@@ -87,10 +88,10 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
     }
 
     protected void readSync(CompoundNBT nbt) {
-        if (this instanceof IInventoryHolder && !keepInventory()) {
+        if (this instanceof IInventory && !keepInventory()) {
             this.inv.deserializeNBT(nbt);
         }
-        if (this instanceof ITankHolder && !keepFluid()) {
+        if (this instanceof ITank && !keepFluid()) {
             this.tank.readFromNBT(nbt);
         }
         this.redstone = Redstone.values()[nbt.getInt("redstone_mode")];
@@ -98,10 +99,11 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
     }
 
     protected CompoundNBT writeSync(CompoundNBT nbt) {
-        if (this instanceof IInventoryHolder && !keepInventory()) {
+        this.itemConfig.write(nbt);
+        if (this instanceof IInventory && !keepInventory()) {
             nbt.merge(this.inv.serializeNBT());
         }
-        if (this instanceof ITankHolder && !keepFluid()) {
+        if (this instanceof ITank && !keepFluid()) {
             this.tank.writeToNBT(nbt);
         }
         nbt.putInt("redstone_mode", this.redstone.ordinal());
@@ -109,21 +111,23 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
     }
 
     public void readStorable(CompoundNBT nbt) {
-        if (this instanceof IInventoryHolder && keepInventory()) {
+        this.itemConfig.read(nbt);
+        if (this instanceof IInventory && keepInventory()) {
             this.inv.deserializeNBT(nbt);
         }
-        if (this instanceof ITankHolder && keepFluid()) {
+        if (this instanceof ITank && keepFluid()) {
             this.tank.readFromNBT(nbt);
         }
     }
 
     public CompoundNBT writeStorable(CompoundNBT nbt) {
-        if (this instanceof IInventoryHolder && keepInventory()) {
+        if (this instanceof IInventory && keepInventory()) {
             nbt.merge(this.inv.serializeNBT());
         }
-        if (this instanceof ITankHolder && keepFluid()) {
+        if (this instanceof ITank && keepFluid()) {
             this.tank.writeToNBT(nbt);
         }
+
         return nbt;
     }
 
@@ -138,7 +142,7 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
     @Override
     public void onRemoved(World world, BlockState state, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
-            if (this instanceof IInventoryHolder) {
+            if (this instanceof IInventory) {
                 if (!keepInventory() || !keepStorable()) {
                     getInventory().drop(world, this.pos);
                 }
@@ -197,12 +201,26 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
         return this.world != null && this.world.isRemote;
     }
 
+    public boolean canExtract(int slot) {
+        return true;
+    }
+
+    public boolean canInsert(int slot) {
+        return true;
+    }
+
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (this instanceof IInventoryHolder && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && !this.inv.isBlank()) {
-            return this.invHolder.cast();
+        if (this instanceof IInventory && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && !this.inv.isBlank()) {
+            if (this.itemConfig.getType(side).canExtract && !this.itemConfig.getType(side).canReceive) {
+                return LazyOptional.of(() -> new OutputInventoryWrapper(this.inv, this)).cast();
+            } else if (this.itemConfig.getType(side).canReceive && !this.itemConfig.getType(side).canExtract) {
+                return LazyOptional.of(() -> new InputInventoryWrapper(this.inv, this)).cast();
+            } else if (this.itemConfig.getType(side).canExtract && this.itemConfig.getType(side).canReceive) {
+                return this.invHolder.cast();
+            }
         }
-        if (this instanceof ITankHolder && cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+        if (this instanceof ITank && cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             return this.tankHolder.cast();
         }
         return super.getCapability(cap, side);
@@ -218,6 +236,10 @@ public class AbstractTileEntity<B extends AbstractBlock> extends TileEntity impl
 
     public Inventory getInventory() {
         return this.inv;
+    }
+
+    public TransferType getTransferType() {
+        return TransferType.ALL;
     }
 
 }
