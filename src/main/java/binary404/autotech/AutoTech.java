@@ -1,6 +1,7 @@
 package binary404.autotech;
 
 import binary404.autotech.common.block.ModBlocks;
+import binary404.autotech.common.core.GrinderManager;
 import binary404.autotech.common.network.PacketHandler;
 import binary404.autotech.common.world.ModFeatures;
 import binary404.autotech.proxy.ClientProxy;
@@ -46,6 +47,8 @@ public class AutoTech {
         ModFeatures.registerFeaturesToBiome();
 
         PacketHandler.init();
+
+        GrinderManager.init();
 
         DeferredWorkQueue.runLater(() -> {
         });

@@ -1,8 +1,7 @@
 package binary404.autotech.common.core.logistics;
 
-import binary404.autotech.common.tile.TileCore;
+import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.util.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;

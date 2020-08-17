@@ -1,21 +1,18 @@
 package binary404.autotech.client.gui;
 
 import binary404.autotech.client.gui.widget.IconButton;
-import binary404.autotech.common.container.ContainerTile;
+import binary404.autotech.common.container.core.ContainerTile;
 import binary404.autotech.common.network.PacketEnergyChange;
 import binary404.autotech.common.network.PacketHandler;
-import binary404.autotech.common.tile.TileEnergy;
+import binary404.autotech.common.tile.core.TileEnergy;
 import binary404.autotech.common.tile.util.IInventory;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.Rectangle2d;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.List;
 
 public class GuiEnergy<T extends TileEnergy<?> & IInventory, C extends ContainerTile<T>> extends GuiTile<T, C> {
 

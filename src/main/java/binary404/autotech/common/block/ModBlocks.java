@@ -1,18 +1,23 @@
 package binary404.autotech.common.block;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.block.generator.BlockBioGenerator;
+import binary404.autotech.common.block.machine.BlockSmelter;
+import binary404.autotech.common.core.GrinderManager;
+import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.item.ModItems;
-import binary404.autotech.common.tile.TileSmelter;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -49,6 +54,10 @@ public class ModBlocks {
     @ObjectHolder("autotech:smelter")
     public static BlockTile smelter;
 
+    public static Block lv_bio_generator;
+
+    public static Block mv_bio_generator;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
@@ -64,6 +73,8 @@ public class ModBlocks {
         register(r, new OreBlock(p), "titanium_ore");
 
         register(r, new BlockSmelter(p), "smelter");
+        lv_bio_generator = register(r, new BlockBioGenerator(p, Tier.LV), "lv_bio_generator");
+        mv_bio_generator = register(r, new BlockBioGenerator(p, Tier.MV), "mv_bio_generator");
     }
 
     @SubscribeEvent
@@ -80,6 +91,24 @@ public class ModBlocks {
         register(r, new BlockItem(titanium_ore, ModItems.properties), "titanium_ore");
 
         register(r, new BlockItem(smelter, ModItems.properties), "smelter");
+        register(r, new BlockItem(lv_bio_generator, ModItems.properties), "lv_bio_generator");
+        register(r, new BlockItem(mv_bio_generator, ModItems.properties), "mv_bio_generator");
+
+        for (Block block : ForgeRegistries.BLOCKS.getValues()) {
+            if (block instanceof OreBlock) {
+                Item item = Item.getItemFromBlock(block);
+                if (item != null) {
+                    GrinderManager.ores.add(item);
+                }
+            }
+        }
+
+        for (Item item : GrinderManager.ores) {
+            if (item == Items.COAL_ORE || item == Items.LAPIS_ORE || item == Items.NETHER_QUARTZ_ORE || item == Items.DIAMOND_ORE || item == Items.NETHER_GOLD_ORE || item == Items.EMERALD_ORE)
+                continue;
+            Item register = register(r, new Item(ModItems.properties), item.getRegistryName().getPath() + "_dust");
+            GrinderManager.dusts.add(register);
+        }
     }
 
 }

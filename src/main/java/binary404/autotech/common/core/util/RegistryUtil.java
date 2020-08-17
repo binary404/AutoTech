@@ -6,12 +6,14 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class RegistryUtil {
 
-    public static <V extends IForgeRegistryEntry<V>> void register(IForgeRegistry<V> reg, IForgeRegistryEntry<V> thing, ResourceLocation name) {
-        reg.register(thing.setRegistryName(name));
+    public static <V extends IForgeRegistryEntry<V>> V register(IForgeRegistry<V> reg, IForgeRegistryEntry<V> thing, ResourceLocation name) {
+        thing.setRegistryName(name);
+        reg.register((V) thing);
+        return (V) thing;
     }
 
-    public static <V extends IForgeRegistryEntry<V>> void register(IForgeRegistry<V> reg, IForgeRegistryEntry<V> thing, String name) {
-        register(reg, thing, new ResourceLocation("autotech", name));
+    public static <V extends IForgeRegistryEntry<V>> V register(IForgeRegistry<V> reg, IForgeRegistryEntry<V> thing, String name) {
+        return register(reg, thing, new ResourceLocation("autotech", name));
     }
 
 }

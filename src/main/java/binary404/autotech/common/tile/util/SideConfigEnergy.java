@@ -1,6 +1,6 @@
 package binary404.autotech.common.tile.util;
 
-import binary404.autotech.common.tile.TileEnergy;
+import binary404.autotech.common.tile.core.TileEnergy;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.util.Constants;

@@ -1,4 +1,4 @@
-package binary404.autotech.common.tile;
+package binary404.autotech.common.tile.core;
 
 import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.core.logistics.*;

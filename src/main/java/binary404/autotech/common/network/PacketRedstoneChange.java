@@ -1,6 +1,6 @@
 package binary404.autotech.common.network;
 
-import binary404.autotech.common.tile.TileCore;
+import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.util.IRedstoneInteract;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;

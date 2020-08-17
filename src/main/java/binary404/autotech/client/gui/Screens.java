@@ -7,6 +7,7 @@ public class Screens {
 
     public static void register() {
         ScreenManager.registerFactory(ModContainers.smelter, GuiSmelter::new);
+        ScreenManager.registerFactory(ModContainers.bio_generator, GuiBioGenerator::new);
     }
 
 }

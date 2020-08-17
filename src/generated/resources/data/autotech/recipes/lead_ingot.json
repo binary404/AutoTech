@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "autotech:lead_ore"
+  },
+  "result": "autotech:lead_ingot",
+  "experience": 0.1,
+  "cookingtime": 200
+}

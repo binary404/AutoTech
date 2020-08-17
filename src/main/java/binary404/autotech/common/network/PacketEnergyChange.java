@@ -1,6 +1,6 @@
 package binary404.autotech.common.network;
 
-import binary404.autotech.common.tile.TileEnergy;
+import binary404.autotech.common.tile.core.TileEnergy;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;

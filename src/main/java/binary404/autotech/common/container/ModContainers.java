@@ -1,6 +1,8 @@
 package binary404.autotech.common.container;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.container.core.ContainerTile;
+import binary404.autotech.common.container.generator.BioGeneratorContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -17,6 +19,7 @@ public class ModContainers {
 
     private static final List<ContainerType<?>> CONTAINER_TYPES = new ArrayList<>();
     public static final ContainerType<SmelterContainer> smelter = register("smelter", SmelterContainer::create);
+    public static final ContainerType<BioGeneratorContainer> bio_generator = register("bio_generator", BioGeneratorContainer::create);
 
     static <T extends Container> ContainerType<T> register(final String name, final IContainerFactory<T> factory) {
         final ContainerType<T> containerType = IForgeContainerType.create(factory);

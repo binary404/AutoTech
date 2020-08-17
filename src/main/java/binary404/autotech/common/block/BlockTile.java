@@ -1,54 +1,45 @@
 package binary404.autotech.common.block;
 
-import binary404.autotech.common.tile.TileCore;
+import binary404.autotech.common.container.core.ContainerCore;
+import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.util.IBlockEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.state.StateContainer;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.lwjgl.system.CallbackI;
+
+import static net.minecraft.state.properties.BlockStateProperties.*;
 
 import javax.annotation.Nullable;
 
 public class BlockTile extends Block {
 
-    public Class<? extends TileEntity> tileEntity;
-
-    public BlockTile(Properties properties, Class<? extends TileEntity> tileEntity) {
+    public BlockTile(Properties properties) {
         super(properties);
-
-        this.tileEntity = tileEntity;
-    }
-
-    @Nullable
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        try {
-            return tileEntity.newInstance();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
     }
 
     @Override
@@ -57,6 +48,11 @@ public class BlockTile extends Block {
         if (tile instanceof IBlockEntity) {
             ((IBlockEntity) tile).onAdded(world, state, oldState, isMoving);
         }
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
     @Override
@@ -90,11 +86,31 @@ public class BlockTile extends Block {
     }
 
     @Override
-    public boolean eventReceived(BlockState state, World worldIn, BlockPos pos, int id, int param) {
-        TileEntity tile = worldIn.getTileEntity(pos);
-        return tile != null && tile.receiveClientEvent(id, param);
+    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        if (this instanceof IWaterLoggable && state.get(WATERLOGGED))
+            world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        if (!state.isValidPosition(world, currentPos)) {
+            TileEntity tileEntity = world.getTileEntity(currentPos);
+            if (!world.isRemote() && tileEntity instanceof TileCore) {
+                TileCore tile = (TileCore) tileEntity;
+                ItemStack stack = tile.storeToStack(new ItemStack(this));
+                spawnAsEntity((World) world, currentPos, stack);
+                world.destroyBlock(currentPos, false);
+            }
+        }
+        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
     }
 
+    @Override
+    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+        TileEntity te = world.getTileEntity(pos);
+        if (te instanceof TileCore) {
+            TileCore tile = (TileCore) te;
+            ItemStack stack = tile.storeToStack(new ItemStack(this));
+            return tile.storeToStack(new ItemStack(this));
+        }
+        return super.getPickBlock(state, target, world, pos, player);
+    }
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
@@ -112,23 +128,157 @@ public class BlockTile extends Block {
                     return getContainer(i, playerInventory, (TileCore) tile, result);
                 }
             };
-                if (player instanceof ServerPlayerEntity) {
-                    NetworkHooks.openGui((ServerPlayerEntity) player, provider, buffer -> {
-                        buffer.writeBlockPos(pos);
-                        additionalGuiData(buffer, state, world, pos, player, hand, result);
-                    });
-                }
-                return ActionResultType.SUCCESS;
+            if (player instanceof ServerPlayerEntity) {
+                NetworkHooks.openGui((ServerPlayerEntity) player, provider, buffer -> {
+                    buffer.writeBlockPos(pos);
+                    additionalGuiData(buffer, state, world, pos, player, hand, result);
+                });
+            }
+            return ActionResultType.SUCCESS;
         }
         return super.onBlockActivated(state, world, pos, player, hand, result);
     }
 
     @Nullable
-    public <T extends TileCore> Container getContainer(int id, PlayerInventory inventory, TileCore te, BlockRayTraceResult result) {
+    public <T extends TileCore> ContainerCore getContainer(int id, PlayerInventory inventory, TileCore te, BlockRayTraceResult result) {
         return null;
     }
 
     protected void additionalGuiData(PacketBuffer buffer, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    }
+
+    @Override
+    public boolean isTransparent(BlockState state) {
+        return !state.isSolid();
+    }
+
+    protected void setDefaultState() {
+        setStateProps(state -> state);
+    }
+
+    protected void setStateProps(BaseState baseState) {
+        BlockState state = this.stateContainer.getBaseState();
+        if (this instanceof IWaterLoggable) {
+            state = state.with(WATERLOGGED, false);
+        }
+        if (!getFacing().equals(Facing.NONE)) {
+            state = state.with(FACING, Direction.NORTH);
+        }
+        if (hasLitProp()) {
+            state = state.with(LIT, false);
+        }
+        setDefaultState(baseState.get(state));
+    }
+
+    protected interface BaseState {
+        BlockState get(BlockState state);
+    }
+
+    protected boolean isPlacerFacing() {
+        return false;
+    }
+
+    protected Facing getFacing() {
+        return Facing.NONE;
+    }
+
+    protected boolean hasLitProp() {
+        return false;
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+        return getFluidState(state).isEmpty() || super.propagatesSkylightDown(state, reader, pos);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        BlockState state = getDefaultState();
+        if (getFacing().equals(Facing.HORIZONTAL)) {
+            if (!isPlacerFacing()) {
+                state = facing(context, false);
+            } else {
+                state = getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+            }
+        } else if (getFacing().equals(Facing.ALL)) {
+            if (!isPlacerFacing()) {
+                state = facing(context, true);
+            } else {
+                state = getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite());
+            }
+        }
+        if (state != null && this instanceof IWaterLoggable) {
+            FluidState fluidState = context.getWorld().getFluidState(context.getPos());
+            state = state.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        }
+        return state;
+    }
+
+    @Nullable
+    private BlockState facing(BlockItemUseContext context, boolean b) {
+        BlockState blockstate = this.getDefaultState();
+        for (Direction direction : context.getNearestLookingDirections()) {
+            if (b || direction.getAxis().isHorizontal()) {
+                blockstate = blockstate.with(FACING, b ? direction : direction.getOpposite());
+                if (blockstate.isValidPosition(context.getWorld(), context.getPos())) {
+                    return blockstate;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, IWorld world, BlockPos pos, Rotation direction) {
+        if (!getFacing().equals(Facing.NONE)) {
+            for (Rotation rotation : Rotation.values()) {
+                if (!rotation.equals(Rotation.NONE)) {
+                    if (isValidPosition(super.rotate(state, world, pos, rotation), world, pos)) {
+                        return super.rotate(state, world, pos, rotation);
+                    }
+                }
+            }
+        }
+        return state;
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rot) {
+        if (getFacing().equals(Facing.ALL) || getFacing().equals(Facing.HORIZONTAL)) {
+            return state.with(FACING, rot.rotate(state.get(FACING)));
+        }
+        return super.rotate(state, rot);
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        if (getFacing().equals(Facing.ALL) || getFacing().equals(Facing.HORIZONTAL)) {
+            return state.rotate(mirror.toRotation(state.get(FACING)));
+        }
+        return super.mirror(state, mirror);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return this instanceof IWaterLoggable && state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public boolean eventReceived(BlockState state, World world, BlockPos pos, int id, int param) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        return tileEntity != null && tileEntity.receiveClientEvent(id, param);
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        if (getFacing().equals(Facing.ALL) || getFacing().equals(Facing.HORIZONTAL)) builder.add(FACING);
+        if (this instanceof IWaterLoggable) builder.add(WATERLOGGED);
+        if (hasLitProp()) builder.add(LIT);
+    }
+
+    protected enum Facing {
+        HORIZONTAL, ALL, NONE
     }
 
 }

@@ -1,6 +1,7 @@
-package binary404.autotech.common.container;
+package binary404.autotech.common.container.core;
 
-import binary404.autotech.common.tile.TileCore;
+import binary404.autotech.common.container.core.ContainerCore;
+import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.util.IInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

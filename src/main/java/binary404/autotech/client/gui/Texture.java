@@ -35,8 +35,11 @@ public class Texture extends AbstractGui {
     public static final Texture REDSTONE_BTN_ON = register("container/button_ov", 9, 8, 38, 8);
 
     public static final Texture SMELTER = register("container/furnator", 176, 166, 0, 0);
-    public static final Texture FURNATOR_GAUGE = register("container/furnator", 14, 39, 176, 0);
-    public static final Texture SMELTER_PROGRESS = register("container/furnator", 14, 14, 176, 40);
+
+    public static final Texture BIO_GENERATOR = register("container/bio_generator", 176, 166, 0, 0);
+
+    public static final Texture ENERGY_GAUGE = register("container/furnator", 14, 62, 176, 0);
+    public static final Texture PROGRESS = register("container/furnator", 14, 14, 176, 69);
 
     static {
         CONFIG_ENERGY.put(TransferType.ALL, CONFIG_BTN_ALL_ENERGY);

@@ -1,15 +1,14 @@
 package binary404.autotech.client.gui;
 
 import binary404.autotech.client.gui.widget.IconButton;
-import binary404.autotech.common.container.ContainerTile;
+import binary404.autotech.common.container.core.ContainerTile;
 import binary404.autotech.common.network.PacketHandler;
 import binary404.autotech.common.network.PacketItemChange;
 import binary404.autotech.common.network.PacketRedstoneChange;
-import binary404.autotech.common.tile.TileCore;
+import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.util.IInventory;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.Rectangle2d;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;

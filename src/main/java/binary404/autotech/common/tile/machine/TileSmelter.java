@@ -1,8 +1,9 @@
-package binary404.autotech.common.tile;
+package binary404.autotech.common.tile.machine;
 
-import binary404.autotech.common.block.BlockSmelter;
-import binary404.autotech.common.core.logistics.Tier;
+import binary404.autotech.common.block.machine.BlockSmelter;
 import binary404.autotech.common.core.util.Counter;
+import binary404.autotech.common.tile.ModTiles;
+import binary404.autotech.common.tile.core.TileTiered;
 import binary404.autotech.common.tile.util.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -52,9 +53,6 @@ public class TileSmelter extends TileTiered<BlockSmelter> implements IInventory 
     @Override
     protected int postTick(World world) {
         if (!isRemote() && checkRedstone()) {
-            this.energy.produce(20L);
-            sync();
-
             if (this.energy.hasEnergy()) {
                 if (!this.burner.isEmpty() && this.inv.getStackInSlot(0) != ItemStack.EMPTY && (getSmeltingResultForItem(world, this.inv.getStackInSlot(0)).getItem() == this.inv.getStackInSlot(1).getItem() || this.inv.getStackInSlot(1) == ItemStack.EMPTY)) {
                     this.burner.back();
@@ -87,7 +85,7 @@ public class TileSmelter extends TileTiered<BlockSmelter> implements IInventory 
                 sync();
             }
         }
-        return extractFromSides(world) > 0 ? 10 : -1;
+        return this.burning ? 10 : -1;
     }
 
     @Override

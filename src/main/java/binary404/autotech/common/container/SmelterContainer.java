@@ -1,7 +1,8 @@
 package binary404.autotech.common.container;
 
+import binary404.autotech.common.container.core.ContainerTile;
 import binary404.autotech.common.container.slot.SlotBase;
-import binary404.autotech.common.tile.TileSmelter;
+import binary404.autotech.common.tile.machine.TileSmelter;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketBuffer;
 

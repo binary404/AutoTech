@@ -1,4 +1,4 @@
-package binary404.autotech.common.container;
+package binary404.autotech.common.container.core;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

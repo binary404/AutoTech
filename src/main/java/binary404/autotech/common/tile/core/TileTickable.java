@@ -1,7 +1,8 @@
-package binary404.autotech.common.tile;
+package binary404.autotech.common.tile.core;
 
 import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.core.util.ServerUtil;
+import binary404.autotech.common.tile.core.TileCore;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.World;

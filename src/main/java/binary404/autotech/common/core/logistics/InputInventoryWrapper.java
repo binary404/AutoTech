@@ -1,6 +1,6 @@
 package binary404.autotech.common.core.logistics;
 
-import binary404.autotech.common.tile.TileCore;
+import binary404.autotech.common.tile.core.TileCore;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
