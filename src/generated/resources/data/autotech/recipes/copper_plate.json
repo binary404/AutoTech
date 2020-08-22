@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "autotech:copper_ingot"
+      "tag": "forge:ingots/copper"
     },
     {
-      "item": "autotech:copper_ingot"
+      "tag": "forge:ingots/copper"
     },
     {
-      "item": "autotech:copper_ingot"
+      "tag": "forge:ingots/copper"
     },
     {
-      "item": "autotech:copper_ingot"
+      "tag": "forge:ingots/copper"
     }
   ],
   "result": {

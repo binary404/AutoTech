@@ -33,7 +33,8 @@ public class TagProvider extends BaseTagProvider {
         addToTag(ModTags.Items.DUSTS_TITANIUM, ModItems.titanium_dust);
         addToTag(ModTags.Items.DUSTS_IRON, ModItems.iron_dust);
         addToTag(ModTags.Items.DUSTS_GOLD, ModItems.gold_dust);
-        getItemBuilder(Tags.Items.DUSTS).add(ModTags.Items.DUSTS_COPPER, ModTags.Items.DUSTS_TIN, ModTags.Items.DUSTS_LEAD, ModTags.Items.DUSTS_SILVER, ModTags.Items.DUSTS_URANIUM, ModTags.Items.DUSTS_NICKEL, ModTags.Items.DUSTS_PLATINUM, ModTags.Items.DUSTS_TITANIUM, ModTags.Items.DUSTS_IRON, ModTags.Items.DUSTS_GOLD);
+        addToTag(ModTags.Items.DUSTS_BRONZE, ModItems.bronze_dust);
+        getItemBuilder(Tags.Items.DUSTS).add(ModTags.Items.DUSTS_COPPER, ModTags.Items.DUSTS_TIN, ModTags.Items.DUSTS_LEAD, ModTags.Items.DUSTS_SILVER, ModTags.Items.DUSTS_URANIUM, ModTags.Items.DUSTS_NICKEL, ModTags.Items.DUSTS_PLATINUM, ModTags.Items.DUSTS_TITANIUM, ModTags.Items.DUSTS_IRON, ModTags.Items.DUSTS_GOLD, ModTags.Items.DUSTS_BRONZE);
     }
 
     private void addOreDusts() {
@@ -50,20 +51,22 @@ public class TagProvider extends BaseTagProvider {
         addToTag(ModTags.Items.ORE_DUSTS_OSMIUM, ModItems.osmium_ore_dust);
         getItemBuilder(ModTags.Items.ORE_DUSTS).add(ModTags.Items.ORE_DUSTS_COPPER, ModTags.Items.ORE_DUSTS_TIN, ModTags.Items.ORE_DUSTS_LEAD, ModTags.Items.ORE_DUSTS_SILVER, ModTags.Items.ORE_DUSTS_URANIUM, ModTags.Items.ORE_DUSTS_NICKEL, ModTags.Items.ORE_DUSTS_PLATINUM, ModTags.Items.ORE_DUSTS_TITANIUM, ModTags.Items.ORE_DUSTS_IRON, ModTags.Items.ORE_DUSTS_GOLD, ModTags.Items.ORE_DUSTS_OSMIUM);
     }
-    
+
     private void addIngots() {
         getItemBuilder(Tags.Items.INGOTS).add(ModTags.Items.INGOTS_COPPER, ModTags.Items.INGOTS_TIN, ModTags.Items.INGOTS_LEAD, ModTags.Items.INGOTS_SILVER, ModTags.Items.INGOTS_URANIUM, ModTags.Items.INGOTS_NICKEL, ModTags.Items.INGOTS_PLATINUM, ModTags.Items.INGOTS_TITANIUM);
     }
 
     private void addOres() {
-        addToTag(ModTags.Blocks.ORE_COPPER, ModBlocks.copper_ore);
-        addToTag(ModTags.Blocks.ORE_TIN, ModBlocks.tin_ore);
-        addToTag(ModTags.Blocks.ORE_LEAD, ModBlocks.lead_ore);
-        addToTag(ModTags.Blocks.ORE_SILVER, ModBlocks.silver_ore);
-        addToTag(ModTags.Blocks.ORE_URANIUM, ModBlocks.uranium_ore);
-        addToTag(ModTags.Blocks.ORE_NICKEL, ModBlocks.nickel_ore);
-        addToTag(ModTags.Blocks.ORE_PLATINUM, ModBlocks.platinum_ore);
-        addToTag(ModTags.Blocks.ORE_TITANIUM, ModBlocks.titanium_ore);
+        addToTags(ModTags.Items.ORE_COPPER, ModTags.Blocks.ORE_COPPER, ModBlocks.copper_ore);
+        addToTags(ModTags.Items.ORE_TIN, ModTags.Blocks.ORE_TIN, ModBlocks.tin_ore);
+        addToTags(ModTags.Items.ORE_LEAD, ModTags.Blocks.ORE_LEAD, ModBlocks.lead_ore);
+        addToTags(ModTags.Items.ORE_SILVER, ModTags.Blocks.ORE_SILVER, ModBlocks.silver_ore);
+        addToTags(ModTags.Items.ORE_URANIUM, ModTags.Blocks.ORE_URANIUM, ModBlocks.uranium_ore);
+        addToTags(ModTags.Items.ORE_NICKEL, ModTags.Blocks.ORE_NICKEL, ModBlocks.nickel_ore);
+        addToTags(ModTags.Items.ORE_PLATINUM, ModTags.Blocks.ORE_PLATINUM, ModBlocks.platinum_ore);
+        addToTags(ModTags.Items.ORE_TITANIUM, ModTags.Blocks.ORE_TITANIUM, ModBlocks.titanium_ore);
+
+        getItemBuilder(Tags.Items.ORES).add(ModTags.Items.ORE_COPPER, ModTags.Items.ORE_TIN, ModTags.Items.ORE_LEAD, ModTags.Items.ORE_SILVER, ModTags.Items.ORE_URANIUM, ModTags.Items.ORE_NICKEL, ModTags.Items.ORE_PLATINUM, ModTags.Items.ORE_TITANIUM);
         getBlockBuilder(Tags.Blocks.ORES).add(ModTags.Blocks.ORE_COPPER, ModTags.Blocks.ORE_TIN, ModTags.Blocks.ORE_LEAD, ModTags.Blocks.ORE_SILVER, ModTags.Blocks.ORE_URANIUM, ModTags.Blocks.ORE_NICKEL, ModTags.Blocks.ORE_PLATINUM, ModTags.Blocks.ORE_TITANIUM);
     }
 

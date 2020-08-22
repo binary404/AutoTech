@@ -22,6 +22,8 @@ public class ModItems {
     public static Item platinum_ingot;
     public static Item titanium_ingot;
 
+    public static Item bronze_ingot;
+
     public static Item copper_plate;
     public static Item tin_plate;
     public static Item lead_plate;
@@ -30,6 +32,8 @@ public class ModItems {
     public static Item nickel_plate;
     public static Item platinum_plate;
     public static Item titanium_plate;
+    public static Item iron_plate;
+    public static Item gold_plate;
     public static Item bronze_plate;
 
     public static Item lv_machine_hull;
@@ -60,6 +64,8 @@ public class ModItems {
     public static Item iron_dust;
     public static Item gold_dust;
 
+    public static Item bronze_dust;
+
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
     @SubscribeEvent
@@ -74,6 +80,8 @@ public class ModItems {
         nickel_ingot = register(r, new Item(properties), "nickel_ingot");
         platinum_ingot = register(r, new Item(properties), "platinum_ingot");
         titanium_ingot = register(r, new Item(properties), "titanium_ingot");
+
+        bronze_ingot = register(r, new Item(properties), "bronze_ingot");
 
         copper_ore_dust = register(r, new Item(properties), "copper_ore_dust");
         tin_ore_dust = register(r, new Item(properties), "tin_ore_dust");
@@ -98,9 +106,18 @@ public class ModItems {
         iron_dust = register(r, new Item(properties), "iron_dust");
         gold_dust = register(r, new Item(properties), "gold_dust");
 
+        bronze_dust = register(r, new Item(properties), "bronze_dust");
+
         copper_plate = register(r, new Item(properties), "copper_plate");
         tin_plate = register(r, new Item(properties), "tin_plate");
         lead_plate = register(r, new Item(properties), "lead_plate");
+        silver_plate = register(r, new Item(properties), "silver_plate");
+        uranium_plate = register(r, new Item(properties), "uranium_plate");
+        nickel_plate = register(r, new Item(properties), "nickel_plate");
+        platinum_plate = register(r, new Item(properties), "platinum_plate");
+        titanium_plate = register(r, new Item(properties), "titanium_plate");
+        iron_plate = register(r, new Item(properties), "iron_plate");
+        gold_plate = register(r, new Item(properties), "gold_plate");
         bronze_plate = register(r, new Item(properties), "bronze_plate");
 
         lv_machine_hull = register(r, new Item(properties), "lv_machine_hull");

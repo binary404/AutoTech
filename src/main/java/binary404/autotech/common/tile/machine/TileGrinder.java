@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -44,7 +45,17 @@ public class TileGrinder extends TileMachine<BlockGrinder> implements IInventory
             return false;
         }
 
-        return true;
+        if (!recipe.getSecondaryOutput().isEmpty() && inv.getStackInSlot(2).isEmpty()) {
+            if (inv.getStackInSlot(2).getItem() != recipe.getSecondaryOutput().getItem())
+                return false;
+        }
+
+        if (!recipe.getThirdOutput().isEmpty() && inv.getStackInSlot(3).isEmpty()) {
+            if (inv.getStackInSlot(3).getItem() != recipe.getThirdOutput().getItem())
+                return false;
+        }
+
+        return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getPrimaryOutput().getItem();
     }
 
     @Override
@@ -109,6 +120,34 @@ public class TileGrinder extends TileMachine<BlockGrinder> implements IInventory
         }
 
         inv.getStackInSlot(0).shrink(recipe.getInput().getCount());
+    }
+
+    @Override
+    protected void transferInput() {
+        for (int i = 0; i < 6; i++) {
+            if (this.itemConfig.getType(Direction.byIndex(i)).canExtract) {
+                if (transferItem(1, 1, Direction.byIndex(i))) {
+                    break;
+                }
+                if (transferItem(2, 1, Direction.byIndex(i))) {
+                    break;
+                }
+                if (transferItem(3, 1, Direction.byIndex(i))) {
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void transferOutput() {
+        for (int i = 0; i < 6; i++) {
+            if (this.itemConfig.getType(Direction.byIndex(i)).canReceive) {
+                if (extractItem(0, 1, Direction.byIndex(i))) {
+                    break;
+                }
+            }
+        }
     }
 
     @Override

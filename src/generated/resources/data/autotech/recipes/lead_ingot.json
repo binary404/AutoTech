@@ -1,7 +1,7 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "ingredient": {
-    "item": "autotech:lead_ore"
+    "tag": "forge:ores/lead"
   },
   "result": "autotech:lead_ingot",
   "experience": 0.1,

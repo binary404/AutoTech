@@ -129,12 +129,12 @@ public abstract class BaseTagProvider implements IDataProvider {
         }
     }
 
-    protected void addToTags(ITag.INamedTag<Item> itemTag, ITag.INamedTag<Block> blockTag, IBlockProvider... blockProviders) {
+    protected void addToTags(ITag.INamedTag<Item> itemTag, ITag.INamedTag<Block> blockTag, Block... blockProviders) {
         ForgeRegistryTagBuilder<Item> itemTagBuilder = getItemBuilder(itemTag);
         ForgeRegistryTagBuilder<Block> blockTagBuilder = getBlockBuilder(blockTag);
-        for (IBlockProvider blockProvider : blockProviders) {
-            itemTagBuilder.add(blockProvider.getItem());
-            blockTagBuilder.add(blockProvider.getBlock());
+        for (Block blockProvider : blockProviders) {
+            itemTagBuilder.add(Item.getItemFromBlock(blockProvider));
+            blockTagBuilder.add(blockProvider);
         }
     }
 }

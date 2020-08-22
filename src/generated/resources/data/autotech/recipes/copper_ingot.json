@@ -1,7 +1,7 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "ingredient": {
-    "item": "autotech:copper_ore"
+    "tag": "forge:ores/copper"
   },
   "result": "autotech:copper_ingot",
   "experience": 0.1,

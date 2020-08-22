@@ -1,7 +1,7 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "ingredient": {
-    "item": "autotech:titanium_ore"
+    "tag": "forge:ores/titanium"
   },
   "result": "autotech:titanium_ingot",
   "experience": 0.1,

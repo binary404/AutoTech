@@ -1,12 +1,36 @@
 package binary404.autotech.common.tile.core;
 
+import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.core.logistics.Tier;
+import binary404.autotech.common.tile.util.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.EmptyHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import org.lwjgl.system.CallbackI;
 
-public class TileMachine<T extends BlockTile> extends TileTiered<T> {
+import javax.annotation.Nullable;
+
+public class TileMachine<T extends BlockTile> extends TileTiered<T> implements IInventory {
 
     public int processMax;
     public int processRem;
@@ -23,6 +47,8 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> {
 
             if (canFinish()) {
                 processFinish();
+                transferOutput();
+                transferInput();
                 if (!canStart()) {
                     processOff();
                 } else {
@@ -33,6 +59,8 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> {
                 processOff();
             }
         } else {
+            transferOutput();
+            transferInput();
             if (canStart()) {
                 processStart();
                 processTick();
@@ -42,6 +70,14 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> {
         }
 
         return super.postTick(world);
+    }
+
+    protected void transferInput() {
+
+    }
+
+    protected void transferOutput() {
+
     }
 
     protected boolean canStart() {
@@ -104,4 +140,140 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> {
     public long getGeneration() {
         return 0L;
     }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public int getSlotLimit(int slot) {
+        return 64;
+    }
+
+    public boolean extractItem(int slot, int amount, Direction side) {
+
+        if (slot > inv.getSlots()) {
+            return false;
+        }
+        ItemStack stack = inv.getStackInSlot(slot);
+
+        if (!stack.isEmpty()) {
+            amount = Math.min(amount, stack.getMaxStackSize() - stack.getCount());
+            stack = inv.getStackInSlot(slot).copy();
+        }
+        int initialAmount = amount;
+        TileEntity adjInv = getAdjacentTileEntity(this, side);
+
+        if (isAccessibleInput(adjInv, side)) {
+            IItemHandler inventory = getItemHandlerCap(adjInv, side.getOpposite()).orElse(new ItemStackHandler(0));
+            System.out.println(inventory.getStackInSlot(0));
+            if (inventory == null) {
+                return false;
+            }
+            for (int i = 0; i < inventory.getSlots() && amount > 0; i++) {
+                ItemStack queryStack = inventory.extractItem(i, amount, true);
+                if (queryStack.isEmpty()) {
+                    continue;
+                }
+                if (stack.isEmpty()) {
+                    if (canInsert(slot, queryStack)) {
+                        int toExtract = Math.min(amount, queryStack.getCount());
+                        stack = inventory.extractItem(i, toExtract, false);
+                        amount -= toExtract;
+                    }
+                } else if (stack.getItem() == queryStack.getItem()) {
+                    int toExtract = Math.min(stack.getMaxStackSize() - stack.getCount(), Math.min(amount, queryStack.getCount()));
+                    ItemStack extracted = inventory.extractItem(i, toExtract, false);
+                    toExtract = Math.min(toExtract, extracted.isEmpty() ? 0 : extracted.getCount());
+                    stack.grow(toExtract);
+                    amount -= toExtract;
+                }
+            }
+            if (initialAmount != amount) {
+                inv.setStack(slot, stack);
+                adjInv.markDirty();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean transferItem(int slot, int amount, Direction side) {
+
+        if (inv.getStackInSlot(slot).isEmpty() || slot > inv.getSlots()) {
+            return false;
+        }
+        ItemStack initialStack = inv.getStackInSlot(slot).copy();
+        initialStack.setCount(Math.min(amount, initialStack.getCount()));
+        TileEntity adjInv = getAdjacentTileEntity(this, side);
+
+        if (isAccessibleOutput(adjInv, side)) {
+            ItemStack inserted = addToInventory(adjInv, side, initialStack);
+
+            if (inserted.getCount() >= initialStack.getCount()) {
+                return false;
+            }
+            inv.getStackInSlot(slot).shrink(initialStack.getCount() - inserted.getCount());
+            if (inv.getStackInSlot(slot).getCount() <= 0) {
+                inv.setStack(slot, ItemStack.EMPTY);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static TileEntity getAdjacentTileEntity(World world, BlockPos pos, Direction dir) {
+
+        pos = pos.offset(dir);
+        return world == null || !world.isBlockLoaded(pos) ? null : world.getTileEntity(pos);
+    }
+
+    public static TileEntity getAdjacentTileEntity(TileEntity refTile, Direction dir) {
+
+        return refTile == null ? null : getAdjacentTileEntity(refTile.getWorld(), refTile.getPos(), dir);
+    }
+
+    public static boolean isAccessibleInput(TileEntity tile, Direction side) {
+
+        return getItemHandlerCap(tile, side.getOpposite()).orElse(new ItemStackHandler(0)).getSlots() > 0;
+    }
+
+    public static boolean isAccessibleOutput(TileEntity tile, Direction side) {
+
+        return getItemHandlerCap(tile, side.getOpposite()).orElse(new ItemStackHandler(0)).getSlots() > 0;
+    }
+
+    public static LazyOptional<IItemHandler> getItemHandlerCap(TileEntity tileEntity, Direction face) {
+        return tileEntity == null ? LazyOptional.empty() : tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face);
+    }
+
+    public static ItemStack addToInventory(TileEntity tile, Direction side, ItemStack stack) {
+
+        if (stack.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+
+        IItemHandler handler = getItemHandlerCap(tile, side.getOpposite()).orElse(new ItemStackHandler(0));
+
+        stack = insertStackIntoInventory(handler, stack, false);
+
+        return stack;
+    }
+
+    public static ItemStack insertStackIntoInventory(IItemHandler handler, ItemStack stack, boolean simulate) {
+
+        return insertStackIntoInventory(handler, stack, simulate, false);
+    }
+
+    public static ItemStack insertStackIntoInventory(IItemHandler handler, ItemStack stack, boolean simulate, boolean forceEmptySlot) {
+
+        return forceEmptySlot ? ItemHandlerHelper.insertItem(handler, stack, simulate) : ItemHandlerHelper.insertItemStacked(handler, stack, simulate);
+    }
+
 }

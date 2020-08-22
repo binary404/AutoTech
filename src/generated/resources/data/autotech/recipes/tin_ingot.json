@@ -1,7 +1,7 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "ingredient": {
-    "item": "autotech:tin_ore"
+    "tag": "forge:ores/tin"
   },
   "result": "autotech:tin_ingot",
   "experience": 0.1,

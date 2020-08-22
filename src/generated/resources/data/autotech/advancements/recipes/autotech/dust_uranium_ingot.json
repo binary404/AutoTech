@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "autotech:bronze_plate"
+      "autotech:dust_uranium_ingot"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "autotech:bronze_plate"
+            "item": "autotech:uranium_dust"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "autotech:bronze_plate"
+        "recipe": "autotech:dust_uranium_ingot"
       }
     }
   },

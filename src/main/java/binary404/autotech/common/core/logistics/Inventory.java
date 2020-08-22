@@ -97,7 +97,7 @@ public class Inventory<I extends TileCore & IInventory> extends ItemStackHandler
     @Nonnull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return canExtract(slot, getStackInSlot(slot)) ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+        return slot <= this.getSlots() && canExtract(slot, getStackInSlot(slot)) ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
     }
 
     public boolean canExtract(int slot, ItemStack stack) {

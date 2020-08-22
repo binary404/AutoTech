@@ -33,6 +33,7 @@ public class ModTags {
         public static final ITag.INamedTag<Item> DUSTS_TITANIUM = forgeTag("dusts/titanium");
         public static final ITag.INamedTag<Item> DUSTS_IRON = forgeTag("dusts/iron");
         public static final ITag.INamedTag<Item> DUSTS_GOLD = forgeTag("dusts/gold");
+        public static final ITag.INamedTag<Item> DUSTS_BRONZE = forgeTag("dusts/bronze");
 
         public static final ITag.INamedTag<Item> ORE_DUSTS = forgeTag("ore_dusts");
         public static final ITag.INamedTag<Item> ORE_DUSTS_COPPER = forgeTag("ore_dusts/copper");
@@ -46,6 +47,15 @@ public class ModTags {
         public static final ITag.INamedTag<Item> ORE_DUSTS_IRON = forgeTag("ore_dusts/iron");
         public static final ITag.INamedTag<Item> ORE_DUSTS_GOLD = forgeTag("ore_dusts/gold");
         public static final ITag.INamedTag<Item> ORE_DUSTS_OSMIUM = forgeTag("ore_dusts/osmium");
+
+        public static final ITag.INamedTag<Item> ORE_COPPER = forgeTag("ores/copper");
+        public static final ITag.INamedTag<Item> ORE_TIN = forgeTag("ores/tin");
+        public static final ITag.INamedTag<Item> ORE_LEAD = forgeTag("ores/lead");
+        public static final ITag.INamedTag<Item> ORE_SILVER = forgeTag("ores/silver");
+        public static final ITag.INamedTag<Item> ORE_URANIUM = forgeTag("ores/uranium");
+        public static final ITag.INamedTag<Item> ORE_NICKEL = forgeTag("ores/nickel");
+        public static final ITag.INamedTag<Item> ORE_PLATINUM = forgeTag("ores/platinum");
+        public static final ITag.INamedTag<Item> ORE_TITANIUM = forgeTag("ores/titanium");
 
         private static ITag.INamedTag<Item> tag(String name) {
             return ItemTags.makeWrapperTag(AutoTech.key(name).toString());

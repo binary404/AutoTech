@@ -1,7 +1,7 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "ingredient": {
-    "item": "autotech:uranium_ore"
+    "tag": "forge:ores/uranium"
   },
   "result": "autotech:uranium_ingot",
   "experience": 0.1,

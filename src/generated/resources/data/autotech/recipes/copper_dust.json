@@ -5,7 +5,7 @@
       "item": "autotech:mortar"
     },
     {
-      "item": "autotech:copper_ore"
+      "tag": "forge:ores/copper"
     }
   ],
   "result": {
