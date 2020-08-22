@@ -21,13 +21,12 @@ public class TileBioGenerator extends TileTiered<BlockBioGenerator> implements I
     protected final Counter burner;
     protected boolean generating;
 
-    public TileBioGenerator(Tier tier) {
-        this();
-        this.tier = tier;
+    public TileBioGenerator() {
+        this(Tier.LV);
     }
 
-    public TileBioGenerator() {
-        super(ModTiles.bio_generator);
+    public TileBioGenerator(Tier tier) {
+        super(ModTiles.bio_generator, tier);
         this.inv.set(1);
         this.burner = new Counter(tier.genSpeed);
         this.burner.setTicks(0);
@@ -59,9 +58,9 @@ public class TileBioGenerator extends TileTiered<BlockBioGenerator> implements I
 
     @Override
     protected int postTick(World world) {
+        super.postTick(world);
         if (!isRemote() && checkRedstone()) {
-
-            if(this.inv.getStackInSlot(0) != ItemStack.EMPTY && !this.energy.isFull() && !generating) {
+            if (this.inv.getStackInSlot(0) != ItemStack.EMPTY && !this.energy.isFull() && !generating) {
                 this.inv.getStackInSlot(0).shrink(1);
                 this.burner.setTicks(this.tier.genSpeed);
                 this.generating = true;

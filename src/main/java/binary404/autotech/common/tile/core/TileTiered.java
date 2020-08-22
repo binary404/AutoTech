@@ -1,19 +1,31 @@
 package binary404.autotech.common.tile.core;
 
+import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.core.logistics.Tier;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.World;
 
 public class TileTiered<B extends BlockTile> extends TileEnergy<B> {
 
     public Tier tier;
     int minimumTier = 0;
+    protected int lastEnergy = 0;
+    protected int currentEnergy = 0;
+    protected int transfer = 0;
 
-    public TileTiered(TileEntityType<?> type) {
+    public TileTiered(TileEntityType<?> type, Tier tier) {
         super(type);
-        this.minimumTier = 0;
-        this.tier = Tier.values()[minimumTier];
+        this.tier = tier;
+    }
+
+    @Override
+    protected int postTick(World world) {
+        this.currentEnergy = this.energy.getEnergyStored();
+        transfer = currentEnergy - lastEnergy;
+        lastEnergy = this.energy.getEnergyStored();
+        return super.postTick(world);
     }
 
     @Override
@@ -42,6 +54,11 @@ public class TileTiered<B extends BlockTile> extends TileEnergy<B> {
 
     public int getBaseSpeed() {
         return tier.speed;
+    }
+
+    @Override
+    public long getGeneration() {
+        return this.tier.gen;
     }
 
     @Override

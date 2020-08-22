@@ -16,7 +16,7 @@ import java.util.List;
 public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
 
     protected final Minecraft mc = Minecraft.getInstance();
-    protected final Texture backGround;
+    protected Texture backGround;
     private List<Rectangle2d> extraAreas = new ArrayList<>();
 
     public GuiCore(C container, PlayerInventory inv, ITextComponent title, Texture backGround) {
@@ -34,12 +34,12 @@ public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
     }
 
     @Override
-    protected void func_230450_a_(MatrixStack matrix, float partialTicks, int mouseX, int mouseY) {
+    protected void drawGuiContainerBackgroundLayer(MatrixStack matrix, float partialTicks, int mouseX, int mouseY) {
         drawBackground(matrix, partialTicks, mouseX, mouseY);
     }
 
     @Override
-    protected void func_230451_b_(MatrixStack matrix, int mouseX, int mouseY) {
+    protected void drawGuiContainerForegroundLayer(MatrixStack matrix, int mouseX, int mouseY) {
         drawForeground(matrix, mouseX, mouseY);
     }
 

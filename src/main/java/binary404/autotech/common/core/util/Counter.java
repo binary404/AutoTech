@@ -20,6 +20,10 @@ public class Counter {
         return this.ticks <= 0;
     }
 
+    public boolean isFull() {
+        return this.ticks >= this.maxTicks;
+    }
+
     public boolean ended() {
         return this.ticks >= this.maxTicks;
     }
@@ -95,6 +99,10 @@ public class Counter {
 
     public float subSized() {
         return (float) (this.ticks / this.maxTicks);
+    }
+
+    public float antiSubSized() {
+        return (float) (this.maxTicks / this.ticks);
     }
 
 }

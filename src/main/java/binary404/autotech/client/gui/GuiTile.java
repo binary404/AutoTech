@@ -57,7 +57,7 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
                 PacketHandler.sendToServer(new PacketItemChange(id, this.te.getPos()));
                 this.te.itemConfig.nextType(side);
             }, this).setTooltip(tooltip -> {
-                tooltip.add(new TranslationTextComponent("info.lollipop.side." + side.getName2(), TextFormatting.DARK_GRAY).func_240699_a_(TextFormatting.GRAY));
+                tooltip.add(new TranslationTextComponent("info.lollipop.side." + side.getName2(), TextFormatting.DARK_GRAY));
                 tooltip.add(this.te.itemConfig.getType(side).getDisplayName());
             }));
         }

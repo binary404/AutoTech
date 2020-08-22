@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "autotech:mortar"
+    },
+    {
+      "item": "autotech:nickel_ore"
+    }
+  ],
+  "result": {
+    "item": "autotech:nickel_dust"
+  }
+}

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "autotech:smelter"
+          "name": "autotech:ev_grinder"
         }
       ],
       "conditions": [

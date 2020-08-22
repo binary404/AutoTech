@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BPB",
+    "BBB"
+  ],
+  "key": {
+    "P": {
+      "item": "autotech:copper_plate"
+    },
+    "B": {
+      "item": "autotech:bronze_plate"
+    }
+  },
+  "result": {
+    "item": "autotech:lv_machine_hull"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "autotech:block/lv_gradient",
+    "down": "autotech:block/lv_gradient",
+    "up": "autotech:block/lv_gradient",
+    "north": "autotech:block/lv_gradient",
+    "east": "autotech:block/lv_gradient",
+    "south": "autotech:block/lv_gradient",
+    "west": "autotech:block/lv_gradient"
+  }
+}

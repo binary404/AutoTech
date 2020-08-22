@@ -22,7 +22,7 @@ public enum Redstone {
     }
 
     public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("info.autotech.redstone.mode." + name().toLowerCase(), this.color).func_240699_a_(TextFormatting.GRAY);
+        return new TranslationTextComponent("info.autotech.redstone.mode." + name().toLowerCase(), this.color).mergeStyle(TextFormatting.GRAY);
     }
 
 }

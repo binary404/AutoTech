@@ -61,6 +61,7 @@ public class TileTickable<B extends BlockTile> extends TileCore<B> implements IT
                 this.syncTicks = ServerUtil.isSinglePlayer() ? 2 : delay;
             }
         }
+        this.sync();
     }
 
 }

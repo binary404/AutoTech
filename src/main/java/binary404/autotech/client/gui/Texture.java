@@ -7,6 +7,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,10 @@ public class Texture extends AbstractGui {
 
     public static final Texture BIO_GENERATOR = register("container/bio_generator", 176, 166, 0, 0);
 
+    public static final Texture LV_GRINDER = register("container/lv_grinder", 176, 166, 0, 0);
+    public static final Texture GRINDER = register("container/grinder", 176, 166, 0, 0);
+
+    public static final Texture PROGRESS_ARROW = register("container/lv_grinder", 22, 16, 205, 0);
     public static final Texture ENERGY_GAUGE = register("container/furnator", 14, 62, 176, 0);
     public static final Texture PROGRESS = register("container/furnator", 14, 14, 176, 69);
 
@@ -75,6 +80,11 @@ public class Texture extends AbstractGui {
 
     public void drawScalableW(MatrixStack matrix, float size, int x, int y) {
         scaleW((int) (size * this.width)).draw(matrix, x, y);
+    }
+
+    public void drawQuanity(int quanity, MatrixStack matrix, int x, int y) {
+        bindTexture(getLocation());
+        blit(matrix, x, y, getU(), getV(), quanity, height);
     }
 
     public void drawScalableH(MatrixStack matrix, float size, int x, int y) {

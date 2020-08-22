@@ -41,7 +41,7 @@ public class PacketHandler {
     }
 
     public static void sendToNearby(World world, Entity e, Object toSend) {
-        sendToNearby(world, e.func_233580_cy_(), toSend);
+        sendToNearby(world, e.getPosition(), toSend);
     }
 
     public static void sendTo(ServerPlayerEntity playerMP, Object toSend) {

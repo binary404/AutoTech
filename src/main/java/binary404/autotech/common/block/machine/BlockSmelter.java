@@ -3,6 +3,7 @@ package binary404.autotech.common.block.machine;
 import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.container.SmelterContainer;
 import binary404.autotech.common.container.core.ContainerCore;
+import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.machine.TileSmelter;
 import net.minecraft.block.BlockState;
@@ -16,8 +17,11 @@ import javax.annotation.Nullable;
 
 public class BlockSmelter extends BlockTile {
 
-    public BlockSmelter(Properties properties) {
+    Tier tier;
+
+    public BlockSmelter(Properties properties, Tier tier) {
         super(properties);
+        this.tier = tier;
     }
 
     @Nullable
@@ -29,6 +33,6 @@ public class BlockSmelter extends BlockTile {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileSmelter();
+        return new TileSmelter(this.tier);
     }
 }

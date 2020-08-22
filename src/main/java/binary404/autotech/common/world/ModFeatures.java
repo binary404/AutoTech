@@ -36,7 +36,7 @@ public class ModFeatures {
             DefaultBiomeFeatures.addStoneVariants(biome);
         }
 
-        LargeOreFeature.configs = Lists.newArrayList(new LargeOreFeature.VeinConfig(6, 0, 50, ModBlocks.copper_ore, ModBlocks.tin_ore, Blocks.IRON_ORE), new LargeOreFeature.VeinConfig(5, 0, 32, Blocks.GOLD_ORE, Blocks.REDSTONE_ORE, ModBlocks.lead_ore, ModBlocks.silver_ore, ModBlocks.uranium_ore, ModBlocks.nickel_ore), new LargeOreFeature.VeinConfig(4, 0, 16, Blocks.DIAMOND_ORE, Blocks.LAPIS_ORE, ModBlocks.platinum_ore, ModBlocks.titanium_ore));
+        LargeOreFeature.configs = Lists.newArrayList(new LargeOreFeature.VeinConfig(6, 0, 50, ModBlocks.copper_ore, ModBlocks.tin_ore, Blocks.IRON_ORE, Blocks.COAL_ORE), new LargeOreFeature.VeinConfig(5, 0, 32, Blocks.GOLD_ORE, Blocks.REDSTONE_ORE, ModBlocks.lead_ore, ModBlocks.silver_ore, ModBlocks.uranium_ore, ModBlocks.nickel_ore), new LargeOreFeature.VeinConfig(4, 0, 16, Blocks.DIAMOND_ORE, Blocks.LAPIS_ORE, ModBlocks.platinum_ore, ModBlocks.titanium_ore));
     }
 
 }

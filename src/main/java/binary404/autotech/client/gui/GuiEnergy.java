@@ -2,6 +2,7 @@ package binary404.autotech.client.gui;
 
 import binary404.autotech.client.gui.widget.IconButton;
 import binary404.autotech.common.container.core.ContainerTile;
+import binary404.autotech.common.core.logistics.Energy;
 import binary404.autotech.common.network.PacketEnergyChange;
 import binary404.autotech.common.network.PacketHandler;
 import binary404.autotech.common.tile.core.TileEnergy;
@@ -13,6 +14,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiEnergy<T extends TileEnergy<?> & IInventory, C extends ContainerTile<T>> extends GuiTile<T, C> {
 
@@ -44,7 +48,7 @@ public class GuiEnergy<T extends TileEnergy<?> & IInventory, C extends Container
                 PacketHandler.sendToServer(new PacketEnergyChange(id, this.te.getPos()));
                 this.te.getEnergyConfig().nextType(side);
             }, this).setTooltip(tooltip -> {
-                tooltip.add(new TranslationTextComponent("info.lollipop.side." + side.getName2(), TextFormatting.DARK_GRAY).func_240699_a_(TextFormatting.GRAY));
+                tooltip.add(new TranslationTextComponent("info.lollipop.side." + side.getName2(), TextFormatting.DARK_GRAY));
                 tooltip.add(this.te.getEnergyConfig().getType(side).getDisplayName());
             }));
         }
@@ -74,6 +78,26 @@ public class GuiEnergy<T extends TileEnergy<?> & IInventory, C extends Container
 
     protected boolean hasRedstoneButton() {
         return true;
+    }
+
+    @Override
+    protected void func_230459_a_(MatrixStack matrix, int mouseX, int mouseY) {
+        super.func_230459_a_(matrix, mouseX, mouseY);
+        drawEnergyText(matrix, mouseX, mouseY);
+    }
+
+    public void drawEnergyText(MatrixStack matrix, int mouseX, int mouseY) {
+        if (Texture.ENERGY_GAUGE.isMouseOver(this.guiLeft + 5, this.guiTop + 5, mouseX, mouseY)) {
+            this.renderTooltip(matrix, getEnergyText(), mouseX, mouseY);
+        }
+    }
+
+    public List<ITextComponent> getEnergyText() {
+        List<ITextComponent> list = new ArrayList<>();
+        Energy energy = this.te.getEnergy();
+        list.add(new TranslationTextComponent("info.autotech.stored_energy", TextFormatting.GRAY + "" + energy.getStored() + "/" + TextFormatting.GRAY + energy.getCapacity()));
+        list.add(new TranslationTextComponent("info.autotech.max_transfer", TextFormatting.GRAY + "" + energy.getMaxExtract()));
+        return list;
     }
 
 }

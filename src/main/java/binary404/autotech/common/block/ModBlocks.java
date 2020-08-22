@@ -2,6 +2,7 @@ package binary404.autotech.common.block;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.generator.BlockBioGenerator;
+import binary404.autotech.common.block.machine.BlockGrinder;
 import binary404.autotech.common.block.machine.BlockSmelter;
 import binary404.autotech.common.core.GrinderManager;
 import binary404.autotech.common.core.logistics.Tier;
@@ -13,6 +14,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,6 +23,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
+
+import javax.swing.text.StyledEditorKit;
 
 import static binary404.autotech.common.core.util.RegistryUtil.register;
 
@@ -51,12 +56,22 @@ public class ModBlocks {
     @ObjectHolder("autotech:titanium_ore")
     public static OreBlock titanium_ore;
 
-    @ObjectHolder("autotech:smelter")
-    public static BlockTile smelter;
+    public static Block lv_smelter;
+    public static Block mv_smelter;
+    public static Block hv_smelter;
+    public static Block ev_smelter;
+    public static Block iv_smelter;
+    public static Block maxv_smelter;
 
     public static Block lv_bio_generator;
-
     public static Block mv_bio_generator;
+
+    public static Block lv_grinder;
+    public static Block mv_grinder;
+    public static Block hv_grinder;
+    public static Block ev_grinder;
+    public static Block iv_grinder;
+    public static Block maxv_grinder;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -72,9 +87,22 @@ public class ModBlocks {
         register(r, new OreBlock(p), "platinum_ore");
         register(r, new OreBlock(p), "titanium_ore");
 
-        register(r, new BlockSmelter(p), "smelter");
+        lv_smelter = register(r, new BlockSmelter(p, Tier.LV), "lv_smelter");
+        mv_smelter = register(r, new BlockSmelter(p, Tier.MV), "mv_smelter");
+        hv_smelter = register(r, new BlockSmelter(p, Tier.HV), "hv_smelter");
+        ev_smelter = register(r, new BlockSmelter(p, Tier.EV), "ev_smelter");
+        iv_smelter = register(r, new BlockSmelter(p, Tier.IV), "iv_smelter");
+        maxv_smelter = register(r, new BlockSmelter(p, Tier.MaxV), "maxv_smelter");
+
         lv_bio_generator = register(r, new BlockBioGenerator(p, Tier.LV), "lv_bio_generator");
         mv_bio_generator = register(r, new BlockBioGenerator(p, Tier.MV), "mv_bio_generator");
+
+        lv_grinder = register(r, new BlockGrinder(p, Tier.LV), "lv_grinder");
+        mv_grinder = register(r, new BlockGrinder(p, Tier.MV), "mv_grinder");
+        hv_grinder = register(r, new BlockGrinder(p, Tier.HV), "hv_grinder");
+        ev_grinder = register(r, new BlockGrinder(p, Tier.EV), "ev_grinder");
+        iv_grinder = register(r, new BlockGrinder(p, Tier.IV), "iv_grinder");
+        maxv_grinder = register(r, new BlockGrinder(p, Tier.MaxV), "maxv_grinder");
     }
 
     @SubscribeEvent
@@ -90,25 +118,22 @@ public class ModBlocks {
         register(r, new BlockItem(platinum_ore, ModItems.properties), "platinum_ore");
         register(r, new BlockItem(titanium_ore, ModItems.properties), "titanium_ore");
 
-        register(r, new BlockItem(smelter, ModItems.properties), "smelter");
+        register(r, new BlockItem(lv_smelter, ModItems.properties), "lv_smelter");
+        register(r, new BlockItem(mv_smelter, ModItems.properties), "mv_smelter");
+        register(r, new BlockItem(hv_smelter, ModItems.properties), "hv_smelter");
+        register(r, new BlockItem(ev_smelter, ModItems.properties), "ev_smelter");
+        register(r, new BlockItem(iv_smelter, ModItems.properties), "iv_smelter");
+        register(r, new BlockItem(maxv_smelter, ModItems.properties), "maxv_smelter");
+
         register(r, new BlockItem(lv_bio_generator, ModItems.properties), "lv_bio_generator");
         register(r, new BlockItem(mv_bio_generator, ModItems.properties), "mv_bio_generator");
 
-        for (Block block : ForgeRegistries.BLOCKS.getValues()) {
-            if (block instanceof OreBlock) {
-                Item item = Item.getItemFromBlock(block);
-                if (item != null) {
-                    GrinderManager.ores.add(item);
-                }
-            }
-        }
-
-        for (Item item : GrinderManager.ores) {
-            if (item == Items.COAL_ORE || item == Items.LAPIS_ORE || item == Items.NETHER_QUARTZ_ORE || item == Items.DIAMOND_ORE || item == Items.NETHER_GOLD_ORE || item == Items.EMERALD_ORE)
-                continue;
-            Item register = register(r, new Item(ModItems.properties), item.getRegistryName().getPath() + "_dust");
-            GrinderManager.dusts.add(register);
-        }
+        register(r, new BlockItem(lv_grinder, ModItems.properties), "lv_grinder");
+        register(r, new BlockItem(mv_grinder, ModItems.properties), "mv_grinder");
+        register(r, new BlockItem(hv_grinder, ModItems.properties), "hv_grinder");
+        register(r, new BlockItem(ev_grinder, ModItems.properties), "ev_grinder");
+        register(r, new BlockItem(iv_grinder, ModItems.properties), "iv_grinder");
+        register(r, new BlockItem(maxv_grinder, ModItems.properties), "maxv_grinder");
     }
 
 }

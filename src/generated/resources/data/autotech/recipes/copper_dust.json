@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "autotech:mortar"
+    },
+    {
+      "item": "autotech:copper_ore"
+    }
+  ],
+  "result": {
+    "item": "autotech:copper_dust"
+  }
+}

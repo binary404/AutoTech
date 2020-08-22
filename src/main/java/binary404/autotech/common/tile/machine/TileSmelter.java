@@ -1,6 +1,7 @@
 package binary404.autotech.common.tile.machine;
 
 import binary404.autotech.common.block.machine.BlockSmelter;
+import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.util.Counter;
 import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.TileTiered;
@@ -21,7 +22,11 @@ public class TileSmelter extends TileTiered<BlockSmelter> implements IInventory 
     protected boolean burning;
 
     public TileSmelter() {
-        super(ModTiles.smelter);
+        this(Tier.LV);
+    }
+
+    public TileSmelter(Tier tier) {
+        super(ModTiles.smelter, tier);
         this.inv.set(2);
         this.burner = new Counter(tier.speed);
     }
@@ -52,9 +57,10 @@ public class TileSmelter extends TileTiered<BlockSmelter> implements IInventory 
 
     @Override
     protected int postTick(World world) {
+        super.postTick(world);
         if (!isRemote() && checkRedstone()) {
             if (this.energy.hasEnergy()) {
-                if (!this.burner.isEmpty() && this.inv.getStackInSlot(0) != ItemStack.EMPTY && (getSmeltingResultForItem(world, this.inv.getStackInSlot(0)).getItem() == this.inv.getStackInSlot(1).getItem() || this.inv.getStackInSlot(1) == ItemStack.EMPTY)) {
+                if (!this.burner.isEmpty() && this.inv.getStackInSlot(0) != ItemStack.EMPTY && (getSmeltingResultForItem(world, this.inv.getStackInSlot(0)).getItem() == this.inv.getStackInSlot(1).getItem() || this.inv.getStackInSlot(1) == ItemStack.EMPTY) && this.energy.getEnergyStored() >= this.tier.use) {
                     this.burner.back();
                     this.energy.consume(this.tier.use);
                     this.burning = true;
