@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -22,7 +23,7 @@ public class IconButton extends Button {
     private Screen screen;
     private Texture texture;
     private Texture hovering;
-    private Consumer<List<ITextComponent>> tooltipConsumer = stringList -> {
+    private Consumer<List<IReorderingProcessor>> tooltipConsumer = stringList -> {
     };
 
 
@@ -69,12 +70,14 @@ public class IconButton extends Button {
 
     @Override
     public void renderToolTip(MatrixStack p_230443_1_, int p_230443_2_, int p_230443_3_) {
-        List<ITextComponent> tooltip = new ArrayList<>();
+        List<IReorderingProcessor> tooltip = new ArrayList<>();
         this.tooltipConsumer.accept(tooltip);
         if (!tooltip.isEmpty()) {
             this.screen.renderTooltip(p_230443_1_, tooltip, p_230443_2_, p_230443_3_);
         }
     }
+
+
 
     public void blit(MatrixStack matrix, Texture texture, int x, int y) {
         bindTexture(texture.getLocation());
@@ -112,11 +115,11 @@ public class IconButton extends Button {
         return this;
     }
 
-    public Consumer<List<ITextComponent>> getTooltip() {
+    public Consumer<List<IReorderingProcessor>> getTooltip() {
         return this.tooltipConsumer;
     }
 
-    public IconButton setTooltip(Consumer<List<ITextComponent>> tooltipConsumer) {
+    public IconButton setTooltip(Consumer<List<IReorderingProcessor>> tooltipConsumer) {
         this.tooltipConsumer = tooltipConsumer;
         return this;
     }

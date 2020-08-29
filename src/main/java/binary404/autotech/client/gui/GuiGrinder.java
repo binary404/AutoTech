@@ -7,6 +7,7 @@ import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.machine.TileGrinder;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -36,9 +37,9 @@ public class GuiGrinder extends GuiEnergy<TileGrinder, GrinderContainer> {
     }
 
     @Override
-    public List<ITextComponent> getEnergyText() {
-        List<ITextComponent> text = super.getEnergyText();
-        text.add(new TranslationTextComponent("info.autotech.usage", TextFormatting.GRAY + "" + this.te.getEnergyPerUse()));
+    public List<IReorderingProcessor> getEnergyText() {
+        List<IReorderingProcessor> text = super.getEnergyText();
+        text.add(new TranslationTextComponent("info.autotech.usage", TextFormatting.GRAY + "" + this.te.getEnergyPerUse()).func_241878_f());
         return text;
     }
 }

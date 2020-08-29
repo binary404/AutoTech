@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ISeedReader;
@@ -11,38 +12,58 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureManager;
+import org.lwjgl.system.CallbackI;
 
 import java.util.List;
 import java.util.Random;
 
-public class LargeOreFeature extends Feature<NoFeatureConfig> {
+public class LargeOreFeature extends Feature<LargeOreFeatureConfig> {
 
     public static List<VeinConfig> configs;
 
-    public LargeOreFeature(Codec<NoFeatureConfig> p_i231953_1_) {
-        super(p_i231953_1_);
-        this.setRegistryName("autotech:large_ore");
+    public LargeOreFeature() {
+        super(LargeOreFeatureConfig.CODEC);
     }
 
-    @Override
-    public boolean func_230362_a_(ISeedReader p_230362_1_, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random random, BlockPos p_230362_5_, NoFeatureConfig p_230362_6_) {
+    public boolean func_241855_a(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, LargeOreFeatureConfig config) {
         Block block;
 
-        VeinConfig config = configs.get(random.nextInt(configs.size()));
-        block = config.blocks.get(random.nextInt(config.blocks.size()));
+        VeinConfig configOre = configs.get(random.nextInt(configs.size()));
+        block = configOre.blocks.get(random.nextInt(configOre.blocks.size()));
+
+        int tier = configOre.tier;
+        int range;
+        int yMin;
+        int yMax;
+        if (tier == 1) {
+            range = config.getTierOneSize();
+            yMin = config.getTierOneYMin();
+            yMax = config.getTierOneYMax();
+        } else if (tier == 2) {
+            range = config.getTierTwoSize();
+            yMin = config.getTierTwoYMin();
+            yMax = config.getTierTwoYMax();
+        } else {
+            range = config.getTierThreeSize();
+            yMin = config.getTierThreeYMin();
+            yMax = config.getTierThreeYMax();
+        }
+
+        int x = pos.getX() + random.nextInt(16);
+        int z = pos.getZ() + random.nextInt(16);
 
         Random gridRandom = new Random(random.nextLong());
-        int xMax = p_230362_5_.getX() + config.range, xMin = p_230362_5_.getX() - config.range, zMax = p_230362_5_.getZ() + config.range, zMin = p_230362_5_.getZ() - config.range;
+        int xMax = x + range, xMin = x - range, zMax = z + range, zMin = z - range;
 
-        int yStart = MathHelper.nextInt(gridRandom, config.yMin, config.yMax);
+        int yStart = MathHelper.nextInt(gridRandom, yMin, yMax);
 
-        for (int x = xMin; x <= xMax; x++) {
-            for (int z = zMin; z <= zMax; z++) {
-                for (int y = yStart - config.range; y < yStart + config.range; y++) {
+        for (int currentX = xMin; currentX <= xMax; currentX++) {
+            for (int currentZ = zMin; currentZ <= zMax; currentZ++) {
+                for (int y = yStart - range; y < yStart + range; y++) {
                     if (gridRandom.nextInt(10) > 2)
                         continue;
-                    if (p_230362_1_.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.STONE)
-                        p_230362_1_.setBlockState(new BlockPos(x, y, z), block.getDefaultState(), 18);
+                    if (world.getBlockState(new BlockPos(currentX, y, currentZ)).getMaterial() == Material.ROCK)
+                        world.setBlockState(new BlockPos(currentX, y, currentZ), block.getDefaultState(), 18);
                 }
             }
         }
@@ -52,13 +73,11 @@ public class LargeOreFeature extends Feature<NoFeatureConfig> {
     public static class VeinConfig {
 
         public List<Block> blocks;
-        public int range, yMin, yMax;
+        public int tier;
 
-        public VeinConfig(int range, int yMin, int yMax, Block... blocks) {
-            this.range = range;
+        public VeinConfig(int tier, Block... blocks) {
+            this.tier = tier;
             this.blocks = Lists.newArrayList(blocks);
-            this.yMin = yMin;
-            this.yMax = yMax;
         }
 
     }

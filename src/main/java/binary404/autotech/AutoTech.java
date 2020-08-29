@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TagsUpdatedEvent;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,11 +54,10 @@ public class AutoTech {
         proxy.init();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::onTagsUpdate);
+        MinecraftForge.EVENT_BUS.addListener(this::serverAboutToStart);
     }
 
     private void setup(FMLCommonSetupEvent event) {
-        ModFeatures.registerFeaturesToBiome();
-
         PacketHandler.init();
 
         DeferredWorkQueue.runLater(() -> {
@@ -68,6 +69,10 @@ public class AutoTech {
     private void onTagsUpdate(TagsUpdatedEvent event) {
         GrinderManager.initTags();
         SawMillManager.initTags();
+    }
+
+    private void serverAboutToStart(FMLServerAboutToStartEvent event) {
+        ModFeatures.registerFeaturesToBiomes(event.getServer());
     }
 
     public static ResourceLocation key(String path) {

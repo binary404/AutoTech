@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "package": "binary404.autotech.mixin",
+  "refmap": "binary404.refmap.json",
+  "mixins": [
+    "AccessorBiomeGenerationSettings"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#forge:ingots/copper",
+    "#forge:ingots/tin",
+    "#forge:ingots/lead",
+    "#forge:ingots/silver",
+    "#forge:ingots/uranium",
+    "#forge:ingots/nickel",
+    "#forge:ingots/platinum",
+    "#forge:ingots/titanium"
+  ]
+}

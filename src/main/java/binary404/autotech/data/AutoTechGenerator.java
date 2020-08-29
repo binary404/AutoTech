@@ -1,6 +1,5 @@
 package binary404.autotech.data;
 
-import binary404.autotech.data.tag.TagProvider;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +16,6 @@ public class AutoTechGenerator {
         gen.addProvider(new AutoTechBlockStateProvider(gen, fileHelper));
         gen.addProvider(new RecipeProvider(gen));
         gen.addProvider(new BlockLootProvider(gen));
-        gen.addProvider(new TagProvider(gen));
     }
 
 }

@@ -55,7 +55,7 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
         this.redStoneButton = addButton(new IconButton(this.guiLeft + this.xSize + x + 2, this.guiTop + y + 3, Texture.REDSTONE.get(this.te.getRedstoneMode()), b -> {
             PacketHandler.sendToServer(new PacketRedstoneChange(this.te.getPos()));
             this.te.setRedstoneMode(this.te.getRedstoneMode().next());
-        }, this).setTooltip(tooltip -> tooltip.add(this.te.getRedstoneMode().getDisplayName())));
+        }, this).setTooltip(tooltip -> tooltip.add(this.te.getRedstoneMode().getDisplayName().func_241878_f())));
     }
 
     protected void addItemConfig(int x, int y) {
@@ -69,8 +69,8 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
                 PacketHandler.sendToServer(new PacketItemChange(id, this.te.getPos()));
                 this.te.itemConfig.nextType(side);
             }, this).setTooltip(tooltip -> {
-                tooltip.add(new TranslationTextComponent("info.autotech.side." + side.getName2(), TextFormatting.DARK_GRAY));
-                tooltip.add(this.te.itemConfig.getType(side).getDisplayName());
+                tooltip.add(new TranslationTextComponent("info.autotech.side." + side.getName2(), TextFormatting.DARK_GRAY).func_241878_f());
+                tooltip.add(this.te.itemConfig.getType(side).getDisplayName().func_241878_f());
             }));
         }
     }

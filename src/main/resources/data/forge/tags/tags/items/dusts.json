@@ -1,0 +1,15 @@
+{
+  "values": [
+    "#forge:dusts/copper",
+    "#forge:dusts/tin",
+    "#forge:dusts/lead",
+    "#forge:dusts/silver",
+    "#forge:dusts/uranium",
+    "#forge:dusts/nickel",
+    "#forge:dusts/platinum",
+    "#forge:dusts/titanium",
+    "#forge:dusts/iron",
+    "#forge:dusts/gold",
+    "#forge:dusts/bronze"
+  ]
+}

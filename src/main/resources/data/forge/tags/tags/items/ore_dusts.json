@@ -1,0 +1,15 @@
+{
+  "values": [
+    "#forge:ore_dusts/copper",
+    "#forge:ore_dusts/tin",
+    "#forge:ore_dusts/lead",
+    "#forge:ore_dusts/silver",
+    "#forge:ore_dusts/uranium",
+    "#forge:ore_dusts/nickel",
+    "#forge:ore_dusts/platinum",
+    "#forge:ore_dusts/titanium",
+    "#forge:ore_dusts/iron",
+    "#forge:ore_dusts/gold",
+    "#forge:ore_dusts/osmium"
+  ]
+}

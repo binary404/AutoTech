@@ -9,6 +9,7 @@ import binary404.autotech.common.tile.util.IInventory;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -53,11 +54,16 @@ public class GuiEnergy<T extends TileEnergy<?> & IInventory, C extends Container
         }
     }
 
-    public List<ITextComponent> getEnergyText() {
-        List<ITextComponent> list = new ArrayList<>();
+    @Override
+    public void renderTooltip(MatrixStack p_238654_1_, List<? extends IReorderingProcessor> p_238654_2_, int p_238654_3_, int p_238654_4_) {
+        super.renderTooltip(p_238654_1_, p_238654_2_, p_238654_3_, p_238654_4_);
+    }
+
+    public List<IReorderingProcessor> getEnergyText() {
+        List<IReorderingProcessor> list = new ArrayList<>();
         Energy energy = this.te.getEnergy();
-        list.add(new TranslationTextComponent("info.autotech.stored_energy", TextFormatting.GRAY + "" + energy.getStored() + "/" + TextFormatting.GRAY + energy.getCapacity()));
-        list.add(new TranslationTextComponent("info.autotech.max_transfer", TextFormatting.GRAY + "" + energy.getMaxExtract()));
+        list.add(new TranslationTextComponent("info.autotech.stored_energy", TextFormatting.GRAY + "" + energy.getStored() + "/" + TextFormatting.GRAY + energy.getCapacity()).func_241878_f());
+        list.add(new TranslationTextComponent("info.autotech.max_transfer", TextFormatting.GRAY + "" + energy.getMaxExtract()).func_241878_f());
         return list;
     }
 
