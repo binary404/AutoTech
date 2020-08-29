@@ -2,12 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "BBB",
-    "BPB",
-    "BBB"
+    "B B",
+    "III"
   ],
   "key": {
-    "P": {
-      "item": "autotech:copper_plate"
+    "I": {
+      "item": "autotech:iron_plate"
     },
     "B": {
       "item": "autotech:bronze_plate"

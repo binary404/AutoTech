@@ -7,7 +7,15 @@
   "block.autotech.nickel_ore": "Nickel Ore",
   "block.autotech.platinum_ore": "Platinum Ore",
   "block.autotech.titanium_ore": "Titanium Ore",
-  "block.autotech.lv_bio_generator": "LV Bio Generator",
+
+  "block.autotech.lv_bio_generator": "Low Voltage Bio Generator",
+  "block.autotech.mv_bio_generator": "Medium Voltage Bio Generator",
+
+  "block.autotech.lv_smelter": "Low Voltage Smelter",
+  "block.autotech.mv_smelter": "Medium Voltage Smelter",
+
+  "block.autotech.lv_grinder": "Low Voltage Grinder",
+  "block.autotech.mv_grinder": "Medium Voltage Grinder",
 
   "item.autotech.gold_ore_dust": "Gold Ore Dust",
   "item.autotech.iron_ore_dust": "Iron Ore Dust",
@@ -20,6 +28,15 @@
   "item.autotech.platinum_ore_dust": "Platinum Ore Dust",
   "item.autotech.titanium_ore_dust": "Titanium Ore Dust",
 
+  "item.autotech.copper_dust": "Copper dust",
+  "item.autotech.tin_dust": "Tin dust",
+  "item.autotech.silver_dust": "Silver Dust",
+  "item.autotech.lead_dust": "Lead Dust",
+  "item.autotech.uranium_dust": "Uranium Dust",
+  "item.autotech.nickel_dust": "Nickel Dust",
+  "item.autotech.platinum_dust": "Platinum Dust",
+  "info.autotech.titanium_dust": "Titanium Dust",
+
   "item.autotech.copper_ingot": "Copper Ingot",
   "item.autotech.tin_ingot": "Tin Ingot",
   "item.autotech.lead_ingot": "Lead Ingot",
@@ -28,8 +45,18 @@
   "item.autotech.nickel_ingot": "Nickel Ingot",
   "item.autotech.platinum_ingot": "Platinum Ingot",
   "item.autotech.titanium_ingot": "Titanium Ingot",
+  "item.autotech.bronze_ingot": "Bronze Ingot",
+
+  "item.autotech.lv_machine_hull": "Low Voltage Machine Hull",
+  "item.autotech.mv_machine_hull": "Medium Voltage Machine Hull",
+
+  "item.autotech.mv_logic_circuit": "Medium Voltage Logic Circuit",
+  "item.autotech.mv_transmitter_circuit": "Medium Voltage Transmitter Circuit",
+  "item.autotech.mv_receiver_circuit":  "Medium Voltage Receiver Circuit",
 
   "info.autotech.stored_energy": "Stored Energy: %s",
   "info.autotech.max_transfer": "Max Transfer: %s",
-  "info.autotech.usage": "Usage: %s"
+  "info.autotech.usage": "Usage: %s",
+  "info.autotech.power": "Power Required",
+  "info.autotech.min_tier": "Minimum Tier"
 }

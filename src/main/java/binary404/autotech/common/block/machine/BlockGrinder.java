@@ -1,7 +1,7 @@
 package binary404.autotech.common.block.machine;
 
 import binary404.autotech.common.block.BlockTile;
-import binary404.autotech.common.container.GrinderContainer;
+import binary404.autotech.common.container.machine.GrinderContainer;
 import binary404.autotech.common.container.core.ContainerCore;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.core.TileCore;
@@ -33,5 +33,10 @@ public class BlockGrinder extends BlockTile {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new TileGrinder(this.tier);
+    }
+
+    @Override
+    protected Facing getFacing() {
+        return Facing.HORIZONTAL;
     }
 }

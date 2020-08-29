@@ -1,11 +1,9 @@
 package binary404.autotech.common.container.generator;
 
 import binary404.autotech.common.container.ModContainers;
-import binary404.autotech.common.container.SmelterContainer;
 import binary404.autotech.common.container.core.ContainerTile;
 import binary404.autotech.common.container.slot.SlotBase;
 import binary404.autotech.common.tile.generator.TileBioGenerator;
-import binary404.autotech.common.tile.machine.TileSmelter;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketBuffer;
 

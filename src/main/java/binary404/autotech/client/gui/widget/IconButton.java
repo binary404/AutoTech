@@ -1,6 +1,6 @@
 package binary404.autotech.client.gui.widget;
 
-import binary404.autotech.client.gui.Texture;
+import binary404.autotech.client.gui.core.Texture;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;

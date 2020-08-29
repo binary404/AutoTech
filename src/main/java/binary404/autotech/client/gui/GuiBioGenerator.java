@@ -1,5 +1,7 @@
 package binary404.autotech.client.gui;
 
+import binary404.autotech.client.gui.core.GuiEnergy;
+import binary404.autotech.client.gui.core.Texture;
 import binary404.autotech.common.container.generator.BioGeneratorContainer;
 import binary404.autotech.common.tile.generator.TileBioGenerator;
 import com.mojang.blaze3d.matrix.MatrixStack;

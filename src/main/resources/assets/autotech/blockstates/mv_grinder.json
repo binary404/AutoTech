@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": {"model": "autotech:block/mv_grinder"},
+    "facing=south": {"model": "autotech:block/mv_grinder", "y": 180},
+    "facing=west": {"model": "autotech:block/mv_grinder", "y": 270},
+    "facing=east": {"model": "autotech:block/mv_grinder", "y": 90},
+    "facing=up": {"model": "lollipop:block/empty"},
+    "facing=down": {"model": "lollipop:block/empty"}
+  }
+}

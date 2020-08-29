@@ -4,6 +4,7 @@ import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.util.IInventory;
+import binary404.autotech.common.tile.util.IRedstoneInteract;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -30,7 +31,7 @@ import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nullable;
 
-public class TileMachine<T extends BlockTile> extends TileTiered<T> implements IInventory {
+public class TileMachine<T extends BlockTile> extends TileTiered<T> implements IInventory, IRedstoneInteract {
 
     public int processMax;
     public int processRem;
@@ -42,8 +43,11 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> implements I
 
     @Override
     protected int postTick(World world) {
-        if (isActive) {
+        if (isActive && checkRedstone()) {
             processTick();
+
+            if(!hasValidInput())
+                processOff();
 
             if (canFinish()) {
                 processFinish();
@@ -68,6 +72,9 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> implements I
                 sync(4);
             }
         }
+
+        if(!checkRedstone())
+            processOff();
 
         return super.postTick(world);
     }
@@ -103,12 +110,31 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> implements I
     protected void processOff() {
         processRem = 0;
         isActive = false;
+        clearRecipe();
+    }
+
+    protected void clearRecipe() {
+
+    }
+
+    @Override
+    public void markDirty() {
+        if (isActive && !hasValidInput())
+            processOff();
+        super.markDirty();
     }
 
     public int getScaledProgress() {
         if (!isActive || processMax <= 0 || processRem <= 0)
             return 0;
         return 24 * (processMax - processRem) / processMax;
+    }
+
+    public float getScaledProgressH() {
+        if (!isActive || processRem <= 0 || processMax <= 0) {
+            return 0;
+        }
+        return (float) processRem / processMax;
     }
 
     protected int processTick() {
@@ -172,7 +198,6 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> implements I
 
         if (isAccessibleInput(adjInv, side)) {
             IItemHandler inventory = getItemHandlerCap(adjInv, side.getOpposite()).orElse(new ItemStackHandler(0));
-            System.out.println(inventory.getStackInSlot(0));
             if (inventory == null) {
                 return false;
             }

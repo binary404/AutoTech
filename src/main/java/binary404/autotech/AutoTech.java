@@ -1,20 +1,21 @@
 package binary404.autotech;
 
 import binary404.autotech.common.block.ModBlocks;
-import binary404.autotech.common.core.GrinderManager;
+import binary404.autotech.common.core.manager.GrinderManager;
+import binary404.autotech.common.core.logistics.Tier;
+import binary404.autotech.common.core.manager.SawMillManager;
 import binary404.autotech.common.network.PacketHandler;
-import binary404.autotech.common.tags.TagCache;
+import binary404.autotech.common.tags.ModTags;
 import binary404.autotech.common.world.ModFeatures;
 import binary404.autotech.proxy.ClientProxy;
 import binary404.autotech.proxy.CommonProxy;
 import binary404.autotech.proxy.IProxy;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
@@ -23,6 +24,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static binary404.autotech.common.core.manager.GrinderManager.addRecipe;
+import static binary404.autotech.common.core.manager.GrinderManager.recipeExists;
 
 @Mod("autotech")
 public class AutoTech {
@@ -56,12 +60,14 @@ public class AutoTech {
         PacketHandler.init();
 
         DeferredWorkQueue.runLater(() -> {
+            GrinderManager.init();
+            SawMillManager.init();
         });
     }
 
     private void onTagsUpdate(TagsUpdatedEvent event) {
-        TagCache.resetTagCaches();
-        GrinderManager.init();
+        GrinderManager.initTags();
+        SawMillManager.initTags();
     }
 
     public static ResourceLocation key(String path) {

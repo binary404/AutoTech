@@ -1,0 +1,42 @@
+{
+  "multipart": [
+    {
+      "apply": {"model": "autotech:block/mv_cable"}
+    }, {
+      "when": {
+        "north": true
+      },
+      "apply": {"model": "autotech:block/mv_cable_multipart"}
+    },
+    {
+      "when": {
+        "east": true
+      },
+      "apply": {"model": "autotech:block/mv_cable_multipart", "y": 90}
+    },
+    {
+      "when": {
+        "south": true
+      },
+      "apply": {"model": "autotech:block/mv_cable_multipart", "x": 180}
+    },
+    {
+      "when": {
+        "west": true
+      },
+      "apply": {"model": "autotech:block/mv_cable_multipart", "y": 270}
+    },
+    {
+      "when": {
+        "up": true
+      },
+      "apply": {"model": "autotech:block/mv_cable_multipart", "x": 270}
+    },
+    {
+      "when": {
+        "down": true
+      },
+      "apply": {"model": "autotech:block/mv_cable_multipart", "x": 90}
+    }
+  ]
+}

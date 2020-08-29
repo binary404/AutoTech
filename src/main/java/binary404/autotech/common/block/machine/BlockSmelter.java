@@ -1,14 +1,13 @@
 package binary404.autotech.common.block.machine;
 
 import binary404.autotech.common.block.BlockTile;
-import binary404.autotech.common.container.SmelterContainer;
+import binary404.autotech.common.container.machine.SmelterContainer;
 import binary404.autotech.common.container.core.ContainerCore;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.machine.TileSmelter;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -34,5 +33,10 @@ public class BlockSmelter extends BlockTile {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new TileSmelter(this.tier);
+    }
+
+    @Override
+    protected Facing getFacing() {
+        return Facing.HORIZONTAL;
     }
 }

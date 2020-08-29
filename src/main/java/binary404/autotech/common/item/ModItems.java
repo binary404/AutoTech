@@ -6,7 +6,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
 
 import static binary404.autotech.common.core.util.RegistryUtil.register;
 
@@ -66,6 +65,12 @@ public class ModItems {
 
     public static Item bronze_dust;
 
+    public static Item saw_dust;
+
+    public static Item mv_logic_circuit;
+    public static Item mv_receiver_circuit;
+    public static Item mv_transmitter_circuit;
+
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
     @SubscribeEvent
@@ -108,6 +113,8 @@ public class ModItems {
 
         bronze_dust = register(r, new Item(properties), "bronze_dust");
 
+        saw_dust = register(r, new Item(properties), "saw_dust");
+
         copper_plate = register(r, new Item(properties), "copper_plate");
         tin_plate = register(r, new Item(properties), "tin_plate");
         lead_plate = register(r, new Item(properties), "lead_plate");
@@ -123,7 +130,11 @@ public class ModItems {
         lv_machine_hull = register(r, new Item(properties), "lv_machine_hull");
         mv_machine_hull = register(r, new Item(properties), "mv_machine_hull");
 
-        mortar = register(r, new ItemMortar(properties), "mortar");
+        mv_logic_circuit = register(r, new Item(properties), "mv_logic_circuit");
+        mv_transmitter_circuit = register(r, new Item(properties), "mv_transmitter_circuit");
+        mv_receiver_circuit = register(r, new Item(properties), "mv_receiver_circuit");
+
+        mortar = register(r, new ItemMortar(properties.maxStackSize(1)), "mortar");
     }
 
 }

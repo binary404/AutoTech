@@ -31,8 +31,8 @@ minecraft {
 
     runs {
         client {
-			properties 'forge.logging.console.level': 'debug'
-			properties 'fml.earlyprogresswindow': 'false'
+            properties 'forge.logging.console.level': 'debug'
+            properties 'fml.earlyprogresswindow': 'false'
             workingDirectory project.file('run')
             mods {
                 autotech {
@@ -41,7 +41,7 @@ minecraft {
             }
         }
         server {
-		    properties 'fml.earlyprogresswindow': 'false'
+            properties 'fml.earlyprogresswindow': 'false'
             workingDirectory project.file('run')
             mods {
                 autotech {
@@ -51,7 +51,7 @@ minecraft {
         }
 
         data {
-			properties 'fml.earlyprogresswindow': 'false'
+            properties 'fml.earlyprogresswindow': 'false'
             workingDirectory project.file('run')
 
             mods {
@@ -59,7 +59,7 @@ minecraft {
                     source sourceSets.main
                 }
             }
-			args '--mod', 'autotech', '--all',
+            args '--mod', 'autotech', '--all',
                     '--existing', '"' + file('src/main/resources/') + '"',
                     '--existing', '"' + file('src/generated/resources/') + '"',
                     '--output', '"' + file('src/generated/resources/') + '"'
@@ -90,24 +90,36 @@ repositories {
         name "curios"
         url "https://maven.theillusivec4.top/"
     }
+    maven {
+        name = "Progwm16 maven"
+        url = "https://dvs1.progwm16.com/files/maven/"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.1-32.0.108'
 
     compile fg.deobf("curse.maven:fx_lib:3010300")
+
+    compile fg.deobf("mezz.jei:jei-1.16.1:7.0.1.10:api")
+
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.1:7.0.1.10")
 }
 
 jar {
     manifest {
         attributes([
-            "Specification-Title": "autotech",
-            "Specification-Vendor": "autotech",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"autotech",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title"     : "autotech",
+                "Specification-Vendor"    : "autotech",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "autotech",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }

@@ -1,22 +1,16 @@
 package binary404.autotech.common.tile.machine;
 
+import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.machine.BlockGrinder;
-import binary404.autotech.common.core.GrinderManager;
+import binary404.autotech.common.core.manager.GrinderManager;
 import binary404.autotech.common.core.logistics.Tier;
-import binary404.autotech.common.core.util.Counter;
 import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.TileMachine;
-import binary404.autotech.common.tile.core.TileTiered;
 import binary404.autotech.common.tile.util.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
-import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
 
-public class TileGrinder extends TileMachine<BlockGrinder> implements IInventory {
+public class TileGrinder extends TileMachine<BlockGrinder> {
 
     GrinderManager.GrinderRecipe recipe;
 
@@ -45,14 +39,19 @@ public class TileGrinder extends TileMachine<BlockGrinder> implements IInventory
             return false;
         }
 
-        if (!recipe.getSecondaryOutput().isEmpty() && inv.getStackInSlot(2).isEmpty()) {
+        if (!recipe.getSecondaryOutput().isEmpty() && !inv.getStackInSlot(2).isEmpty()) {
             if (inv.getStackInSlot(2).getItem() != recipe.getSecondaryOutput().getItem())
                 return false;
         }
 
-        if (!recipe.getThirdOutput().isEmpty() && inv.getStackInSlot(3).isEmpty()) {
+        if (!recipe.getThirdOutput().isEmpty() && !inv.getStackInSlot(3).isEmpty()) {
             if (inv.getStackInSlot(3).getItem() != recipe.getThirdOutput().getItem())
                 return false;
+        }
+
+        if (this.tier.ordinal() < this.recipe.getMinTier().ordinal()) {
+            AutoTech.LOGGER.error(this.tier.ordinal() + " " + this.recipe.getMinTier().ordinal());
+            return false;
         }
 
         return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getPrimaryOutput().getItem();
@@ -68,6 +67,12 @@ public class TileGrinder extends TileMachine<BlockGrinder> implements IInventory
             return false;
         }
 
+
+        if (this.tier.ordinal() < this.recipe.getMinTier().ordinal()) {
+            System.out.println(this.tier.ordinal() + " " + this.recipe.getMinTier().ordinal());
+            return false;
+        }
+
         return recipe.getInput().getCount() <= inv.getStackInSlot(0).getCount();
     }
 
@@ -75,6 +80,11 @@ public class TileGrinder extends TileMachine<BlockGrinder> implements IInventory
     protected void processStart() {
         processMax = recipe.getEnergy();
         processRem = processMax;
+    }
+
+    @Override
+    protected void clearRecipe() {
+        this.recipe = null;
     }
 
     @Override

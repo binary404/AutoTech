@@ -6,6 +6,7 @@ import binary404.autotech.common.core.util.Counter;
 import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.TileTiered;
 import binary404.autotech.common.tile.util.IInventory;
+import binary404.autotech.common.tile.util.IRedstoneInteract;
 import com.sun.scenario.effect.Crop;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -17,7 +18,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
-public class TileBioGenerator extends TileTiered<BlockBioGenerator> implements IInventory {
+public class TileBioGenerator extends TileTiered<BlockBioGenerator> implements IInventory, IRedstoneInteract {
     protected final Counter burner;
     protected boolean generating;
 

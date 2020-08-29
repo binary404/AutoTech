@@ -25,7 +25,6 @@ public class PacketHandler {
     public static void init() {
         int id = 0;
 
-        HANDLER.registerMessage(id++, PacketEnergyChange.class, PacketEnergyChange::encode, PacketEnergyChange::decode, PacketEnergyChange::handle);
         HANDLER.registerMessage(id++, PacketItemChange.class, PacketItemChange::encode, PacketItemChange::decode, PacketItemChange::handle);
         HANDLER.registerMessage(id++, PacketRedstoneChange.class, PacketRedstoneChange::encode, PacketRedstoneChange::decode, PacketRedstoneChange::handle);
     }

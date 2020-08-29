@@ -22,7 +22,6 @@ import java.util.stream.IntStream;
 
 public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
 
-    protected final SideConfigEnergy energyConfig = new SideConfigEnergy(this);
     protected final Energy energy = Energy.create(0);
 
     public TileEnergy(TileEntityType<?> type) {
@@ -31,7 +30,6 @@ public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
 
     @Override
     public void readSync(CompoundNBT nbt) {
-        this.energyConfig.read(nbt);
         if (!keepEnergy()) {
             this.energy.read(nbt, true, false);
         }
@@ -40,7 +38,6 @@ public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
 
     @Override
     public CompoundNBT writeSync(CompoundNBT nbt) {
-        this.energyConfig.write(nbt);
         if (!keepEnergy()) {
             this.energy.write(nbt, true, false);
         }
@@ -100,7 +97,6 @@ public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
         super.onFirstTick(world);
         this.energy.setCapacity(getEnergyCapacity());
         this.energy.setTransfer(getEnergyTransfer());
-        getEnergyConfig().init();
         sync();
     }
 
@@ -174,23 +170,15 @@ public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
     }
 
     public boolean canExtractEnergy(@Nullable Direction side) {
-        return side == null || isEnergyPresent(side) && this.energyConfig.getType(side).canExtract;
+        return side == null || isEnergyPresent(side);
     }
 
     public boolean canReceiveEnergy(@Nullable Direction side) {
-        return side == null || isEnergyPresent(side) && this.energyConfig.getType(side).canReceive;
+        return side == null || isEnergyPresent(side);
     }
 
     public boolean isEnergyPresent(@Nullable Direction side) {
         return true;
-    }
-
-    @Override
-    public void onAdded(World world, BlockState state, BlockState oldState, boolean isMoving) {
-        super.onAdded(world, state, oldState, isMoving);
-        if (state.getBlock() != oldState.getBlock()) {
-            getEnergyConfig().init();
-        }
     }
 
     protected long getEnergyCapacity() {
@@ -211,10 +199,6 @@ public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
 
     public TransferType getTransferType() {
         return TransferType.ALL;
-    }
-
-    public SideConfigEnergy getEnergyConfig() {
-        return this.energyConfig;
     }
 
 }

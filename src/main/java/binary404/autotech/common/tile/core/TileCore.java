@@ -244,4 +244,8 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
         return TransferType.ALL;
     }
 
+    public SideConfigItem getItemConfig() {
+        return this.itemConfig;
+    }
+
 }

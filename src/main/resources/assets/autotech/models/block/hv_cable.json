@@ -1,0 +1,6 @@
+{
+  "parent": "autotech:block/cable",
+  "textures": {
+    "cable": "autotech:block/hv_cable"
+  }
+}
