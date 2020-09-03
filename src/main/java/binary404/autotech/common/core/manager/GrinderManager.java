@@ -96,7 +96,6 @@ public class GrinderManager {
 
         GrinderRecipe recipe = new GrinderRecipe(input, primaryOutput, secondOutput, thirdOutput, secondOutput.isEmpty() ? 0 : secondChance, thirdOutput.isEmpty() ? 0 : thirdChance, energy, minTier);
         recipeMap.put(new ComparableItemStack(input), recipe);
-        System.out.println(recipeMap.get(new ComparableItemStack(input)));
         return recipe;
     }
 
