@@ -1,7 +1,8 @@
 package binary404.autotech.common.block;
 
 import binary404.autotech.AutoTech;
-import binary404.autotech.common.block.generator.BlockBioGenerator;
+import binary404.autotech.common.block.device.BlockWaterPump;
+import binary404.autotech.common.block.generator.BlockSteamGenerator;
 import binary404.autotech.common.block.machine.BlockGrinder;
 import binary404.autotech.common.block.machine.BlockSawMill;
 import binary404.autotech.common.block.machine.BlockSmelter;
@@ -82,6 +83,8 @@ public class ModBlocks {
     public static Block iv_cable;
     public static Block maxv_cable;
 
+    public static Block waterpump;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
@@ -103,8 +106,8 @@ public class ModBlocks {
         iv_smelter = register(r, new BlockSmelter(p, Tier.IV), "iv_smelter");
         maxv_smelter = register(r, new BlockSmelter(p, Tier.MaxV), "maxv_smelter");
 
-        lv_bio_generator = register(r, new BlockBioGenerator(p, Tier.LV), "lv_bio_generator");
-        mv_bio_generator = register(r, new BlockBioGenerator(p, Tier.MV), "mv_bio_generator");
+        lv_bio_generator = register(r, new BlockSteamGenerator(p, Tier.LV), "lv_bio_generator");
+        mv_bio_generator = register(r, new BlockSteamGenerator(p, Tier.MV), "mv_bio_generator");
 
         lv_sawmill = register(r, new BlockSawMill(p, Tier.LV), "lv_sawmill");
         mv_sawmill = register(r, new BlockSawMill(p, Tier.MV), "mv_sawmill");
@@ -126,6 +129,8 @@ public class ModBlocks {
         ev_cable = register(r, new BlockCable(p, Tier.EV), "ev_cable");
         iv_cable = register(r, new BlockCable(p, Tier.IV), "iv_cable");
         maxv_cable = register(r, new BlockCable(p, Tier.MaxV), "maxv_cable");
+
+        waterpump = register(r, new BlockWaterPump(p), "waterpump");
     }
 
     @SubscribeEvent
@@ -171,6 +176,8 @@ public class ModBlocks {
         register(r, new BlockItem(ev_cable, ModItems.properties), "ev_cable");
         register(r, new BlockItem(iv_cable, ModItems.properties), "iv_cable");
         register(r, new BlockItem(maxv_cable, ModItems.properties), "maxv_cable");
+
+        register(r, new BlockItem(waterpump, ModItems.properties), "waterpump");
     }
 
 }

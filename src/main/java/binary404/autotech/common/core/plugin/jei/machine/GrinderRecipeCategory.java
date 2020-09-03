@@ -13,8 +13,10 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
@@ -110,12 +112,12 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderManager.Gri
         }
         guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
             if (slotIndex == 0) {
-                tooltip.add(new TranslationTextComponent("info.autotech.power" + ":" + grinderRecipe.getEnergy()));
-                tooltip.add(new TranslationTextComponent("info.autotech.min_tier" + ":" + grinderRecipe.getMinTier().name()));
+                tooltip.add(new StringTextComponent(I18n.format("info.autotech.power") + ":" + grinderRecipe.getEnergy()));
+                tooltip.add(new TranslationTextComponent(I18n.format("info.autotech.min_tier") + ":" + grinderRecipe.getMinTier().name()));
             } else if (slotIndex == 2) {
-                tooltip.add(new TranslationTextComponent("info.autotech.chance" + ":" + grinderRecipe.getSecondaryChance()));
+                tooltip.add(new TranslationTextComponent(I18n.format("info.autotech.chance") + ":" + grinderRecipe.getSecondaryChance()));
             } else if (slotIndex == 3) {
-                tooltip.add(new TranslationTextComponent("info.autotech.chance" + ":" + grinderRecipe.getThirdChance()));
+                tooltip.add(new TranslationTextComponent(I18n.format("info.autotech.chance") + ":" + grinderRecipe.getThirdChance()));
             }
         });
     }

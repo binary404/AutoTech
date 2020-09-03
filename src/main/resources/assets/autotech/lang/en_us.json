@@ -58,5 +58,6 @@
   "info.autotech.max_transfer": "Max Transfer: %s",
   "info.autotech.usage": "Usage: %s",
   "info.autotech.power": "Power Required",
-  "info.autotech.min_tier": "Minimum Tier"
+  "info.autotech.min_tier": "Minimum Tier",
+  "info.autotech.chance": "Chance"
 }

@@ -21,6 +21,7 @@ public class BlockSmelter extends BlockTile {
     public BlockSmelter(Properties properties, Tier tier) {
         super(properties);
         this.tier = tier;
+        setDefaultState();
     }
 
     @Nullable

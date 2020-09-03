@@ -21,6 +21,7 @@ public class BlockSawMill extends BlockTile {
     public BlockSawMill(Properties properties, Tier tier) {
         super(properties);
         this.tier = tier;
+        setDefaultState();
     }
 
     @Nullable

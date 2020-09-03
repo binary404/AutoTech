@@ -41,14 +41,16 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
         if (hasRedstoneButton()) {
             addRedstoneButton(0, 58);
         }
-        this.itemButtonEnable = addButton(new IconButton(this.guiLeft + this.xSize, this.guiTop + 4, Texture.CONFIG_BTN_ALL_ITEM, button -> {
-            if (this.itemButtonVisible)
-                this.itemButtonVisible = false;
-            else
-                this.itemButtonVisible = true;
-        }, this));
+        if (hasItemButton()) {
+            this.itemButtonEnable = addButton(new IconButton(this.guiLeft + this.xSize, this.guiTop + 4, Texture.CONFIG_BTN_ALL_ITEM, button -> {
+                if (this.itemButtonVisible)
+                    this.itemButtonVisible = false;
+                else
+                    this.itemButtonVisible = true;
+            }, this));
 
-        addItemConfig(0, 12);
+            addItemConfig(0, 12);
+        }
     }
 
     protected void addRedstoneButton(int x, int y) {
@@ -88,28 +90,38 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
     @Override
     public void tick() {
         super.tick();
-        if (this.itemButtonVisible) {
-            for (int i = 0; i < 6; i++) {
-                this.itemButtons[i].setTexture(Texture.CONFIG_ITEM.get(this.te.itemConfig.getType(Direction.byIndex(i))));
-                this.itemButtons[i].visible = true;
+        if (hasItemButton()) {
+            if (this.itemButtonVisible) {
+                for (int i = 0; i < 6; i++) {
+                    this.itemButtons[i].setTexture(Texture.CONFIG_ITEM.get(this.te.itemConfig.getType(Direction.byIndex(i))));
+                    this.itemButtons[i].visible = true;
+                }
+            } else {
+                removeItemButton();
             }
-        } else {
-            removeItemButton();
         }
-        this.redStoneButton.setTexture(Texture.REDSTONE.get(this.te.getRedstoneMode()));
+        if (hasRedstoneButton())
+            this.redStoneButton.setTexture(Texture.REDSTONE.get(this.te.getRedstoneMode()));
     }
 
     @Override
     protected void drawBackground(MatrixStack matrix, float partialTicks, int mouseX, int mouseY) {
         super.drawBackground(matrix, partialTicks, mouseX, mouseY);
-        Texture.REDSTONE_BTN_BG.draw(matrix, this.redStoneButton.x - 2, this.redStoneButton.y - 4);
-        if (this.itemButtonVisible)
-            Texture.CONFIG_BTN_BG.draw(matrix, this.itemButtons[1].x - 8, this.itemButtons[1].y - 10);
-        else
-            Texture.REDSTONE_BTN_BG.draw(matrix, this.itemButtonEnable.x - 1, this.itemButtonEnable.y - 4);
+        if (hasRedstoneButton())
+            Texture.REDSTONE_BTN_BG.draw(matrix, this.redStoneButton.x - 2, this.redStoneButton.y - 4);
+        if (hasItemButton()) {
+            if (this.itemButtonVisible)
+                Texture.CONFIG_BTN_BG.draw(matrix, this.itemButtons[1].x - 8, this.itemButtons[1].y - 10);
+            else
+                Texture.REDSTONE_BTN_BG.draw(matrix, this.itemButtonEnable.x - 1, this.itemButtonEnable.y - 4);
+        }
     }
 
     protected boolean hasRedstoneButton() {
+        return true;
+    }
+
+    protected boolean hasItemButton() {
         return true;
     }
 

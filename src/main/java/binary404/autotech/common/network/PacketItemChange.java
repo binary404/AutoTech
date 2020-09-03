@@ -1,5 +1,6 @@
 package binary404.autotech.common.network;
 
+import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.core.TileEnergy;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
@@ -38,8 +39,8 @@ public class PacketItemChange {
             ServerPlayerEntity player = ctx.get().getSender();
             if (player != null) {
                 TileEntity tileEntity = player.world.getTileEntity(msg.pos);
-                if (tileEntity instanceof TileEnergy) {
-                    TileEnergy storage = ((TileEnergy) tileEntity);
+                if (tileEntity instanceof TileCore) {
+                    TileCore storage = ((TileCore) tileEntity);
                     storage.itemConfig.nextType(Direction.byIndex(msg.mode));
                     storage.sync();
                 }

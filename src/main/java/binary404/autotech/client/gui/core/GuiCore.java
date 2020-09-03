@@ -6,7 +6,11 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Rectangle2d;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -69,5 +73,35 @@ public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
     public boolean isMouseOver(double mouseX, double mouseY, int w, int h) {
         return mouseX >= this.guiLeft && mouseY >= this.guiTop && mouseX < this.guiLeft + w && mouseY < this.guiTop + h;
     }
+    public static void gaugeV(TextureAtlasSprite sprite, int x, int y, int w, int h, int cap, int cur) {
+        if (cap > 0 && cur > 0) {
+            int i = (int) (((float) cur / cap) * h);
+            final int j = i / 16;
+            final int k = i - j * 16;
+            for (int l = 0; l <= j; l++) {
+                int height = l == j ? k : 16;
+                int yy = (y - (l + 1) * 16) + h;
+                if (height > 0) {
+                    int m = 16 - height;
+                    int n = 16 - w;
+                    float uMin = sprite.getMinU();
+                    float uMax = sprite.getMaxU();
+                    float vMin = sprite.getMinV();
+                    float vMax = sprite.getMaxV();
+                    uMax = uMax - n / 16.0F * (uMax - uMin);
+                    vMin = vMin - m / 16.0F * (vMin - vMax);
+                    Tessellator tessellator = Tessellator.getInstance();
+                    BufferBuilder buffer = tessellator.getBuffer();
+                    buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
+                    buffer.pos(x, yy + 16, 0).tex(uMin, vMax).endVertex();
+                    buffer.pos(x + w, yy + 16, 0).tex(uMax, vMax).endVertex();
+                    buffer.pos(x + w, yy + m, 0).tex(uMax, vMin).endVertex();
+                    buffer.pos(x, yy + m, 0).tex(uMin, vMin).endVertex();
+                    tessellator.draw();
+                }
+            }
+        }
+    }
+
 
 }

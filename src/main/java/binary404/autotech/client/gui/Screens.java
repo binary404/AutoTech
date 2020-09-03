@@ -10,6 +10,7 @@ public class Screens {
         ScreenManager.registerFactory(ModContainers.bio_generator, GuiBioGenerator::new);
         ScreenManager.registerFactory(ModContainers.grinder, GuiGrinder::new);
         ScreenManager.registerFactory(ModContainers.sawmill, GuiSawMill::new);
+        ScreenManager.registerFactory(ModContainers.waterpump, GuiWaterPump::new);
     }
 
 }

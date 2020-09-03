@@ -172,7 +172,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
 
     @Override
     public boolean canInsert(int slot, ItemStack stack) {
-        return slot == 0;
+        return slot == 0 && GrinderManager.recipeExists(stack);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
 
     @Override
     public boolean canExtract(int slot) {
-        return slot == 1;
+        return slot != 0;
     }
 
 }

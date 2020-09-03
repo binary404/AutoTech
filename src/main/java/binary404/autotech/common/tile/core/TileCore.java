@@ -29,6 +29,9 @@ import javax.annotation.Nullable;
 
 public class TileCore<B extends BlockTile> extends TileEntity implements IBlockEntity {
 
+    protected byte facing = 3;
+    public byte[] sideCache = {0, 0, 0, 0, 0, 0};
+
     /**
      * Used when this is instance of {@link IInventory}
      **/
@@ -40,7 +43,7 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
 
     public SideConfigItem itemConfig = new SideConfigItem(this);
 
-    protected final Tank tank = new Tank(0);
+    protected Tank tank = new Tank(0);
     private final LazyOptional<FluidTank> tankHolder = LazyOptional.of(() -> this.tank);
 
     protected boolean isContainerOpen;
@@ -51,7 +54,6 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
 
     public TileCore(TileEntityType<?> type) {
         super(type);
-        this.tank.validate(stack -> stack.getFluid() == Fluids.LAVA);
         if (this instanceof IInventory) {
             this.inv.setTile(this);
         }
@@ -64,12 +66,18 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
     @Override
     public void read(BlockState state, CompoundNBT compound) {
         super.read(state, compound);
+
+        this.facing = compound.getByte("facing_direction");
+        this.sideCache = compound.getByteArray("facing_cache");
+
         readSync(compound);
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         CompoundNBT nbt = super.write(compound);
+        nbt.putByte("facing_direction", facing);
+        nbt.putByteArray("facing_cache", sideCache);
         return writeSync(nbt);
     }
 
@@ -247,5 +255,13 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
     public SideConfigItem getItemConfig() {
         return this.itemConfig;
     }
+
+    public boolean setFacing(int side, boolean alternative) {
+        if (side < 0 || side > 5)
+            return false;
+        facing = (byte) side;
+        return true;
+    }
+
 
 }

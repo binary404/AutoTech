@@ -21,6 +21,7 @@ public class BlockGrinder extends BlockTile {
     public BlockGrinder(Properties properties, Tier tier) {
         super(properties);
         this.tier = tier;
+        setDefaultState();
     }
 
     @Nullable

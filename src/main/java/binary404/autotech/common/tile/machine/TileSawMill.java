@@ -97,4 +97,19 @@ public class TileSawMill extends TileMachine<BlockSawMill> {
 
         inv.getStackInSlot(0).shrink(recipe.getInput().getCount());
     }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack) {
+        return slot == 0 && SawMillManager.recipeExists(stack);
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean canExtract(int slot) {
+        return slot != 0;
+    }
 }
