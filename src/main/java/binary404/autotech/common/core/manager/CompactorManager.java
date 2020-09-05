@@ -43,7 +43,17 @@ public class CompactorManager {
         return recipe;
     }
 
-    
+    public static void refresh() {
+        Map<ComparableItemStack, CompactorRecipe> tempMap = new Object2ObjectOpenHashMap<>(recipeMap.size());
+        CompactorRecipe tempRecipe;
+
+        for (Map.Entry<ComparableItemStack, CompactorRecipe> entry : recipeMap.entrySet()) {
+            tempRecipe = entry.getValue();
+            tempMap.put(new ComparableItemStack(tempRecipe.input), tempRecipe);
+        }
+        recipeMap.clear();
+        recipeMap = tempMap;
+    }
 
     public static class CompactorRecipe {
         ItemStack input;

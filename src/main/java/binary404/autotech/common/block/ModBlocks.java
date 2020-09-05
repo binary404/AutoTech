@@ -3,6 +3,7 @@ package binary404.autotech.common.block;
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.device.BlockWaterPump;
 import binary404.autotech.common.block.generator.BlockSteamGenerator;
+import binary404.autotech.common.block.machine.BlockCompactor;
 import binary404.autotech.common.block.machine.BlockGrinder;
 import binary404.autotech.common.block.machine.BlockSawMill;
 import binary404.autotech.common.block.machine.BlockSmelter;
@@ -85,6 +86,8 @@ public class ModBlocks {
 
     public static Block waterpump;
 
+    public static Block lv_compactor;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
@@ -131,6 +134,8 @@ public class ModBlocks {
         maxv_cable = register(r, new BlockCable(p, Tier.MaxV), "maxv_cable");
 
         waterpump = register(r, new BlockWaterPump(p), "waterpump");
+
+        lv_compactor = register(r, new BlockCompactor(p, Tier.LV), "lv_compactor");
     }
 
     @SubscribeEvent
@@ -178,6 +183,8 @@ public class ModBlocks {
         register(r, new BlockItem(maxv_cable, ModItems.properties), "maxv_cable");
 
         register(r, new BlockItem(waterpump, ModItems.properties), "waterpump");
+
+        register(r, new BlockItem(lv_compactor, ModItems.properties), "lv_compactor");
     }
 
 }

@@ -50,7 +50,6 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
         }
 
         if (this.tier.ordinal() < this.recipe.getMinTier().ordinal()) {
-            AutoTech.LOGGER.error(this.tier.ordinal() + " " + this.recipe.getMinTier().ordinal());
             return false;
         }
 
@@ -67,9 +66,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
             return false;
         }
 
-
         if (this.tier.ordinal() < this.recipe.getMinTier().ordinal()) {
-            System.out.println(this.tier.ordinal() + " " + this.recipe.getMinTier().ordinal());
             return false;
         }
 

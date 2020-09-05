@@ -87,10 +87,6 @@ repositories {
         url "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
-        name "curios"
-        url "https://maven.theillusivec4.top/"
-    }
-    maven {
         name = "Progwm16 maven"
         url = "https://dvs1.progwm16.com/files/maven/"
     }
@@ -101,7 +97,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.2-33.0.22'
+    minecraft 'net.minecraftforge:forge:1.16.2-33.0.37'
 
     compile fg.deobf("mezz.jei:jei-1.16.2:7.1.3.20:api")
 

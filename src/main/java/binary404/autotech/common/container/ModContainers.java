@@ -1,9 +1,9 @@
 package binary404.autotech.common.container;
 
 import binary404.autotech.AutoTech;
-import binary404.autotech.common.container.core.ContainerTile;
 import binary404.autotech.common.container.device.ContainerWaterPump;
 import binary404.autotech.common.container.generator.BioGeneratorContainer;
+import binary404.autotech.common.container.machine.CompactorContainer;
 import binary404.autotech.common.container.machine.GrinderContainer;
 import binary404.autotech.common.container.machine.SawMillContainer;
 import binary404.autotech.common.container.machine.SmelterContainer;
@@ -27,6 +27,7 @@ public class ModContainers {
     public static final ContainerType<BioGeneratorContainer> bio_generator = register("bio_generator", BioGeneratorContainer::create);
     public static final ContainerType<SawMillContainer> sawmill = register("sawmill", SawMillContainer::new);
     public static final ContainerType<ContainerWaterPump> waterpump = register("waterpump", ContainerWaterPump::new);
+    public static final ContainerType<CompactorContainer> compactor = register("compactor", CompactorContainer::new);
 
     static <T extends Container> ContainerType<T> register(final String name, final IContainerFactory<T> factory) {
         final ContainerType<T> containerType = IForgeContainerType.create(factory);
