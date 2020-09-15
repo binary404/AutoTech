@@ -33,10 +33,10 @@ public class GrinderManager {
         addRecipe(Tier.LV, 40000, new ItemStack(ModBlocks.tin_ore), new ItemStack(ModItems.tin_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.copper_ore_dust), 40, 20);
         addRecipe(Tier.LV, 50000, new ItemStack(ModBlocks.lead_ore), new ItemStack(ModItems.lead_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 75, 0);
         addRecipe(Tier.LV, 35000, new ItemStack(ModBlocks.silver_ore), new ItemStack(ModItems.silver_ore_dust, 2), new ItemStack(ModItems.lead_ore_dust), new ItemStack(ModItems.gold_ore_dust), 80, 70);
-        addRecipe(Tier.HV, 80000, new ItemStack(ModBlocks.uranium_ore, 1), new ItemStack(ModItems.uranium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.EV, 80000, new ItemStack(ModBlocks.uranium_ore, 1), new ItemStack(ModItems.uranium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 50000, new ItemStack(ModBlocks.nickel_ore), new ItemStack(ModItems.nickel_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.platinum_ore_dust), 60, 10);
-        addRecipe(Tier.MV, 40000, new ItemStack(ModBlocks.platinum_ore), new ItemStack(ModItems.platinum_ore_dust, 2), new ItemStack(ModItems.nickel_ore_dust), new ItemStack(ModItems.copper_ore_dust), 70, 70);
-        addRecipe(Tier.HV, 65000, new ItemStack(ModBlocks.titanium_ore), new ItemStack(ModItems.titanium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.HV, 40000, new ItemStack(ModBlocks.platinum_ore), new ItemStack(ModItems.platinum_ore_dust, 2), new ItemStack(ModItems.nickel_ore_dust), new ItemStack(ModItems.copper_ore_dust), 70, 70);
+        addRecipe(Tier.MV, 65000, new ItemStack(ModBlocks.titanium_ore), new ItemStack(ModItems.titanium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 40000, new ItemStack(Blocks.IRON_ORE), new ItemStack(ModItems.iron_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 40000, new ItemStack(Blocks.GOLD_ORE), new ItemStack(ModItems.gold_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 45, 0);
 

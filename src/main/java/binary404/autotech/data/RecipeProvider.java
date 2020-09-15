@@ -40,12 +40,6 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_NICKEL), ModItems.nickel_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.nickel_ore))
                 .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_PLATINUM), ModItems.platinum_ingot, 0.1F, 200)
-                .addCriterion("has_item", hasItem(ModBlocks.platinum_ore))
-                .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_TITANIUM), ModItems.titanium_ingot, 0.1F, 200)
-                .addCriterion("has_item", hasItem(ModBlocks.titanium_ore))
-                .build(consumer);
 
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.DUSTS_COPPER), ModItems.copper_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModItems.copper_dust))
@@ -119,35 +113,35 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .build(consumer);
 
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.copper_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_COPPER), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_COPPER), 2)
                 .addCriterion("has_item", hasItem(ModItems.copper_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.tin_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TIN), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TIN), 2)
                 .addCriterion("has_item", hasItem(ModItems.tin_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.lead_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_LEAD), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_LEAD), 2)
                 .addCriterion("has_item", hasItem(ModItems.lead_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.silver_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_SILVER), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_SILVER), 2)
                 .addCriterion("has_item", hasItem(ModItems.silver_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.uranium_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_URANIUM), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_URANIUM), 2)
                 .addCriterion("has_item", hasItem(ModItems.uranium_plate))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.nickel_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_NICKEL), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_NICKEL), 2)
                 .addCriterion("has_item", hasItem(ModItems.nickel_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.platinum_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_PLATINUM), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_PLATINUM), 2)
                 .addCriterion("has_item", hasItem(ModItems.platinum_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.titanium_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TITANIUM), 3)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TITANIUM), 2)
                 .addCriterion("has_item", hasItem(ModItems.titanium_ingot))
                 .build(consumer);
 
@@ -167,11 +161,10 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.lv_machine_hull)
-                .key('I', ModItems.iron_plate)
                 .key('B', ModItems.bronze_plate)
                 .patternLine("BBB")
                 .patternLine("B B")
-                .patternLine("III")
+                .patternLine("BBB")
                 .addCriterion("has_item", hasItem(ModItems.bronze_plate))
                 .build(consumer);
     }

@@ -70,11 +70,6 @@ public class BlockTile extends Block {
         if (tile instanceof IBlockEntity) {
             ((IBlockEntity) tile).onPlaced(world, state, placer, stack);
         }
-        if (tile instanceof TileCore) {
-            TileCore tileCore = (TileCore) tile;
-            Direction direction = placer.getHorizontalFacing().getOpposite();
-            tileCore.setFacing(direction.ordinal(), placer.isSneaking());
-        }
     }
 
     @Override

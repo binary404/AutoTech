@@ -3,12 +3,9 @@
   "pattern": [
     "BBB",
     "B B",
-    "III"
+    "BBB"
   ],
   "key": {
-    "I": {
-      "item": "autotech:iron_plate"
-    },
     "B": {
       "item": "autotech:bronze_plate"
     }

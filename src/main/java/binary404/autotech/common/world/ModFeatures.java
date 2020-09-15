@@ -52,7 +52,6 @@ public class ModFeatures {
         AutoTech.LOGGER.debug("Injecting ores into generation");
         Registry<ConfiguredFeature<?, ?>> featReg = server.func_244267_aX().func_243612_b(Registry.field_243552_au);
         ConfiguredFeature<?, ?> ores = featReg.getValueForKey(LARGE_ORE_CONF);
-        System.out.println(LARGE_ORE_CONF.toString());
         if (ores == null) {
             AutoTech.LOGGER.error("Ore configuration could not be found, skipping generation");
             return;

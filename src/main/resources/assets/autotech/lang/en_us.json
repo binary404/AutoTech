@@ -8,8 +8,8 @@
   "block.autotech.platinum_ore": "Platinum Ore",
   "block.autotech.titanium_ore": "Titanium Ore",
 
-  "block.autotech.lv_bio_generator": "Low Voltage Bio Generator",
-  "block.autotech.mv_bio_generator": "Medium Voltage Bio Generator",
+  "block.autotech.lv_bio_generator": "Low Voltage Steam Generator",
+  "block.autotech.mv_bio_generator": "Medium Voltage Steam Generator",
 
   "block.autotech.lv_smelter": "Low Voltage Smelter",
   "block.autotech.mv_smelter": "Medium Voltage Smelter",

@@ -2,11 +2,11 @@ package binary404.autotech.common.core.manager;
 
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.util.ComparableItemStack;
+import binary404.autotech.common.item.ModItems;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
 
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 
 public class CompactorManager {
 
@@ -14,7 +14,9 @@ public class CompactorManager {
     private static Map<ComparableItemStack, CompactorRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.copper_ingot, 3), new ItemStack(ModItems.copper_plate, 2));
 
+        refresh();
     }
 
     public static CompactorRecipe getRecipe(ItemStack input) {

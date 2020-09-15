@@ -1,9 +1,11 @@
 package binary404.autotech;
 
 import binary404.autotech.common.block.ModBlocks;
+import binary404.autotech.common.core.manager.CompactorManager;
 import binary404.autotech.common.core.manager.GrinderManager;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.SawMillManager;
+import binary404.autotech.common.entity.ModEntities;
 import binary404.autotech.common.network.PacketHandler;
 import binary404.autotech.common.tags.ModTags;
 import binary404.autotech.common.world.ModFeatures;
@@ -63,6 +65,9 @@ public class AutoTech {
         DeferredWorkQueue.runLater(() -> {
             GrinderManager.init();
             SawMillManager.init();
+            CompactorManager.init();
+
+            ModEntities.registerAttributes();
         });
     }
 
