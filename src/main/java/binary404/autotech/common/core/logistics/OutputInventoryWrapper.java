@@ -8,7 +8,6 @@ import javax.annotation.Nonnull;
 
 public class OutputInventoryWrapper implements IItemHandlerModifiable {
 
-
     protected final IItemHandlerModifiable itemHandler; // the handler
     protected final int slotCount; // number of total slots
     protected final TileCore core;

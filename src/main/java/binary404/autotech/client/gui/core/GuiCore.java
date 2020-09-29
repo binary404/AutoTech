@@ -1,6 +1,7 @@
 package binary404.autotech.client.gui.core;
 
 import binary404.autotech.common.container.core.ContainerCore;
+import binary404.autotech.common.core.logistics.Tank;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -12,8 +13,12 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +57,8 @@ public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
     protected void func_230459_a_(MatrixStack matrixStack, int x, int y) {
         super.func_230459_a_(matrixStack, x, y);
 
-        for(Widget widget : this.buttons) {
-            if(widget.isHovered())
+        for (Widget widget : this.buttons) {
+            if (widget.isHovered())
                 widget.renderToolTip(matrixStack, x, y);
         }
     }
@@ -66,13 +71,33 @@ public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
     protected void drawForeground(MatrixStack matrix, int mouseX, int mouseY) {
     }
 
+    public void drawTank(FluidTank tank, int x, int y) {
+        if (!tank.isEmpty()) {
+            FluidStack stack = tank.getFluid();
+            FluidAttributes fa = stack.getFluid().getAttributes();
+            ResourceLocation still = fa.getStillTexture(stack);
+            if (still != null) {
+                int color = fa.getColor(stack);
+                float red = (color >> 16 & 0xFF) / 255.0F;
+                float green = (color >> 8 & 0xFF) / 255.0F;
+                float blue = (color & 0xFF) / 255.0F;
+                RenderSystem.color3f(red, green, blue);
+                TextureAtlasSprite sprite = this.mc.getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(still);
+                bindTexture(PlayerContainer.LOCATION_BLOCKS_TEXTURE);
+                gaugeV(sprite, this.guiLeft + x, this.guiTop + y, 14, 62, tank.getCapacity(), tank.getFluidAmount());
+                RenderSystem.color3f(1.0F, 1.0F, 1.0F);
+            }
+        }
+    }
+
     public void bindTexture(ResourceLocation guiTexture) {
         this.mc.getTextureManager().bindTexture(guiTexture);
     }
 
-    public boolean isMouseOver(double mouseX, double mouseY, int w, int h) {
-        return mouseX >= this.guiLeft && mouseY >= this.guiTop && mouseX < this.guiLeft + w && mouseY < this.guiTop + h;
+    public boolean isMouseOver(double mouseX, double mouseY, int w, int h, int x, int y) {
+        return mouseX >= x && mouseY >= y && mouseX < x + w && mouseY < y + h;
     }
+
     public static void gaugeV(TextureAtlasSprite sprite, int x, int y, int w, int h, int cap, int cur) {
         if (cap > 0 && cur > 0) {
             int i = (int) (((float) cur / cap) * h);

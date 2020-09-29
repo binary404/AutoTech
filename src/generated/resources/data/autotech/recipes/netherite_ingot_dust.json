@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "forge:dusts/netherite"
+  },
+  "result": "minecraft:netherite_ingot",
+  "experience": 0.4,
+  "cookingtime": 200
+}

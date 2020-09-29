@@ -46,12 +46,17 @@ public class GuiEnergy<T extends TileEnergy<?> & IInventory, C extends Container
     protected void func_230459_a_(MatrixStack matrix, int mouseX, int mouseY) {
         super.func_230459_a_(matrix, mouseX, mouseY);
         drawEnergyText(matrix, mouseX, mouseY);
+        drawExtraText(matrix, mouseX, mouseY);
     }
 
     public void drawEnergyText(MatrixStack matrix, int mouseX, int mouseY) {
         if (Texture.ENERGY_GAUGE.isMouseOver(this.guiLeft + 5, this.guiTop + 5, mouseX, mouseY)) {
             this.renderTooltip(matrix, getEnergyText(), mouseX, mouseY);
         }
+    }
+
+    public void drawExtraText(MatrixStack matrix, int mouseX, int mouseY) {
+
     }
 
     @Override

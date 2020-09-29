@@ -10,11 +10,13 @@ import java.util.Map;
 
 public class CompactorManager {
 
-
     private static Map<ComparableItemStack, CompactorRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
         addRecipe(Tier.MV, 40000, new ItemStack(ModItems.copper_ingot, 3), new ItemStack(ModItems.copper_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.tin_ingot, 3), new ItemStack(ModItems.tin_plate, 2));
+
+        addRecipe(Tier.LV, 37000, new ItemStack(ModItems.saw_dust, 8), new ItemStack(ModItems.copper_plate));
 
         refresh();
     }

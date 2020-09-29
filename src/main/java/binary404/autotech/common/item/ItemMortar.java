@@ -24,7 +24,12 @@ public class ItemMortar extends Item {
     @Override
     public ItemStack getContainerItem(ItemStack itemStack) {
         ItemStack stack = itemStack.copy();
-        stack.attemptDamageItem(4, new Random(), null);
+        System.out.println(stack.attemptDamageItem(4, new Random(), null));
         return stack;
+    }
+
+    @Override
+    public boolean isDamageable() {
+        return true;
     }
 }

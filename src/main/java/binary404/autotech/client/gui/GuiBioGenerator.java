@@ -29,21 +29,6 @@ public class GuiBioGenerator extends GuiEnergy<TileSteamGenerator, BioGeneratorC
             Texture.PROGRESS.drawScalableH(matrix, this.te.getGenerator().subSized(), this.guiLeft + 113, this.guiTop + 24);
 
         FluidTank tank = this.te.getTank();
-        if(!tank.isEmpty()) {
-            FluidStack stack = tank.getFluid();
-            FluidAttributes fa = stack.getFluid().getAttributes();
-            ResourceLocation still = fa.getStillTexture(stack);
-            if(still != null) {
-                int color = fa.getColor(stack);
-                float red = (color >> 16 & 0xFF) / 255.0F;
-                float green = (color >> 8 & 0xFF) / 255.0F;
-                float blue = (color & 0xFF) / 255.0F;
-                RenderSystem.color3f(red, green, blue);
-                TextureAtlasSprite sprite = this.mc.getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(still);
-                bindTexture(PlayerContainer.LOCATION_BLOCKS_TEXTURE);
-                gaugeV(sprite, this.guiLeft + 157, this.guiTop + 5, 14, 62, tank.getCapacity(), tank.getFluidAmount());
-                RenderSystem.color3f(1.0F, 1.0F, 1.0F);
-            }
-        }
+        drawTank(tank, 157, 5);
     }
 }

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[33,)"
+loaderVersion="[34,)"
 license="All rights reserved"
 issueTrackerURL="http://my.issue.tracker/"
 [[mods]]
@@ -9,25 +9,17 @@ displayName="AutoTech"
 logoFile="examplemod.png" #optional
 credits="Thanks for this mod goes to samy7200 for textures"
 authors="binary404" #optional
-# The description text for the mod (multi line!) (#mandatory)
 description='''
 '''
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.autotech]] #optional
-    # the modid of the dependency
-    modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
-    mandatory=true #mandatory
-    # The version range of the dependency
-    versionRange="[32,)" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+[[dependencies.autotech]]
+    modId="forge"
+    mandatory=true
+    versionRange="[34,)"
     ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
-# Here's another dependency
 [[dependencies.autotech]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.2]"
+    versionRange="[1.16.3]"
     ordering="NONE"
     side="BOTH"

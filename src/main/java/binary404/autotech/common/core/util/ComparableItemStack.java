@@ -20,7 +20,7 @@ public class ComparableItemStack {
         }
 
         if (item != null && other.item != null) {
-            return item.delegate.get() == other.item.delegate.get();
+            return item.delegate.get().equals(other.item.delegate.get());
         }
 
         return false;
@@ -33,7 +33,8 @@ public class ComparableItemStack {
 
     @Override
     public int hashCode() {
-        return Item.getIdFromItem(item) << 16;
+        int toReturn = Item.getIdFromItem(item) << 16;
+        return toReturn;
     }
 
     @Override

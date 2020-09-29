@@ -22,6 +22,7 @@ public class ModTags {
         public static final ITag.INamedTag<Item> INGOTS_NICKEL = forgeTag("ingots/nickel");
         public static final ITag.INamedTag<Item> INGOTS_PLATINUM = forgeTag("ingots/platinum");
         public static final ITag.INamedTag<Item> INGOTS_TITANIUM = forgeTag("ingots/titanium");
+        public static final ITag.INamedTag<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
 
         public static final ITag.INamedTag<Item> DUSTS_COPPER = forgeTag("dusts/copper");
         public static final ITag.INamedTag<Item> DUSTS_TIN = forgeTag("dusts/tin");
@@ -33,6 +34,7 @@ public class ModTags {
         public static final ITag.INamedTag<Item> DUSTS_TITANIUM = forgeTag("dusts/titanium");
         public static final ITag.INamedTag<Item> DUSTS_IRON = forgeTag("dusts/iron");
         public static final ITag.INamedTag<Item> DUSTS_GOLD = forgeTag("dusts/gold");
+        public static final ITag.INamedTag<Item> DUSTS_NETHERITE = forgeTag("dusts/netherite");
         public static final ITag.INamedTag<Item> DUSTS_BRONZE = forgeTag("dusts/bronze");
 
         public static final ITag.INamedTag<Item> ORE_DUSTS = forgeTag("ore_dusts");
@@ -47,7 +49,9 @@ public class ModTags {
         public static final ITag.INamedTag<Item> ORE_DUSTS_IRON = forgeTag("ore_dusts/iron");
         public static final ITag.INamedTag<Item> ORE_DUSTS_GOLD = forgeTag("ore_dusts/gold");
         public static final ITag.INamedTag<Item> ORE_DUSTS_OSMIUM = forgeTag("ore_dusts/osmium");
+        public static final ITag.INamedTag<Item> ORE_DUSTS_NETHERITE = forgeTag("ore_dusts/netherite");
 
+        public static final ITag.INamedTag<Item> ORES = forgeTag("ores");
         public static final ITag.INamedTag<Item> ORE_COPPER = forgeTag("ores/copper");
         public static final ITag.INamedTag<Item> ORE_TIN = forgeTag("ores/tin");
         public static final ITag.INamedTag<Item> ORE_LEAD = forgeTag("ores/lead");

@@ -3,17 +3,18 @@ package binary404.autotech.common.block;
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.device.BlockWaterPump;
 import binary404.autotech.common.block.generator.BlockSteamGenerator;
-import binary404.autotech.common.block.machine.BlockCompactor;
-import binary404.autotech.common.block.machine.BlockGrinder;
-import binary404.autotech.common.block.machine.BlockSawMill;
-import binary404.autotech.common.block.machine.BlockSmelter;
+import binary404.autotech.common.block.machine.*;
 import binary404.autotech.common.block.transfer.BlockCable;
+import binary404.autotech.common.block.transfer.BlockConveyor;
 import binary404.autotech.common.core.logistics.Tier;
+import binary404.autotech.common.fluid.BlockBasicFlowingFluid;
+import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.item.ModItems;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ToolType;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+import static binary404.autotech.client.util.RenderLayerHelper.setRenderLayer;
 import static binary404.autotech.common.core.util.RegistryUtil.register;
 
 @Mod.EventBusSubscriber(modid = AutoTech.modid, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -84,9 +86,18 @@ public class ModBlocks {
     public static Block iv_cable;
     public static Block maxv_cable;
 
+    public static Block conveyor;
+
     public static Block waterpump;
 
     public static Block lv_compactor;
+
+    public static Block mv_centrifuge;
+    public static Block hv_centrifuge;
+
+    public static Block mv_distillery;
+
+    public static BlockBasicFlowingFluid distilled_water;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -133,9 +144,18 @@ public class ModBlocks {
         iv_cable = register(r, new BlockCable(p, Tier.IV), "iv_cable");
         maxv_cable = register(r, new BlockCable(p, Tier.MaxV), "maxv_cable");
 
+        conveyor = register(r, new BlockConveyor(), "conveyor");
+
         waterpump = register(r, new BlockWaterPump(p), "waterpump");
 
         lv_compactor = register(r, new BlockCompactor(p, Tier.LV), "lv_compactor");
+
+        mv_centrifuge = register(r, new BlockCentrifuge(p, Tier.MV), "mv_centrifuge");
+        hv_centrifuge = register(r, new BlockCentrifuge(p, Tier.HV), "hv_centrifuge");
+
+        mv_distillery = register(r, new BlockDistillery(p, Tier.MV), "mv_distillery");
+
+        distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water_source), "distilled_water");
     }
 
     @SubscribeEvent
@@ -182,9 +202,19 @@ public class ModBlocks {
         register(r, new BlockItem(iv_cable, ModItems.properties), "iv_cable");
         register(r, new BlockItem(maxv_cable, ModItems.properties), "maxv_cable");
 
+        register(r, new BlockItem(conveyor, ModItems.properties), "conveyor");
+
         register(r, new BlockItem(waterpump, ModItems.properties), "waterpump");
 
         register(r, new BlockItem(lv_compactor, ModItems.properties), "lv_compactor");
+
+        register(r, new BlockItem(mv_centrifuge, ModItems.properties), "mv_centrifuge");
+
+        register(r, new BlockItem(mv_distillery, ModItems.properties), "mv_distillery");
+    }
+
+    public static void initRenderLayers() {
+        setRenderLayer(distilled_water, RenderType.getTranslucent());
     }
 
 }

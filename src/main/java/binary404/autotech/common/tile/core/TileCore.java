@@ -41,7 +41,7 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
     public SideConfigItem itemConfig = new SideConfigItem(this);
 
     protected Tank tank = new Tank(0);
-    private final LazyOptional<FluidTank> tankHolder = LazyOptional.of(() -> this.tank);
+    protected final LazyOptional<FluidTank> tankHolder = LazyOptional.of(() -> this.tank);
 
     protected boolean isContainerOpen;
     /**
@@ -218,7 +218,7 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
             } else if (this.itemConfig.getType(side).canReceive && !this.itemConfig.getType(side).canExtract) {
                 return LazyOptional.of(() -> new InputInventoryWrapper(this.inv, this)).cast();
             } else if (this.itemConfig.getType(side).canExtract && this.itemConfig.getType(side).canReceive) {
-                return this.invHolder.cast();
+                return LazyOptional.of(() -> new DualInventoryWrapper(this.inv, this)).cast();
             }
         }
         if (this instanceof ITank && cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {

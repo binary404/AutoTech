@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CLC",
+    "FHF",
+    "CLC"
+  ],
+  "key": {
+    "C": {
+      "item": "autotech:tin_plate"
+    },
+    "L": {
+      "item": "autotech:silver_plate"
+    },
+    "H": {
+      "item": "autotech:lv_machine_hull"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "result": {
+    "item": "autotech:lv_smelter"
+  }
+}

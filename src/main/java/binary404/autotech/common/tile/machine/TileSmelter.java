@@ -117,9 +117,8 @@ public class TileSmelter extends TileMachine<BlockSmelter> {
 
     @Override
     public boolean canExtract(int slot) {
-        return slot == 1;
+        return slot != 0;
     }
-
 
     @Override
     protected void transferInput() {

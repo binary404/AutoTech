@@ -33,7 +33,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderManager.Gri
         ResourceLocation location = AutoTech.key("textures/gui/container/grinder.png");
         background = guiHelper.createDrawable(location, 25, 0, 151, 74);
         icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.lv_grinder));
-        localizedName = "Grinder";
+        localizedName = I18n.format("autotech.grinder");
     }
 
     @Override
@@ -113,11 +113,11 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderManager.Gri
         guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
             if (slotIndex == 0) {
                 tooltip.add(new StringTextComponent(I18n.format("info.autotech.power") + ":" + grinderRecipe.getEnergy()));
-                tooltip.add(new TranslationTextComponent(I18n.format("info.autotech.min_tier") + ":" + grinderRecipe.getMinTier().name()));
+                tooltip.add(new StringTextComponent(I18n.format("info.autotech.min_tier") + ":" + grinderRecipe.getMinTier().name()));
             } else if (slotIndex == 2) {
-                tooltip.add(new TranslationTextComponent(I18n.format("info.autotech.chance") + ":" + grinderRecipe.getSecondaryChance()));
+                tooltip.add(new StringTextComponent(I18n.format("info.autotech.chance") + ":" + grinderRecipe.getSecondaryChance()));
             } else if (slotIndex == 3) {
-                tooltip.add(new TranslationTextComponent(I18n.format("info.autotech.chance") + ":" + grinderRecipe.getThirdChance()));
+                tooltip.add(new StringTextComponent(I18n.format("info.autotech.chance") + ":" + grinderRecipe.getThirdChance()));
             }
         });
     }

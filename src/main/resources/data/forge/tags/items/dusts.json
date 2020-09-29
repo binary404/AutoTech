@@ -10,6 +10,7 @@
     "#forge:dusts/titanium",
     "#forge:dusts/iron",
     "#forge:dusts/gold",
+    "#forge:dusts/netherite",
     "#forge:dusts/bronze"
   ]
 }

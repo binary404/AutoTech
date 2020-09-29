@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id "com.wynprice.cursemaven" version "2.1.0"
+    id "com.wynprice.cursemaven" version "2.1.5"
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -22,7 +22,7 @@ mixin {
     add sourceSets.main, "autotech.refmap.json"
 }
 
-version = '1.16.1-0.0.1'
+version = '1.16.3-0.0.1-beta'
 group = 'binary404.autotech' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'autotech'
 
@@ -77,7 +77,7 @@ sourceSets.main.resources {
 repositories {
     mavenCentral()
     maven {
-        url "https://maven.blamejared.com"
+        url "https://modmaven.k-4u.nl"
     }
     maven {
         url "https://dvs1.progwml6.com/files/maven"
@@ -86,12 +86,12 @@ repositories {
         url "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
-        url 'https://repo.repsy.io/mvn/gandiber/geckolib'
+        url 'https://maven.mcmoddev.com/'
     }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.2-33.0.37'
+    minecraft 'net.minecraftforge:forge:1.16.3-34.1.0'
 
     annotationProcessor 'org.spongepowered:mixin:0.8'
     annotationProcessor 'com.google.code.gson:gson:2.8.0'
@@ -100,11 +100,11 @@ dependencies {
     annotationProcessor 'org.ow2.asm:asm-commons:7.2'
     annotationProcessor 'org.ow2.asm:asm-util:7.2'
 
-    compile fg.deobf("mezz.jei:jei-1.16.2:7.1.3.20:api")
+    compile 'org.spongepowered:mixin:0.8'
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.2:7.1.3.20")
+    compile fg.deobf("curse.maven:fx-lib:3059845")
 
-    implementation fg.deobf('software.bernie.geckolib:forge-1.16.2-geckolib:2.1.0')
+    compile fg.deobf("curse.maven:jei:3062050")
 }
 
 jar {

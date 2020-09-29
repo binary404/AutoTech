@@ -71,6 +71,9 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.DUSTS_GOLD), Items.GOLD_INGOT, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModItems.gold_dust))
                 .build(consumer, "autotech:gold_ingot_dust");
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.DUSTS_NETHERITE), Items.NETHERITE_INGOT, 0.4F, 200)
+                .addCriterion("has_item", hasItem(ModItems.netherite_dust))
+                .build(consumer, "autotech:netherite_ingot_dust");
 
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.DUSTS_BRONZE), ModItems.bronze_ingot, 0.1F, 200).
                 addCriterion("has_item", hasItem(ModItems.bronze_dust))
@@ -144,6 +147,10 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TITANIUM), 2)
                 .addCriterion("has_item", hasItem(ModItems.titanium_ingot))
                 .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.bronze_plate)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_BRONZE), 2)
+                .addCriterion("has_item", hasItem(ModItems.bronze_ingot))
+                .build(consumer);
 
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.bronze_dust, 4)
                 .addIngredient(ModTags.Items.DUSTS_TIN)
@@ -167,5 +174,28 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .patternLine("BBB")
                 .addCriterion("has_item", hasItem(ModItems.bronze_plate))
                 .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_bio_generator)
+                .key('C', ModItems.copper_plate)
+                .key('L', ModItems.lead_plate)
+                .key('H', ModItems.lv_machine_hull)
+                .key('F', Blocks.FURNACE)
+                .patternLine("CLC")
+                .patternLine("FHF")
+                .patternLine("CLC")
+                .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_smelter)
+                .key('C', ModItems.tin_plate)
+                .key('L', ModItems.silver_plate)
+                .key('H', ModItems.lv_machine_hull)
+                .key('F', Blocks.FURNACE)
+                .patternLine("CLC")
+                .patternLine("FHF")
+                .patternLine("CLC")
+                .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
     }
 }

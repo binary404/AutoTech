@@ -1,0 +1,6 @@
+{
+  "parent": "autotech:block/conveyor_ramp_inverted",
+  "textures": {
+    "2": "autotech:blocks/conveyor_color_inverted_fast"
+  }
+}

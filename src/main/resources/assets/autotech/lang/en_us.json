@@ -8,8 +8,8 @@
   "block.autotech.platinum_ore": "Platinum Ore",
   "block.autotech.titanium_ore": "Titanium Ore",
 
-  "block.autotech.lv_bio_generator": "Low Voltage Steam Generator",
-  "block.autotech.mv_bio_generator": "Medium Voltage Steam Generator",
+  "block.autotech.lv_steam_generator": "Low Voltage Steam Generator",
+  "block.autotech.mv_steam_generator": "Medium Voltage Steam Generator",
 
   "block.autotech.lv_smelter": "Low Voltage Smelter",
   "block.autotech.mv_smelter": "Medium Voltage Smelter",
@@ -54,10 +54,35 @@
   "item.autotech.mv_transmitter_circuit": "Medium Voltage Transmitter Circuit",
   "item.autotech.mv_receiver_circuit":  "Medium Voltage Receiver Circuit",
 
+  "item.autotech.mortar": "Mortar",
+
+  "item.autotech.apple_pie": "Apple Pie",
+  "item.autotech.golden_apple_pie": "Golden Apple Pie",
+  "item.autotech.enchanted_golden_apple_pie": "Enchanted Golden Apple Pie",
+
+  "autotech.distilled_water": "Distilled Water",
+
   "info.autotech.stored_energy": "Stored Energy: %s",
   "info.autotech.max_transfer": "Max Transfer: %s",
   "info.autotech.usage": "Usage: %s",
   "info.autotech.power": "Power Required",
   "info.autotech.min_tier": "Minimum Tier",
-  "info.autotech.chance": "Chance"
+  "info.autotech.chance": "Chance",
+
+  "info.autotech.fluid": "Fluid: %s",
+  "info.autotech.fluid_stored": "Stored: %s",
+
+  "info.autotech.requires": "Requires",
+
+  "info.autotech.side.west": "West",
+  "info.autotech.side.east": "East",
+  "info.autotech.side.north": "North",
+  "info.autotech.side.south": "South",
+  "info.autotech.side.up": "Up",
+  "info.autotech.side.down": "Down",
+
+  "info.autotech.side.config.all": "Input/Output",
+  "info.autotech.side.config.extract": "Output",
+  "info.autotech.side.config.receive": "Input",
+  "info.autotech.side.config.none": "None"
 }

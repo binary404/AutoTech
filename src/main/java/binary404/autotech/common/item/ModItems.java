@@ -1,7 +1,12 @@
 package binary404.autotech.common.item;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.fluid.ItemBasicFluidBucket;
+import binary404.autotech.common.fluid.ModFluids;
+import net.minecraft.item.EnchantedGoldenAppleItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.item.Rarity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -51,6 +56,7 @@ public class ModItems {
     public static Item iron_ore_dust;
     public static Item gold_ore_dust;
     public static Item osmium_ore_dust;
+    public static Item netherite_ore_dust;
 
     public static Item copper_dust;
     public static Item tin_dust;
@@ -62,6 +68,7 @@ public class ModItems {
     public static Item titanium_dust;
     public static Item iron_dust;
     public static Item gold_dust;
+    public static Item netherite_dust;
 
     public static Item bronze_dust;
 
@@ -70,6 +77,12 @@ public class ModItems {
     public static Item mv_logic_circuit;
     public static Item mv_receiver_circuit;
     public static Item mv_transmitter_circuit;
+
+    public static Item distilled_water_bucket;
+
+    public static Item apple_pie;
+    public static Item golden_apple_pie;
+    public static Item enchanted_golden_apple_pie;
 
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
@@ -99,6 +112,7 @@ public class ModItems {
         iron_ore_dust = register(r, new Item(properties), "iron_ore_dust");
         gold_ore_dust = register(r, new Item(properties), "gold_ore_dust");
         osmium_ore_dust = register(r, new Item(properties), "osmium_ore_dust");
+        netherite_ore_dust = register(r, new Item(properties), "netherite_ore_dust");
 
         copper_dust = register(r, new Item(properties), "copper_dust");
         tin_dust = register(r, new Item(properties), "tin_dust");
@@ -110,6 +124,7 @@ public class ModItems {
         titanium_dust = register(r, new Item(properties), "titanium_dust");
         iron_dust = register(r, new Item(properties), "iron_dust");
         gold_dust = register(r, new Item(properties), "gold_dust");
+        netherite_dust = register(r, new Item(properties), "netherite_dust");
 
         bronze_dust = register(r, new Item(properties), "bronze_dust");
 
@@ -135,6 +150,12 @@ public class ModItems {
         mv_receiver_circuit = register(r, new Item(properties), "mv_receiver_circuit");
 
         mortar = register(r, new ItemMortar(properties.maxStackSize(1)), "mortar");
+
+        distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water_source), "distilled_water_bucket");
+
+        apple_pie = register(r, new Item(properties.food(ModFoods.applePie).maxStackSize(16)), "apple_pie");
+        golden_apple_pie = register(r, new Item(properties.food(ModFoods.goldenApplePie).maxStackSize(16)), "golden_apple_pie");
+        enchanted_golden_apple_pie = register(r, new EnchantedGoldenAppleItem(properties.food(ModFoods.enchantedGoldenApplePie).maxStackSize(16).rarity(Rarity.EPIC)), "enchanted_golden_apple_pie");
     }
 
 }

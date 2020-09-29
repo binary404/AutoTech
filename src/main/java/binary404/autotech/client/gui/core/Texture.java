@@ -18,8 +18,8 @@ public class Texture extends AbstractGui {
     public static final Map<TransferType, Texture> CONFIG_ITEM = new HashMap<>();
 
     public static final Texture CONFIG_BTN_ALL_ITEM = register("container/button_energy", 8, 8, 24, 8);
-    public static final Texture CONFIG_BTN_IN_ITEM = register("container/button_energy", 8, 8, 0, 8);
-    public static final Texture CONFIG_BTN_OUT_ITEM = register("container/button_energy", 8, 8, 8, 8);
+    public static final Texture CONFIG_BTN_IN_ITEM = register("container/button_energy", 8, 8, 8, 8);
+    public static final Texture CONFIG_BTN_OUT_ITEM = register("container/button_energy", 8, 8, 0, 8);
     public static final Texture CONFIG_BTN_OFF_ITEM = register("container/button_energy", 8, 8, 16, 8);
 
     public static final Texture CONFIG_BTN_BG = register("container/button_energy", 31, 46, 0, 16);
@@ -39,7 +39,11 @@ public class Texture extends AbstractGui {
 
     public static final Texture SAWMILL = register("container/sawmill", 176, 166, 0, 0);
 
+    public static final Texture CENTRIFUGE = register("container/centrifuge", 176, 166, 0, 0);
+
     public static final Texture WATERPUMP = register("container/waterpump", 176, 166, 0, 0);
+
+    public static final Texture DISTILLERY = register("container/distillery", 176, 166, 0, 0);
 
     public static final Texture PROGRESS_ARROW = register("container/lv_grinder", 22, 16, 205, 0);
     public static final Texture ENERGY_GAUGE = register("container/furnator", 14, 62, 176, 0);

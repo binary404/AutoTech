@@ -39,6 +39,7 @@ public class GrinderManager {
         addRecipe(Tier.MV, 65000, new ItemStack(ModBlocks.titanium_ore), new ItemStack(ModItems.titanium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 40000, new ItemStack(Blocks.IRON_ORE), new ItemStack(ModItems.iron_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 40000, new ItemStack(Blocks.GOLD_ORE), new ItemStack(ModItems.gold_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 45, 0);
+        addRecipe(Tier.LV, 80000, new ItemStack(Blocks.ANCIENT_DEBRIS), new ItemStack(ModItems.netherite_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
 
         addRecipe(Tier.LV, 15000, new ItemStack(ModItems.copper_ingot), new ItemStack(ModItems.copper_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 15000, new ItemStack(ModItems.tin_ingot), new ItemStack(ModItems.tin_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
@@ -50,6 +51,7 @@ public class GrinderManager {
         addRecipe(Tier.LV, 15000, new ItemStack(ModItems.titanium_ingot), new ItemStack(ModItems.titanium_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 15000, new ItemStack(Items.IRON_INGOT), new ItemStack(ModItems.iron_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 15000, new ItemStack(Items.GOLD_INGOT), new ItemStack(ModItems.gold_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.LV, 15000, new ItemStack(Items.NETHERITE_INGOT), new ItemStack(ModItems.netherite_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
 
         addRecipe(Tier.LV, 25000, new ItemStack(Blocks.STONE), new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.SAND), 60, 30);
         addRecipe(Tier.LV, 25000, new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.SAND), new ItemStack(Items.FLINT), 50, 50);

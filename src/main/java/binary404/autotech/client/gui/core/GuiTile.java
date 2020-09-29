@@ -35,22 +35,30 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
         this.te = container.te;
     }
 
+    public void addRedstoneButton() {
+        addRedstoneButton(0, 58);
+    }
+
     @Override
     protected void init() {
         super.init();
         if (hasRedstoneButton()) {
-            addRedstoneButton(0, 58);
+            addRedstoneButton();
         }
         if (hasItemButton()) {
-            this.itemButtonEnable = addButton(new IconButton(this.guiLeft + this.xSize, this.guiTop + 4, Texture.CONFIG_BTN_ALL_ITEM, button -> {
-                if (this.itemButtonVisible)
-                    this.itemButtonVisible = false;
-                else
-                    this.itemButtonVisible = true;
-            }, this));
-
-            addItemConfig(0, 12);
+            addItemButton(4);
         }
+    }
+
+    public void addItemButton(int y) {
+        this.itemButtonEnable = addButton(new IconButton(this.guiLeft + this.xSize, this.guiTop + y, Texture.CONFIG_BTN_ALL_ITEM, button -> {
+            if (this.itemButtonVisible)
+                this.itemButtonVisible = false;
+            else
+                this.itemButtonVisible = true;
+        }, this));
+
+        addItemConfig(0, y + 8);
     }
 
     protected void addRedstoneButton(int x, int y) {

@@ -1,5 +1,7 @@
 package binary404.autotech.common.core.util;
 
+import net.minecraftforge.fluids.FluidStack;
+
 public class Util {
 
     public static int safeInt(long value) {
@@ -12,6 +14,10 @@ public class Util {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public static int fluidHashCode(FluidStack stack) {
+        return stack.getFluid().getRegistryName().toString().hashCode();
     }
 
 }

@@ -10,6 +10,7 @@
     "#forge:ore_dusts/titanium",
     "#forge:ore_dusts/iron",
     "#forge:ore_dusts/gold",
-    "#forge:ore_dusts/osmium"
+    "#forge:ore_dusts/osmium",
+    "#forge:ore_dusts/netherite"
   ]
 }

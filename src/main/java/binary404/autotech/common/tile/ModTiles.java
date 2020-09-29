@@ -4,11 +4,9 @@ import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.tile.device.TileWaterPump;
 import binary404.autotech.common.tile.generator.TileSteamGenerator;
-import binary404.autotech.common.tile.machine.TileCompactor;
-import binary404.autotech.common.tile.machine.TileGrinder;
-import binary404.autotech.common.tile.machine.TileSawMill;
-import binary404.autotech.common.tile.machine.TileSmelter;
+import binary404.autotech.common.tile.machine.*;
 import binary404.autotech.common.tile.transfer.TileCable;
+import binary404.autotech.common.tile.transfer.TileConveyor;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,6 +40,13 @@ public class ModTiles {
     @ObjectHolder("autotech:compactor")
     public static TileEntityType<TileCompactor> compactor;
 
+    @ObjectHolder("autotech:centrifuge")
+    public static TileEntityType<TileCentrifuge> centrifuge;
+
+    public static TileEntityType<TileDistillery> distillery;
+
+    public static TileEntityType<TileConveyor> conveyor;
+
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
         IForgeRegistry<TileEntityType<?>> r = event.getRegistry();
@@ -53,6 +58,9 @@ public class ModTiles {
         register(r, TileEntityType.Builder.create(TileCable::new, ModBlocks.lv_cable, ModBlocks.mv_cable, ModBlocks.hv_cable, ModBlocks.ev_cable, ModBlocks.iv_cable, ModBlocks.maxv_cable).build(null), "cable");
         register(r, TileEntityType.Builder.create(TileWaterPump::new, ModBlocks.waterpump).build(null), "waterpump");
         register(r, TileEntityType.Builder.create(TileCompactor::new, ModBlocks.lv_compactor).build(null), "compactor");
+        register(r, TileEntityType.Builder.create(TileCentrifuge::new, ModBlocks.mv_centrifuge).build(null), "centrifuge");
+        distillery = (TileEntityType<TileDistillery>) register(r, TileEntityType.Builder.create(TileDistillery::new, ModBlocks.mv_distillery).build(null), "distillery");
+        conveyor = (TileEntityType<TileConveyor>) register(r, TileEntityType.Builder.create(TileConveyor::new, ModBlocks.conveyor).build(null), "conveyor");
     }
 
 }
