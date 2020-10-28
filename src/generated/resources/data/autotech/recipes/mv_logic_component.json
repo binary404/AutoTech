@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "SDS",
+    "CRC"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "autotech:silver_ingot"
+    },
+    "C": {
+      "item": "autotech:copper_ingot"
+    }
+  },
+  "result": {
+    "item": "autotech:mv_logic_component"
+  }
+}

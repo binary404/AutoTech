@@ -4,6 +4,7 @@ import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.tile.transfer.TileConveyor;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +46,7 @@ public class BlockConveyor extends Block {
     public static final EnumProperty<EnumType> TYPE = EnumProperty.create("type", EnumType.class);
 
     public BlockConveyor() {
-        super(AbstractBlock.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0f, 6.0f).doesNotBlockMovement());
+        super(AbstractBlock.Properties.create(Material.ANVIL, MaterialColor.ADOBE).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.0f, 6.0f).doesNotBlockMovement());
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
     }
 

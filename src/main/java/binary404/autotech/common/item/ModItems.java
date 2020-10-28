@@ -5,7 +5,6 @@ import binary404.autotech.common.fluid.ItemBasicFluidBucket;
 import binary404.autotech.common.fluid.ModFluids;
 import net.minecraft.item.EnchantedGoldenAppleItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.item.Rarity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -73,12 +72,20 @@ public class ModItems {
     public static Item bronze_dust;
 
     public static Item saw_dust;
+    public static Item plywood;
+    public static Item basic_circuit_board;
+
+    public static Item mv_logic_component;
+    public static Item mv_receiver_component;
+    public static Item mv_transmitter_component;
 
     public static Item mv_logic_circuit;
     public static Item mv_receiver_circuit;
     public static Item mv_transmitter_circuit;
 
     public static Item distilled_water_bucket;
+
+    public static Item flour;
 
     public static Item apple_pie;
     public static Item golden_apple_pie;
@@ -128,8 +135,6 @@ public class ModItems {
 
         bronze_dust = register(r, new Item(properties), "bronze_dust");
 
-        saw_dust = register(r, new Item(properties), "saw_dust");
-
         copper_plate = register(r, new Item(properties), "copper_plate");
         tin_plate = register(r, new Item(properties), "tin_plate");
         lead_plate = register(r, new Item(properties), "lead_plate");
@@ -142,16 +147,27 @@ public class ModItems {
         gold_plate = register(r, new Item(properties), "gold_plate");
         bronze_plate = register(r, new Item(properties), "bronze_plate");
 
-        lv_machine_hull = register(r, new Item(properties), "lv_machine_hull");
-        mv_machine_hull = register(r, new Item(properties), "mv_machine_hull");
+        saw_dust = register(r, new Item(properties), "saw_dust");
+
+        plywood = register(r, new Item(properties), "plywood");
+        basic_circuit_board = register(r, new Item(properties), "basic_circuit_board");
+
+        mv_logic_component = register(r, new Item(properties), "mv_logic_component");
+        mv_receiver_component = register(r, new Item(properties), "mv_receiver_component");
+        mv_transmitter_component = register(r, new Item(properties), "mv_transmitter_component");
 
         mv_logic_circuit = register(r, new Item(properties), "mv_logic_circuit");
         mv_transmitter_circuit = register(r, new Item(properties), "mv_transmitter_circuit");
         mv_receiver_circuit = register(r, new Item(properties), "mv_receiver_circuit");
 
+        lv_machine_hull = register(r, new Item(properties), "lv_machine_hull");
+        mv_machine_hull = register(r, new Item(properties), "mv_machine_hull");
+
         mortar = register(r, new ItemMortar(properties.maxStackSize(1)), "mortar");
 
         distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water_source), "distilled_water_bucket");
+
+        flour = register(r, new Item(properties), "flour");
 
         apple_pie = register(r, new Item(properties.food(ModFoods.applePie).maxStackSize(16)), "apple_pie");
         golden_apple_pie = register(r, new Item(properties.food(ModFoods.goldenApplePie).maxStackSize(16)), "golden_apple_pie");

@@ -46,19 +46,26 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
             addRedstoneButton();
         }
         if (hasItemButton()) {
-            addItemButton(4);
+            addItemButton();
         }
     }
 
-    public void addItemButton(int y) {
+    public void addItemButton() {
+        addItemButton(8, 4);
+    }
+
+    public void addItemButton(int x, int y) {
         this.itemButtonEnable = addButton(new IconButton(this.guiLeft + this.xSize, this.guiTop + y, Texture.CONFIG_BTN_ALL_ITEM, button -> {
-            if (this.itemButtonVisible)
+            if (this.itemButtonVisible) {
+                this.xSize = backGround.getWidth();
                 this.itemButtonVisible = false;
-            else
+            } else {
+                this.xSize = backGround.getWidth() + 31;
                 this.itemButtonVisible = true;
+            }
         }, this));
 
-        addItemConfig(0, y + 8);
+        addItemConfig(x, y + 18);
     }
 
     protected void addRedstoneButton(int x, int y) {
@@ -75,7 +82,7 @@ public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile
             int xOffset = offset.getLeft();
             int yOffset = offset.getRight();
             Direction side = Direction.byIndex(i);
-            this.itemButtons[i] = addButton(new IconButton(this.guiLeft + xOffset + this.xSize + x + 8, this.guiTop + yOffset + y + 10, Texture.CONFIG_ITEM.get(this.te.itemConfig.getType(side)), button -> {
+            this.itemButtons[i] = addButton(new IconButton(this.guiLeft + xOffset + this.xSize + x, this.guiTop + yOffset + y, Texture.CONFIG_ITEM.get(this.te.itemConfig.getType(side)), button -> {
                 PacketHandler.sendToServer(new PacketItemChange(id, this.te.getPos()));
                 this.te.itemConfig.nextType(side);
             }, this).setTooltip(tooltip -> {

@@ -99,6 +99,8 @@ public class ModBlocks {
 
     public static BlockBasicFlowingFluid distilled_water;
 
+    public static Block iron_plating;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
@@ -156,6 +158,10 @@ public class ModBlocks {
         mv_distillery = register(r, new BlockDistillery(p, Tier.MV), "mv_distillery");
 
         distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water_source), "distilled_water");
+
+        p = AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(4.0F, 4.0F);
+
+        iron_plating = register(r, new Block(p), "iron_plating");
     }
 
     @SubscribeEvent
@@ -211,6 +217,8 @@ public class ModBlocks {
         register(r, new BlockItem(mv_centrifuge, ModItems.properties), "mv_centrifuge");
 
         register(r, new BlockItem(mv_distillery, ModItems.properties), "mv_distillery");
+
+        register(r, new BlockItem(iron_plating, ModItems.properties), "iron_plating");
     }
 
     public static void initRenderLayers() {

@@ -54,6 +54,13 @@
   "item.autotech.mv_transmitter_circuit": "Medium Voltage Transmitter Circuit",
   "item.autotech.mv_receiver_circuit":  "Medium Voltage Receiver Circuit",
 
+  "item.autotech.mv_transmitter_component": "Medium Voltage Transmitter Component",
+  "item.autotech.mv_receiver_component": "Medium Voltage Receiver Component",
+  "item.autotech.mv_logic_component": "Medium Voltage Logic Component",
+
+  "item.autotech.plywood": "Plywood",
+  "item.autotech.basic_circuit_board": "Basic Circuit Board",
+
   "item.autotech.mortar": "Mortar",
 
   "item.autotech.apple_pie": "Apple Pie",

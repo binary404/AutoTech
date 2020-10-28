@@ -56,6 +56,8 @@ public class GrinderManager {
         addRecipe(Tier.LV, 25000, new ItemStack(Blocks.STONE), new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.SAND), 60, 30);
         addRecipe(Tier.LV, 25000, new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.SAND), new ItemStack(Items.FLINT), 50, 50);
         addRecipe(Tier.LV, 25000, new ItemStack(Blocks.GRAVEL), new ItemStack(Blocks.SAND), new ItemStack(Items.FLINT), ItemStack.EMPTY, 60, 0);
+
+        addRecipe(Tier.LV, 10000, new ItemStack(Items.WHEAT), new ItemStack(ModItems.flour, 2), new ItemStack(ModItems.flour), new ItemStack(Items.WHEAT_SEEDS), 40, 60);
     }
 
     public static void initTags() {

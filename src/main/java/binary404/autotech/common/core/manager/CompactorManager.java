@@ -16,7 +16,7 @@ public class CompactorManager {
         addRecipe(Tier.MV, 40000, new ItemStack(ModItems.copper_ingot, 3), new ItemStack(ModItems.copper_plate, 2));
         addRecipe(Tier.MV, 40000, new ItemStack(ModItems.tin_ingot, 3), new ItemStack(ModItems.tin_plate, 2));
 
-        addRecipe(Tier.LV, 37000, new ItemStack(ModItems.saw_dust, 8), new ItemStack(ModItems.copper_plate));
+        addRecipe(Tier.LV, 37000, new ItemStack(ModItems.saw_dust, 8), new ItemStack(ModItems.plywood));
 
         refresh();
     }

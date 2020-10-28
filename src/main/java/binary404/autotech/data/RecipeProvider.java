@@ -79,6 +79,10 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 addCriterion("has_item", hasItem(ModItems.bronze_dust))
                 .build(consumer);
 
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ModItems.flour), Items.BREAD, 0.2F, 200)
+                .addCriterion("has_item", hasItem(ModItems.flour))
+                .build(consumer, "autotech:bread_flour");
+
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.copper_dust)
                 .addIngredient(ModItems.mortar)
                 .addIngredient(ModTags.Items.ORE_COPPER)
@@ -195,6 +199,57 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .patternLine("FHF")
                 .patternLine("CLC")
                 .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_logic_component)
+                .key('R', Items.REDSTONE)
+                .key('D', Items.DIAMOND)
+                .key('S', ModItems.silver_ingot)
+                .key('C', ModItems.copper_ingot)
+                .patternLine("RRR")
+                .patternLine("SDS")
+                .patternLine("CRC")
+                .addCriterion("has_item", hasItem(Items.DIAMOND))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_logic_circuit)
+                .addIngredient(ModItems.mv_logic_component)
+                .addIngredient(ModItems.basic_circuit_board)
+                .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_transmitter_component)
+                .key('R', Items.REDSTONE)
+                .key('S', ModItems.silver_ingot)
+                .key('C', ModItems.copper_ingot)
+                .key('I', Items.IRON_INGOT)
+                .patternLine("RRR")
+                .patternLine("CIC")
+                .patternLine("SRS")
+                .addCriterion("has_item", hasItem(Items.IRON_INGOT))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_transmitter_circuit)
+                .addIngredient(ModItems.mv_transmitter_component)
+                .addIngredient(ModItems.basic_circuit_board)
+                .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_receiver_component)
+                .key('R', Items.REDSTONE)
+                .key('S', ModItems.silver_ingot)
+                .key('C', ModItems.copper_ingot)
+                .key('I', Items.IRON_INGOT)
+                .patternLine("CRC")
+                .patternLine("SIS")
+                .patternLine("RRR")
+                .addCriterion("has_item", hasItem(Items.IRON_INGOT))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_receiver_circuit)
+                .addIngredient(ModItems.mv_receiver_component)
+                .addIngredient(ModItems.basic_circuit_board)
+                .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
                 .build(consumer);
 
     }

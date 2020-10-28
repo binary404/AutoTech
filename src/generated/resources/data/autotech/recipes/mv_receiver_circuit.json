@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "autotech:mv_receiver_component"
+    },
+    {
+      "item": "autotech:basic_circuit_board"
+    }
+  ],
+  "result": {
+    "item": "autotech:mv_receiver_circuit"
+  }
+}

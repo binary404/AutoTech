@@ -28,6 +28,8 @@ public class AutoTechBlockStateProvider extends BlockStateProvider {
         this.simpleBlockState(ModBlocks.nickel_ore);
         this.simpleBlockState(ModBlocks.platinum_ore);
         this.simpleBlockState(ModBlocks.titanium_ore);
+
+        this.simpleBlockState(ModBlocks.iron_plating);
     }
 
     private void simpleBlockState(Block b) {

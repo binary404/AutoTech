@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "autotech:mv_logic_component"
+    },
+    {
+      "item": "autotech:basic_circuit_board"
+    }
+  ],
+  "result": {
+    "item": "autotech:mv_logic_circuit"
+  }
+}
