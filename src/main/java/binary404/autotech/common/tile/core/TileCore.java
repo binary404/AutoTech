@@ -32,7 +32,7 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
     /**
      * Used when this is instance of {@link IInventory}
      **/
-    protected final Inventory inv = Inventory.createBlank();
+    protected Inventory inv = Inventory.createBlank();
     private final LazyOptional<Inventory> invHolder = LazyOptional.of(() -> this.inv);
     /**
      * Used when this is instance of {@link ITank}

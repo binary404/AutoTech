@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -53,6 +54,18 @@ public abstract class MultiblockControllerBase<T extends BlockTile> extends Tile
         }
 
         return -1;
+    }
+
+    @Override
+    public void readStorable(CompoundNBT nbt) {
+        super.readStorable(nbt);
+        this.setDirection(Direction.values()[nbt.getInt("direction")]);
+    }
+
+    @Override
+    public CompoundNBT writeStorable(CompoundNBT nbt) {
+        nbt.putInt("direction", facing.ordinal());
+        return super.writeStorable(nbt);
     }
 
     protected abstract void updateFormedValid();

@@ -1,8 +1,10 @@
 package binary404.autotech.common.core.manager;
 
 import binary404.autotech.common.core.util.ComparableItemStack;
+import binary404.autotech.common.item.ModItems;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Map;
 
@@ -11,7 +13,7 @@ public class BlastFurnaceManager {
     private static Map<ComparableItemStack, BlastFurnaceRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
-
+        addRecipe(60000, new ItemStack(Items.IRON_INGOT), new ItemStack(ModItems.steel_ingot));
     }
 
     public static BlastFurnaceRecipe getRecipe(ItemStack input) {

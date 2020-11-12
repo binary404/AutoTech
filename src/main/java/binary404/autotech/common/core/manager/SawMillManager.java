@@ -77,7 +77,6 @@ public class SawMillManager {
 
         SawMillRecipe recipe = new SawMillRecipe(input, primaryOutput, secondOutput, secondOutput.isEmpty() ? 0 : secondChance, energy);
         recipeMap.put(new ComparableItemStack(input), recipe);
-        System.out.println(recipeMap.get(new ComparableItemStack(input)));
         return recipe;
     }
 

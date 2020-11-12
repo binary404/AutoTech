@@ -18,6 +18,8 @@ public class CompactorManager {
 
         addRecipe(Tier.LV, 37000, new ItemStack(ModItems.saw_dust, 8), new ItemStack(ModItems.plywood));
 
+        System.out.println(recipeMap);
+
         refresh();
     }
 

@@ -51,7 +51,6 @@ public class CentrifugeRecipeCategory implements IRecipeCategory<CentrifugeManag
         for (CentrifugeManager.CentrifugeRecipe recipe : CentrifugeManager.getRecipeList()) {
             recipes.add(recipe);
         }
-        System.out.println(recipes);
         return recipes;
     }
 

@@ -26,6 +26,7 @@ public class ModItems {
     public static Item titanium_ingot;
 
     public static Item bronze_ingot;
+    public static Item steel_ingot;
 
     public static Item copper_plate;
     public static Item tin_plate;
@@ -107,6 +108,7 @@ public class ModItems {
         titanium_ingot = register(r, new Item(properties), "titanium_ingot");
 
         bronze_ingot = register(r, new Item(properties), "bronze_ingot");
+        steel_ingot = register(r, new Item(properties), "steel_ingot");
 
         copper_ore_dust = register(r, new Item(properties), "copper_ore_dust");
         tin_ore_dust = register(r, new Item(properties), "tin_ore_dust");

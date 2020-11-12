@@ -68,6 +68,7 @@ public class AutoTech {
             DistilleryManager.init();
             CentrifugeManager.init();
             AssemblerManager.init();
+            BlastFurnaceManager.init();
 
             ModEntities.registerAttributes();
         });
