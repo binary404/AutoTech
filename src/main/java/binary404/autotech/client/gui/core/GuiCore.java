@@ -40,7 +40,7 @@ public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
     public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrix);
         super.render(matrix, mouseX, mouseY, partialTicks);
-        this.func_230459_a_(matrix, mouseX, mouseY);
+        renderHoveredTooltip(matrix, mouseX, mouseY);
     }
 
     @Override
@@ -54,8 +54,8 @@ public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
     }
 
     @Override
-    protected void func_230459_a_(MatrixStack matrixStack, int x, int y) {
-        super.func_230459_a_(matrixStack, x, y);
+    protected void renderHoveredTooltip(MatrixStack matrixStack, int x, int y) {
+        super.renderHoveredTooltip(matrixStack, x, y);
 
         for (Widget widget : this.buttons) {
             if (widget.isHovered())

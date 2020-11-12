@@ -29,7 +29,7 @@ archivesBaseName = 'autotech'
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200723-1.16.1'
+    mappings channel: 'snapshot', version: '20200916-1.16.2'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
@@ -101,6 +101,7 @@ dependencies {
     annotationProcessor 'org.ow2.asm:asm-util:7.2'
 
     compile 'org.spongepowered:mixin:0.8'
+    compile 'net.sf.trove4j:trove4j:3.0.3'
 
     compile fg.deobf("curse.maven:fx-lib:3059845")
 

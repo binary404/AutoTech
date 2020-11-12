@@ -1,4 +1,4 @@
-package binary404.autotech.client.gui;
+package binary404.autotech.client.gui.machine;
 
 import binary404.autotech.client.gui.core.GuiEnergy;
 import binary404.autotech.client.gui.core.Texture;

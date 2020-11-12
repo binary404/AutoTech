@@ -162,11 +162,6 @@ public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITan
     }
 
     @Override
-    public int getSlotLimit(int slot) {
-        return 64;
-    }
-
-    @Override
     public boolean canInsert(int slot, ItemStack stack) {
         return slot == 0 && CentrifugeManager.recipeExists(stack);
     }

@@ -5,7 +5,6 @@
   "package": "binary404.autotech.mixin",
   "refmap": "binary404.refmap.json",
   "mixins": [
-    "AccessorBiomeGenerationSettings"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -3,8 +3,23 @@ package binary404.autotech.common.core.util;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ComparableItemStack {
     public Item item;
+
+    public static ComparableItemStack convert(ItemStack stack) {
+        return new ComparableItemStack(stack);
+    }
+
+    public static List<ComparableItemStack> convert(List<ItemStack> stacks) {
+        List<ComparableItemStack> output = new ArrayList<>();
+        for (ItemStack stack : stacks) {
+            output.add(convert(stack));
+        }
+        return output;
+    }
 
     public ComparableItemStack(ItemStack stack) {
         this.item = stack.getItem();

@@ -46,7 +46,7 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> implements I
         if (isActive && checkRedstone()) {
             processTick();
 
-            if(!hasValidInput())
+            if (!hasValidInput())
                 processOff();
 
             if (canFinish()) {
@@ -73,7 +73,7 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> implements I
             }
         }
 
-        if(!checkRedstone())
+        if (!checkRedstone())
             processOff();
 
         return super.postTick(world);
@@ -301,4 +301,8 @@ public class TileMachine<T extends BlockTile> extends TileTiered<T> implements I
         return forceEmptySlot ? ItemHandlerHelper.insertItem(handler, stack, simulate) : ItemHandlerHelper.insertItemStacked(handler, stack, simulate);
     }
 
+    @Override
+    public boolean keepEnergy() {
+        return true;
+    }
 }

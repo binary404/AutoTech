@@ -29,8 +29,7 @@ import static binary404.autotech.common.core.util.RegistryUtil.register;
 
 @Mod.EventBusSubscriber(modid = AutoTech.modid, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBlocks {
-
-
+    
     @ObjectHolder("autotech:copper_ore")
     public static OreBlock copper_ore;
 
@@ -97,6 +96,8 @@ public class ModBlocks {
 
     public static Block mv_distillery;
 
+    public static Block mv_assembler;
+
     public static BlockBasicFlowingFluid distilled_water;
 
     public static Block iron_plating;
@@ -156,6 +157,8 @@ public class ModBlocks {
         hv_centrifuge = register(r, new BlockCentrifuge(p, Tier.HV), "hv_centrifuge");
 
         mv_distillery = register(r, new BlockDistillery(p, Tier.MV), "mv_distillery");
+
+        mv_assembler = register(r, new BlockAssembler(p, Tier.MV), "mv_assembler");
 
         distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water_source), "distilled_water");
 
@@ -217,6 +220,8 @@ public class ModBlocks {
         register(r, new BlockItem(mv_centrifuge, ModItems.properties), "mv_centrifuge");
 
         register(r, new BlockItem(mv_distillery, ModItems.properties), "mv_distillery");
+
+        register(r, new BlockItem(mv_assembler, ModItems.properties), "mv_assembler");
 
         register(r, new BlockItem(iron_plating, ModItems.properties), "iron_plating");
     }

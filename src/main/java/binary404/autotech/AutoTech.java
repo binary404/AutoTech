@@ -18,6 +18,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.TagsUpdatedEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -54,7 +55,7 @@ public class AutoTech {
         proxy.init();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::onTagsUpdate);
-        MinecraftForge.EVENT_BUS.addListener(this::serverAboutToStart);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModFeatures::onBiomeLoad);
     }
 
     private void setup(FMLCommonSetupEvent event) {
@@ -66,6 +67,7 @@ public class AutoTech {
             CompactorManager.init();
             DistilleryManager.init();
             CentrifugeManager.init();
+            AssemblerManager.init();
 
             ModEntities.registerAttributes();
         });
@@ -74,10 +76,6 @@ public class AutoTech {
     private void onTagsUpdate(TagsUpdatedEvent event) {
         GrinderManager.initTags();
         SawMillManager.initTags();
-    }
-
-    private void serverAboutToStart(FMLServerAboutToStartEvent event) {
-        ModFeatures.registerFeaturesToBiomes(event.getServer());
     }
 
     public static ResourceLocation key(String path) {
