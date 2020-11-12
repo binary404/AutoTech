@@ -5,6 +5,7 @@ import binary404.autotech.common.container.core.ContainerTile;
 import binary404.autotech.common.container.device.ContainerWaterPump;
 import binary404.autotech.common.container.generator.BioGeneratorContainer;
 import binary404.autotech.common.container.machine.*;
+import binary404.autotech.common.container.multiblock.ContainerBlastFurnace;
 import net.minecraft.inventory.container.BlastFurnaceContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
@@ -30,6 +31,7 @@ public class ModContainers {
     public static final ContainerType<CentrifugeContainer> centrifuge = register("centrifuge", CentrifugeContainer::new);
     public static final ContainerType<ContainerDistillery> distillery = register("distillery", ContainerDistillery::new);
     public static final ContainerType<AssemblerContainer> assembler = register("assembler", AssemblerContainer::new);
+    public static final ContainerType<ContainerBlastFurnace> blast_furnace = register("blast_furnace", ContainerBlastFurnace::new);
 
     static <T extends Container> ContainerType<T> register(final String name, final IContainerFactory<T> factory) {
         final ContainerType<T> containerType = IForgeContainerType.create(factory);

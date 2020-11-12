@@ -141,6 +141,7 @@ public class BlockPattern {
                 //Check layer-local matcher predicate
                 Predicate<PatternMatchContext> layerPredicate = layerMatchers.get(c);
                 if (layerPredicate != null && !layerPredicate.test(layerContext)) {
+                    System.out.println("predicate does not match");
                     return null;
                 }
             }

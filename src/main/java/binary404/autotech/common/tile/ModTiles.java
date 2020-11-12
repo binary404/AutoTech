@@ -5,6 +5,8 @@ import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.tile.device.TileWaterPump;
 import binary404.autotech.common.tile.generator.TileSteamGenerator;
 import binary404.autotech.common.tile.machine.*;
+import binary404.autotech.common.tile.multiblock.TileBlastFurnace;
+import binary404.autotech.common.tile.multiblock.TileBlastFurnaceHatch;
 import binary404.autotech.common.tile.transfer.TileCable;
 import binary404.autotech.common.tile.transfer.TileConveyor;
 import net.minecraft.tileentity.TileEntityType;
@@ -49,6 +51,10 @@ public class ModTiles {
 
     public static TileEntityType<TileAssembler> assembler;
 
+    public static TileEntityType<TileBlastFurnace> blast_furnace;
+
+    public static TileEntityType<TileBlastFurnaceHatch> blast_furnace_hatch;
+
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
         IForgeRegistry<TileEntityType<?>> r = event.getRegistry();
@@ -64,6 +70,8 @@ public class ModTiles {
         distillery = (TileEntityType<TileDistillery>) register(r, TileEntityType.Builder.create(TileDistillery::new, ModBlocks.mv_distillery).build(null), "distillery");
         conveyor = (TileEntityType<TileConveyor>) register(r, TileEntityType.Builder.create(TileConveyor::new, ModBlocks.conveyor).build(null), "conveyor");
         assembler = (TileEntityType<TileAssembler>) register(r, TileEntityType.Builder.create(TileAssembler::new, ModBlocks.mv_assembler).build(null), "assembler");
+        blast_furnace = (TileEntityType<TileBlastFurnace>) register(r, TileEntityType.Builder.create(TileBlastFurnace::new, ModBlocks.blast_furnace).build(null), "blast_furnace");
+        blast_furnace_hatch = (TileEntityType<TileBlastFurnaceHatch>) register(r, TileEntityType.Builder.create(TileBlastFurnaceHatch::new, ModBlocks.blast_furnace_hatch).build(null), "blast_furnace_hatch");
     }
 
 }

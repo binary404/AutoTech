@@ -4,6 +4,8 @@ import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.device.BlockWaterPump;
 import binary404.autotech.common.block.generator.BlockSteamGenerator;
 import binary404.autotech.common.block.machine.*;
+import binary404.autotech.common.block.multiblock.BlockBlastFurnace;
+import binary404.autotech.common.block.multiblock.BlockBlastFurnaceHatch;
 import binary404.autotech.common.block.transfer.BlockCable;
 import binary404.autotech.common.block.transfer.BlockConveyor;
 import binary404.autotech.common.core.logistics.Tier;
@@ -29,7 +31,7 @@ import static binary404.autotech.common.core.util.RegistryUtil.register;
 
 @Mod.EventBusSubscriber(modid = AutoTech.modid, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBlocks {
-    
+
     @ObjectHolder("autotech:copper_ore")
     public static OreBlock copper_ore;
 
@@ -102,6 +104,9 @@ public class ModBlocks {
 
     public static Block iron_plating;
 
+    public static Block blast_furnace;
+    public static Block blast_furnace_hatch;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
@@ -165,6 +170,9 @@ public class ModBlocks {
         p = AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(4.0F, 4.0F);
 
         iron_plating = register(r, new Block(p), "iron_plating");
+
+        blast_furnace = register(r, new BlockBlastFurnace(p), "blast_furnace");
+        blast_furnace_hatch = register(r, new BlockBlastFurnaceHatch(p), "blast_furnace_hatch");
     }
 
     @SubscribeEvent
@@ -224,6 +232,9 @@ public class ModBlocks {
         register(r, new BlockItem(mv_assembler, ModItems.properties), "mv_assembler");
 
         register(r, new BlockItem(iron_plating, ModItems.properties), "iron_plating");
+
+        register(r, new BlockItem(blast_furnace, ModItems.properties), "blast_furnace");
+        register(r, new BlockItem(blast_furnace_hatch, ModItems.properties), "blast_furnace_hatch");
     }
 
     public static void initRenderLayers() {

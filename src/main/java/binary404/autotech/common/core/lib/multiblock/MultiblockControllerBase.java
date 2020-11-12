@@ -5,12 +5,16 @@ import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.core.TileMachine;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.ArrayUtils;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
@@ -19,6 +23,8 @@ import java.util.regex.Pattern;
 public abstract class MultiblockControllerBase<T extends BlockTile> extends TileMachine<T> {
 
     protected BlockPattern structurePattern;
+
+    Direction facing = Direction.NORTH;
 
     private final Map<MultiblockAbility<Object>, List<Object>> multiblockAbilities = new HashMap<>();
     private final List<IMultiblockPart> multiblockParts = new ArrayList<>();
@@ -106,8 +112,18 @@ public abstract class MultiblockControllerBase<T extends BlockTile> extends Tile
         };
     }
 
+    public void setDirection(Direction direction) {
+        this.facing = direction;
+    }
+
+    @Override
+    public void onPlaced(World world, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        super.onPlaced(world, state, placer, stack);
+        this.facing = state.get(BlockStateProperties.FACING);
+    }
+
     protected void checkStructurePattern() {
-        Direction facing = Direction.NORTH.getOpposite();
+        Direction facing = this.facing.getOpposite();
         PatternMatchContext context = structurePattern.checkPatternAt(getWorld(), getPos(), facing);
         if (context != null && !structureFormed) {
             Set<IMultiblockPart> rawPartsSet = context.getOrCreate("MultiblockParts", HashSet::new);
@@ -137,6 +153,7 @@ public abstract class MultiblockControllerBase<T extends BlockTile> extends Tile
                 formStructure(context);
             }
         } else if (context == null && structureFormed) {
+            System.out.println("Invalidating structure");
             invalidateStructure();
         }
     }
