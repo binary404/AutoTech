@@ -6,6 +6,7 @@ import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
@@ -19,7 +20,11 @@ public class AssemblerManager {
     private static List<AssemblerRecipe> recipeMap = new ArrayList<>();
 
     public static void init() {
-
+        addRecipe(Tier.MV, 20000, 600, NonNullList.from(ItemStack.EMPTY,
+                new ItemStack(ModItems.steel_ingot), new ItemStack(ModItems.steel_ingot), new ItemStack(ModItems.steel_ingot),
+                new ItemStack(ModItems.steel_ingot), ItemStack.EMPTY, new ItemStack(ModItems.steel_ingot),
+                new ItemStack(ModItems.steel_ingot), new ItemStack(ModItems.steel_ingot), new ItemStack(ModItems.steel_ingot)
+        ), new ItemStack(ModItems.mv_machine_hull));
     }
 
     public static AssemblerRecipe getRecipe(List<ItemStack> inputs) {

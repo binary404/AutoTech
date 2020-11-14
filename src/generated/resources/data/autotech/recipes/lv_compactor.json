@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CLC",
-    "FHF",
-    "CLC"
+    "CBC",
+    "IHI",
+    "CBC"
   ],
   "key": {
     "C": {
       "item": "autotech:copper_plate"
     },
-    "L": {
+    "B": {
+      "item": "autotech:bronze_plate"
+    },
+    "I": {
       "item": "autotech:iron_plate"
     },
     "H": {
       "item": "autotech:lv_machine_hull"
-    },
-    "F": {
-      "item": "minecraft:furnace"
     }
   },
   "result": {
-    "item": "autotech:lv_bio_generator"
+    "item": "autotech:lv_compactor"
   }
 }

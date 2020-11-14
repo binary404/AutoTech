@@ -13,9 +13,9 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.World;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class TileBlastFurnaceHatch extends MultiBlockPart<BlockBlastFurnaceHatch> {
+public class TileArcFurnaceHatch extends MultiBlockPart<BlockBlastFurnaceHatch> {
 
-    public TileBlastFurnaceHatch() {
+    public TileArcFurnaceHatch() {
         super(ModTiles.blast_furnace_hatch, Tier.LV);
     }
 

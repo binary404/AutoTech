@@ -2,10 +2,8 @@ package binary404.autotech.common.core.plugin.jei;
 
 import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.core.manager.CentrifugeManager;
-import binary404.autotech.common.core.plugin.jei.machine.CentrifugeRecipeCategory;
-import binary404.autotech.common.core.plugin.jei.machine.CompactorRecipeCategory;
-import binary404.autotech.common.core.plugin.jei.machine.GrinderRecipeCategory;
-import binary404.autotech.common.core.plugin.jei.machine.SawMillRecipeCategory;
+import binary404.autotech.common.core.plugin.jei.machine.*;
+import binary404.autotech.common.core.plugin.jei.multiblock.ArcFurnaceRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
@@ -31,6 +29,8 @@ public class JeiPluginAutoTech implements IModPlugin {
         registration.addRecipeCategories(new SawMillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CentrifugeRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CompactorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new AssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ArcFurnaceRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -39,6 +39,8 @@ public class JeiPluginAutoTech implements IModPlugin {
         registration.addRecipes(SawMillRecipeCategory.getRecipes(), SawMillRecipeCategory.UID);
         registration.addRecipes(CentrifugeRecipeCategory.getRecipes(), CentrifugeRecipeCategory.UID);
         registration.addRecipes(CompactorRecipeCategory.getRecipes(), CompactorRecipeCategory.UID);
+        registration.addRecipes(AssemblerRecipeCategory.getRecipes(), AssemblerRecipeCategory.UID);
+        registration.addRecipes(ArcFurnaceRecipeCategory.getRecipes(), ArcFurnaceRecipeCategory.UID);
     }
 
     @Override
@@ -60,6 +62,10 @@ public class JeiPluginAutoTech implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.lv_compactor), CompactorRecipeCategory.UID);
 
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.mv_centrifuge), CentrifugeRecipeCategory.UID);
+
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.mv_assembler), AssemblerRecipeCategory.UID);
+
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.arc_furnace), ArcFurnaceRecipeCategory.UID);
 
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.lv_smelter), VanillaRecipeCategoryUid.FURNACE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.mv_smelter), VanillaRecipeCategoryUid.FURNACE);

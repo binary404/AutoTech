@@ -63,8 +63,8 @@ public class ModBlocks {
     public static Block iv_smelter;
     public static Block maxv_smelter;
 
-    public static Block lv_bio_generator;
-    public static Block mv_bio_generator;
+    public static Block lv_furnace_generator;
+    public static Block mv_furnace_generator;
 
     public static Block lv_sawmill;
     public static Block mv_sawmill;
@@ -104,8 +104,8 @@ public class ModBlocks {
 
     public static Block iron_plating;
 
-    public static Block blast_furnace;
-    public static Block blast_furnace_hatch;
+    public static Block arc_furnace;
+    public static Block arc_furnace_hatch;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -128,8 +128,8 @@ public class ModBlocks {
         iv_smelter = register(r, new BlockSmelter(p, Tier.IV), "iv_smelter");
         maxv_smelter = register(r, new BlockSmelter(p, Tier.MaxV), "maxv_smelter");
 
-        lv_bio_generator = register(r, new BlockSteamGenerator(p, Tier.LV), "lv_bio_generator");
-        mv_bio_generator = register(r, new BlockSteamGenerator(p, Tier.MV), "mv_bio_generator");
+        lv_furnace_generator = register(r, new BlockSteamGenerator(p, Tier.LV), "lv_bio_generator");
+        mv_furnace_generator = register(r, new BlockSteamGenerator(p, Tier.MV), "mv_bio_generator");
 
         lv_sawmill = register(r, new BlockSawMill(p, Tier.LV), "lv_sawmill");
         mv_sawmill = register(r, new BlockSawMill(p, Tier.MV), "mv_sawmill");
@@ -171,8 +171,8 @@ public class ModBlocks {
 
         iron_plating = register(r, new Block(p), "iron_plating");
 
-        blast_furnace = register(r, new BlockBlastFurnace(p), "blast_furnace");
-        blast_furnace_hatch = register(r, new BlockBlastFurnaceHatch(p), "blast_furnace_hatch");
+        arc_furnace = register(r, new BlockBlastFurnace(p), "arc_furnace");
+        arc_furnace_hatch = register(r, new BlockBlastFurnaceHatch(p), "arc_furnace_hatch");
     }
 
     @SubscribeEvent
@@ -195,8 +195,8 @@ public class ModBlocks {
         register(r, new BlockItem(iv_smelter, ModItems.properties), "iv_smelter");
         register(r, new BlockItem(maxv_smelter, ModItems.properties), "maxv_smelter");
 
-        register(r, new BlockItem(lv_bio_generator, ModItems.properties), "lv_bio_generator");
-        register(r, new BlockItem(mv_bio_generator, ModItems.properties), "mv_bio_generator");
+        register(r, new BlockItem(lv_furnace_generator, ModItems.properties), "lv_bio_generator");
+        register(r, new BlockItem(mv_furnace_generator, ModItems.properties), "mv_bio_generator");
 
         register(r, new BlockItem(lv_sawmill, ModItems.properties), "lv_sawmill");
         register(r, new BlockItem(mv_sawmill, ModItems.properties), "mv_sawmill");
@@ -233,8 +233,8 @@ public class ModBlocks {
 
         register(r, new BlockItem(iron_plating, ModItems.properties), "iron_plating");
 
-        register(r, new BlockItem(blast_furnace, ModItems.properties), "blast_furnace");
-        register(r, new BlockItem(blast_furnace_hatch, ModItems.properties), "blast_furnace_hatch");
+        register(r, new BlockItem(arc_furnace, ModItems.properties), "arc_furnace");
+        register(r, new BlockItem(arc_furnace_hatch, ModItems.properties), "arc_furnace_hatch");
     }
 
     public static void initRenderLayers() {

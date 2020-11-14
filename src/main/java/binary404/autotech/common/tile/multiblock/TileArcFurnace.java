@@ -6,17 +6,16 @@ import binary404.autotech.common.core.lib.multiblock.BlockPattern;
 import binary404.autotech.common.core.lib.multiblock.FactoryBlockPattern;
 import binary404.autotech.common.core.lib.multiblock.MultiblockControllerBase;
 import binary404.autotech.common.core.logistics.Tier;
-import binary404.autotech.common.core.manager.BlastFurnaceManager;
+import binary404.autotech.common.core.manager.ArcFurnaceManager;
 import binary404.autotech.common.tile.ModTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityType;
 
-public class TileBlastFurnace extends MultiblockControllerBase<BlockBlastFurnace> {
+public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> {
 
-    BlastFurnaceManager.BlastFurnaceRecipe recipe;
+    ArcFurnaceManager.ArcFurnaceRecipe recipe;
 
-    public TileBlastFurnace() {
+    public TileArcFurnace() {
         super(ModTiles.blast_furnace, Tier.LV);
         this.inv.set(2);
     }
@@ -26,7 +25,7 @@ public class TileBlastFurnace extends MultiblockControllerBase<BlockBlastFurnace
         if (inv.getStackInSlot(0).isEmpty() || energy.getEnergyStored() <= 0)
             return false;
 
-        this.recipe = BlastFurnaceManager.getRecipe(inv.getStackInSlot(0));
+        this.recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0));
 
         if (recipe == null)
             return false;
@@ -40,7 +39,7 @@ public class TileBlastFurnace extends MultiblockControllerBase<BlockBlastFurnace
     @Override
     protected boolean hasValidInput() {
         if (recipe == null)
-            recipe = BlastFurnaceManager.getRecipe(inv.getStackInSlot(0));
+            recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0));
 
         if (recipe == null)
             return false;
@@ -62,7 +61,7 @@ public class TileBlastFurnace extends MultiblockControllerBase<BlockBlastFurnace
     @Override
     protected void processFinish() {
         if (recipe == null)
-            recipe = BlastFurnaceManager.getRecipe(inv.getStackInSlot(0));
+            recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0));
 
         if (recipe == null) {
             processOff();
@@ -97,14 +96,14 @@ public class TileBlastFurnace extends MultiblockControllerBase<BlockBlastFurnace
                 .aisle("XXX", "XYX", "XXX")
                 .where('X', statePredicate(getCasingState()))
                 .where('Y', selfPredicate())
-                .where('Z', tilePredicate((state, tile) -> tile instanceof TileBlastFurnaceHatch).or(statePredicate(getCasingState())))
+                .where('Z', tilePredicate((state, tile) -> tile instanceof TileArcFurnaceHatch).or(statePredicate(getCasingState())))
                 .where('#', isAirPredicate())
                 .build();
     }
 
     @Override
     public boolean canInsert(int slot, ItemStack stack) {
-        return slot == 0 && BlastFurnaceManager.recipeExists(stack);
+        return slot == 0 && ArcFurnaceManager.recipeExists(stack);
     }
 
     @Override

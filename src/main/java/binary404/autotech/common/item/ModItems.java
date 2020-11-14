@@ -69,12 +69,18 @@ public class ModItems {
     public static Item iron_dust;
     public static Item gold_dust;
     public static Item netherite_dust;
+    public static Item coal_dust;
+    public static Item charcoal_dust;
 
     public static Item bronze_dust;
 
     public static Item saw_dust;
     public static Item plywood;
     public static Item basic_circuit_board;
+
+    public static Item carbon_mesh;
+
+    public static Item saw_blade;
 
     public static Item mv_logic_component;
     public static Item mv_receiver_component;
@@ -122,6 +128,8 @@ public class ModItems {
         gold_ore_dust = register(r, new Item(properties), "gold_ore_dust");
         osmium_ore_dust = register(r, new Item(properties), "osmium_ore_dust");
         netherite_ore_dust = register(r, new Item(properties), "netherite_ore_dust");
+        coal_dust = register(r, new Item(properties), "coal_dust");
+        charcoal_dust = register(r, new Item(properties), "charcoal_dust");
 
         copper_dust = register(r, new Item(properties), "copper_dust");
         tin_dust = register(r, new Item(properties), "tin_dust");
@@ -153,6 +161,10 @@ public class ModItems {
 
         plywood = register(r, new Item(properties), "plywood");
         basic_circuit_board = register(r, new Item(properties), "basic_circuit_board");
+
+        carbon_mesh = register(r, new Item(properties), "carbon_mesh");
+
+        saw_blade = register(r, new Item(properties), "saw_blade");
 
         mv_logic_component = register(r, new Item(properties), "mv_logic_component");
         mv_receiver_component = register(r, new Item(properties), "mv_receiver_component");

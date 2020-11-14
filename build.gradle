@@ -22,7 +22,7 @@ mixin {
     add sourceSets.main, "autotech.refmap.json"
 }
 
-version = '1.16.3-0.0.1-beta'
+version = '1.16.3-0.0.1-alpha'
 group = 'binary404.autotech' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'autotech'
 
@@ -88,6 +88,9 @@ repositories {
     maven {
         url 'https://maven.mcmoddev.com/'
     }
+    maven {
+        url 'https://maven.blamejared.com'
+    }
 }
 
 dependencies {
@@ -104,6 +107,8 @@ dependencies {
     compile 'net.sf.trove4j:trove4j:3.0.3'
 
     compile fg.deobf("curse.maven:fx-lib:3059845")
+
+    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.3:7.0.0.48")
 
     compile fg.deobf("curse.maven:jei:3062050")
 }

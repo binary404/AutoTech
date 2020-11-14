@@ -34,7 +34,6 @@ public class SawMillManager {
     private static Map<ComparableItemStack, SawMillRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
-        addRecipe(30000, new ItemStack(ModItems.plywood), new ItemStack(ModItems.basic_circuit_board), ItemStack.EMPTY, 0);
     }
 
     public static void initTags() {

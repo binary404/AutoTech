@@ -1,10 +1,9 @@
 package binary404.autotech.common.block.multiblock;
 
-import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.container.core.ContainerCore;
-import binary404.autotech.common.container.multiblock.ContainerBlastFurnace;
+import binary404.autotech.common.container.multiblock.ArcFurnaceContainer;
 import binary404.autotech.common.tile.core.TileCore;
-import binary404.autotech.common.tile.multiblock.TileBlastFurnace;
+import binary404.autotech.common.tile.multiblock.TileArcFurnace;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.tileentity.TileEntity;
@@ -22,13 +21,13 @@ public class BlockBlastFurnace extends BlockMultiBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileBlastFurnace();
+        return new TileArcFurnace();
     }
 
     @Nullable
     @Override
     public <T extends TileCore> ContainerCore getContainer(int id, PlayerInventory inventory, TileCore te, BlockRayTraceResult result) {
-        return new ContainerBlastFurnace(id, inventory, (TileBlastFurnace) te);
+        return new ArcFurnaceContainer(id, inventory, (TileArcFurnace) te);
     }
 
     @Override

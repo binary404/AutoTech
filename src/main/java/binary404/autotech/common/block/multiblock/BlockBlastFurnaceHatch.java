@@ -1,6 +1,6 @@
 package binary404.autotech.common.block.multiblock;
 
-import binary404.autotech.common.tile.multiblock.TileBlastFurnaceHatch;
+import binary404.autotech.common.tile.multiblock.TileArcFurnaceHatch;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -22,7 +22,7 @@ public class BlockBlastFurnaceHatch extends BlockMultiBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileBlastFurnaceHatch();
+        return new TileArcFurnaceHatch();
     }
 
     @Override

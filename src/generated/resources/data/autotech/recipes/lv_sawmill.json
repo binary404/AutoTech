@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CLC",
-    "FHF",
-    "CLC"
+    "CSC",
+    "THT",
+    "CTC"
   ],
   "key": {
     "C": {
       "item": "autotech:copper_plate"
     },
-    "L": {
-      "item": "autotech:iron_plate"
+    "S": {
+      "item": "autotech:saw_blade"
+    },
+    "T": {
+      "item": "autotech:tin_plate"
     },
     "H": {
       "item": "autotech:lv_machine_hull"
-    },
-    "F": {
-      "item": "minecraft:furnace"
     }
   },
   "result": {
-    "item": "autotech:lv_bio_generator"
+    "item": "autotech:lv_sawmill"
   }
 }

@@ -7,10 +7,10 @@
   ],
   "key": {
     "C": {
-      "item": "autotech:tin_plate"
+      "item": "autotech:copper_plate"
     },
     "L": {
-      "item": "autotech:silver_plate"
+      "item": "minecraft:bricks"
     },
     "H": {
       "item": "autotech:lv_machine_hull"

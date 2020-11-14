@@ -36,6 +36,8 @@
   "item.autotech.nickel_dust": "Nickel Dust",
   "item.autotech.platinum_dust": "Platinum Dust",
   "info.autotech.titanium_dust": "Titanium Dust",
+  "item.autotech.coal_dust": "Coal Dust",
+  "item.autotech.charcoal_dust": "Charcoal Dust",
 
   "item.autotech.copper_ingot": "Copper Ingot",
   "item.autotech.tin_ingot": "Tin Ingot",
@@ -46,6 +48,7 @@
   "item.autotech.platinum_ingot": "Platinum Ingot",
   "item.autotech.titanium_ingot": "Titanium Ingot",
   "item.autotech.bronze_ingot": "Bronze Ingot",
+  "item.autotech.steel_ingot": "Steel Ingot",
 
   "item.autotech.lv_machine_hull": "Low Voltage Machine Hull",
   "item.autotech.mv_machine_hull": "Medium Voltage Machine Hull",
@@ -60,6 +63,8 @@
 
   "item.autotech.plywood": "Plywood",
   "item.autotech.basic_circuit_board": "Basic Circuit Board",
+
+  "item.autotech.carbon_mesh": "Carbon Mesh",
 
   "item.autotech.mortar": "Mortar",
 

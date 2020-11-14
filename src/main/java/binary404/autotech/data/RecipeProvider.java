@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
@@ -143,6 +144,14 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_NICKEL), 2)
                 .addCriterion("has_item", hasItem(ModItems.nickel_ingot))
                 .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.iron_plate)
+                .addIngredient(Ingredient.fromTag(Tags.Items.INGOTS_IRON), 2)
+                .addCriterion("has_item", hasItem(Items.IRON_INGOT))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.gold_plate)
+                .addIngredient(Ingredient.fromTag(Tags.Items.INGOTS_GOLD), 2)
+                .addCriterion("has_item", hasItem(Items.GOLD_INGOT))
+                .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.platinum_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_PLATINUM), 2)
                 .addCriterion("has_item", hasItem(ModItems.platinum_ingot))
@@ -179,9 +188,18 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModItems.bronze_plate))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_bio_generator)
+        ShapedRecipeBuilder.shapedRecipe(ModItems.saw_blade)
+                .key('I', Items.IRON_INGOT)
+                .key('B', ModItems.bronze_plate)
+                .patternLine("II ")
+                .patternLine("IBI")
+                .patternLine(" II")
+                .addCriterion("has_item", hasItem(ModItems.bronze_plate))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_furnace_generator)
                 .key('C', ModItems.copper_plate)
-                .key('L', ModItems.lead_plate)
+                .key('L', ModItems.iron_plate)
                 .key('H', ModItems.lv_machine_hull)
                 .key('F', Blocks.FURNACE)
                 .patternLine("CLC")
@@ -190,9 +208,42 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
                 .build(consumer);
 
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_grinder)
+                .key('C', ModItems.copper_plate)
+                .key('D', Items.DIAMOND)
+                .key('F', Items.FLINT)
+                .key('H', ModItems.lv_machine_hull)
+                .patternLine("CDC")
+                .patternLine("FHF")
+                .patternLine("CDC")
+                .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_compactor)
+                .key('C', ModItems.copper_plate)
+                .key('B', ModItems.bronze_plate)
+                .key('I', ModItems.iron_plate)
+                .key('H', ModItems.lv_machine_hull)
+                .patternLine("CBC")
+                .patternLine("IHI")
+                .patternLine("CBC")
+                .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_sawmill)
+                .key('C', ModItems.copper_plate)
+                .key('S', ModItems.saw_blade)
+                .key('T', ModItems.tin_plate)
+                .key('H', ModItems.lv_machine_hull)
+                .patternLine("CSC")
+                .patternLine("THT")
+                .patternLine("CTC")
+                .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_smelter)
-                .key('C', ModItems.tin_plate)
-                .key('L', ModItems.silver_plate)
+                .key('C', ModItems.copper_plate)
+                .key('L', Items.BRICKS)
                 .key('H', ModItems.lv_machine_hull)
                 .key('F', Blocks.FURNACE)
                 .patternLine("CLC")
@@ -250,6 +301,12 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addIngredient(ModItems.mv_receiver_component)
                 .addIngredient(ModItems.basic_circuit_board)
                 .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.basic_circuit_board)
+                .addIngredient(ModItems.carbon_mesh)
+                .addIngredient(ModItems.plywood)
+                .addCriterion("has_item", hasItem(ModItems.carbon_mesh))
                 .build(consumer);
 
     }
