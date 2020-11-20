@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:ingots/lead"
+    },
+    {
+      "item": "autotech:hammer"
     }
   ],
   "result": {

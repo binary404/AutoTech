@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RNR",
+    "CCC",
+    "RNR"
+  ],
+  "key": {
+    "N": {
+      "item": "autotech:nickel_plate"
+    },
+    "C": {
+      "item": "autotech:copper_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "autotech:lv_cable",
+    "count": 4
+  }
+}

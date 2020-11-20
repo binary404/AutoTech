@@ -4,6 +4,7 @@ import binary404.autotech.common.container.machine.AssemblerContainer;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
+import com.google.gson.internal.$Gson$Preconditions;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
@@ -53,6 +54,12 @@ public class AssemblerManager {
         AssemblerRecipe recipe = new AssemblerRecipe(input, output, energy, minTier, minTime);
         recipeMap.add(recipe);
         return recipe;
+    }
+
+    public static void removeRecipe(NonNullList<ItemStack> input) {
+        AssemblerRecipe recipe = getRecipe(input);
+        if (recipe != null)
+            recipeMap.remove(recipe);
     }
 
 

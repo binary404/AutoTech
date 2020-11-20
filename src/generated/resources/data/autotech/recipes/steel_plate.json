@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/steel"
+    },
+    {
+      "tag": "forge:ingots/steel"
+    },
+    {
+      "item": "autotech:hammer"
+    }
+  ],
+  "result": {
+    "item": "autotech:steel_plate"
+  }
+}

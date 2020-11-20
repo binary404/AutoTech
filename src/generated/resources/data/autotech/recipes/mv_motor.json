@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "ROR",
+    "COC"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "C": {
+      "item": "autotech:mv_cable"
+    },
+    "O": {
+      "tag": "forge:ingots/copper"
+    }
+  },
+  "result": {
+    "item": "autotech:mv_motor"
+  }
+}

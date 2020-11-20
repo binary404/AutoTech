@@ -7,6 +7,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,6 +30,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.lwjgl.system.CallbackI;
 
@@ -38,8 +40,8 @@ import javax.annotation.Nullable;
 
 public class BlockTile extends Block {
 
-    public BlockTile(Properties properties) {
-        super(properties);
+    public BlockTile() {
+        super(Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(2.0F, 100.0F));
     }
 
     @Override

@@ -18,8 +18,8 @@ public class BlockAssembler extends BlockTile {
 
     Tier tier;
 
-    public BlockAssembler(Properties properties, Tier tier) {
-        super(properties);
+    public BlockAssembler(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

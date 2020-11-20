@@ -26,10 +26,11 @@ public class CompactorContainer extends ContainerTile<TileCompactor> {
     @Override
     protected void init(PlayerInventory inventory, TileCompactor te) {
         super.init(inventory, te);
-        addPlayerInventory(inventory, 8, 84, 4);
 
         addSlot(new SlotBase(te.getInventory(), 0, 53, 23));
         addSlot(new SlotBase(te.getInventory(), 1, 97, 23));
+
+        addPlayerInventory(inventory, 8, 84, 4);
     }
 
 }

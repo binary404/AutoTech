@@ -5,6 +5,7 @@ import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Map;
 
@@ -15,6 +16,14 @@ public class CompactorManager {
     public static void init() {
         addRecipe(Tier.MV, 40000, new ItemStack(ModItems.copper_ingot, 3), new ItemStack(ModItems.copper_plate, 2));
         addRecipe(Tier.MV, 40000, new ItemStack(ModItems.tin_ingot, 3), new ItemStack(ModItems.tin_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.lead_ingot, 3), new ItemStack(ModItems.lead_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.silver_ingot, 3), new ItemStack(ModItems.silver_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.uranium_ingot, 3), new ItemStack(ModItems.uranium_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.nickel_ingot, 3), new ItemStack(ModItems.nickel_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.platinum_ingot, 3), new ItemStack(ModItems.platinum_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(ModItems.titanium_ingot, 3), new ItemStack(ModItems.titanium_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(Items.IRON_INGOT, 3), new ItemStack(ModItems.iron_plate, 2));
+        addRecipe(Tier.MV, 40000, new ItemStack(Items.GOLD_INGOT, 3), new ItemStack(ModItems.gold_plate, 2));
 
         addRecipe(Tier.LV, 37000, new ItemStack(ModItems.saw_dust, 8), new ItemStack(ModItems.plywood));
 
@@ -35,6 +44,10 @@ public class CompactorManager {
     public static boolean recipeExists(ItemStack input) {
         boolean recipeExists = getRecipe(input) != null;
         return recipeExists;
+    }
+
+    public static CompactorRecipe removeRecipe(ItemStack input) {
+        return recipeMap.remove(ComparableItemStack.convert(input));
     }
 
     public static CompactorRecipe[] getRecipeList() {

@@ -14,6 +14,23 @@ public class ModTags {
 
     public static class Items {
 
+        public static final ITag.INamedTag<Item> MV_CIRCUITS = tag("mv_circuits");
+        public static final ITag.INamedTag<Item> MV_CIRCUITS_LOGIC = tag("mv_circuits/logic");
+        public static final ITag.INamedTag<Item> MV_CIRCUITS_TRANSMITTER = tag("mv_circuits/transmitter");
+        public static final ITag.INamedTag<Item> MV_CIRCUITS_RECEIVER = tag("mv_circuits/receiver");
+
+        public static final ITag.INamedTag<Item> PLATES = forgeTag("plates");
+        public static final ITag.INamedTag<Item> PLATES_COPPER = forgeTag("plates/copper");
+        public static final ITag.INamedTag<Item> PLATES_TIN = forgeTag("plates/tin");
+        public static final ITag.INamedTag<Item> PLATES_LEAD = forgeTag("plates/lead");
+        public static final ITag.INamedTag<Item> PLATES_SILVER = forgeTag("plates/silver");
+        public static final ITag.INamedTag<Item> PLATES_URANIUM = forgeTag("plates/uranium");
+        public static final ITag.INamedTag<Item> PLATES_NICKEL = forgeTag("plates/nickel");
+        public static final ITag.INamedTag<Item> PLATES_PLATINUM = forgeTag("plates/platinum");
+        public static final ITag.INamedTag<Item> PLATES_TITANIUM = forgeTag("plates/titanium");
+        public static final ITag.INamedTag<Item> PLATES_BRONZE = forgeTag("plates/bronze");
+        public static final ITag.INamedTag<Item> PLATES_STEEL = forgeTag("plates/steel");
+
         public static final ITag.INamedTag<Item> INGOTS_COPPER = forgeTag("ingots/copper");
         public static final ITag.INamedTag<Item> INGOTS_TIN = forgeTag("ingots/tin");
         public static final ITag.INamedTag<Item> INGOTS_LEAD = forgeTag("ingots/lead");
@@ -23,6 +40,7 @@ public class ModTags {
         public static final ITag.INamedTag<Item> INGOTS_PLATINUM = forgeTag("ingots/platinum");
         public static final ITag.INamedTag<Item> INGOTS_TITANIUM = forgeTag("ingots/titanium");
         public static final ITag.INamedTag<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
+        public static final ITag.INamedTag<Item> INGOTS_STEEL = forgeTag("ingots/steel");
 
         public static final ITag.INamedTag<Item> DUSTS_COPPER = forgeTag("dusts/copper");
         public static final ITag.INamedTag<Item> DUSTS_TIN = forgeTag("dusts/tin");
@@ -36,6 +54,8 @@ public class ModTags {
         public static final ITag.INamedTag<Item> DUSTS_GOLD = forgeTag("dusts/gold");
         public static final ITag.INamedTag<Item> DUSTS_NETHERITE = forgeTag("dusts/netherite");
         public static final ITag.INamedTag<Item> DUSTS_BRONZE = forgeTag("dusts/bronze");
+        public static final ITag.INamedTag<Item> DUSTS_COAL = forgeTag("dusts/coal");
+        public static final ITag.INamedTag<Item> DUSTS_CHARCOAL = forgeTag("dusts/charcoal");
 
         public static final ITag.INamedTag<Item> ORE_DUSTS = forgeTag("ore_dusts");
         public static final ITag.INamedTag<Item> ORE_DUSTS_COPPER = forgeTag("ore_dusts/copper");
@@ -51,10 +71,9 @@ public class ModTags {
         public static final ITag.INamedTag<Item> ORE_DUSTS_OSMIUM = forgeTag("ore_dusts/osmium");
         public static final ITag.INamedTag<Item> ORE_DUSTS_NETHERITE = forgeTag("ore_dusts/netherite");
 
-        public static final ITag.INamedTag<Item> ORES = forgeTag("ores");
-        public static final ITag.INamedTag<Item> ORE_COPPER = forgeTag("ores/copper");
-        public static final ITag.INamedTag<Item> ORE_TIN = forgeTag("ores/tin");
-        public static final ITag.INamedTag<Item> ORE_LEAD = forgeTag("ores/lead");
+        public static final ITag.INamedTag<Item> ORES_COPPER = forgeTag("ores/copper");
+        public static final ITag.INamedTag<Item> ORES_TIN = forgeTag("ores/tin");
+        public static final ITag.INamedTag<Item> ORES_LEAD = forgeTag("ores/lead");
         public static final ITag.INamedTag<Item> ORE_SILVER = forgeTag("ores/silver");
         public static final ITag.INamedTag<Item> ORE_URANIUM = forgeTag("ores/uranium");
         public static final ITag.INamedTag<Item> ORE_NICKEL = forgeTag("ores/nickel");

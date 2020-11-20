@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ILI",
+    "LTL",
+    "ILI"
+  ],
+  "key": {
+    "I": {
+      "item": "autotech:iron_plating"
+    },
+    "L": {
+      "item": "autotech:lead_plate"
+    },
+    "T": {
+      "item": "autotech:nickel_plate"
+    }
+  },
+  "result": {
+    "item": "autotech:lv_arc_furnace_casing",
+    "count": 4
+  }
+}

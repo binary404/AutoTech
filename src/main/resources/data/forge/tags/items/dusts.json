@@ -11,6 +11,8 @@
     "#forge:dusts/iron",
     "#forge:dusts/gold",
     "#forge:dusts/netherite",
-    "#forge:dusts/bronze"
+    "#forge:dusts/bronze",
+    "#forge:dusts/coal",
+    "#forge:dusts/charcoal"
   ]
 }

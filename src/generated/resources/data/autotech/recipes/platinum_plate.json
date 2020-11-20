@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:ingots/platinum"
+    },
+    {
+      "item": "autotech:hammer"
     }
   ],
   "result": {

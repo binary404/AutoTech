@@ -25,8 +25,8 @@ public class BlockDistillery extends BlockTile {
 
     Tier tier;
 
-    public BlockDistillery(Properties properties, Tier tier) {
-        super(properties);
+    public BlockDistillery(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

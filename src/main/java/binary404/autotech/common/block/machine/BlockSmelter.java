@@ -18,8 +18,8 @@ public class BlockSmelter extends BlockTile {
 
     Tier tier;
 
-    public BlockSmelter(Properties properties, Tier tier) {
-        super(properties);
+    public BlockSmelter(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

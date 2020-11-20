@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:ingots/copper"
+    },
+    {
+      "item": "autotech:hammer"
     }
   ],
   "result": {

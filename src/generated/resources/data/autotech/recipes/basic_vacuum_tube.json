@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GRG",
+    "CCC"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "C": {
+      "item": "autotech:lv_cable"
+    }
+  },
+  "result": {
+    "item": "autotech:basic_vacuum_tube"
+  }
+}

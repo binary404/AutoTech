@@ -75,7 +75,10 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderManager.Gri
         ImmutableList.Builder<List<ItemStack>> inputBuilder = ImmutableList.builder();
         ImmutableList.Builder<ItemStack> outputBuilders = ImmutableList.builder();
 
-        inputBuilder.add(Lists.newArrayList(grinderRecipe.getInput()));
+        if (grinderRecipe.getInput() == null)
+            inputBuilder.add(Lists.newArrayList(new ItemStack(grinderRecipe.getInputTag().getAllElements().get(0))));
+        else
+            inputBuilder.add(Lists.newArrayList(grinderRecipe.getInput()));
 
         if (!grinderRecipe.getPrimaryOutput().isEmpty())
             outputBuilders.add(grinderRecipe.getPrimaryOutput());

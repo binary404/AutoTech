@@ -18,8 +18,8 @@ public class BlockSawMill extends BlockTile {
 
     Tier tier;
 
-    public BlockSawMill(Properties properties, Tier tier) {
-        super(properties);
+    public BlockSawMill(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

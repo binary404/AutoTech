@@ -22,7 +22,7 @@ mixin {
     add sourceSets.main, "autotech.refmap.json"
 }
 
-version = '1.16.3-0.0.1-alpha'
+version = '1.16.4-0.0.4c-alpha'
 group = 'binary404.autotech' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'autotech'
 
@@ -94,7 +94,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.3-34.1.0'
+    minecraft 'net.minecraftforge:forge:1.16.4-35.0.18'
 
     annotationProcessor 'org.spongepowered:mixin:0.8'
     annotationProcessor 'com.google.code.gson:gson:2.8.0'
@@ -104,11 +104,8 @@ dependencies {
     annotationProcessor 'org.ow2.asm:asm-util:7.2'
 
     compile 'org.spongepowered:mixin:0.8'
-    compile 'net.sf.trove4j:trove4j:3.0.3'
 
-    compile fg.deobf("curse.maven:fx-lib:3059845")
-
-    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.3:7.0.0.48")
+    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.4:7.0.0.62")
 
     compile fg.deobf("curse.maven:jei:3062050")
 }

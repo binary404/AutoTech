@@ -18,8 +18,8 @@ public class BlockGrinder extends BlockTile {
 
     Tier tier;
 
-    public BlockGrinder(Properties properties, Tier tier) {
-        super(properties);
+    public BlockGrinder(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

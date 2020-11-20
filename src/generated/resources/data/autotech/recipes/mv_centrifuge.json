@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PRP",
+    "MHM",
+    "CLC"
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/steel"
+    },
+    "R": {
+      "tag": "autotech:mv_circuits/receiver"
+    },
+    "M": {
+      "item": "autotech:mv_centrifugal_component"
+    },
+    "H": {
+      "item": "autotech:mv_machine_hull"
+    },
+    "C": {
+      "item": "autotech:mv_cable"
+    },
+    "L": {
+      "tag": "autotech:mv_circuits/logic"
+    }
+  },
+  "result": {
+    "item": "autotech:mv_centrifuge"
+  }
+}

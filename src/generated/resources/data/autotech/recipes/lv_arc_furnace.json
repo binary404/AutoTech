@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CLC",
+    "LTL",
+    "CLC"
+  ],
+  "key": {
+    "C": {
+      "item": "autotech:lv_arc_furnace_casing"
+    },
+    "L": {
+      "tag": "forge:plates/lead"
+    },
+    "T": {
+      "item": "autotech:thermal_electric_component"
+    }
+  },
+  "result": {
+    "item": "autotech:lv_arc_furnace"
+  }
+}

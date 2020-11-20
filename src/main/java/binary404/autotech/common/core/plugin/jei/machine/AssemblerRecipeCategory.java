@@ -113,7 +113,6 @@ public class AssemblerRecipeCategory implements IRecipeCategory<AssemblerManager
             if (slotIndex == 0) {
                 tooltip.add(new StringTextComponent(I18n.format("info.autotech.power") + ":" + centrifugeRecipe.getEnergy()));
                 tooltip.add(new StringTextComponent(I18n.format("info.autotech.min_tier") + ":" + centrifugeRecipe.getMinTier().name()));
-                tooltip.add(new StringTextComponent(I18n.format("info.autotech.requires") + ":" + "1000mb " + I18n.format("autotech.distilled_water")));
             }
         });
     }

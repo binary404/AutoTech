@@ -35,7 +35,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
             return false;
         }
 
-        if (this.inv.getStackInSlot(0).getCount() < recipe.getInput().getCount()) {
+        if (this.inv.getStackInSlot(0).getCount() < recipe.getInputCount()) {
             return false;
         }
 
@@ -70,7 +70,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
             return false;
         }
 
-        return recipe.getInput().getCount() <= inv.getStackInSlot(0).getCount();
+        return recipe.getInputCount() <= inv.getStackInSlot(0).getCount();
     }
 
     @Override
@@ -126,7 +126,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
             }
         }
 
-        inv.getStackInSlot(0).shrink(recipe.getInput().getCount());
+        inv.getStackInSlot(0).shrink(recipe.getInputCount());
     }
 
     @Override

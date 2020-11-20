@@ -30,6 +30,8 @@ public class AutoTechBlockStateProvider extends BlockStateProvider {
         this.simpleBlockState(ModBlocks.titanium_ore);
 
         this.simpleBlockState(ModBlocks.iron_plating);
+        this.simpleBlockState(ModBlocks.lv_arc_furnace_casing);
+        this.simpleBlockState(ModBlocks.arc_furnace_hatch);
     }
 
     private void simpleBlockState(Block b) {

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IHI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "autotech:iron_plate"
+    },
+    "H": {
+      "item": "autotech:hammer"
+    }
+  },
+  "result": {
+    "item": "autotech:iron_plating",
+    "count": 8
+  }
+}

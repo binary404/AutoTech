@@ -25,8 +25,8 @@ public class BlockSteamGenerator extends BlockTile {
 
     Tier tier;
 
-    public BlockSteamGenerator(Properties properties, Tier tier) {
-        super(properties);
+    public BlockSteamGenerator(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

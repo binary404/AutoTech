@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:ingots/bronze"
+    },
+    {
+      "item": "autotech:hammer"
     }
   ],
   "result": {

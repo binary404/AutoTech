@@ -16,7 +16,11 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
     ArcFurnaceManager.ArcFurnaceRecipe recipe;
 
     public TileArcFurnace() {
-        super(ModTiles.blast_furnace, Tier.LV);
+        this(Tier.LV);
+    }
+
+    public TileArcFurnace(Tier tier) {
+        super(ModTiles.blast_furnace, tier);
         this.inv.set(2);
     }
 
@@ -85,7 +89,7 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
     }
 
     protected BlockState getCasingState() {
-        return ModBlocks.iron_plating.getDefaultState();
+        return ModBlocks.lv_arc_furnace_casing.getDefaultState();
     }
 
     @Override

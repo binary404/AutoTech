@@ -39,11 +39,13 @@ public class ModItems {
     public static Item iron_plate;
     public static Item gold_plate;
     public static Item bronze_plate;
+    public static Item steel_plate;
 
     public static Item lv_machine_hull;
     public static Item mv_machine_hull;
 
     public static Item mortar;
+    public static Item hammer;
 
     public static Item copper_ore_dust;
     public static Item tin_ore_dust;
@@ -97,6 +99,15 @@ public class ModItems {
     public static Item apple_pie;
     public static Item golden_apple_pie;
     public static Item enchanted_golden_apple_pie;
+
+    public static Item thermo_electric_component;
+
+    public static Item grinder_blade;
+
+    public static Item mv_motor;
+    public static Item mv_centrifugal_component;
+
+    public static Item basic_vacuum_tube;
 
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
@@ -156,6 +167,7 @@ public class ModItems {
         iron_plate = register(r, new Item(properties), "iron_plate");
         gold_plate = register(r, new Item(properties), "gold_plate");
         bronze_plate = register(r, new Item(properties), "bronze_plate");
+        steel_plate = register(r, new Item(properties), "steel_plate");
 
         saw_dust = register(r, new Item(properties), "saw_dust");
 
@@ -177,15 +189,27 @@ public class ModItems {
         lv_machine_hull = register(r, new Item(properties), "lv_machine_hull");
         mv_machine_hull = register(r, new Item(properties), "mv_machine_hull");
 
-        mortar = register(r, new ItemMortar(properties.maxStackSize(1)), "mortar");
+        mortar = register(r, new ItemDamagable(properties.maxDamage(200), 5), "mortar");
+        hammer = register(r, new ItemDamagable(properties.maxDamage(300), 10), "hammer");
 
         distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water_source), "distilled_water_bucket");
 
-        flour = register(r, new Item(properties), "flour");
+        flour = register(r, new Item(properties.maxDamage(0).maxStackSize(64)), "flour");
 
-        apple_pie = register(r, new Item(properties.food(ModFoods.applePie).maxStackSize(16)), "apple_pie");
-        golden_apple_pie = register(r, new Item(properties.food(ModFoods.goldenApplePie).maxStackSize(16)), "golden_apple_pie");
-        enchanted_golden_apple_pie = register(r, new EnchantedGoldenAppleItem(properties.food(ModFoods.enchantedGoldenApplePie).maxStackSize(16).rarity(Rarity.EPIC)), "enchanted_golden_apple_pie");
+        Item.Properties food = new Item.Properties().group(AutoTech.group);
+
+        apple_pie = register(r, new Item(food.food(ModFoods.applePie).maxStackSize(16)), "apple_pie");
+        golden_apple_pie = register(r, new Item(food.food(ModFoods.goldenApplePie).maxStackSize(16)), "golden_apple_pie");
+        enchanted_golden_apple_pie = register(r, new EnchantedGoldenAppleItem(food.food(ModFoods.enchantedGoldenApplePie).maxStackSize(16).rarity(Rarity.EPIC)), "enchanted_golden_apple_pie");
+
+        thermo_electric_component = register(r, new Item(properties), "thermal_electric_component");
+
+        grinder_blade = register(r, new Item(properties), "grinder_blade");
+
+        mv_motor = register(r, new Item(properties), "mv_motor");
+        mv_centrifugal_component = register(r, new Item(properties), "mv_centrifugal_component");
+
+        basic_vacuum_tube = register(r, new Item(properties), "basic_vacuum_tube");
     }
 
 }

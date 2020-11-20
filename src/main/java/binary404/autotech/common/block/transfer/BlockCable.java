@@ -57,8 +57,8 @@ public class BlockCable extends BlockTile implements IWaterLoggable {
 
     Tier tier;
 
-    public BlockCable(Properties properties, Tier tier) {
-        super(properties);
+    public BlockCable(Tier tier) {
+        super();
         setStateProps(state -> state.with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(UP, false).with(DOWN, false).with(TILE, false));
         this.tier = tier;
     }

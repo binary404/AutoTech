@@ -1,0 +1,14 @@
+{
+  "values": [
+    "autotech:copper_ingot",
+    "autotech:tin_ingot",
+    "autotech:lead_ingot",
+    "autotech:silver_ingot",
+    "autotech:uranium_ingot",
+    "autotech:nickel_ingot",
+    "autotech:platinum_ingot",
+    "autotech:titanium_ingot",
+    "autotech:bronze_ingot",
+    "autotech:steel_ingot"
+  ]
+}

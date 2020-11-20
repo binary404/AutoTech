@@ -10,7 +10,7 @@
       "item": "minecraft:iron_ingot"
     },
     "B": {
-      "item": "autotech:bronze_plate"
+      "tag": "forge:plates/bronze"
     }
   },
   "result": {

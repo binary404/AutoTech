@@ -6,6 +6,9 @@
     },
     {
       "item": "autotech:basic_circuit_board"
+    },
+    {
+      "item": "autotech:basic_vacuum_tube"
     }
   ],
   "result": {

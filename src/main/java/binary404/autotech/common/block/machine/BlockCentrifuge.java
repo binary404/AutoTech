@@ -25,8 +25,8 @@ public class BlockCentrifuge extends BlockTile {
 
     Tier tier;
 
-    public BlockCentrifuge(Properties properties, Tier tier) {
-        super(properties);
+    public BlockCentrifuge(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

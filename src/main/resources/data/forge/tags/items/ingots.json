@@ -8,6 +8,7 @@
     "#forge:ingots/nickel",
     "#forge:ingots/platinum",
     "#forge:ingots/titanium",
-    "#forge:ingots/bronze"
+    "#forge:ingots/bronze",
+    "#forge:ingots/steel"
   ]
 }

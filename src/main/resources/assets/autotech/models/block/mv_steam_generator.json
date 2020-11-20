@@ -1,0 +1,6 @@
+{
+  "parent": "autotech:block/mv_model",
+  "textures": {
+    "north": "autotech:block/mv_steam_generator"
+  }
+}

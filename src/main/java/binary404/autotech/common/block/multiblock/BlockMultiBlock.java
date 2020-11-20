@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 public class BlockMultiBlock extends BlockTile {
 
-    public BlockMultiBlock(Properties properties) {
-        super(properties);
+    public BlockMultiBlock() {
+        super();
     }
 
 

@@ -18,8 +18,8 @@ public class BlockCompactor extends BlockTile {
 
     Tier tier;
 
-    public BlockCompactor(Properties properties, Tier tier) {
-        super(properties);
+    public BlockCompactor(Tier tier) {
+        super();
         this.tier = tier;
         setDefaultState();
     }

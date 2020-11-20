@@ -1,46 +1,25 @@
 package binary404.autotech.common.core.manager;
 
-import binary404.autotech.AutoTech;
-import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
 import binary404.autotech.common.tags.ModTags;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.tags.ITag;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.lwjgl.system.CallbackI;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class GrinderManager {
 
-    private static Map<ComparableItemStack, GrinderRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
+    private static ArrayList<GrinderRecipe> recipeMap = new ArrayList<>();
 
     public static void init() {
-        addRecipe(Tier.LV, 40000, new ItemStack(ModBlocks.copper_ore), new ItemStack(ModItems.copper_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.lead_ore_dust), 50, 30);
-        addRecipe(Tier.LV, 40000, new ItemStack(ModBlocks.tin_ore), new ItemStack(ModItems.tin_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.copper_ore_dust), 40, 20);
-        addRecipe(Tier.LV, 50000, new ItemStack(ModBlocks.lead_ore), new ItemStack(ModItems.lead_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 75, 0);
-        addRecipe(Tier.LV, 35000, new ItemStack(ModBlocks.silver_ore), new ItemStack(ModItems.silver_ore_dust, 2), new ItemStack(ModItems.lead_ore_dust), new ItemStack(ModItems.gold_ore_dust), 80, 70);
-        addRecipe(Tier.EV, 80000, new ItemStack(ModBlocks.uranium_ore, 1), new ItemStack(ModItems.uranium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
-        addRecipe(Tier.LV, 50000, new ItemStack(ModBlocks.nickel_ore), new ItemStack(ModItems.nickel_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.platinum_ore_dust), 60, 10);
-        addRecipe(Tier.HV, 40000, new ItemStack(ModBlocks.platinum_ore), new ItemStack(ModItems.platinum_ore_dust, 2), new ItemStack(ModItems.nickel_ore_dust), new ItemStack(ModItems.copper_ore_dust), 70, 70);
-        addRecipe(Tier.MV, 65000, new ItemStack(ModBlocks.titanium_ore), new ItemStack(ModItems.titanium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
-        addRecipe(Tier.LV, 40000, new ItemStack(Blocks.IRON_ORE), new ItemStack(ModItems.iron_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
-        addRecipe(Tier.LV, 40000, new ItemStack(Blocks.GOLD_ORE), new ItemStack(ModItems.gold_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 45, 0);
-        addRecipe(Tier.LV, 80000, new ItemStack(Blocks.ANCIENT_DEBRIS), new ItemStack(ModItems.netherite_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
-
         addRecipe(Tier.LV, 15000, new ItemStack(ModItems.copper_ingot), new ItemStack(ModItems.copper_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 15000, new ItemStack(ModItems.tin_ingot), new ItemStack(ModItems.tin_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 15000, new ItemStack(ModItems.lead_ingot), new ItemStack(ModItems.lead_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
@@ -64,36 +43,51 @@ public class GrinderManager {
     }
 
     public static void initTags() {
+        addRecipe(Tier.LV, 40000, ModTags.Items.ORES_COPPER, 1, new ItemStack(ModItems.copper_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.lead_ore_dust), 50, 30);
+        addRecipe(Tier.LV, 40000, ModTags.Items.ORES_TIN, 1, new ItemStack(ModItems.tin_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.copper_ore_dust), 40, 20);
+        addRecipe(Tier.LV, 50000, ModTags.Items.ORES_LEAD, 1, new ItemStack(ModItems.lead_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 75, 0);
+        addRecipe(Tier.LV, 35000, ModTags.Items.ORE_SILVER, 1, new ItemStack(ModItems.silver_ore_dust, 2), new ItemStack(ModItems.lead_ore_dust), new ItemStack(ModItems.gold_ore_dust), 80, 70);
+        addRecipe(Tier.EV, 80000, ModTags.Items.ORE_URANIUM, 1, new ItemStack(ModItems.uranium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.LV, 50000, ModTags.Items.ORE_NICKEL, 1, new ItemStack(ModItems.nickel_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.platinum_ore_dust), 60, 10);
+        addRecipe(Tier.HV, 40000, ModTags.Items.ORE_PLATINUM, 1, new ItemStack(ModItems.platinum_ore_dust, 2), new ItemStack(ModItems.nickel_ore_dust), new ItemStack(ModItems.copper_ore_dust), 70, 70);
+        addRecipe(Tier.MV, 65000, ModTags.Items.ORE_TITANIUM, 1, new ItemStack(ModItems.titanium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.LV, 40000, Tags.Items.ORES_IRON, 1, new ItemStack(ModItems.iron_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.LV, 40000, Tags.Items.ORES_GOLD, 1, new ItemStack(ModItems.gold_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 45, 0);
+        addRecipe(Tier.LV, 80000, Tags.Items.ORES_NETHERITE_SCRAP, 1, new ItemStack(ModItems.netherite_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+
         for (Item dust : ModTags.Items.ORE_DUSTS.getAllElements()) {
             String dustName = dust.getRegistryName().getPath();
-            dustName = dustName.replace("_dust", "");
+            dustName = dustName.replace("_ore_dust", "");
             for (Item dust2 : Tags.Items.DUSTS.getAllElements()) {
-                if (dustName.contains(dust2.getRegistryName().getPath().replace("_dust", "")) || dustName.contains(dust2.getRegistryName().getPath().replace("dust_", ""))) {
-                    if (!recipeExists(new ItemStack(dust)))
-                        addRecipe(Tier.LV, 20000, new ItemStack(dust), new ItemStack(dust2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+                if (dustName.equals(dust2.getRegistryName().getPath().replace("_dust", "")) || dustName.equals(dust2.getRegistryName().getPath().replace("dust_", ""))) {
+                    addRecipe(Tier.LV, 20000, new ItemStack(dust), new ItemStack(dust2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
                 }
             }
         }
-
-        GrinderManager.refresh();
     }
 
     public static GrinderRecipe getRecipe(ItemStack input) {
-        if (input.isEmpty()) {
-            return null;
+        for (GrinderRecipe recipe : recipeMap) {
+            if (recipe.recipeMatches(input))
+                return recipe;
         }
-
-        GrinderRecipe recipe = recipeMap.get(new ComparableItemStack(input));
-        return recipe;
+        return null;
     }
 
     public static boolean recipeExists(ItemStack input) {
         boolean recipeExists = getRecipe(input) != null;
+        System.out.println(input + " " + recipeExists);
         return recipeExists;
     }
 
+    public static void removeRecipe(ItemStack stack) {
+        GrinderRecipe recipe = getRecipe(stack);
+        if (recipe != null)
+            recipeMap.remove(recipe);
+    }
+
     public static GrinderRecipe[] getRecipeList() {
-        return recipeMap.values().toArray(new GrinderRecipe[0]);
+        return recipeMap.toArray(new GrinderRecipe[0]);
     }
 
     public static GrinderRecipe addRecipe(Tier minTier, int energy, ItemStack input, ItemStack primaryOutput, ItemStack secondOutput, ItemStack thirdOutput, int secondChance, int thirdChance) {
@@ -102,20 +96,21 @@ public class GrinderManager {
         }
 
         GrinderRecipe recipe = new GrinderRecipe(input, primaryOutput, secondOutput, thirdOutput, secondOutput.isEmpty() ? 0 : secondChance, thirdOutput.isEmpty() ? 0 : thirdChance, energy, minTier);
-        recipeMap.put(new ComparableItemStack(input), recipe);
+        recipeMap.add(recipe);
         return recipe;
     }
 
-    public static void refresh() {
-        Map<ComparableItemStack, GrinderRecipe> tempMap = new Object2ObjectOpenHashMap<>(recipeMap.size());
-        GrinderRecipe tempRecipe;
+    public static GrinderRecipe addRecipe(Tier minTier, int energy, ITag.INamedTag<Item> inputTag, int tagInput, ItemStack primaryOutput, ItemStack secondOutput, ItemStack thirdOutput, int secondChance, int thirdChance) {
+        if (inputTag == null)
+            return null;
 
-        for (Map.Entry<ComparableItemStack, GrinderRecipe> entry : recipeMap.entrySet()) {
-            tempRecipe = entry.getValue();
-            tempMap.put(new ComparableItemStack(tempRecipe.input), tempRecipe);
+        if (inputTag.getAllElements().isEmpty() || primaryOutput.isEmpty() || energy <= 0) {
+            return null;
         }
-        recipeMap.clear();
-        recipeMap = tempMap;
+
+        GrinderRecipe recipe = new GrinderRecipe(inputTag, tagInput, primaryOutput, secondOutput, thirdOutput, secondOutput.isEmpty() ? 0 : secondChance, thirdOutput.isEmpty() ? 0 : thirdChance, energy, minTier);
+        recipeMap.add(recipe);
+        return recipe;
     }
 
     public static class GrinderRecipe {
@@ -127,13 +122,29 @@ public class GrinderManager {
         int thirdChance;
         int energy;
         Tier minTier;
+        ITag.INamedTag<Item> inputTag;
+        int inputCount;
 
         GrinderRecipe(ItemStack input, ItemStack primaryOutput, ItemStack secondaryOutput, ItemStack thirdOutput, int secondaryChance, int thirdChance, int energy, Tier minTier) {
             this.input = input;
+            this.inputCount = input.getCount();
             this.primaryOutput = primaryOutput;
             this.secondaryOutput = secondaryOutput;
             this.thirdOutput = thirdOutput;
             this.secondaryChance = secondaryChance;
+            this.thirdChance = thirdChance;
+            this.energy = energy;
+            this.minTier = minTier;
+        }
+
+        GrinderRecipe(ITag.INamedTag<Item> inputTag, int tagInput, ItemStack output, ItemStack output2, ItemStack output3, int secondChance, int thirdChance, int energy, Tier minTier) {
+            this.inputTag = inputTag;
+            this.inputCount = tagInput;
+            this.input = new ItemStack(inputTag.getAllElements().get(0), tagInput);
+            this.primaryOutput = output;
+            this.secondaryOutput = output2;
+            this.thirdOutput = output3;
+            this.secondaryChance = secondChance;
             this.thirdChance = thirdChance;
             this.energy = energy;
             this.minTier = minTier;
@@ -169,6 +180,24 @@ public class GrinderManager {
 
         public Tier getMinTier() {
             return minTier;
+        }
+
+        public ITag.INamedTag<Item> getInputTag() {
+            return inputTag;
+        }
+
+        public int getInputCount() {
+            return inputCount;
+        }
+
+        public boolean recipeMatches(ItemStack input) {
+            if (inputTag != null) {
+                return inputTag.contains(input.getItem());
+            }
+            if (getInput().getItem().equals(input.getItem())) {
+                return true;
+            }
+            return input.getItem().delegate.get().equals(getInput().getItem().delegate.get());
         }
     }
 

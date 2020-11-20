@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:ingots/silver"
+    },
+    {
+      "item": "autotech:hammer"
     }
   ],
   "result": {

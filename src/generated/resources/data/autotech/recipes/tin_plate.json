@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:ingots/tin"
+    },
+    {
+      "item": "autotech:hammer"
     }
   ],
   "result": {

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "LML",
+    "LLL"
+  ],
+  "key": {
+    "M": {
+      "item": "autotech:mv_motor"
+    },
+    "L": {
+      "tag": "forge:plates/lead"
+    }
+  },
+  "result": {
+    "item": "autotech:mv_centrifugal_component"
+  }
+}

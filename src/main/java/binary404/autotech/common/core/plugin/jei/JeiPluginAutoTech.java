@@ -65,7 +65,7 @@ public class JeiPluginAutoTech implements IModPlugin {
 
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.mv_assembler), AssemblerRecipeCategory.UID);
 
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.arc_furnace), ArcFurnaceRecipeCategory.UID);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.lv_arc_furnace), ArcFurnaceRecipeCategory.UID);
 
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.lv_smelter), VanillaRecipeCategoryUid.FURNACE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.mv_smelter), VanillaRecipeCategoryUid.FURNACE);

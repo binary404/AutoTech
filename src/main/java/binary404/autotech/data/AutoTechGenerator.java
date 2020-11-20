@@ -16,6 +16,7 @@ public class AutoTechGenerator {
         gen.addProvider(new AutoTechBlockStateProvider(gen, fileHelper));
         gen.addProvider(new RecipeProvider(gen));
         gen.addProvider(new BlockLootProvider(gen));
+        gen.addProvider(new AutoTechTagProvider(gen, fileHelper));
     }
 
 }

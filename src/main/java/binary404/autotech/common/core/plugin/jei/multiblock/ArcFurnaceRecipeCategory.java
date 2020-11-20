@@ -31,7 +31,7 @@ public class ArcFurnaceRecipeCategory implements IRecipeCategory<ArcFurnaceManag
     public ArcFurnaceRecipeCategory(IGuiHelper guiHelper) {
         ResourceLocation location = AutoTech.key("textures/gui/container/lv_grinder.png");
         background = guiHelper.createDrawable(location, 25, 0, 151, 74);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.arc_furnace));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.lv_arc_furnace));
         localizedName = I18n.format("autotech.arc_furnace");
     }
 
@@ -99,7 +99,6 @@ public class ArcFurnaceRecipeCategory implements IRecipeCategory<ArcFurnaceManag
         guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
             if (slotIndex == 0) {
                 tooltip.add(new StringTextComponent(I18n.format("info.autotech.power") + ":" + centrifugeRecipe.getEnergy()));
-                tooltip.add(new StringTextComponent(I18n.format("info.autotech.requires") + ":" + "1000mb " + I18n.format("autotech.distilled_water")));
             }
         });
     }

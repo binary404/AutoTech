@@ -15,8 +15,8 @@ import javax.annotation.Nullable;
 
 public class BlockBlastFurnaceHatch extends BlockMultiBlock {
 
-    public BlockBlastFurnaceHatch(Properties properties) {
-        super(properties);
+    public BlockBlastFurnaceHatch() {
+        super();
     }
 
     @Nullable

@@ -1,8 +1,8 @@
 package binary404.autotech.common.core.lib.multiblock;
 
 import binary404.autotech.common.core.util.IntRange;
-import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.hash.TIntObjectHashMap;
+import binary404.autotech.gnu.trove.map.TIntObjectMap;
+import binary404.autotech.gnu.trove.map.hash.TIntObjectHashMap;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

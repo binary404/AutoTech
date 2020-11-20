@@ -42,12 +42,12 @@ public class SawMillManager {
                 String logName = log.getRegistryName().getPath().replace("_log", "");
                 String plankName = plank.getRegistryName().getPath().replace("_planks", "");
                 if (logName.equals(plankName)) {
-                    addRecipe(20000, new ItemStack(log), new ItemStack(plank, 6), new ItemStack(ModItems.saw_dust), 55);
+                    addRecipe(30000, new ItemStack(log), new ItemStack(plank, 6), new ItemStack(ModItems.saw_dust), 55);
                 }
-                addRecipe(20000, new ItemStack(plank), new ItemStack(Items.STICK, 6), new ItemStack(ModItems.saw_dust), 68);
+                addRecipe(30000, new ItemStack(plank), new ItemStack(Items.STICK, 6), new ItemStack(ModItems.saw_dust), 68);
             }
         }
-        addRecipe(20000, new ItemStack(Items.STICK), new ItemStack(ModItems.saw_dust, 2), new ItemStack(ModItems.saw_dust), 90);
+        addRecipe(30000, new ItemStack(Items.STICK), new ItemStack(ModItems.saw_dust, 2), new ItemStack(ModItems.saw_dust), 90);
         SawMillManager.refresh();
     }
 
@@ -63,6 +63,10 @@ public class SawMillManager {
     public static boolean recipeExists(ItemStack input) {
         boolean recipeExists = getRecipe(input) != null;
         return recipeExists;
+    }
+
+    public static SawMillRecipe removeRecipe(ItemStack input) {
+        return recipeMap.remove(ComparableItemStack.convert(input));
     }
 
     public static SawMillRecipe[] getRecipeList() {

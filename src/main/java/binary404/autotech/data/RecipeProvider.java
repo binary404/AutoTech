@@ -23,13 +23,13 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
     }
 
     private void registerMain(Consumer<IFinishedRecipe> consumer) {
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_COPPER), ModItems.copper_ingot, 0.1F, 200)
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORES_COPPER), ModItems.copper_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.copper_ore))
                 .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_TIN), ModItems.tin_ingot, 0.1F, 200)
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORES_TIN), ModItems.tin_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.tin_ore))
                 .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_LEAD), ModItems.lead_ingot, 0.1F, 200)
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORES_LEAD), ModItems.lead_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.lead_ore))
                 .build(consumer);
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_SILVER), ModItems.silver_ingot, 0.1F, 200)
@@ -86,7 +86,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.copper_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(ModTags.Items.ORE_COPPER)
+                .addIngredient(ModTags.Items.ORES_COPPER)
                 .addCriterion("has_item", hasItem(ModBlocks.copper_ore))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.tin_dust)
@@ -122,47 +122,63 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.copper_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_COPPER), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.copper_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.tin_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TIN), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.tin_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.lead_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_LEAD), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.lead_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.silver_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_SILVER), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.silver_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.uranium_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_URANIUM), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.uranium_plate))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.nickel_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_NICKEL), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.nickel_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.iron_plate)
                 .addIngredient(Ingredient.fromTag(Tags.Items.INGOTS_IRON), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(Items.IRON_INGOT))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.gold_plate)
                 .addIngredient(Ingredient.fromTag(Tags.Items.INGOTS_GOLD), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(Items.GOLD_INGOT))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.platinum_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_PLATINUM), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.platinum_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.titanium_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TITANIUM), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.titanium_ingot))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.bronze_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_BRONZE), 2)
+                .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.bronze_ingot))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.steel_plate)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_STEEL), 2)
+                .addIngredient(ModItems.hammer)
+                .addCriterion("has_item", hasItem(ModItems.steel_ingot))
                 .build(consumer);
 
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.bronze_dust, 4)
@@ -181,23 +197,148 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.lv_machine_hull)
-                .key('B', ModItems.bronze_plate)
+                .key('B', ModTags.Items.PLATES_BRONZE)
                 .patternLine("BBB")
                 .patternLine("B B")
                 .patternLine("BBB")
                 .addCriterion("has_item", hasItem(ModItems.bronze_plate))
                 .build(consumer);
 
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_machine_hull)
+                .key('S', ModTags.Items.PLATES_STEEL)
+                .patternLine("SSS")
+                .patternLine("S S")
+                .patternLine("SSS")
+                .addCriterion("has_item", hasItem(ModItems.steel_plate))
+                .build(consumer);
+
         ShapedRecipeBuilder.shapedRecipe(ModItems.saw_blade)
                 .key('I', Items.IRON_INGOT)
-                .key('B', ModItems.bronze_plate)
+                .key('B', ModTags.Items.PLATES_BRONZE)
                 .patternLine("II ")
                 .patternLine("IBI")
                 .patternLine(" II")
                 .addCriterion("has_item", hasItem(ModItems.bronze_plate))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_furnace_generator)
+        ShapedRecipeBuilder.shapedRecipe(ModItems.grinder_blade)
+                .key('D', Tags.Items.GEMS_DIAMOND)
+                .key('S', ModTags.Items.INGOTS_STEEL)
+                .key('N', ModTags.Items.PLATES_NICKEL)
+                .patternLine("DSD")
+                .patternLine("SNS")
+                .patternLine("DSD")
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_STEEL))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.iron_plating, 8)
+                .key('I', ModItems.iron_plate)
+                .key('H', ModItems.hammer)
+                .patternLine("III")
+                .patternLine("IHI")
+                .patternLine("III")
+                .addCriterion("has_item", hasItem(ModItems.iron_plate))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.thermo_electric_component)
+                .key('I', Items.IRON_INGOT)
+                .key('C', ModItems.copper_ingot)
+                .key('R', Items.REDSTONE)
+                .patternLine("III")
+                .patternLine("CRC")
+                .patternLine("RCR")
+                .addCriterion("has_item", hasItem(ModItems.copper_ingot))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_arc_furnace_casing, 4)
+                .key('I', ModBlocks.iron_plating)
+                .key('L', ModItems.lead_plate)
+                .key('T', ModItems.nickel_plate)
+                .patternLine("ILI")
+                .patternLine("LTL")
+                .patternLine("ILI")
+                .addCriterion("has_item", hasItem(ModItems.lead_plate))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_arc_furnace)
+                .key('C', ModBlocks.lv_arc_furnace_casing)
+                .key('L', ModTags.Items.PLATES_LEAD)
+                .key('T', ModItems.thermo_electric_component)
+                .patternLine("CLC")
+                .patternLine("LTL")
+                .patternLine("CLC")
+                .addCriterion("has_item", hasItem(ModTags.Items.PLATES_LEAD))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.arc_furnace_hatch)
+                .key('R', Blocks.REDSTONE_BLOCK)
+                .key('N', ModTags.Items.PLATES_NICKEL)
+                .key('L', ModTags.Items.PLATES_LEAD)
+                .patternLine("LNL")
+                .patternLine("NRN")
+                .patternLine("LNL")
+                .addCriterion("has_item", hasItem(ModTags.Items.PLATES_LEAD))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_cable, 4)
+                .key('N', ModItems.nickel_plate)
+                .key('C', ModItems.copper_ingot)
+                .key('R', Items.REDSTONE)
+                .patternLine("RNR")
+                .patternLine("CCC")
+                .patternLine("RNR")
+                .addCriterion("has_item", hasItem(ModItems.copper_ingot))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_cable, 4)
+                .key('S', ModTags.Items.PLATES_STEEL)
+                .key('I', ModTags.Items.INGOTS_SILVER)
+                .key('R', Tags.Items.DUSTS_REDSTONE)
+                .patternLine("RSR")
+                .patternLine("III")
+                .patternLine("RSR")
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_SILVER))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_motor)
+                .key('R', Tags.Items.DUSTS_REDSTONE)
+                .key('C', ModBlocks.mv_cable)
+                .key('O', ModTags.Items.INGOTS_COPPER)
+                .patternLine("RCR")
+                .patternLine("ROR")
+                .patternLine("COC")
+                .addCriterion("has_item", hasItem(ModBlocks.mv_cable))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.basic_vacuum_tube)
+                .key('G', Tags.Items.GLASS)
+                .key('R', Tags.Items.DUSTS_REDSTONE)
+                .key('C', ModBlocks.lv_cable)
+                .patternLine("GGG")
+                .patternLine("GRG")
+                .patternLine("CCC")
+                .addCriterion("has_item", hasItem(ModBlocks.lv_cable))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.hammer)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('S', Items.STICK)
+                .patternLine("II ")
+                .patternLine("IIS")
+                .patternLine("II ")
+                .addCriterion("has_item", hasItem(Tags.Items.INGOTS_IRON))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_centrifugal_component)
+                .key('M', ModItems.mv_motor)
+                .key('L', ModTags.Items.PLATES_LEAD)
+                .patternLine("LLL")
+                .patternLine("LML")
+                .patternLine("LLL")
+                .addCriterion("has_item", hasItem(ModItems.mv_motor))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_steam_generator)
                 .key('C', ModItems.copper_plate)
                 .key('L', ModItems.iron_plate)
                 .key('H', ModItems.lv_machine_hull)
@@ -206,6 +347,32 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .patternLine("FHF")
                 .patternLine("CLC")
                 .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_steam_generator)
+                .key('S', ModTags.Items.PLATES_STEEL)
+                .key('T', ModTags.Items.MV_CIRCUITS_TRANSMITTER)
+                .key('F', Blocks.FURNACE)
+                .key('C', ModItems.mv_machine_hull)
+                .key('M', ModBlocks.mv_cable)
+                .key('L', ModTags.Items.MV_CIRCUITS_LOGIC)
+                .patternLine("STS")
+                .patternLine("FCF")
+                .patternLine("MLM")
+                .addCriterion("has_item", hasItem(ModItems.mv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_centrifuge)
+                .key('P', ModTags.Items.PLATES_STEEL)
+                .key('R', ModTags.Items.MV_CIRCUITS_RECEIVER)
+                .key('M', ModItems.mv_centrifugal_component)
+                .key('H', ModItems.mv_machine_hull)
+                .key('C', ModBlocks.mv_cable)
+                .key('L', ModTags.Items.MV_CIRCUITS_LOGIC)
+                .patternLine("PRP")
+                .patternLine("MHM")
+                .patternLine("CLC")
+                .addCriterion("has_item", hasItem(ModItems.mv_machine_hull))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_grinder)
@@ -217,6 +384,19 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .patternLine("FHF")
                 .patternLine("CDC")
                 .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_grinder)
+                .key('P', ModTags.Items.PLATES_STEEL)
+                .key('R', ModTags.Items.MV_CIRCUITS_RECEIVER)
+                .key('S', ModItems.grinder_blade)
+                .key('H', ModItems.mv_machine_hull)
+                .key('C', ModBlocks.mv_cable)
+                .key('L', ModTags.Items.MV_CIRCUITS_LOGIC)
+                .patternLine("PRP")
+                .patternLine("SHS")
+                .patternLine("CLC")
+                .addCriterion("has_item", hasItem(ModItems.mv_machine_hull))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_compactor)
@@ -252,6 +432,19 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
                 .build(consumer);
 
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_smelter)
+                .key('P', ModTags.Items.PLATES_STEEL)
+                .key('R', ModTags.Items.MV_CIRCUITS_RECEIVER)
+                .key('C', ModItems.thermo_electric_component)
+                .key('H', ModItems.mv_machine_hull)
+                .key('M', ModBlocks.mv_cable)
+                .key('L', ModTags.Items.MV_CIRCUITS_LOGIC)
+                .patternLine("PRP")
+                .patternLine("CHC")
+                .patternLine("MLM")
+                .addCriterion("has_item", hasItem(ModItems.mv_machine_hull))
+                .build(consumer);
+
         ShapedRecipeBuilder.shapedRecipe(ModItems.mv_logic_component)
                 .key('R', Items.REDSTONE)
                 .key('D', Items.DIAMOND)
@@ -266,6 +459,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_logic_circuit)
                 .addIngredient(ModItems.mv_logic_component)
                 .addIngredient(ModItems.basic_circuit_board)
+                .addIngredient(ModItems.basic_vacuum_tube, 2)
                 .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
                 .build(consumer);
 
@@ -283,6 +477,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_transmitter_circuit)
                 .addIngredient(ModItems.mv_transmitter_component)
                 .addIngredient(ModItems.basic_circuit_board)
+                .addIngredient(ModItems.basic_vacuum_tube, 2)
                 .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
                 .build(consumer);
 
@@ -300,6 +495,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_receiver_circuit)
                 .addIngredient(ModItems.mv_receiver_component)
                 .addIngredient(ModItems.basic_circuit_board)
+                .addIngredient(ModItems.basic_vacuum_tube, 2)
                 .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
                 .build(consumer);
 

@@ -22,8 +22,8 @@ import javax.annotation.Nullable;
 
 public class BlockWaterPump extends BlockTile {
 
-    public BlockWaterPump(Properties properties) {
-        super(properties);
+    public BlockWaterPump() {
+        super();
         setDefaultState();
     }
 

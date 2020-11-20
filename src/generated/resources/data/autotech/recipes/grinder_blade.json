@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DSD",
+    "SNS",
+    "DSD"
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:gems/diamond"
+    },
+    "S": {
+      "tag": "forge:ingots/steel"
+    },
+    "N": {
+      "tag": "forge:plates/nickel"
+    }
+  },
+  "result": {
+    "item": "autotech:grinder_blade"
+  }
+}

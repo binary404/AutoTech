@@ -17,6 +17,21 @@
   "block.autotech.lv_grinder": "Low Voltage Grinder",
   "block.autotech.mv_grinder": "Medium Voltage Grinder",
 
+  "block.autotech.lv_compactor": "Low Voltage Compactor",
+
+  "block.autotech.lv_sawmill": "Low Voltage Saw Mill",
+
+  "block.autotech.lv_steam_generator": "Low Voltage Steam Generator",
+
+  "block.autotech.lv_cable": "Low Voltage Cable",
+  "block.autotech.mv_cable": "Medium Voltage Cable",
+
+  "block.autotech.arc_furnace_hatch": "Arc Furnace Hatch",
+  "block.autotech.lv_arc_furnace": "Low Voltage Arc Furnace",
+  "block.autotech.lv_arc_furnace_casing": "Low Voltage Arc Furnace Casing",
+
+  "block.autotech.waterpump": "Water Pump",
+
   "item.autotech.gold_ore_dust": "Gold Ore Dust",
   "item.autotech.iron_ore_dust": "Iron Ore Dust",
   "item.autotech.copper_ore_dust": "Copper Ore Dust",
@@ -35,9 +50,13 @@
   "item.autotech.uranium_dust": "Uranium Dust",
   "item.autotech.nickel_dust": "Nickel Dust",
   "item.autotech.platinum_dust": "Platinum Dust",
-  "info.autotech.titanium_dust": "Titanium Dust",
+  "item.autotech.titanium_dust": "Titanium Dust",
+  "item.autotech.bronze_dust": "Bronze Dust",
   "item.autotech.coal_dust": "Coal Dust",
+  "item.autotech.gold_dust": "Gold Dust",
+  "item.autotech.iron_dust": "Iron Dust",
   "item.autotech.charcoal_dust": "Charcoal Dust",
+  "item.autotech.saw_dust": "Saw Dust",
 
   "item.autotech.copper_ingot": "Copper Ingot",
   "item.autotech.tin_ingot": "Tin Ingot",
@@ -49,6 +68,19 @@
   "item.autotech.titanium_ingot": "Titanium Ingot",
   "item.autotech.bronze_ingot": "Bronze Ingot",
   "item.autotech.steel_ingot": "Steel Ingot",
+
+  "item.autotech.copper_plate": "Copper Plate",
+  "item.autotech.tin_plate": "Tin Plate",
+  "item.autotech.lead_plate": "Lead Plate",
+  "item.autotech.silver_plate": "Silver Plate",
+  "item.autotech.uranium_plate": "Uranium Plate",
+  "item.autotech.nickel_plate": "Nickel Plate",
+  "item.autotech.platinum_plate": "Platinum Plate",
+  "item.autotech.titanium_plate": "Titanium Plate",
+  "item.autotech.iron_plate": "Iron Plate",
+  "item.autotech.gold_plate": "Gold Plate",
+  "item.autotech.bronze_plate": "Bronze Plate",
+  "item.autotech.steel_plate": "Steel Plate",
 
   "item.autotech.lv_machine_hull": "Low Voltage Machine Hull",
   "item.autotech.mv_machine_hull": "Medium Voltage Machine Hull",
@@ -67,6 +99,13 @@
   "item.autotech.carbon_mesh": "Carbon Mesh",
 
   "item.autotech.mortar": "Mortar",
+  "item.autotech.hammer": "Hammer",
+
+  "item.autotech.saw_blade": "Saw Blade",
+  "item.autotech.grinder_blade": "Grinder Blade",
+  "item.autotech.mv_motor": "Medium Voltage Motor",
+  "item.autotech.mv_centrifugal_component": "Medium Voltage Centrifugal Separator",
+  "item.autotech.basic_vacuum_tube": "Basic Vacuum Tube",
 
   "item.autotech.apple_pie": "Apple Pie",
   "item.autotech.golden_apple_pie": "Golden Apple Pie",
@@ -96,5 +135,7 @@
   "info.autotech.side.config.all": "Input/Output",
   "info.autotech.side.config.extract": "Output",
   "info.autotech.side.config.receive": "Input",
-  "info.autotech.side.config.none": "None"
+  "info.autotech.side.config.none": "None",
+
+  "itemGroup.autotech": "AutoTech"
 }

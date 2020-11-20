@@ -2,6 +2,7 @@ package binary404.autotech.common.block.multiblock;
 
 import binary404.autotech.common.container.core.ContainerCore;
 import binary404.autotech.common.container.multiblock.ArcFurnaceContainer;
+import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.multiblock.TileArcFurnace;
 import net.minecraft.block.BlockState;
@@ -14,14 +15,17 @@ import javax.annotation.Nullable;
 
 public class BlockBlastFurnace extends BlockMultiBlock {
 
-    public BlockBlastFurnace(Properties properties) {
-        super(properties);
+    Tier tier;
+
+    public BlockBlastFurnace(Tier tier) {
+        super();
+        this.tier = tier;
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileArcFurnace();
+        return new TileArcFurnace(tier);
     }
 
     @Nullable
