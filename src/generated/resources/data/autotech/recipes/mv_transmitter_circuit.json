@@ -8,7 +8,13 @@
       "item": "autotech:basic_circuit_board"
     },
     {
-      "item": "autotech:basic_vacuum_tube"
+      "item": "autotech:mv_vacuum_tube"
+    },
+    {
+      "item": "autotech:mv_vacuum_tube"
+    },
+    {
+      "item": "autotech:mv_resistor"
     }
   ],
   "result": {

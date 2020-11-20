@@ -103,9 +103,10 @@
 
   "item.autotech.saw_blade": "Saw Blade",
   "item.autotech.grinder_blade": "Grinder Blade",
-  "item.autotech.mv_motor": "Medium Voltage Motor",
-  "item.autotech.mv_centrifugal_component": "Medium Voltage Centrifugal Separator",
-  "item.autotech.basic_vacuum_tube": "Basic Vacuum Tube",
+  "item.autotech.mv_motor": "Motor (MV)",
+  "item.autotech.mv_centrifugal_component": "Centrifugal Separator (MV)",
+  "item.autotech.mv_vacuum_tube": "Vacuum Tube (MV)",
+  "item.autotech.mv_resistor": "Resistor (MV)",
 
   "item.autotech.apple_pie": "Apple Pie",
   "item.autotech.golden_apple_pie": "Golden Apple Pie",

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "autotech:basic_vacuum_tube"
+      "autotech:mv_resistor"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "autotech:lv_cable"
+            "tag": "forge:dusts/coal"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "autotech:basic_vacuum_tube"
+        "recipe": "autotech:mv_resistor"
       }
     }
   },

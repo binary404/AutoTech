@@ -310,7 +310,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModBlocks.mv_cable))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModItems.basic_vacuum_tube)
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_vacuum_tube)
                 .key('G', Tags.Items.GLASS)
                 .key('R', Tags.Items.DUSTS_REDSTONE)
                 .key('C', ModBlocks.lv_cable)
@@ -318,6 +318,16 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .patternLine("GRG")
                 .patternLine("CCC")
                 .addCriterion("has_item", hasItem(ModBlocks.lv_cable))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_resistor)
+                .key('P', Items.PAPER)
+                .key('C', ModTags.Items.DUSTS_COAL)
+                .key('L', ModBlocks.lv_cable)
+                .patternLine(" P ")
+                .patternLine("LCL")
+                .patternLine(" P ")
+                .addCriterion("has_item", hasItem(ModTags.Items.DUSTS_COAL))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.hammer)
@@ -459,7 +469,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_logic_circuit)
                 .addIngredient(ModItems.mv_logic_component)
                 .addIngredient(ModItems.basic_circuit_board)
-                .addIngredient(ModItems.basic_vacuum_tube, 2)
+                .addIngredient(ModItems.mv_vacuum_tube, 2)
+                .addIngredient(ModItems.mv_resistor)
                 .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
                 .build(consumer);
 
@@ -477,7 +488,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_transmitter_circuit)
                 .addIngredient(ModItems.mv_transmitter_component)
                 .addIngredient(ModItems.basic_circuit_board)
-                .addIngredient(ModItems.basic_vacuum_tube, 2)
+                .addIngredient(ModItems.mv_vacuum_tube, 2)
+                .addIngredient(ModItems.mv_resistor)
                 .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
                 .build(consumer);
 
@@ -495,7 +507,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.mv_receiver_circuit)
                 .addIngredient(ModItems.mv_receiver_component)
                 .addIngredient(ModItems.basic_circuit_board)
-                .addIngredient(ModItems.basic_vacuum_tube, 2)
+                .addIngredient(ModItems.mv_vacuum_tube, 2)
+                .addIngredient(ModItems.mv_resistor)
                 .addCriterion("has_item", hasItem(ModItems.basic_circuit_board))
                 .build(consumer);
 

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "LCL",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "C": {
+      "tag": "forge:dusts/coal"
+    },
+    "L": {
+      "item": "autotech:lv_cable"
+    }
+  },
+  "result": {
+    "item": "autotech:mv_resistor"
+  }
+}

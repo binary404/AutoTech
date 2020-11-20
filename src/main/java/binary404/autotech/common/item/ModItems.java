@@ -107,7 +107,8 @@ public class ModItems {
     public static Item mv_motor;
     public static Item mv_centrifugal_component;
 
-    public static Item basic_vacuum_tube;
+    public static Item mv_vacuum_tube;
+    public static Item mv_resistor;
 
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
@@ -209,7 +210,8 @@ public class ModItems {
         mv_motor = register(r, new Item(properties), "mv_motor");
         mv_centrifugal_component = register(r, new Item(properties), "mv_centrifugal_component");
 
-        basic_vacuum_tube = register(r, new Item(properties), "basic_vacuum_tube");
+        mv_vacuum_tube = register(r, new Item(properties), "mv_vacuum_tube");
+        mv_resistor = register(r, new Item(properties), "mv_resistor");
     }
 
 }
