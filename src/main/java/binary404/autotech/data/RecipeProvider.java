@@ -310,6 +310,16 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModBlocks.mv_cable))
                 .build(consumer);
 
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_piston)
+                .key('P', ModTags.Items.PLATES_STEEL)
+                .key('M', ModItems.mv_motor)
+                .key('C', ModBlocks.mv_cable)
+                .patternLine("PPP")
+                .patternLine("CCP")
+                .patternLine("CM ")
+                .addCriterion("has_item", hasItem(ModItems.mv_motor))
+                .build(consumer);
+
         ShapedRecipeBuilder.shapedRecipe(ModItems.mv_vacuum_tube)
                 .key('G', Tags.Items.GLASS)
                 .key('R', Tags.Items.DUSTS_REDSTONE)
@@ -517,6 +527,5 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addIngredient(ModItems.plywood)
                 .addCriterion("has_item", hasItem(ModItems.carbon_mesh))
                 .build(consumer);
-
     }
 }

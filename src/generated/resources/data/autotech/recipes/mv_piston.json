@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "CCP",
+    "CM "
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/steel"
+    },
+    "M": {
+      "item": "autotech:mv_motor"
+    },
+    "C": {
+      "item": "autotech:mv_cable"
+    }
+  },
+  "result": {
+    "item": "autotech:mv_piston"
+  }
+}

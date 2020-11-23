@@ -105,8 +105,8 @@ public class ModItems {
     public static Item grinder_blade;
 
     public static Item mv_motor;
+    public static Item mv_piston;
     public static Item mv_centrifugal_component;
-
     public static Item mv_vacuum_tube;
     public static Item mv_resistor;
 
@@ -208,8 +208,8 @@ public class ModItems {
         grinder_blade = register(r, new Item(properties), "grinder_blade");
 
         mv_motor = register(r, new Item(properties), "mv_motor");
+        mv_piston = register(r, new Item(properties), "mv_piston");
         mv_centrifugal_component = register(r, new Item(properties), "mv_centrifugal_component");
-
         mv_vacuum_tube = register(r, new Item(properties), "mv_vacuum_tube");
         mv_resistor = register(r, new Item(properties), "mv_resistor");
     }
