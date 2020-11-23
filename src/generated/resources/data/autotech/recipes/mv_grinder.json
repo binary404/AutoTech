@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "PRP",
-    "SHS",
-    "CLC"
+    "ERC",
+    "SHC",
+    "MLC"
   ],
   "key": {
-    "P": {
-      "tag": "forge:plates/steel"
-    },
     "R": {
       "tag": "autotech:mv_circuits/receiver"
     },
     "S": {
-      "item": "autotech:grinder_blade"
+      "item": "autotech:mv_grinder_blade"
     },
     "H": {
       "item": "autotech:mv_machine_hull"
@@ -23,6 +20,12 @@
     },
     "L": {
       "tag": "autotech:mv_circuits/logic"
+    },
+    "E": {
+      "item": "autotech:mv_piston"
+    },
+    "M": {
+      "item": "autotech:mv_motor"
     }
   },
   "result": {

@@ -1,28 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "RMR",
-    "CHC",
-    "LML"
+    " R ",
+    "PHP",
+    "CLC"
   ],
   "key": {
     "R": {
       "tag": "autotech:mv_circuits/receiver"
     },
-    "M": {
-      "item": "autotech:mv_centrifugal_component"
-    },
-    "H": {
-      "item": "autotech:mv_machine_hull"
+    "P": {
+      "item": "autotech:mv_piston"
     },
     "C": {
       "item": "autotech:mv_cable"
     },
     "L": {
       "tag": "autotech:mv_circuits/logic"
+    },
+    "H": {
+      "item": "autotech:mv_machine_hull"
     }
   },
   "result": {
-    "item": "autotech:mv_centrifuge"
+    "item": "autotech:mv_compactor"
   }
 }

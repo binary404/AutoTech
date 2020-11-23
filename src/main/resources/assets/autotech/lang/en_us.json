@@ -102,7 +102,7 @@
   "item.autotech.hammer": "Hammer",
 
   "item.autotech.saw_blade": "Saw Blade",
-  "item.autotech.grinder_blade": "Grinder Blade",
+  "item.autotech.mv_grinder_blade": "Grinder Blade (MV)",
   "item.autotech.mv_motor": "Motor (MV)",
   "item.autotech.mv_piston": "Piston (MV)",
   "item.autotech.mv_centrifugal_component": "Centrifugal Separator (MV)",

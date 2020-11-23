@@ -2,12 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "SSS",
-    "S S",
+    "SCS",
     "SSS"
   ],
   "key": {
     "S": {
       "tag": "forge:plates/steel"
+    },
+    "C": {
+      "item": "autotech:mv_cable"
     }
   },
   "result": {

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "autotech:grinder_blade"
+      "autotech:mv_grinder_blade"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "autotech:grinder_blade"
+        "recipe": "autotech:mv_grinder_blade"
       }
     }
   },

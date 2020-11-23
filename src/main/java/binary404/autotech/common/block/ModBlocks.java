@@ -92,6 +92,7 @@ public class ModBlocks {
     public static Block waterpump;
 
     public static Block lv_compactor;
+    public static Block mv_compactor;
 
     public static Block mv_centrifuge;
     public static Block hv_centrifuge;
@@ -161,6 +162,7 @@ public class ModBlocks {
         waterpump = register(r, new BlockWaterPump(), "waterpump");
 
         lv_compactor = register(r, new BlockCompactor(Tier.LV), "lv_compactor");
+        mv_compactor = register(r, new BlockCompactor(Tier.MV), "mv_compactor");
 
         mv_centrifuge = register(r, new BlockCentrifuge(Tier.MV), "mv_centrifuge");
         hv_centrifuge = register(r, new BlockCentrifuge(Tier.HV), "hv_centrifuge");
@@ -232,6 +234,7 @@ public class ModBlocks {
         register(r, new BlockItem(waterpump, p), "waterpump");
 
         register(r, new BlockItem(lv_compactor, p), "lv_compactor");
+        register(r, new BlockItem(mv_compactor, p), "mv_compactor");
 
         register(r, new BlockItem(mv_centrifuge, p), "mv_centrifuge");
 

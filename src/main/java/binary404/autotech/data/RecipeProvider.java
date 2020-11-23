@@ -207,16 +207,18 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.lv_machine_hull)
                 .key('B', ModTags.Items.PLATES_BRONZE)
+                .key('C', ModBlocks.lv_cable)
                 .patternLine("BBB")
-                .patternLine("B B")
+                .patternLine("BCB")
                 .patternLine("BBB")
                 .addCriterion("has_item", hasItem(ModItems.bronze_plate))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.mv_machine_hull)
                 .key('S', ModTags.Items.PLATES_STEEL)
+                .key('C', ModBlocks.mv_cable)
                 .patternLine("SSS")
-                .patternLine("S S")
+                .patternLine("SCS")
                 .patternLine("SSS")
                 .addCriterion("has_item", hasItem(ModItems.steel_plate))
                 .build(consumer);
@@ -230,7 +232,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModItems.bronze_plate))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModItems.grinder_blade)
+        ShapedRecipeBuilder.shapedRecipe(ModItems.mv_grinder_blade)
                 .key('D', Tags.Items.GEMS_DIAMOND)
                 .key('S', ModTags.Items.INGOTS_STEEL)
                 .key('N', ModTags.Items.PLATES_NICKEL)
@@ -393,15 +395,14 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_centrifuge)
-                .key('P', ModTags.Items.PLATES_STEEL)
                 .key('R', ModTags.Items.MV_CIRCUITS_RECEIVER)
                 .key('M', ModItems.mv_centrifugal_component)
                 .key('H', ModItems.mv_machine_hull)
                 .key('C', ModBlocks.mv_cable)
                 .key('L', ModTags.Items.MV_CIRCUITS_LOGIC)
-                .patternLine("PRP")
-                .patternLine("MHM")
-                .patternLine("CLC")
+                .patternLine("RMR")
+                .patternLine("CHC")
+                .patternLine("LML")
                 .addCriterion("has_item", hasItem(ModItems.mv_machine_hull))
                 .build(consumer);
 
@@ -417,15 +418,16 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_grinder)
-                .key('P', ModTags.Items.PLATES_STEEL)
                 .key('R', ModTags.Items.MV_CIRCUITS_RECEIVER)
-                .key('S', ModItems.grinder_blade)
+                .key('S', ModItems.mv_grinder_blade)
                 .key('H', ModItems.mv_machine_hull)
                 .key('C', ModBlocks.mv_cable)
                 .key('L', ModTags.Items.MV_CIRCUITS_LOGIC)
-                .patternLine("PRP")
-                .patternLine("SHS")
-                .patternLine("CLC")
+                .key('E', ModItems.mv_piston)
+                .key('M', ModItems.mv_motor)
+                .patternLine("ERC")
+                .patternLine("SHC")
+                .patternLine("MLC")
                 .addCriterion("has_item", hasItem(ModItems.mv_machine_hull))
                 .build(consumer);
 
@@ -438,6 +440,18 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .patternLine("IHI")
                 .patternLine("CBC")
                 .addCriterion("has_item", hasItem(ModItems.lv_machine_hull))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_compactor)
+                .key('R', ModTags.Items.MV_CIRCUITS_RECEIVER)
+                .key('P', ModItems.mv_piston)
+                .key('C', ModBlocks.mv_cable)
+                .key('L', ModTags.Items.MV_CIRCUITS_LOGIC)
+                .key('H', ModItems.mv_machine_hull)
+                .patternLine(" R ")
+                .patternLine("PHP")
+                .patternLine("CLC")
+                .addCriterion("has_item", hasItem(ModItems.mv_machine_hull))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_sawmill)
