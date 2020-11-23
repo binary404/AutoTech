@@ -28,6 +28,7 @@ public class ModTags {
         public static final ITag.INamedTag<Item> PLATES_NICKEL = forgeTag("plates/nickel");
         public static final ITag.INamedTag<Item> PLATES_PLATINUM = forgeTag("plates/platinum");
         public static final ITag.INamedTag<Item> PLATES_TITANIUM = forgeTag("plates/titanium");
+        public static final ITag.INamedTag<Item> PLATES_IRON = forgeTag("plates/iron");
         public static final ITag.INamedTag<Item> PLATES_BRONZE = forgeTag("plates/bronze");
         public static final ITag.INamedTag<Item> PLATES_STEEL = forgeTag("plates/steel");
 

@@ -41,6 +41,9 @@ public class ModItems {
     public static Item bronze_plate;
     public static Item steel_plate;
 
+    public static Item iron_rod;
+    public static Item steel_rod;
+
     public static Item lv_machine_hull;
     public static Item mv_machine_hull;
 
@@ -169,6 +172,9 @@ public class ModItems {
         gold_plate = register(r, new Item(properties), "gold_plate");
         bronze_plate = register(r, new Item(properties), "bronze_plate");
         steel_plate = register(r, new Item(properties), "steel_plate");
+
+        iron_rod = register(r, new Item(properties), "iron_rod");
+        steel_rod = register(r, new Item(properties), "steel_rod");
 
         saw_dust = register(r, new Item(properties), "saw_dust");
 

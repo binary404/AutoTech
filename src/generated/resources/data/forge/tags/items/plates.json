@@ -8,6 +8,7 @@
     "#forge:plates/nickel",
     "#forge:plates/platinum",
     "#forge:plates/titanium",
+    "#forge:plates/iron",
     "#forge:plates/bronze",
     "#forge:plates/steel"
   ]

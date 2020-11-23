@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "RCR",
-    "ROR",
-    "COC"
+    "RCI",
+    "CIC",
+    "ICR"
   ],
   "key": {
     "R": {
@@ -12,8 +12,8 @@
     "C": {
       "item": "autotech:mv_cable"
     },
-    "O": {
-      "tag": "forge:ingots/copper"
+    "I": {
+      "item": "autotech:iron_rod"
     }
   },
   "result": {

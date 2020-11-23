@@ -41,9 +41,10 @@ public class AutoTechTagProvider extends BaseTagProvider {
         addToTag(ModTags.Items.PLATES_NICKEL, ModItems.nickel_plate);
         addToTag(ModTags.Items.PLATES_PLATINUM, ModItems.platinum_plate);
         addToTag(ModTags.Items.PLATES_TITANIUM, ModItems.titanium_plate);
+        addToTag(ModTags.Items.PLATES_IRON, ModItems.iron_plate);
         addToTag(ModTags.Items.PLATES_BRONZE, ModItems.bronze_plate);
         addToTag(ModTags.Items.PLATES_STEEL, ModItems.steel_plate);
-        getItemBuilder(ModTags.Items.PLATES).add(ModTags.Items.PLATES_COPPER, ModTags.Items.PLATES_TIN, ModTags.Items.PLATES_LEAD, ModTags.Items.PLATES_SILVER, ModTags.Items.PLATES_URANIUM, ModTags.Items.PLATES_NICKEL, ModTags.Items.PLATES_PLATINUM, ModTags.Items.PLATES_TITANIUM, ModTags.Items.PLATES_BRONZE, ModTags.Items.PLATES_STEEL);
+        getItemBuilder(ModTags.Items.PLATES).add(ModTags.Items.PLATES_COPPER, ModTags.Items.PLATES_TIN, ModTags.Items.PLATES_LEAD, ModTags.Items.PLATES_SILVER, ModTags.Items.PLATES_URANIUM, ModTags.Items.PLATES_NICKEL, ModTags.Items.PLATES_PLATINUM, ModTags.Items.PLATES_TITANIUM, ModTags.Items.PLATES_IRON, ModTags.Items.PLATES_BRONZE, ModTags.Items.PLATES_STEEL);
     }
 
     private void addBeaconTags() {

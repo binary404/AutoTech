@@ -181,6 +181,15 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModItems.steel_ingot))
                 .build(consumer);
 
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.iron_rod, 2)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.PLATES_IRON), 2)
+                .addCriterion("has_item", hasItem(ModTags.Items.PLATES_IRON))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.steel_rod, 2)
+                .addIngredient(Ingredient.fromTag(ModTags.Items.PLATES_STEEL), 2)
+                .addCriterion("has_item", hasItem(ModTags.Items.PLATES_STEEL))
+                .build(consumer);
+
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.bronze_dust, 4)
                 .addIngredient(ModTags.Items.DUSTS_TIN)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.DUSTS_COPPER), 3)
@@ -303,10 +312,10 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(ModItems.mv_motor)
                 .key('R', Tags.Items.DUSTS_REDSTONE)
                 .key('C', ModBlocks.mv_cable)
-                .key('O', ModTags.Items.INGOTS_COPPER)
-                .patternLine("RCR")
-                .patternLine("ROR")
-                .patternLine("COC")
+                .key('I', ModItems.iron_rod)
+                .patternLine("RCI")
+                .patternLine("CIC")
+                .patternLine("ICR")
                 .addCriterion("has_item", hasItem(ModBlocks.mv_cable))
                 .build(consumer);
 
@@ -314,9 +323,10 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .key('P', ModTags.Items.PLATES_STEEL)
                 .key('M', ModItems.mv_motor)
                 .key('C', ModBlocks.mv_cable)
+                .key('R', ModItems.steel_rod)
                 .patternLine("PPP")
-                .patternLine("CCP")
-                .patternLine("CM ")
+                .patternLine("CRR")
+                .patternLine("CMR")
                 .addCriterion("has_item", hasItem(ModItems.mv_motor))
                 .build(consumer);
 

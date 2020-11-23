@@ -25,6 +25,7 @@ d89f05b5badc81d653829d2bb3ba398ba8d1b6e7 data/autotech/advancements/recipes/auto
 7ee6be80085a08678ce89a1dece373e33ab1f63e data/autotech/advancements/recipes/autotech/iron_dust.json
 0200a9b625e2d792552f40bb79b2469e9eaf8a39 data/autotech/advancements/recipes/autotech/iron_plate.json
 bcf94b510d1548a28a7e53caa91cd36faa8146ac data/autotech/advancements/recipes/autotech/iron_plating.json
+b6e2aa61e75d62e21eed8c8e718268464fd703c8 data/autotech/advancements/recipes/autotech/iron_rod.json
 1976af17114340cce0c7f086637a055bf40bf291 data/autotech/advancements/recipes/autotech/lead_dust.json
 2d8cb04f07df20684feaaf87c734290b9e06b2a8 data/autotech/advancements/recipes/autotech/lead_ingot.json
 8cfc5cf2f9a1dcdd2a834a91fc7eaf793a6ec2e1 data/autotech/advancements/recipes/autotech/lead_ingot_dust.json
@@ -68,6 +69,7 @@ d669859c0ae3706cc3d09e3e2de1bea60f371566 data/autotech/advancements/recipes/auto
 05fe4414b3915e33a1418f68c7c767e85f34992e data/autotech/advancements/recipes/autotech/silver_ingot_dust.json
 b3b49184def0d9d7ce3c6c006dab595c7de32d45 data/autotech/advancements/recipes/autotech/silver_plate.json
 43c90d5c3e7528e8940180510a5c155fa3008057 data/autotech/advancements/recipes/autotech/steel_plate.json
+1c7b31aa54cbdad306d7488d863cb5d8b6d191e0 data/autotech/advancements/recipes/autotech/steel_rod.json
 c927964a588edf2416291b2b491dbc1b456984bb data/autotech/advancements/recipes/autotech/thermal_electric_component.json
 22b3f5b7a904aa6c6a5c7220a85df6d7430a66d3 data/autotech/advancements/recipes/autotech/tin_dust.json
 6f6b2b243882344acb189279286a4e27a16dbf34 data/autotech/advancements/recipes/autotech/tin_ingot.json
@@ -147,6 +149,7 @@ e93947c9d4a6e989fc0bafc25a45b33f4df6b3c6 data/autotech/recipes/iron_dust.json
 1f72a1c05022fbd9e3b1f7170f0fb6bcceaebff9 data/autotech/recipes/iron_ingot_dust.json
 2109626d72d605fd21d1d3b5d04851a6b3e8edd3 data/autotech/recipes/iron_plate.json
 4fbe40912c353b4b01406af18e7a30152ec87709 data/autotech/recipes/iron_plating.json
+33983a75105aee44e7e3f997e66ed9720ac43570 data/autotech/recipes/iron_rod.json
 448145fe5559caaa9e20426140cdaef7f9465762 data/autotech/recipes/lead_dust.json
 596e14968ed099cd254776bac843e8f7211a90dd data/autotech/recipes/lead_ingot.json
 fcbadb50e06a7f2ed0028b2c88a1279f7d083f6e data/autotech/recipes/lead_ingot_dust.json
@@ -168,8 +171,8 @@ afc286bdad4b64453fa32db4b18f07b324e788ea data/autotech/recipes/mv_grinder.json
 cf3ebb09a60420f558343c36d55c39d9fed3f574 data/autotech/recipes/mv_logic_circuit.json
 6c389d3b93bde4a401bb6f3533590e800e2eff3b data/autotech/recipes/mv_logic_component.json
 976cc6a192f718b7ff5727bd7742252d255e5a7b data/autotech/recipes/mv_machine_hull.json
-2c84d259531d753f6630837693789dce72e564e6 data/autotech/recipes/mv_motor.json
-72904a21c2ecadeb0934e41f740310c1dbef87ae data/autotech/recipes/mv_piston.json
+6db944991c626b86ddb995f21940e05b2a287084 data/autotech/recipes/mv_motor.json
+762fac4855e7797b609c2304310ab465c28d0806 data/autotech/recipes/mv_piston.json
 01dc58ee1043a0155763b2e31dc478f8e64fd46e data/autotech/recipes/mv_receiver_circuit.json
 070459d16e6942411d972baa58587b09450ca99f data/autotech/recipes/mv_receiver_component.json
 5ab679a1f678cd2080eaad3fd9bc4a8ab323b665 data/autotech/recipes/mv_resistor.json
@@ -191,6 +194,7 @@ ab5e1385484902750a58eba8d927788bd75ea0a7 data/autotech/recipes/silver_dust.json
 404828f94146836ce2b31da57ab534dc1c6fb873 data/autotech/recipes/silver_ingot_dust.json
 4fe248149c1796f06f157e013ce4fd34227b0087 data/autotech/recipes/silver_plate.json
 93fa037c3918dddc37f1f19fbcfc81177617681f data/autotech/recipes/steel_plate.json
+26cc95377385df8c01d8ab574cd4b0564a0f5900 data/autotech/recipes/steel_rod.json
 4d5269bea63a8d3c49618f0811fe44baeb7dd5f7 data/autotech/recipes/thermal_electric_component.json
 7f0d0a5de89171ef61d53605f1aef22bb8244f8e data/autotech/recipes/tin_dust.json
 5f6d9746302cc48676e326cbaee33ed32fa4dc75 data/autotech/recipes/tin_ingot.json
@@ -205,9 +209,10 @@ cfd1449b03142e2cfc703c924c6140bf9a247732 data/autotech/recipes/uranium_ingot_dus
 dd9821aed77851174a0f54bad811b7cc01854914 data/autotech/tags/items/mv_circuits/logic.json
 ef8805e9c7129d31f2a01bb638fcadb776c3d841 data/autotech/tags/items/mv_circuits/receiver.json
 08654a2b83f45ceff9d1fd57583f71f7fee62730 data/autotech/tags/items/mv_circuits/transmitter.json
-78104d95a10f8fd8fe313478cf77fe4ab134abbe data/forge/tags/items/plates.json
+2314ff0d02fe120bfdd30c55ddc20afa632d2935 data/forge/tags/items/plates.json
 ab68872faa2877e9a609f41c6a3c0f1223ccbdfe data/forge/tags/items/plates/bronze.json
 87a6a14c023d3e34e501cdb6f9b82a7cd1e69456 data/forge/tags/items/plates/copper.json
+81217c0da13d8aa98014aaeb6284ffc13e9a99e2 data/forge/tags/items/plates/iron.json
 d84f9027e15aee54c889c31b9a7d9cd32ebefe38 data/forge/tags/items/plates/lead.json
 4fdea782595775082bd55f005b5cd42ac70090f9 data/forge/tags/items/plates/nickel.json
 acfbf6bc239e45e3ba0440b48e4fc6daa126bffd data/forge/tags/items/plates/platinum.json
