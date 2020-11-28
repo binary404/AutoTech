@@ -30,10 +30,10 @@ public class TileSawMill extends TileMachine<BlockSawMill> {
         if (recipe == null)
             return false;
 
-        if (inv.getStackInSlot(0).getCount() < recipe.getInput().getCount())
+        if (inv.getStackInSlot(0).getCount() < recipe.getInputCount())
             return false;
 
-        ItemStack primaryItem = recipe.getPrimaryOutput();
+        ItemStack primaryItem = recipe.getOutput();
         ItemStack secondItem = recipe.getSecondaryOutput();
 
         if (!secondItem.isEmpty() && !inv.getStackInSlot(2).isEmpty()) {
@@ -50,7 +50,7 @@ public class TileSawMill extends TileMachine<BlockSawMill> {
             getRecipe();
         if (recipe == null)
             return false;
-        return recipe.getInput().getCount() <= inv.getStackInSlot(0).getCount();
+        return recipe.getInputCount() <= inv.getStackInSlot(0).getCount();
     }
 
     @Override
@@ -77,7 +77,7 @@ public class TileSawMill extends TileMachine<BlockSawMill> {
             return;
         }
 
-        ItemStack primaryItem = recipe.getPrimaryOutput();
+        ItemStack primaryItem = recipe.getOutput();
         ItemStack secondaryItem = recipe.getSecondaryOutput();
 
         if (inv.getStackInSlot(1).isEmpty())

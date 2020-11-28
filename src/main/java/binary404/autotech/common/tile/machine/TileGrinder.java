@@ -53,7 +53,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
             return false;
         }
 
-        return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getPrimaryOutput().getItem();
+        return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getOutput().getItem();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class TileGrinder extends TileMachine<BlockGrinder> {
             return;
         }
 
-        ItemStack primaryItem = recipe.getPrimaryOutput();
+        ItemStack primaryItem = recipe.getOutput();
         ItemStack secondOutput = recipe.getSecondaryOutput();
         ItemStack thirdOutput = recipe.getThirdOutput();
 

@@ -32,12 +32,11 @@ public class TileCompactor extends TileMachine<BlockCompactor> {
         if (recipe == null)
             return false;
 
-        if (this.inv.getStackInSlot(0).getCount() < recipe.getInput().getCount()) {
+        if (this.inv.getStackInSlot(0).getCount() < recipe.getInputCount()) {
             return false;
         }
 
         if (this.tier.ordinal() < this.recipe.getMinTier().ordinal()) {
-            AutoTech.LOGGER.error(this.tier.ordinal() + " " + this.recipe.getMinTier().ordinal());
             return false;
         }
 
@@ -56,7 +55,7 @@ public class TileCompactor extends TileMachine<BlockCompactor> {
             return false;
         }
 
-        return recipe.getInput().getCount() <= inv.getStackInSlot(0).getCount();
+        return recipe.getInputCount() <= inv.getStackInSlot(0).getCount();
     }
 
     @Override

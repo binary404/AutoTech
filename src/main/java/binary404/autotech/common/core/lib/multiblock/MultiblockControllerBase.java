@@ -25,8 +25,6 @@ public abstract class MultiblockControllerBase<T extends BlockTile> extends Tile
 
     protected BlockPattern structurePattern;
 
-    Direction facing = Direction.NORTH;
-
     private final Map<MultiblockAbility<Object>, List<Object>> multiblockAbilities = new HashMap<>();
     private final List<IMultiblockPart> multiblockParts = new ArrayList<>();
 
@@ -54,18 +52,6 @@ public abstract class MultiblockControllerBase<T extends BlockTile> extends Tile
         }
 
         return -1;
-    }
-
-    @Override
-    public void readStorable(CompoundNBT nbt) {
-        super.readStorable(nbt);
-        this.setDirection(Direction.values()[nbt.getInt("direction")]);
-    }
-
-    @Override
-    public CompoundNBT writeStorable(CompoundNBT nbt) {
-        nbt.putInt("direction", facing.ordinal());
-        return super.writeStorable(nbt);
     }
 
     protected abstract void updateFormedValid();
@@ -123,16 +109,6 @@ public abstract class MultiblockControllerBase<T extends BlockTile> extends Tile
             }
             return false;
         };
-    }
-
-    public void setDirection(Direction direction) {
-        this.facing = direction;
-    }
-
-    @Override
-    public void onPlaced(World world, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        super.onPlaced(world, state, placer, stack);
-        this.facing = state.get(BlockStateProperties.FACING);
     }
 
     protected void checkStructurePattern() {

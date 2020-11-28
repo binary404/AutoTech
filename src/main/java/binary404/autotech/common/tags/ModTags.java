@@ -40,6 +40,7 @@ public class ModTags {
         public static final ITag.INamedTag<Item> INGOTS_NICKEL = forgeTag("ingots/nickel");
         public static final ITag.INamedTag<Item> INGOTS_PLATINUM = forgeTag("ingots/platinum");
         public static final ITag.INamedTag<Item> INGOTS_TITANIUM = forgeTag("ingots/titanium");
+        public static final ITag.INamedTag<Item> INGOTS_RED_ALLOY = forgeTag("ingots/red_alloy");
         public static final ITag.INamedTag<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
         public static final ITag.INamedTag<Item> INGOTS_STEEL = forgeTag("ingots/steel");
 
@@ -54,6 +55,7 @@ public class ModTags {
         public static final ITag.INamedTag<Item> DUSTS_IRON = forgeTag("dusts/iron");
         public static final ITag.INamedTag<Item> DUSTS_GOLD = forgeTag("dusts/gold");
         public static final ITag.INamedTag<Item> DUSTS_NETHERITE = forgeTag("dusts/netherite");
+        public static final ITag.INamedTag<Item> DUSTS_RED_ALLOY = forgeTag("dusts/red_alloy");
         public static final ITag.INamedTag<Item> DUSTS_BRONZE = forgeTag("dusts/bronze");
         public static final ITag.INamedTag<Item> DUSTS_COAL = forgeTag("dusts/coal");
         public static final ITag.INamedTag<Item> DUSTS_CHARCOAL = forgeTag("dusts/charcoal");

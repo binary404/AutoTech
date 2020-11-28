@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "autotech:titanium_plate"
+      "autotech:red_alloy_dust"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "autotech:titanium_ingot"
+            "tag": "forge:dusts/copper"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "autotech:titanium_plate"
+        "recipe": "autotech:red_alloy_dust"
       }
     }
   },

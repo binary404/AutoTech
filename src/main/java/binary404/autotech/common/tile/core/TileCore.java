@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -37,11 +38,13 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
     /**
      * Used when this is instance of {@link ITank}
      **/
-
     public SideConfigItem itemConfig = new SideConfigItem(this);
 
     protected Tank tank = new Tank(0);
     protected final LazyOptional<FluidTank> tankHolder = LazyOptional.of(() -> this.tank);
+
+    //Direction
+    protected Direction facing = Direction.NORTH;
 
     protected boolean isContainerOpen;
     /**
@@ -70,6 +73,10 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
     public CompoundNBT write(CompoundNBT compound) {
         CompoundNBT nbt = super.write(compound);
         return writeSync(nbt);
+    }
+
+    public void setDirection(Direction direction) {
+        this.facing = direction;
     }
 
     @Override
@@ -119,6 +126,7 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
         if (this instanceof ITank && keepFluid()) {
             this.tank.readFromNBT(nbt);
         }
+        this.setDirection(Direction.values()[nbt.getInt("direction")]);
     }
 
     public CompoundNBT writeStorable(CompoundNBT nbt) {
@@ -128,7 +136,7 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
         if (this instanceof ITank && keepFluid()) {
             this.tank.writeToNBT(nbt);
         }
-
+        nbt.putInt("direction", facing.ordinal());
         return nbt;
     }
 
@@ -138,6 +146,7 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
         if (!tag.isEmpty()) {
             readStorable(tag.getCompound(NBTUtil.TAG_STORABLE_STACK));
         }
+        this.facing = state.get(BlockStateProperties.FACING);
     }
 
     @Override

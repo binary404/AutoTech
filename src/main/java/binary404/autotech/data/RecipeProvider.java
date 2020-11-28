@@ -63,9 +63,6 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.DUSTS_PLATINUM), ModItems.platinum_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModItems.platinum_dust))
                 .build(consumer, "autotech:platinum_ingot_dust");
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.DUSTS_TITANIUM), ModItems.titanium_ingot, 0.1F, 200)
-                .addCriterion("has_item", hasItem(ModItems.titanium_dust))
-                .build(consumer, "autotech:titanium_ingot_dust");
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.DUSTS_IRON), Items.IRON_INGOT, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModItems.iron_dust))
                 .build(consumer, "autotech:iron_ingot_dust");
@@ -165,11 +162,6 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addIngredient(ModItems.hammer)
                 .addCriterion("has_item", hasItem(ModItems.platinum_ingot))
                 .build(consumer);
-        ShapelessRecipeBuilder.shapelessRecipe(ModItems.titanium_plate)
-                .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_TITANIUM), 2)
-                .addIngredient(ModItems.hammer)
-                .addCriterion("has_item", hasItem(ModItems.titanium_ingot))
-                .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.bronze_plate)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.INGOTS_BRONZE), 2)
                 .addIngredient(ModItems.hammer)
@@ -194,6 +186,12 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addIngredient(ModTags.Items.DUSTS_TIN)
                 .addIngredient(Ingredient.fromTag(ModTags.Items.DUSTS_COPPER), 3)
                 .addCriterion("has_item", hasItem(ModItems.copper_dust))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.red_alloy_dust, 2)
+                .addIngredient(ModTags.Items.DUSTS_COPPER)
+                .addIngredient(Ingredient.fromTag(Tags.Items.DUSTS_REDSTONE), 2)
+                .addCriterion("has_item", hasItem(ModTags.Items.DUSTS_COPPER))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.mortar)
@@ -293,22 +291,22 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_cable, 4)
                 .key('N', ModItems.nickel_plate)
-                .key('C', ModItems.copper_ingot)
+                .key('C', ModTags.Items.INGOTS_COPPER)
                 .key('R', Items.REDSTONE)
                 .patternLine("RNR")
                 .patternLine("CCC")
                 .patternLine("RNR")
-                .addCriterion("has_item", hasItem(ModItems.copper_ingot))
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_COPPER))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.mv_cable, 4)
                 .key('S', ModTags.Items.PLATES_STEEL)
-                .key('I', ModTags.Items.INGOTS_SILVER)
+                .key('I', ModTags.Items.INGOTS_RED_ALLOY)
                 .key('R', Tags.Items.DUSTS_REDSTONE)
                 .patternLine("RSR")
                 .patternLine("III")
                 .patternLine("RSR")
-                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_SILVER))
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_RED_ALLOY))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModItems.mv_motor)

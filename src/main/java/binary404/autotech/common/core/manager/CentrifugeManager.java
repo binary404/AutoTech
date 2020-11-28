@@ -6,12 +6,15 @@ import binary404.autotech.common.item.ModItems;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tags.ITag;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class CentrifugeManager {
 
-    private static Map<ComparableItemStack, CentrifugeRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
+    private static List<CentrifugeRecipe> recipeMap = new ArrayList<>();
 
     public static void init() {
         addRecipe(Tier.MV, 100000, new ItemStack(ModItems.copper_ore_dust, 2), new ItemStack(ModItems.copper_dust, 3), new ItemStack(ModItems.iron_dust, 2), 45);
@@ -26,16 +29,13 @@ public class CentrifugeManager {
         addRecipe(Tier.MV, 100000, new ItemStack(ModItems.gold_ore_dust, 2), new ItemStack(ModItems.gold_dust, 3), new ItemStack(ModItems.silver_dust, 2), 60);
 
         addRecipe(Tier.MV, 150000, new ItemStack(ModItems.netherite_ore_dust, 2), new ItemStack(ModItems.netherite_dust, 3), ItemStack.EMPTY, 0);
-
-        refresh();
     }
 
     public static CentrifugeRecipe getRecipe(ItemStack input) {
-        if (input.isEmpty()) {
-            return null;
-        }
-        CentrifugeRecipe recipe = recipeMap.get(new ComparableItemStack(input));
-        return recipe;
+        for (CentrifugeRecipe recipe : recipeMap)
+            if (recipe.recipeMatches(input))
+                return recipe;
+        return null;
     }
 
     public static boolean recipeExists(ItemStack input) {
@@ -44,12 +44,14 @@ public class CentrifugeManager {
         return recipeExists;
     }
 
-    public static CentrifugeRecipe removeRecipe(ItemStack input) {
-        return recipeMap.remove(ComparableItemStack.convert(input));
+    public static void removeRecipe(ItemStack input) {
+        CentrifugeRecipe recipe = getRecipe(input);
+        if (recipe != null)
+            recipeMap.remove(recipe);
     }
 
     public static CentrifugeRecipe[] getRecipeList() {
-        return recipeMap.values().toArray(new CentrifugeRecipe[0]);
+        return recipeMap.toArray(new CentrifugeRecipe[0]);
     }
 
     public static CentrifugeRecipe addRecipe(Tier minTier, int energy, ItemStack input, ItemStack output1, ItemStack output2, int secondChance) {
@@ -57,32 +59,23 @@ public class CentrifugeManager {
             return null;
 
         CentrifugeRecipe recipe = new CentrifugeRecipe(input, output1, output2, secondChance, energy, minTier);
-        recipeMap.put(new ComparableItemStack(input), recipe);
+        recipeMap.add(recipe);
         return recipe;
     }
 
-    public static void refresh() {
-        Map<ComparableItemStack, CentrifugeRecipe> tempMap = new Object2ObjectOpenHashMap<>(recipeMap.size());
-        CentrifugeRecipe tempRecipe;
-
-        for (Map.Entry<ComparableItemStack, CentrifugeRecipe> entry : recipeMap.entrySet()) {
-            tempRecipe = entry.getValue();
-            tempMap.put(new ComparableItemStack(tempRecipe.input), tempRecipe);
-        }
-        recipeMap.clear();
-        recipeMap = tempMap;
-    }
-
-    public static class CentrifugeRecipe {
+    public static class CentrifugeRecipe implements IMachineRecipe {
         ItemStack input;
         ItemStack output1;
         ItemStack output2;
         int secondChance;
         int energy;
         Tier minTier;
+        ITag.INamedTag<Item> inputTag;
+        int inputCount;
 
         CentrifugeRecipe(ItemStack input, ItemStack output1, ItemStack output2, int secondChance, int energy, Tier minTier) {
             this.input = input;
+            this.inputCount = input.getCount();
             this.output1 = output1;
             this.output2 = output2;
             this.energy = energy;
@@ -90,16 +83,22 @@ public class CentrifugeManager {
             this.secondChance = secondChance;
         }
 
-        @Override
-        public String toString() {
-            return input + " " + output1;
+        CentrifugeRecipe(ITag.INamedTag<Item> inputTag, int tagInput, ItemStack output, ItemStack output2, int secondChance, int energy, Tier minTier) {
+            this.inputTag = inputTag;
+            this.inputCount = tagInput;
+            this.input = new ItemStack(inputTag.getAllElements().get(0), tagInput);
+            this.output1 = output;
+            this.output2 = output2;
+            this.secondChance = secondChance;
+            this.energy = energy;
+            this.minTier = minTier;
         }
 
         public ItemStack getInput() {
             return input;
         }
 
-        public ItemStack getOutput1() {
+        public ItemStack getOutput() {
             return output1;
         }
 
@@ -117,6 +116,25 @@ public class CentrifugeManager {
 
         public int getSecondChance() {
             return secondChance;
+        }
+
+        @Override
+        public ITag.INamedTag<Item> getInputTag() {
+            return inputTag;
+        }
+
+        @Override
+        public int getInputCount() {
+            return inputCount;
+        }
+
+        @Override
+        public boolean recipeMatches(ItemStack input) {
+            if (inputTag != null)
+                return inputTag.contains(input.getItem());
+            if (getInput().getItem().equals(input.getItem()))
+                return true;
+            return input.getItem().delegate.get().equals(getInput().getItem().delegate.get());
         }
     }
 

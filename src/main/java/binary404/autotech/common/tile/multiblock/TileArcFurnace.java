@@ -34,7 +34,7 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
         if (recipe == null)
             return false;
 
-        if (inv.getStackInSlot(0).getCount() < recipe.getInput().getCount())
+        if (inv.getStackInSlot(0).getCount() < recipe.getInputCount())
             return false;
 
         return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getOutput().getItem();
@@ -48,7 +48,7 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
         if (recipe == null)
             return false;
 
-        return recipe.getInput().getCount() <= inv.getStackInSlot(0).getCount();
+        return recipe.getInputCount() <= inv.getStackInSlot(0).getCount();
     }
 
     @Override

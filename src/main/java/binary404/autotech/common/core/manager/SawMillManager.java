@@ -1,6 +1,7 @@
 package binary404.autotech.common.core.manager;
 
 import binary404.autotech.common.container.machine.SawMillContainer;
+import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
 import com.google.gson.JsonElement;
@@ -17,6 +18,7 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -31,7 +33,7 @@ import java.util.Map;
 
 public class SawMillManager {
 
-    private static Map<ComparableItemStack, SawMillRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
+    private static List<SawMillRecipe> recipeMap = new ArrayList<>();
 
     public static void init() {
     }
@@ -48,16 +50,13 @@ public class SawMillManager {
             }
         }
         addRecipe(30000, new ItemStack(Items.STICK), new ItemStack(ModItems.saw_dust, 2), new ItemStack(ModItems.saw_dust), 90);
-        SawMillManager.refresh();
     }
 
     public static SawMillRecipe getRecipe(ItemStack input) {
-        if (input.isEmpty()) {
-            return null;
-        }
-
-        SawMillRecipe recipe = recipeMap.get(new ComparableItemStack(input));
-        return recipe;
+        for (SawMillRecipe recipe : recipeMap)
+            if (recipe.recipeMatches(input))
+                return recipe;
+        return null;
     }
 
     public static boolean recipeExists(ItemStack input) {
@@ -65,12 +64,14 @@ public class SawMillManager {
         return recipeExists;
     }
 
-    public static SawMillRecipe removeRecipe(ItemStack input) {
-        return recipeMap.remove(ComparableItemStack.convert(input));
+    public static void removeRecipe(ItemStack input) {
+        SawMillRecipe recipe = getRecipe(input);
+        if (recipe != null)
+            recipeMap.remove(recipe);
     }
 
     public static SawMillRecipe[] getRecipeList() {
-        return recipeMap.values().toArray(new SawMillRecipe[0]);
+        return recipeMap.toArray(new SawMillRecipe[0]);
     }
 
     public static SawMillRecipe addRecipe(int energy, ItemStack input, ItemStack primaryOutput, ItemStack secondOutput, int secondChance) {
@@ -79,34 +80,33 @@ public class SawMillManager {
         }
 
         SawMillRecipe recipe = new SawMillRecipe(input, primaryOutput, secondOutput, secondOutput.isEmpty() ? 0 : secondChance, energy);
-        recipeMap.put(new ComparableItemStack(input), recipe);
+        recipeMap.add(recipe);
         return recipe;
     }
 
-    public static void refresh() {
-        Map<ComparableItemStack, SawMillRecipe> tempMap = new Object2ObjectOpenHashMap<>(recipeMap.size());
-        SawMillRecipe tempRecipe;
+    public static class SawMillRecipe implements IMachineRecipe {
 
-        for (Map.Entry<ComparableItemStack, SawMillRecipe> entry : recipeMap.entrySet()) {
-            tempRecipe = entry.getValue();
-            tempMap.put(new ComparableItemStack(tempRecipe.input), tempRecipe);
-        }
-        recipeMap.clear();
-        recipeMap = tempMap;
-    }
-
-    public static class SawMillRecipe {
-
-        final ItemStack input;
-        final ItemStack primaryOutput;
-        final ItemStack secondaryOutput;
-        final int secondaryChance;
-        final int energy;
+        ItemStack input;
+        ItemStack primaryOutput;
+        ItemStack secondaryOutput;
+        int secondaryChance;
+        int energy;
+        ITag.INamedTag<Item> inputTag;
+        int inputCount;
 
         SawMillRecipe(ItemStack input, ItemStack primaryOutput, ItemStack secondaryOutput, int secondaryChance, int energy) {
-
             this.input = input;
+            this.inputCount = input.getCount();
             this.primaryOutput = primaryOutput;
+            this.secondaryOutput = secondaryOutput;
+            this.secondaryChance = secondaryChance;
+            this.energy = energy;
+        }
+
+        SawMillRecipe(ITag.INamedTag<Item> inputTag, int inputCount, ItemStack output, ItemStack secondaryOutput, int secondaryChance, int energy) {
+            this.inputTag = inputTag;
+            this.inputCount = inputCount;
+            this.primaryOutput = output;
             this.secondaryOutput = secondaryOutput;
             this.secondaryChance = secondaryChance;
             this.energy = energy;
@@ -117,7 +117,7 @@ public class SawMillManager {
             return input;
         }
 
-        public ItemStack getPrimaryOutput() {
+        public ItemStack getOutput() {
 
             return primaryOutput;
         }
@@ -135,6 +135,30 @@ public class SawMillManager {
         public int getEnergy() {
 
             return energy;
+        }
+
+        @Override
+        public Tier getMinTier() {
+            return Tier.LV;
+        }
+
+        @Override
+        public ITag.INamedTag<Item> getInputTag() {
+            return inputTag;
+        }
+
+        @Override
+        public int getInputCount() {
+            return inputCount;
+        }
+
+        @Override
+        public boolean recipeMatches(ItemStack input) {
+            if (inputTag != null)
+                return inputTag.contains(input.getItem());
+            if (getInput().getItem().equals(input.getItem()))
+                return true;
+            return getInput().getItem().delegate.get().equals(input.getItem().delegate.get());
         }
     }
 }

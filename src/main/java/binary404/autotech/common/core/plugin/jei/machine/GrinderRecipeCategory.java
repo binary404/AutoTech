@@ -80,8 +80,8 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderManager.Gri
         else
             inputBuilder.add(Lists.newArrayList(grinderRecipe.getInput()));
 
-        if (!grinderRecipe.getPrimaryOutput().isEmpty())
-            outputBuilders.add(grinderRecipe.getPrimaryOutput());
+        if (!grinderRecipe.getOutput().isEmpty())
+            outputBuilders.add(grinderRecipe.getOutput());
         if (!grinderRecipe.getSecondaryOutput().isEmpty())
             outputBuilders.add(grinderRecipe.getSecondaryOutput());
         if (!grinderRecipe.getThirdOutput().isEmpty())

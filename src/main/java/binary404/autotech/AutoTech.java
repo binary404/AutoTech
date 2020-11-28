@@ -59,7 +59,6 @@ public class AutoTech {
             DistilleryManager.init();
             CentrifugeManager.init();
             AssemblerManager.init();
-            ArcFurnaceManager.init();
 
             ModEntities.registerAttributes();
         });
@@ -68,6 +67,7 @@ public class AutoTech {
     private void onTagsUpdate(TagsUpdatedEvent event) {
         GrinderManager.initTags();
         SawMillManager.initTags();
+        ArcFurnaceManager.initTags();
     }
 
     public static ResourceLocation key(String path) {

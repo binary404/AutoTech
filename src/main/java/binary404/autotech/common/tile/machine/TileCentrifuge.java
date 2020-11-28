@@ -39,7 +39,7 @@ public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITan
             return false;
         }
 
-        if (this.inv.getStackInSlot(0).getCount() < recipe.getInput().getCount()) {
+        if (this.inv.getStackInSlot(0).getCount() < recipe.getInputCount()) {
             return false;
         }
 
@@ -55,8 +55,7 @@ public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITan
         if (this.tank.getFluid().getFluid() != ModFluids.distilled_water_source) {
             return false;
         }
-
-        return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getOutput1().getItem();
+        return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getOutput().getItem();
     }
 
     @Override
@@ -81,7 +80,7 @@ public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITan
             return false;
         }
 
-        return recipe.getInput().getCount() <= inv.getStackInSlot(0).getCount();
+        return recipe.getInputCount() <= inv.getStackInSlot(0).getCount();
     }
 
     @Override
@@ -106,7 +105,7 @@ public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITan
             return;
         }
 
-        ItemStack output1 = recipe.getOutput1();
+        ItemStack output1 = recipe.getOutput();
         ItemStack output2 = recipe.getOutput2();
 
         if (inv.getStackInSlot(1).isEmpty()) {

@@ -51,6 +51,7 @@
   "item.autotech.nickel_dust": "Nickel Dust",
   "item.autotech.platinum_dust": "Platinum Dust",
   "item.autotech.titanium_dust": "Titanium Dust",
+  "item.autotech.red_alloy_dust": "Red Alloy Dust",
   "item.autotech.bronze_dust": "Bronze Dust",
   "item.autotech.coal_dust": "Coal Dust",
   "item.autotech.gold_dust": "Gold Dust",
@@ -66,6 +67,7 @@
   "item.autotech.nickel_ingot": "Nickel Ingot",
   "item.autotech.platinum_ingot": "Platinum Ingot",
   "item.autotech.titanium_ingot": "Titanium Ingot",
+  "item.autotech.red_alloy_ingot": "Red Alloy Ingot",
   "item.autotech.bronze_ingot": "Bronze Ingot",
   "item.autotech.steel_ingot": "Steel Ingot",
 
@@ -81,6 +83,9 @@
   "item.autotech.gold_plate": "Gold Plate",
   "item.autotech.bronze_plate": "Bronze Plate",
   "item.autotech.steel_plate": "Steel Plate",
+
+  "item.autotech.iron_rod": "Iron Rod",
+  "item.autotech.steel_rod": "Steel Rod",
 
   "item.autotech.lv_machine_hull": "Low Voltage Machine Hull",
   "item.autotech.mv_machine_hull": "Medium Voltage Machine Hull",

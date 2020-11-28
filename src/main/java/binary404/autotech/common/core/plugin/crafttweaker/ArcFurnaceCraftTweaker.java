@@ -1,5 +1,6 @@
 package binary404.autotech.common.core.plugin.crafttweaker;
 
+import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.ArcFurnaceManager;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.actions.IRuntimeAction;
@@ -17,8 +18,8 @@ import org.openzen.zencode.java.ZenCodeType;
 public class ArcFurnaceCraftTweaker {
 
     @ZenCodeType.Method
-    public static void addRecipe(IItemStack input, IItemStack output, int energy) {
-        CraftTweakerAPI.apply(new Add(input.getInternal(), output.getInternal(), energy));
+    public static void addRecipe(IItemStack input, IItemStack output, int energy, int tier) {
+        CraftTweakerAPI.apply(new Add(input.getInternal(), output.getInternal(), energy, Tier.values()[tier]));
     }
 
     @ZenCodeType.Method
@@ -29,16 +30,18 @@ public class ArcFurnaceCraftTweaker {
     private static class Add implements IRuntimeAction {
         private ItemStack input, output;
         private int energy;
+        private Tier minTier;
 
-        public Add(ItemStack input, ItemStack output, int energy) {
+        public Add(ItemStack input, ItemStack output, int energy, Tier minTier) {
             this.input = input;
             this.energy = energy;
             this.output = output;
+            this.minTier = minTier;
         }
 
         @Override
         public void apply() {
-            ArcFurnaceManager.addRecipe(energy, input, output);
+            ArcFurnaceManager.addRecipe(minTier, energy, input, output);
         }
 
         @Override

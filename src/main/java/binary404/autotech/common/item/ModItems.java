@@ -25,6 +25,7 @@ public class ModItems {
     public static Item platinum_ingot;
     public static Item titanium_ingot;
 
+    public static Item red_alloy_ingot;
     public static Item bronze_ingot;
     public static Item steel_ingot;
 
@@ -77,6 +78,7 @@ public class ModItems {
     public static Item coal_dust;
     public static Item charcoal_dust;
 
+    public static Item red_alloy_dust;
     public static Item bronze_dust;
 
     public static Item saw_dust;
@@ -127,6 +129,7 @@ public class ModItems {
         platinum_ingot = register(r, new Item(properties), "platinum_ingot");
         titanium_ingot = register(r, new Item(properties), "titanium_ingot");
 
+        red_alloy_ingot = register(r, new Item(properties), "red_alloy_ingot");
         bronze_ingot = register(r, new Item(properties), "bronze_ingot");
         steel_ingot = register(r, new Item(properties), "steel_ingot");
 
@@ -157,6 +160,7 @@ public class ModItems {
         gold_dust = register(r, new Item(properties), "gold_dust");
         netherite_dust = register(r, new Item(properties), "netherite_dust");
 
+        red_alloy_dust = register(r, new Item(properties), "red_alloy_dust");
         bronze_dust = register(r, new Item(properties), "bronze_dust");
 
         copper_plate = register(r, new Item(properties), "copper_plate");

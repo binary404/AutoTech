@@ -10,7 +10,7 @@
       "item": "autotech:nickel_plate"
     },
     "C": {
-      "item": "autotech:copper_ingot"
+      "tag": "forge:ingots/copper"
     },
     "R": {
       "item": "minecraft:redstone"

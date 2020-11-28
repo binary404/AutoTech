@@ -113,7 +113,7 @@ public class GrinderManager {
         return recipe;
     }
 
-    public static class GrinderRecipe {
+    public static class GrinderRecipe implements IMachineRecipe {
         ItemStack input;
         ItemStack primaryOutput;
         ItemStack secondaryOutput;
@@ -154,7 +154,7 @@ public class GrinderManager {
             return input;
         }
 
-        public ItemStack getPrimaryOutput() {
+        public ItemStack getOutput() {
             return primaryOutput;
         }
 

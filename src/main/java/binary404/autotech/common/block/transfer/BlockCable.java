@@ -144,7 +144,6 @@ public class BlockCable extends BlockTile implements IWaterLoggable {
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        super.onBlockPlacedBy(world, pos, state, placer, stack);
         if (world.isRemote) return;
         TileEntity tileEntity = world.getTileEntity(pos);
         if (tileEntity instanceof TileCable) {

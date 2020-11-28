@@ -22,7 +22,22 @@ public class AutoTechTagProvider extends BaseTagProvider {
         addBeaconTags();
         addPlates();
         addCircuits();
+        addIngots();
+        addDusts();
     }
+
+    private void addIngots() {
+        addToTag(ModTags.Items.INGOTS_RED_ALLOY, ModItems.red_alloy_ingot);
+
+        getItemBuilder(Tags.Items.INGOTS).add(ModTags.Items.INGOTS_RED_ALLOY);
+    }
+
+    private void addDusts() {
+        addToTag(ModTags.Items.DUSTS_RED_ALLOY, ModItems.red_alloy_dust);
+
+        getItemBuilder(Tags.Items.DUSTS).add(ModTags.Items.DUSTS_RED_ALLOY);
+    }
+
 
     private void addCircuits() {
         addToTag(ModTags.Items.MV_CIRCUITS_LOGIC, ModItems.mv_logic_circuit);

@@ -76,8 +76,8 @@ public class CentrifugeRecipeCategory implements IRecipeCategory<CentrifugeManag
 
         inputBuilder.add(Lists.newArrayList(centrifugeRecipe.getInput()));
 
-        if (!centrifugeRecipe.getOutput1().isEmpty())
-            outputBuilders.add(centrifugeRecipe.getOutput1());
+        if (!centrifugeRecipe.getOutput().isEmpty())
+            outputBuilders.add(centrifugeRecipe.getOutput());
 
         if (!centrifugeRecipe.getOutput2().isEmpty())
             outputBuilders.add(centrifugeRecipe.getOutput2());

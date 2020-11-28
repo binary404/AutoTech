@@ -1,7 +1,7 @@
 package binary404.autotech.common.core.logistics;
 
 public enum Tier {
-    LV(20000, 30, 300, 30, 100),
+    LV(20000, 50, 300, 500, 100),
     MV(50000, 100, 250, 100, 120),
     HV(100000, 250, 200, 250, 140),
     EV(500000, 700, 150, 700, 180),
