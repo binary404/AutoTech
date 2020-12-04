@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "autotech:block/arc_furnace_hatch"
+    "all": "autotech:block/hatch"
   }
 }

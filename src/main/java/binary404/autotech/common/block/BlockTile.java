@@ -1,6 +1,7 @@
 package binary404.autotech.common.block;
 
 import binary404.autotech.common.container.core.ContainerCore;
+import binary404.autotech.common.tile.core.INBTDrop;
 import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.util.IBlockEntity;
 import net.minecraft.block.AbstractBlock;
@@ -76,7 +77,7 @@ public class BlockTile extends Block {
 
     @Override
     public void harvestBlock(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        if (te instanceof TileCore) {
+        if (te instanceof TileCore && te instanceof INBTDrop && ((INBTDrop) te).dropNbt()) {
             TileCore tile = (TileCore) te;
             ItemStack stack1 = tile.storeToStack(new ItemStack(this));
             spawnAsEntity(world, pos, stack1);

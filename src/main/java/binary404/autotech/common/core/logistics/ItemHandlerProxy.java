@@ -11,10 +11,13 @@ import javax.annotation.Nonnull;
 public class ItemHandlerProxy extends Inventory {
 
     private IItemHandler insertHandler;
+    boolean allowInput, allowOutput;
 
-    public ItemHandlerProxy(IItemHandler insertHandler, TileCore tile) {
+    public ItemHandlerProxy(IItemHandler insertHandler, TileCore tile, boolean allowInput, boolean allowOutput) {
         super(insertHandler.getSlots(), tile);
         this.insertHandler = insertHandler;
+        this.allowInput = allowInput;
+        this.allowOutput = allowOutput;
     }
 
     @Override
@@ -31,7 +34,7 @@ public class ItemHandlerProxy extends Inventory {
     @Nonnull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        if (this.getTile().canExtract(slot))
+        if (this.getTile().canExtract(slot) && allowOutput)
             return insertHandler.extractItem(slot, amount, simulate);
         return ItemStack.EMPTY;
     }
@@ -39,7 +42,7 @@ public class ItemHandlerProxy extends Inventory {
     @Nonnull
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-        if (this.getTile().canInsert(slot))
+        if (this.getTile().canInsert(slot) && allowInput)
             return insertHandler.insertItem(slot, stack, simulate);
         return stack;
     }

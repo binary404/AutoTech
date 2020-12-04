@@ -1,31 +1,37 @@
-package binary404.autotech.common.tile.machine;
+package binary404.autotech.common.tile.multiblock;
 
-import binary404.autotech.common.block.machine.BlockDistillery;
+import binary404.autotech.common.block.ModBlocks;
+import binary404.autotech.common.block.multiblock.BlockDistillery;
+import binary404.autotech.common.core.lib.multiblock.*;
+import binary404.autotech.common.core.logistics.IOutputTank;
+import binary404.autotech.common.core.logistics.InputOutputFluidWrapper;
 import binary404.autotech.common.core.logistics.Tank;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.DistilleryManager;
 import binary404.autotech.common.tile.ModTiles;
-import binary404.autotech.common.tile.core.TileMachine;
 import binary404.autotech.common.tile.util.ITank;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.tags.FluidTags;
+import net.minecraft.block.BlockState;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileDistillery extends TileMachine<BlockDistillery> implements ITank {
+public class TileDistillery extends MultiblockControllerBase<BlockDistillery> implements ITank, IOutputTank {
 
-    protected Tank tank2 = new Tank(0);
+    private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {
+            MultiblockAbility.INPUT_ENERGY,
+            MultiblockAbility.EXPORT_FLUIDS,
+            MultiblockAbility.IMPORT_FLUIDS
+    };
+
+    protected Tank output_tank = new Tank(0);
 
     DistilleryManager.DistilleryRecipe recipe;
 
@@ -36,8 +42,28 @@ public class TileDistillery extends TileMachine<BlockDistillery> implements ITan
     public TileDistillery(Tier tier) {
         super(ModTiles.distillery, tier);
         this.inv.set(0);
-        this.tank.setCapacity(FluidAttributes.BUCKET_VOLUME * 5).setChange(() -> TileDistillery.this.sync(10));
-        this.tank2.setCapacity(FluidAttributes.BUCKET_VOLUME * 5).setChange(() -> TileDistillery.this.sync(10));
+        this.tank.setCapacity(FluidAttributes.BUCKET_VOLUME * 5).setChange(() -> TileDistillery.this.sync(4));
+        this.output_tank.setCapacity(FluidAttributes.BUCKET_VOLUME * 5).setChange(() -> TileDistillery.this.sync(4));
+    }
+
+    @Override
+    public void readSync(CompoundNBT nbt) {
+        super.readSync(nbt);
+        CompoundNBT tank2 = nbt.getCompound("output_tank");
+        this.output_tank.readFromNBT(tank2);
+    }
+
+    @Override
+    public CompoundNBT writeSync(CompoundNBT nbt) {
+        CompoundNBT output_tank = new CompoundNBT();
+        this.output_tank.writeToNBT(output_tank);
+        nbt.put("output_tank", output_tank);
+        return super.writeSync(nbt);
+    }
+
+    @Override
+    protected void updateFormedValid() {
+
     }
 
     @Override
@@ -56,7 +82,7 @@ public class TileDistillery extends TileMachine<BlockDistillery> implements ITan
             return false;
         }
 
-        return tank2.getFluid().isEmpty() || tank2.getFluid().getFluid() == recipe.getOutput().getFluid();
+        return output_tank.getFluid().isEmpty() || output_tank.getFluid().getFluid() == recipe.getOutput().getFluid();
     }
 
     @Override
@@ -96,27 +122,40 @@ public class TileDistillery extends TileMachine<BlockDistillery> implements ITan
 
         FluidStack output = recipe.getOutput();
 
-        tank2.fill(output.copy(), IFluidHandler.FluidAction.EXECUTE);
-
+        output_tank.fill(output.copy(), IFluidHandler.FluidAction.EXECUTE);
 
         this.tank.drain(recipe.getInput(), IFluidHandler.FluidAction.EXECUTE);
     }
 
     @Override
     protected void transferOutput() {
-        if (!this.tank2.isEmpty()) {
-            for (Direction direction : Direction.values()) {
-                TileEntity tile = world.getTileEntity(pos.offset(direction));
-                if (tile != null) {
-                    int drain = get(tile, direction).orElse(new Tank(0)).fill(tank2.getFluid(), IFluidHandler.FluidAction.EXECUTE);
-                    this.tank2.drain(drain, IFluidHandler.FluidAction.EXECUTE);
-                }
-            }
-        }
     }
 
     public static LazyOptional<IFluidHandler> get(TileEntity tile, Direction direction) {
         return tile == null ? LazyOptional.empty() : tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, direction != null ? direction.getOpposite() : null);
+    }
+
+    protected BlockState getCasingState() {
+        return ModBlocks.heat_proof_casing.getDefaultState();
+    }
+
+    protected BlockState getCoilState() {
+        return ModBlocks.basic_coil.getDefaultState();
+    }
+
+    @Override
+    protected BlockPattern createStructurePattern() {
+        return FactoryBlockPattern.start()
+                .aisle("XXX", "XXX", "XXX")
+                .aisle("CCC", "C#C", "CCC")
+                .aisle("CCC", "C#C", "CCC")
+                .aisle("ZZZ", "ZYZ", "ZZZ")
+                .where('Z', statePredicate(getCasingState()).or(abilityPartPredicate(ALLOWED_ABILITIES)))
+                .where('X', statePredicate(getCasingState()))
+                .where('C', statePredicate(getCoilState()))
+                .where('Y', selfPredicate())
+                .where('#', isAirPredicate())
+                .build();
     }
 
     @Override
@@ -127,25 +166,12 @@ public class TileDistillery extends TileMachine<BlockDistillery> implements ITan
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return LazyOptional.of(() -> new FluidTank(this.tank.getCapacity()) {
-
-                @Override
-                public int fill(FluidStack resource, FluidAction action) {
-                    return TileDistillery.this.tank.fill(resource, action);
-                }
-
-                @Nonnull
-                @Override
-                public FluidStack drain(FluidStack resource, FluidAction action) {
-                    return TileDistillery.this.tank2.drain(resource, action);
-                }
-            }).cast();
+            return LazyOptional.of(() -> new InputOutputFluidWrapper(this.tank, this.output_tank)).cast();
         }
-
         return super.getCapability(cap, side);
     }
 
-    public Tank getTank2() {
-        return tank2;
+    public Tank getOutputTank() {
+        return output_tank;
     }
 }

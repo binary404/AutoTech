@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "autotech:lv_arc_furnace_casing"
+          "name": "autotech:energy_input_hatch"
         }
       ],
       "conditions": [

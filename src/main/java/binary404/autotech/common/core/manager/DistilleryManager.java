@@ -21,9 +21,7 @@ public class DistilleryManager {
     }
 
     public static void init() {
-        addRecipe(30000, new FluidStack(Fluids.WATER, 2000), new FluidStack(ModFluids.distilled_water_source, 1000));
-
-        System.out.println(getRecipe(new FluidStack(Fluids.WATER, 1000)));
+        addRecipe(30000, new FluidStack(Fluids.WATER, 2000), new FluidStack(ModFluids.distilled_water, 1000));
     }
 
     public static DistilleryRecipe addRecipe(int energy, FluidStack input, FluidStack output) {

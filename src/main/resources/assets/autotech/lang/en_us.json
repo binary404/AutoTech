@@ -28,7 +28,9 @@
 
   "block.autotech.arc_furnace_hatch": "Arc Furnace Hatch",
   "block.autotech.lv_arc_furnace": "Low Voltage Arc Furnace",
-  "block.autotech.lv_arc_furnace_casing": "Low Voltage Arc Furnace Casing",
+
+  "block.autotech.heat_proof_casing": "Heat Proof Casing",
+  "block.autotech.basic_coil": "Basic Coil",
 
   "block.autotech.waterpump": "Water Pump",
 

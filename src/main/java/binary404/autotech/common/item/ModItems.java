@@ -202,7 +202,7 @@ public class ModItems {
         mortar = register(r, new ItemDamagable(properties.maxDamage(200), 5), "mortar");
         hammer = register(r, new ItemDamagable(properties.maxDamage(300), 10), "hammer");
 
-        distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water_source), "distilled_water_bucket");
+        distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water), "distilled_water_bucket");
 
         flour = register(r, new Item(properties.maxDamage(0).maxStackSize(64)), "flour");
 

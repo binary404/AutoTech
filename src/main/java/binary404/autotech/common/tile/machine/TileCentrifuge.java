@@ -52,7 +52,7 @@ public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITan
             return false;
         }
 
-        if (this.tank.getFluid().getFluid() != ModFluids.distilled_water_source) {
+        if (this.tank.getFluid().getFluid() != ModFluids.distilled_water) {
             return false;
         }
         return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getOutput().getItem();
@@ -72,7 +72,7 @@ public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITan
             return false;
         }
 
-        if (this.tank.getFluid().getFluid() != ModFluids.distilled_water_source) {
+        if (this.tank.getFluid().getFluid() != ModFluids.distilled_water) {
             return false;
         }
 

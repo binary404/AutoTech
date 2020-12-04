@@ -11,6 +11,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -28,7 +29,7 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
-public class TileCore<B extends BlockTile> extends TileEntity implements IBlockEntity {
+public class TileCore<B extends BlockTile> extends TileEntity implements IBlockEntity, INBTDrop {
 
     /**
      * Used when this is instance of {@link IInventory}
@@ -90,6 +91,12 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
         return new SUpdateTileEntityPacket(getPos(), 3, getUpdateTag());
     }
 
+    //INBT
+    @Override
+    public boolean dropNbt() {
+        return true;
+    }
+
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         readSync(pkt.getNbtCompound());
@@ -146,7 +153,8 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
         if (!tag.isEmpty()) {
             readStorable(tag.getCompound(NBTUtil.TAG_STORABLE_STACK));
         }
-        this.facing = state.get(BlockStateProperties.FACING);
+        if (state.hasProperty(BlockStateProperties.FACING))
+            this.facing = state.get(BlockStateProperties.FACING);
     }
 
     @Override

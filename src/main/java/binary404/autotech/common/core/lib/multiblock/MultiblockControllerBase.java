@@ -35,6 +35,14 @@ public abstract class MultiblockControllerBase<T extends BlockTile> extends Tile
         reinitializeStructurePattern();
     }
 
+    @Override
+    public void onRemoved(World world, BlockState state, BlockState newState, boolean isMoving) {
+        super.onRemoved(world, state, newState, isMoving);
+        for (IMultiblockPart part : multiblockParts) {
+            part.removeFromMultiBlock(this);
+        }
+    }
+
     protected void reinitializeStructurePattern() {
         this.structurePattern = createStructurePattern();
     }

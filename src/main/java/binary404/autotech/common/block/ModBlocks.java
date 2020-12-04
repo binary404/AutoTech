@@ -5,7 +5,8 @@ import binary404.autotech.common.block.device.BlockWaterPump;
 import binary404.autotech.common.block.generator.BlockSteamGenerator;
 import binary404.autotech.common.block.machine.*;
 import binary404.autotech.common.block.multiblock.BlockBlastFurnace;
-import binary404.autotech.common.block.multiblock.BlockBlastFurnaceHatch;
+import binary404.autotech.common.block.multiblock.BlockHatch;
+import binary404.autotech.common.block.multiblock.BlockDistillery;
 import binary404.autotech.common.block.transfer.BlockCable;
 import binary404.autotech.common.block.transfer.BlockConveyor;
 import binary404.autotech.common.core.logistics.Tier;
@@ -106,9 +107,15 @@ public class ModBlocks {
     public static Block iron_plating;
 
     public static Block lv_arc_furnace;
-    public static Block arc_furnace_hatch;
 
-    public static Block lv_arc_furnace_casing;
+    public static Block item_input_hatch;
+    public static Block item_output_hatch;
+    public static Block energy_input_hatch;
+    public static Block fluid_input_hatch;
+    public static Block fluid_output_hatch;
+
+    public static Block heat_proof_casing;
+    public static Block basic_coil;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -171,16 +178,23 @@ public class ModBlocks {
 
         mv_assembler = register(r, new BlockAssembler(Tier.MV), "mv_assembler");
 
-        distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water_source), "distilled_water");
+        distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water), "distilled_water");
 
         p = AbstractBlock.Properties.create(Material.IRON).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(4.0F, 8.0F);
 
         iron_plating = register(r, new Block(p), "iron_plating");
 
         lv_arc_furnace = register(r, new BlockBlastFurnace(Tier.LV), "lv_arc_furnace");
-        arc_furnace_hatch = register(r, new BlockBlastFurnaceHatch(), "arc_furnace_hatch");
 
-        lv_arc_furnace_casing = register(r, new Block(p), "lv_arc_furnace_casing");
+        item_input_hatch = register(r, new BlockHatch(), "item_input_hatch");
+        item_output_hatch = register(r, new BlockHatch(), "item_output_hatch");
+        energy_input_hatch = register(r, new BlockHatch(), "energy_input_hatch");
+        fluid_input_hatch = register(r, new BlockHatch(), "fluid_input_hatch");
+        fluid_output_hatch = register(r, new BlockHatch(), "fluid_output_hatch");
+
+        heat_proof_casing = register(r, new Block(p), "heat_proof_casing");
+        basic_coil = register(r, new Block(p), "basic_coil");
+
     }
 
     @SubscribeEvent
@@ -245,9 +259,15 @@ public class ModBlocks {
         register(r, new BlockItem(iron_plating, p), "iron_plating");
 
         register(r, new BlockItem(lv_arc_furnace, p), "lv_arc_furnace");
-        register(r, new BlockItem(arc_furnace_hatch, p), "arc_furnace_hatch");
 
-        register(r, new BlockItem(lv_arc_furnace_casing, p), "lv_arc_furnace_casing");
+        register(r, new BlockItem(item_input_hatch, p), "item_input_hatch");
+        register(r, new BlockItem(item_output_hatch, p), "item_output_hatch");
+        register(r, new BlockItem(energy_input_hatch, p), "energy_input_hatch");
+        register(r, new BlockItem(fluid_input_hatch, p), "fluid_input_hatch");
+        register(r, new BlockItem(fluid_output_hatch, p), "fluid_output_hatch");
+
+        register(r, new BlockItem(heat_proof_casing, p), "heat_proof_casing");
+        register(r, new BlockItem(basic_coil, p), "basic_coil");
     }
 
     public static void initRenderLayers() {

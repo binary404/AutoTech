@@ -8,4 +8,6 @@ public interface IMultiblockPart {
 
     void removeFromMultiBlock(MultiblockControllerBase controllerBase);
 
+    MultiblockControllerBase getController();
+
 }

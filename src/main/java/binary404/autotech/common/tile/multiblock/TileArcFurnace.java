@@ -2,9 +2,8 @@ package binary404.autotech.common.tile.multiblock;
 
 import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.block.multiblock.BlockBlastFurnace;
-import binary404.autotech.common.core.lib.multiblock.BlockPattern;
-import binary404.autotech.common.core.lib.multiblock.FactoryBlockPattern;
-import binary404.autotech.common.core.lib.multiblock.MultiblockControllerBase;
+import binary404.autotech.common.block.multiblock.BlockHatch;
+import binary404.autotech.common.core.lib.multiblock.*;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.ArcFurnaceManager;
 import binary404.autotech.common.tile.ModTiles;
@@ -15,12 +14,18 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
 
     ArcFurnaceManager.ArcFurnaceRecipe recipe;
 
+    private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {
+            MultiblockAbility.INPUT_ENERGY,
+            MultiblockAbility.IMPORT_ITEMS,
+            MultiblockAbility.EXPORT_ITEMS
+    };
+
     public TileArcFurnace() {
         this(Tier.LV);
     }
 
     public TileArcFurnace(Tier tier) {
-        super(ModTiles.blast_furnace, tier);
+        super(ModTiles.arc_furnace, tier);
         this.inv.set(2);
     }
 
@@ -89,19 +94,24 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
     }
 
     protected BlockState getCasingState() {
-        return ModBlocks.lv_arc_furnace_casing.getDefaultState();
+        return ModBlocks.heat_proof_casing.getDefaultState();
+    }
+
+    protected BlockState getCoilState() {
+        return ModBlocks.basic_coil.getDefaultState();
     }
 
     @Override
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
-                .aisle("XXX", "XZX", "XXX")
-                .aisle("XZX", "Z#Z", "XZX")
-                .aisle("XXX", "XYX", "XXX")
+                .aisle("ZZZ", "CCC", "CCC", "XXX")
+                .aisle("ZXZ", "C#C", "C#C", "XXX")
+                .aisle("ZYZ", "CCC", "CCC", "XXX")
                 .where('X', statePredicate(getCasingState()))
                 .where('Y', selfPredicate())
-                .where('Z', tilePredicate((state, tile) -> tile instanceof TileArcFurnaceHatch).or(statePredicate(getCasingState())))
+                .where('Z', abilityPartPredicate(ALLOWED_ABILITIES).or(statePredicate(getCasingState())))
                 .where('#', isAirPredicate())
+                .where('C', statePredicate(getCoilState()))
                 .build();
     }
 

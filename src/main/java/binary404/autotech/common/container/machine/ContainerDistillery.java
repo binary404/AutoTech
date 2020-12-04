@@ -2,7 +2,7 @@ package binary404.autotech.common.container.machine;
 
 import binary404.autotech.common.container.ModContainers;
 import binary404.autotech.common.container.core.ContainerTile;
-import binary404.autotech.common.tile.machine.TileDistillery;
+import binary404.autotech.common.tile.multiblock.TileDistillery;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketBuffer;
 

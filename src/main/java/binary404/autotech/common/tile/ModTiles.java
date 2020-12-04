@@ -2,11 +2,11 @@ package binary404.autotech.common.tile;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.ModBlocks;
+import binary404.autotech.common.tile.core.TileEnergy;
 import binary404.autotech.common.tile.device.TileWaterPump;
 import binary404.autotech.common.tile.generator.TileSteamGenerator;
 import binary404.autotech.common.tile.machine.*;
-import binary404.autotech.common.tile.multiblock.TileArcFurnace;
-import binary404.autotech.common.tile.multiblock.TileArcFurnaceHatch;
+import binary404.autotech.common.tile.multiblock.*;
 import binary404.autotech.common.tile.transfer.TileCable;
 import binary404.autotech.common.tile.transfer.TileConveyor;
 import net.minecraft.tileentity.TileEntityType;
@@ -51,9 +51,13 @@ public class ModTiles {
 
     public static TileEntityType<TileAssembler> assembler;
 
-    public static TileEntityType<TileArcFurnace> blast_furnace;
+    public static TileEntityType<TileArcFurnace> arc_furnace;
 
-    public static TileEntityType<TileArcFurnaceHatch> blast_furnace_hatch;
+    public static TileEntityType<TileItemInputHatch> item_input_hatch;
+    public static TileEntityType<TileItemOutputHatch> item_output_hatch;
+    public static TileEntityType<TileEnergyInputHatch> energy_input_hatch;
+    public static TileEntityType<TileFluidInputHatch> fluid_input_hatch;
+    public static TileEntityType<TileFluidOutputHatch> fluid_output_hatch;
 
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
@@ -70,8 +74,12 @@ public class ModTiles {
         distillery = (TileEntityType<TileDistillery>) register(r, TileEntityType.Builder.create(TileDistillery::new, ModBlocks.mv_distillery).build(null), "distillery");
         conveyor = (TileEntityType<TileConveyor>) register(r, TileEntityType.Builder.create(TileConveyor::new, ModBlocks.conveyor).build(null), "conveyor");
         assembler = (TileEntityType<TileAssembler>) register(r, TileEntityType.Builder.create(TileAssembler::new, ModBlocks.mv_assembler).build(null), "assembler");
-        blast_furnace = (TileEntityType<TileArcFurnace>) register(r, TileEntityType.Builder.create(TileArcFurnace::new, ModBlocks.lv_arc_furnace).build(null), "blast_furnace");
-        blast_furnace_hatch = (TileEntityType<TileArcFurnaceHatch>) register(r, TileEntityType.Builder.create(TileArcFurnaceHatch::new, ModBlocks.arc_furnace_hatch).build(null), "blast_furnace_hatch");
+        arc_furnace = (TileEntityType<TileArcFurnace>) register(r, TileEntityType.Builder.create(TileArcFurnace::new, ModBlocks.lv_arc_furnace).build(null), "arc_furnace");
+        item_input_hatch = (TileEntityType<TileItemInputHatch>) register(r, TileEntityType.Builder.create(TileItemInputHatch::new, ModBlocks.item_input_hatch).build(null), "hatch");
+        item_output_hatch = (TileEntityType<TileItemOutputHatch>) register(r, TileEntityType.Builder.create(TileItemOutputHatch::new, ModBlocks.item_output_hatch).build(null), "item_output_hatch");
+        energy_input_hatch = (TileEntityType<TileEnergyInputHatch>) register(r, TileEntityType.Builder.create(TileEnergyInputHatch::new, ModBlocks.energy_input_hatch).build(null), "energy_input_hatch");
+        fluid_input_hatch = (TileEntityType<TileFluidInputHatch>) register(r, TileEntityType.Builder.create(TileFluidInputHatch::new, ModBlocks.fluid_input_hatch).build(null), "fluid_input_hatch");
+        fluid_output_hatch = (TileEntityType<TileFluidOutputHatch>) register(r, TileEntityType.Builder.create(TileFluidOutputHatch::new, ModBlocks.fluid_output_hatch).build(null), "fluid_output_hatch");
     }
 
 }

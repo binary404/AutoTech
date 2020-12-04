@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "autotech:lv_arc_furnace_casing"
+      "autotech:heat_proof_casing"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "autotech:lv_arc_furnace_casing"
+        "recipe": "autotech:heat_proof_casing"
       }
     }
   },

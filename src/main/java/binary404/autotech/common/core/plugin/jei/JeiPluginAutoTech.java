@@ -1,7 +1,10 @@
 package binary404.autotech.common.core.plugin.jei;
 
+import binary404.autotech.client.gui.machine.GuiAssembler;
+import binary404.autotech.client.gui.machine.GuiGrinder;
 import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.core.manager.CentrifugeManager;
+import binary404.autotech.common.core.manager.GrinderManager;
 import binary404.autotech.common.core.plugin.jei.machine.*;
 import binary404.autotech.common.core.plugin.jei.multiblock.ArcFurnaceRecipeCategory;
 import mezz.jei.api.IModPlugin;
@@ -9,6 +12,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
@@ -22,6 +26,12 @@ public class JeiPluginAutoTech implements IModPlugin {
     public static IJeiHelpers jeiHelpers;
     public static IGuiHelper guiHelper;
     public static IJeiRuntime jeiRuntime;
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addRecipeClickArea(GuiGrinder.class, 72, 25, 22, 15, GrinderRecipeCategory.UID);
+        registration.addRecipeClickArea(GuiAssembler.class, 103, 25, 23, 15, AssemblerRecipeCategory.UID);
+    }
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {

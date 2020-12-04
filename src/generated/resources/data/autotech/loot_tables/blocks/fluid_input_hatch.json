@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "autotech:arc_furnace_hatch"
+          "name": "autotech:fluid_input_hatch"
         }
       ],
       "conditions": [

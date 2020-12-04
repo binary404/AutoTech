@@ -4,7 +4,7 @@ import binary404.autotech.client.gui.core.GuiEnergy;
 import binary404.autotech.client.gui.core.Texture;
 import binary404.autotech.common.container.machine.ContainerDistillery;
 import binary404.autotech.common.core.logistics.Tank;
-import binary404.autotech.common.tile.machine.TileDistillery;
+import binary404.autotech.common.tile.multiblock.TileDistillery;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.IReorderingProcessor;
@@ -31,7 +31,7 @@ public class GuiDistillery extends GuiEnergy<TileDistillery, ContainerDistillery
         FluidTank tank1 = this.te.getTank();
         drawTank(tank1, 44, 5);
 
-        FluidTank tank2 = this.te.getTank2();
+        FluidTank tank2 = this.te.getOutputTank();
         drawTank(tank2, 107, 5);
     }
 
@@ -46,7 +46,7 @@ public class GuiDistillery extends GuiEnergy<TileDistillery, ContainerDistillery
         }
         if (this.isMouseOver(mouseX, mouseY, 14, 62, this.guiLeft + 107, this.guiTop + 5)) {
             List<IReorderingProcessor> list = new ArrayList<>();
-            Tank tank = this.te.getTank2();
+            Tank tank = this.te.getOutputTank();
             list.add(new TranslationTextComponent("info.autotech.fluid", tank.getFluid().getFluid().getRegistryName().toString()).func_241878_f());
             list.add(new TranslationTextComponent("info.autotech.fluid_stored", tank.getFluid().getAmount() + "/" + tank.getCapacity()).func_241878_f());
             this.renderTooltip(matrix, list, mouseX, mouseY);

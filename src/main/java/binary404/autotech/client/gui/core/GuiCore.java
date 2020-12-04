@@ -10,6 +10,7 @@ import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Rectangle2d;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerInventory;
@@ -82,8 +83,8 @@ public class GuiCore<C extends ContainerCore> extends ContainerScreen<C> {
                 float green = (color >> 8 & 0xFF) / 255.0F;
                 float blue = (color & 0xFF) / 255.0F;
                 RenderSystem.color3f(red, green, blue);
-                TextureAtlasSprite sprite = this.mc.getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(still);
-                bindTexture(PlayerContainer.LOCATION_BLOCKS_TEXTURE);
+                TextureAtlasSprite sprite = this.mc.getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).apply(still);
+                bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
                 gaugeV(sprite, this.guiLeft + x, this.guiTop + y, 14, 62, tank.getCapacity(), tank.getFluidAmount());
                 RenderSystem.color3f(1.0F, 1.0F, 1.0F);
             }

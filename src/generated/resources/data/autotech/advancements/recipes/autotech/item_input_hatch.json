@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "autotech:arc_furnace_hatch"
+      "autotech:item_input_hatch"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "autotech:arc_furnace_hatch"
+        "recipe": "autotech:item_input_hatch"
       }
     }
   },

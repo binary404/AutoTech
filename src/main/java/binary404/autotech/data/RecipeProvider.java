@@ -259,7 +259,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModItems.copper_ingot))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_arc_furnace_casing, 4)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.heat_proof_casing, 4)
                 .key('I', ModBlocks.iron_plating)
                 .key('L', ModItems.lead_plate)
                 .key('T', ModItems.nickel_plate)
@@ -270,7 +270,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.lv_arc_furnace)
-                .key('C', ModBlocks.lv_arc_furnace_casing)
+                .key('C', ModBlocks.heat_proof_casing)
                 .key('L', ModTags.Items.PLATES_LEAD)
                 .key('T', ModItems.thermo_electric_component)
                 .patternLine("CLC")
@@ -279,7 +279,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModTags.Items.PLATES_LEAD))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.arc_furnace_hatch)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.item_input_hatch)
                 .key('R', Blocks.REDSTONE_BLOCK)
                 .key('N', ModTags.Items.PLATES_NICKEL)
                 .key('L', ModTags.Items.PLATES_LEAD)

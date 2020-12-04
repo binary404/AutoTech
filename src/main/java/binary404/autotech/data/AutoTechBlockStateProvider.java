@@ -4,7 +4,6 @@ import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -30,8 +29,9 @@ public class AutoTechBlockStateProvider extends BlockStateProvider {
         this.simpleBlockState(ModBlocks.titanium_ore);
 
         this.simpleBlockState(ModBlocks.iron_plating);
-        this.simpleBlockState(ModBlocks.lv_arc_furnace_casing);
-        this.simpleBlockState(ModBlocks.arc_furnace_hatch);
+        this.simpleBlockState(ModBlocks.heat_proof_casing);
+        this.simpleBlockState(ModBlocks.item_input_hatch);
+        this.simpleBlockState(ModBlocks.basic_coil);
     }
 
     private void simpleBlockState(Block b) {

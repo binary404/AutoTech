@@ -1,16 +1,14 @@
-package binary404.autotech.common.block.machine;
+package binary404.autotech.common.block.multiblock;
 
-import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.container.core.ContainerCore;
 import binary404.autotech.common.container.machine.ContainerDistillery;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.core.TileCore;
-import binary404.autotech.common.tile.machine.TileDistillery;
+import binary404.autotech.common.tile.multiblock.TileDistillery;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -21,7 +19,7 @@ import net.minecraftforge.fluids.FluidUtil;
 
 import javax.annotation.Nullable;
 
-public class BlockDistillery extends BlockTile {
+public class BlockDistillery extends BlockMultiBlock {
 
     Tier tier;
 
@@ -38,7 +36,7 @@ public class BlockDistillery extends BlockTile {
         if (tile instanceof TileDistillery) {
             TileDistillery distillery = (TileDistillery) tile;
             if (FluidUtil.interactWithFluidHandler(player, hand, world, pos, result.getFace())) {
-                distillery.sync();
+                distillery.sync(4);
                 return ActionResultType.SUCCESS;
             }
         }

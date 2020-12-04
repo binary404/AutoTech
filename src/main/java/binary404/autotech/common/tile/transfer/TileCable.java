@@ -34,6 +34,11 @@ public class TileCable extends TileTiered<BlockCable> {
         }
     }
 
+    @Override
+    public boolean dropNbt() {
+        return false;
+    }
+
     public TileCable() {
         this(Tier.LV);
     }

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "autotech:block/lv_arc_furnace_casing"
+    "all": "autotech:block/basic_coil"
   }
 }

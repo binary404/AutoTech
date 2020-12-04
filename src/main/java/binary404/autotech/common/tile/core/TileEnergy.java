@@ -21,7 +21,7 @@ import java.util.stream.IntStream;
 
 public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
 
-    protected final Energy energy = Energy.create(0);
+    protected Energy energy = Energy.create(0);
 
     public TileEnergy(TileEntityType<?> type) {
         super(type);

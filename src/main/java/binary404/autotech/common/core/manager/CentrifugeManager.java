@@ -134,7 +134,7 @@ public class CentrifugeManager {
                 return inputTag.contains(input.getItem());
             if (getInput().getItem().equals(input.getItem()))
                 return true;
-            return input.getItem().delegate.get().equals(getInput().getItem().delegate.get());
+            return getInput().getItem().delegate.get().equals(input.getItem().delegate.get());
         }
     }
 
