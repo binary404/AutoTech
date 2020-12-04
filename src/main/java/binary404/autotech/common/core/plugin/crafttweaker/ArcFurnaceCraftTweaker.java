@@ -18,22 +18,23 @@ import org.openzen.zencode.java.ZenCodeType;
 public class ArcFurnaceCraftTweaker {
 
     @ZenCodeType.Method
-    public static void addRecipe(IItemStack input, IItemStack output, int energy, int tier) {
-        CraftTweakerAPI.apply(new Add(input.getInternal(), output.getInternal(), energy, Tier.values()[tier]));
+    public static void addRecipe(IItemStack input, IItemStack input2, IItemStack output, int energy, int tier) {
+        CraftTweakerAPI.apply(new Add(input.getInternal(), input2.getInternal(), output.getInternal(), energy, Tier.values()[tier]));
     }
 
     @ZenCodeType.Method
-    public static void removeRecipe(IItemStack input) {
-        CraftTweakerAPI.apply(new Remove(input.getInternal()));
+    public static void removeRecipe(IItemStack input, IItemStack input2) {
+        CraftTweakerAPI.apply(new Remove(input.getInternal(), input2.getInternal()));
     }
 
     private static class Add implements IRuntimeAction {
-        private ItemStack input, output;
+        private ItemStack input, input2, output;
         private int energy;
         private Tier minTier;
 
-        public Add(ItemStack input, ItemStack output, int energy, Tier minTier) {
+        public Add(ItemStack input, ItemStack input2, ItemStack output, int energy, Tier minTier) {
             this.input = input;
+            this.input2 = input2;
             this.energy = energy;
             this.output = output;
             this.minTier = minTier;
@@ -41,7 +42,7 @@ public class ArcFurnaceCraftTweaker {
 
         @Override
         public void apply() {
-            ArcFurnaceManager.addRecipe(minTier, energy, input, output);
+            ArcFurnaceManager.addRecipe(minTier, energy, input, input2, output);
         }
 
         @Override
@@ -51,16 +52,17 @@ public class ArcFurnaceCraftTweaker {
     }
 
     private static class Remove implements IRuntimeAction {
-        private ItemStack input;
+        private ItemStack input, input2;
 
-        public Remove(ItemStack input) {
+        public Remove(ItemStack input, ItemStack input2) {
             this.input = input;
+            this.input2 = input2;
         }
 
         @Override
         public void apply() {
-            if (ArcFurnaceManager.recipeExists(input)) {
-                ArcFurnaceManager.removeRecipe(input);
+            if (ArcFurnaceManager.recipeExists(input, input2)) {
+                ArcFurnaceManager.removeRecipe(input, input2);
             }
         }
 

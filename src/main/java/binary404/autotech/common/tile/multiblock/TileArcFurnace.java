@@ -2,7 +2,6 @@ package binary404.autotech.common.tile.multiblock;
 
 import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.block.multiblock.BlockBlastFurnace;
-import binary404.autotech.common.block.multiblock.BlockHatch;
 import binary404.autotech.common.core.lib.multiblock.*;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.ArcFurnaceManager;
@@ -26,7 +25,7 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
 
     public TileArcFurnace(Tier tier) {
         super(ModTiles.arc_furnace, tier);
-        this.inv.set(2);
+        this.inv.set(3);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
         if (inv.getStackInSlot(0).isEmpty() || energy.getEnergyStored() <= 0)
             return false;
 
-        this.recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0));
+        this.recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0), inv.getStackInSlot(1));
 
         if (recipe == null)
             return false;
@@ -42,18 +41,20 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
         if (inv.getStackInSlot(0).getCount() < recipe.getInputCount())
             return false;
 
-        return this.inv.getStackInSlot(1).isEmpty() || this.inv.getStackInSlot(1).getItem() == this.recipe.getOutput().getItem();
+        if (inv.getStackInSlot(1).getCount() < recipe.getInputCount2())
+            return false;
+        return this.inv.getStackInSlot(2).isEmpty() || this.inv.getStackInSlot(2).getItem() == this.recipe.getOutput().getItem();
     }
 
     @Override
     protected boolean hasValidInput() {
         if (recipe == null)
-            recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0));
+            recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0), inv.getStackInSlot(1));
 
         if (recipe == null)
             return false;
 
-        return recipe.getInputCount() <= inv.getStackInSlot(0).getCount();
+        return recipe.getInputCount() <= inv.getStackInSlot(0).getCount() && recipe.getInputCount2() <= inv.getStackInSlot(1).getCount();
     }
 
     @Override
@@ -70,7 +71,7 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
     @Override
     protected void processFinish() {
         if (recipe == null)
-            recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0));
+            recipe = ArcFurnaceManager.getRecipe(inv.getStackInSlot(0), inv.getStackInSlot(1));
 
         if (recipe == null) {
             processOff();
@@ -79,13 +80,14 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
 
         ItemStack output = recipe.getOutput();
 
-        if (inv.getStackInSlot(1).isEmpty()) {
-            inv.setStack(1, output.copy());
+        if (inv.getStackInSlot(2).isEmpty()) {
+            inv.setStack(2, output.copy());
         } else {
-            inv.getStackInSlot(1).grow(output.getCount());
+            inv.getStackInSlot(2).grow(output.getCount());
         }
 
-        inv.getStackInSlot(0).shrink(recipe.getInput().getCount());
+        inv.getStackInSlot(0).shrink(recipe.getInputCount());
+        inv.getStackInSlot(1).shrink(recipe.getInputCount2());
     }
 
     @Override
@@ -117,11 +119,11 @@ public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> 
 
     @Override
     public boolean canInsert(int slot, ItemStack stack) {
-        return slot == 0 && ArcFurnaceManager.recipeExists(stack);
+        return slot == 0 || slot == 1;
     }
 
     @Override
     public boolean canExtract(int slot) {
-        return slot != 0;
+        return slot != 0 && slot != 1;
     }
 }

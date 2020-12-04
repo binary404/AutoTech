@@ -29,7 +29,7 @@ public class ArcFurnaceRecipeCategory implements IRecipeCategory<ArcFurnaceManag
     public String localizedName;
 
     public ArcFurnaceRecipeCategory(IGuiHelper guiHelper) {
-        ResourceLocation location = AutoTech.key("textures/gui/container/lv_grinder.png");
+        ResourceLocation location = AutoTech.key("textures/gui/container/arc_furnace.png");
         background = guiHelper.createDrawable(location, 25, 0, 151, 74);
         icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.lv_arc_furnace));
         localizedName = I18n.format("autotech.arc_furnace");
@@ -74,7 +74,7 @@ public class ArcFurnaceRecipeCategory implements IRecipeCategory<ArcFurnaceManag
         ImmutableList.Builder<List<ItemStack>> inputBuilder = ImmutableList.builder();
         ImmutableList.Builder<ItemStack> outputBuilders = ImmutableList.builder();
 
-        inputBuilder.add(Lists.newArrayList(centrifugeRecipe.getInput()));
+        inputBuilder.add(Lists.newArrayList(centrifugeRecipe.getInput(), centrifugeRecipe.getInput2()));
 
         if (!centrifugeRecipe.getOutput().isEmpty())
             outputBuilders.add(centrifugeRecipe.getOutput());
@@ -90,11 +90,13 @@ public class ArcFurnaceRecipeCategory implements IRecipeCategory<ArcFurnaceManag
 
         IGuiItemStackGroup guiItemStacks = iRecipeLayout.getItemStacks();
 
-        guiItemStacks.init(0, true, 27, 22);
-        guiItemStacks.init(1, false, 71, 22);
+        guiItemStacks.init(0, true, 23, 22);
+        guiItemStacks.init(1, true, 50, 22);
+        guiItemStacks.init(2, false, 110, 22);
 
-        guiItemStacks.set(0, inputs.get(0));
-        guiItemStacks.set(1, outputs.get(0));
+        guiItemStacks.set(0, centrifugeRecipe.getInput());
+        guiItemStacks.set(1, centrifugeRecipe.getInput2());
+        guiItemStacks.set(2, outputs.get(0));
 
         guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
             if (slotIndex == 0) {

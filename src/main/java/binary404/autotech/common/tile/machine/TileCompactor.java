@@ -1,6 +1,5 @@
 package binary404.autotech.common.tile.machine;
 
-import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.machine.BlockCompactor;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.CompactorManager;

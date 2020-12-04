@@ -1,35 +1,16 @@
 package binary404.autotech.common.core.manager;
 
-import binary404.autotech.common.container.machine.SawMillContainer;
 import binary404.autotech.common.core.logistics.Tier;
-import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class SawMillManager {
 
@@ -152,7 +133,6 @@ public class SawMillManager {
             return inputCount;
         }
 
-        @Override
         public boolean recipeMatches(ItemStack input) {
             if (inputTag != null)
                 return inputTag.contains(input.getItem());

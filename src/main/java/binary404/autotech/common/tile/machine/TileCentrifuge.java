@@ -3,7 +3,6 @@ package binary404.autotech.common.tile.machine;
 import binary404.autotech.common.block.machine.BlockCentrifuge;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.CentrifugeManager;
-import binary404.autotech.common.core.manager.CentrifugeManager;
 import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.TileMachine;

@@ -24,8 +24,9 @@ public class ArcFurnaceContainer extends ContainerTile<TileArcFurnace> {
     @Override
     protected void init(PlayerInventory inventory, TileArcFurnace te) {
         super.init(inventory, te);
-        addSlot(new SlotBase(te.getInventory(), 0, 53, 23));
-        addSlot(new SlotBase(te.getInventory(), 1, 97, 23));
+        addSlot(new SlotBase(te.getInventory(), 0, 49, 23));
+        addSlot(new SlotBase(te.getInventory(), 1, 76, 23));
+        addSlot(new SlotBase(te.getInventory(), 2, 136, 22));
         addPlayerInventory(inventory, 8, 84, 4);
     }
 }

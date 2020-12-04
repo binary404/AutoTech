@@ -1,16 +1,13 @@
 package binary404.autotech.common.core.manager;
 
 import binary404.autotech.common.core.logistics.Tier;
-import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ITag;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CentrifugeManager {
 
@@ -128,7 +125,6 @@ public class CentrifugeManager {
             return inputCount;
         }
 
-        @Override
         public boolean recipeMatches(ItemStack input) {
             if (inputTag != null)
                 return inputTag.contains(input.getItem());

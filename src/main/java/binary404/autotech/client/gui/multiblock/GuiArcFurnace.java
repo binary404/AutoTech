@@ -11,12 +11,12 @@ import net.minecraft.util.text.ITextComponent;
 public class GuiArcFurnace extends GuiEnergy<TileArcFurnace, ArcFurnaceContainer> {
 
     public GuiArcFurnace(ArcFurnaceContainer container, PlayerInventory inv, ITextComponent title) {
-        super(container, inv, title, Texture.LV_GRINDER);
+        super(container, inv, title, Texture.ARC_FURNACE);
     }
 
     @Override
     protected void drawBackground(MatrixStack matrix, float partialTicks, int mouseX, int mouseY) {
         super.drawBackground(matrix, partialTicks, mouseX, mouseY);
-        Texture.PROGRESS_ARROW.drawQuanity(this.te.getScaledProgress(), matrix, this.guiLeft + 72, this.guiTop + 25);
+        Texture.PROGRESS_ARROW.drawQuanity(this.te.getScaledProgress(), matrix, this.guiLeft + 103, this.guiTop + 25);
     }
 }

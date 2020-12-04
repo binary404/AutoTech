@@ -2,7 +2,6 @@ package binary404.autotech.common.core.plugin.jei.machine;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.ModBlocks;
-import binary404.autotech.common.core.manager.GrinderManager;
 import binary404.autotech.common.core.manager.SawMillManager;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;

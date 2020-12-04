@@ -47,6 +47,8 @@ public class Texture extends AbstractGui {
 
     public static final Texture ASSEMBLER = register("container/assembler", 176, 166, 0, 0);
 
+    public static final Texture ARC_FURNACE = register("container/arc_furnace", 176, 166, 0, 0);
+
     public static final Texture PROGRESS_ARROW = register("container/lv_grinder", 22, 16, 205, 0);
     public static final Texture ENERGY_GAUGE = register("container/furnator", 14, 62, 176, 0);
     public static final Texture PROGRESS = register("container/furnator", 14, 14, 176, 69);

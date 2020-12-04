@@ -1,10 +1,8 @@
 package binary404.autotech.common.core.manager;
 
 import binary404.autotech.common.core.logistics.Tier;
-import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.item.ModItems;
 import binary404.autotech.common.tags.ModTags;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +11,6 @@ import net.minecraft.tags.ITag;
 import net.minecraftforge.common.Tags;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class GrinderManager {
 

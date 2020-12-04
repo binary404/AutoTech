@@ -19,6 +19,4 @@ public interface IMachineRecipe {
 
     int getInputCount();
 
-    boolean recipeMatches(ItemStack input);
-
 }
