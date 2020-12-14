@@ -1,19 +1,15 @@
 package binary404.autotech.client.gui.core;
 
-import binary404.autotech.client.gui.widget.IconButton;
 import binary404.autotech.common.container.core.ContainerTile;
-import binary404.autotech.common.core.logistics.Energy;
-import binary404.autotech.common.network.PacketHandler;
+import binary404.autotech.common.core.logistics.energy.Energy;
 import binary404.autotech.common.tile.core.TileEnergy;
 import binary404.autotech.common.tile.util.IInventory;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.Direction;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.List;

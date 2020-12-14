@@ -54,7 +54,6 @@ public class AssemblerCraftTweaker {
 
         @Override
         public void apply() {
-            AssemblerManager.addRecipe(minTier, energy, time, input, output);
         }
 
         @Override
@@ -72,9 +71,6 @@ public class AssemblerCraftTweaker {
 
         @Override
         public void apply() {
-            if (AssemblerManager.recipeExists(list)) {
-                AssemblerManager.removeRecipe(list);
-            }
         }
 
         @Override

@@ -1,10 +1,9 @@
 package binary404.autotech.common.block;
 
 import binary404.autotech.common.container.core.ContainerCore;
-import binary404.autotech.common.tile.core.INBTDrop;
+import binary404.autotech.common.tile.util.INBTDrop;
 import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.util.IBlockEntity;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
@@ -33,7 +32,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.network.NetworkHooks;
-import org.lwjgl.system.CallbackI;
 
 import static net.minecraft.state.properties.BlockStateProperties.*;
 

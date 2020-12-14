@@ -1,21 +1,21 @@
 package binary404.autotech.common.tile.machine;
 
 import binary404.autotech.common.block.machine.BlockAssembler;
-import binary404.autotech.common.block.machine.BlockCentrifuge;
+import binary404.autotech.common.core.logistics.fluid.Tank;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.manager.AssemblerManager;
 import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.TileMachine;
+import binary404.autotech.common.tile.util.ITank;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileAssembler extends TileMachine<BlockAssembler> {
+public class TileAssembler extends TileMachine<BlockAssembler> implements ITank {
 
     AssemblerManager.AssemblerRecipe recipe;
-
-    int recipeTicks = 0;
 
     public TileAssembler() {
         this(Tier.MV);
@@ -24,6 +24,7 @@ public class TileAssembler extends TileMachine<BlockAssembler> {
     public TileAssembler(Tier tier) {
         super(ModTiles.assembler, tier);
         this.inv.set(10);
+        this.tank = new Tank(1000);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class TileAssembler extends TileMachine<BlockAssembler> {
             return false;
         }
 
-        this.recipe = AssemblerManager.getRecipe(input);
+        this.recipe = AssemblerManager.getRecipe(input, this.tank.getFluid());
 
         if (recipe == null) {
             return false;
@@ -61,7 +62,7 @@ public class TileAssembler extends TileMachine<BlockAssembler> {
         }
 
         if (recipe == null) {
-            this.recipe = AssemblerManager.getRecipe(input);
+            this.recipe = AssemblerManager.getRecipe(input, this.tank.getFluid());
         }
 
         if (recipe == null) {
@@ -79,23 +80,6 @@ public class TileAssembler extends TileMachine<BlockAssembler> {
     protected void processStart() {
         processMax = recipe.getEnergy();
         processRem = processMax;
-        this.recipeTicks = recipe.getMinTime();
-    }
-
-    @Override
-    protected boolean canFinish() {
-        return super.canFinish() && recipeTicks <= 0;
-    }
-
-    @Override
-    protected int processTick() {
-        this.recipeTicks--;
-        if (processRem <= 0) {
-            return 0;
-        }
-        this.energy.consume(this.tier.use);
-        processRem -= this.tier.use;
-        return this.tier.use;
     }
 
     @Override
@@ -107,7 +91,7 @@ public class TileAssembler extends TileMachine<BlockAssembler> {
         }
 
         if (recipe == null) {
-            this.recipe = AssemblerManager.getRecipe(input);
+            this.recipe = AssemblerManager.getRecipe(input, this.tank.getFluid());
         }
 
         if (recipe == null) {
@@ -129,6 +113,8 @@ public class TileAssembler extends TileMachine<BlockAssembler> {
                 stack.shrink(1);
             }
         }
+
+        this.tank.drain(this.recipe.getFluid_input(), IFluidHandler.FluidAction.EXECUTE);
     }
 
     @Override

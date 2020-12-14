@@ -1,10 +1,12 @@
 package binary404.autotech.common.container;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.container.core.ContainerTile;
 import binary404.autotech.common.container.device.ContainerWaterPump;
 import binary404.autotech.common.container.generator.BioGeneratorContainer;
 import binary404.autotech.common.container.machine.*;
 import binary404.autotech.common.container.multiblock.ArcFurnaceContainer;
+import binary404.autotech.common.container.multiblock.AssemblyLineContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -30,6 +32,8 @@ public class ModContainers {
     public static final ContainerType<ContainerDistillery> distillery = register("distillery", ContainerDistillery::new);
     public static final ContainerType<AssemblerContainer> assembler = register("assembler", AssemblerContainer::new);
     public static final ContainerType<ArcFurnaceContainer> arc_furnace = register("arc_furnace", ArcFurnaceContainer::new);
+    public static final ContainerType<ChargerContainer> charger = register("charger", ChargerContainer::new);
+    public static final ContainerType<AssemblyLineContainer> assembly_line = register("assembly_line", AssemblyLineContainer::new);
 
     static <T extends Container> ContainerType<T> register(final String name, final IContainerFactory<T> factory) {
         final ContainerType<T> containerType = IForgeContainerType.create(factory);

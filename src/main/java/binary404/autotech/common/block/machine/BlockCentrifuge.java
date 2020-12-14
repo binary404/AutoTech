@@ -38,7 +38,7 @@ public class BlockCentrifuge extends BlockTile {
         if (tile instanceof TileCentrifuge) {
             TileCentrifuge centrifuge = (TileCentrifuge) tile;
             if (FluidUtil.interactWithFluidHandler(player, hand, centrifuge.getTank())) {
-                centrifuge.sync();
+                centrifuge.sync(5);
                 return ActionResultType.SUCCESS;
             }
         }

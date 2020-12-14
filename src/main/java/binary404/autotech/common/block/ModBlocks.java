@@ -4,6 +4,8 @@ import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.device.BlockWaterPump;
 import binary404.autotech.common.block.generator.BlockSteamGenerator;
 import binary404.autotech.common.block.machine.*;
+import binary404.autotech.common.block.misc.BlockDisplayStand;
+import binary404.autotech.common.block.multiblock.BlockAssemblyLine;
 import binary404.autotech.common.block.multiblock.BlockBlastFurnace;
 import binary404.autotech.common.block.multiblock.BlockHatch;
 import binary404.autotech.common.block.multiblock.BlockDistillery;
@@ -15,6 +17,7 @@ import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.item.ModItems;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.GlassBlock;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -66,6 +69,7 @@ public class ModBlocks {
 
     public static Block lv_steam_generator;
     public static Block mv_steam_generator;
+    public static Block hv_steam_generator;
 
     public static Block lv_sawmill;
     public static Block mv_sawmill;
@@ -102,6 +106,10 @@ public class ModBlocks {
 
     public static Block mv_assembler;
 
+    public static Block mv_charger;
+
+    public static Block hv_assembly_line;
+
     public static BlockBasicFlowingFluid distilled_water;
 
     public static Block iron_plating;
@@ -115,7 +123,17 @@ public class ModBlocks {
     public static Block fluid_output_hatch;
 
     public static Block heat_proof_casing;
+    public static Block mechanical_casing;
     public static Block basic_coil;
+
+    public static Block reinforced_glass;
+
+    public static Block display_stand;
+
+    public static Block empowerer;
+
+    public static Block rust;
+    public static Block rust2;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -142,6 +160,7 @@ public class ModBlocks {
 
         lv_steam_generator = register(r, new BlockSteamGenerator(Tier.LV), "lv_steam_generator");
         mv_steam_generator = register(r, new BlockSteamGenerator(Tier.MV), "mv_steam_generator");
+        hv_steam_generator = register(r, new BlockSteamGenerator(Tier.HV), "hv_steam_generator");
 
         lv_sawmill = register(r, new BlockSawMill(Tier.LV), "lv_sawmill");
         mv_sawmill = register(r, new BlockSawMill(Tier.MV), "mv_sawmill");
@@ -178,6 +197,10 @@ public class ModBlocks {
 
         mv_assembler = register(r, new BlockAssembler(Tier.MV), "mv_assembler");
 
+        mv_charger = register(r, new BlockCharger(Tier.MV), "mv_charger");
+
+        hv_assembly_line = register(r, new BlockAssemblyLine(Tier.HV), "hv_assembly_line");
+
         distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water), "distilled_water");
 
         p = AbstractBlock.Properties.create(Material.IRON).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(4.0F, 8.0F);
@@ -193,8 +216,17 @@ public class ModBlocks {
         fluid_output_hatch = register(r, new BlockHatch(), "fluid_output_hatch");
 
         heat_proof_casing = register(r, new Block(p), "heat_proof_casing");
+        mechanical_casing = register(r, new Block(p), "mechanical_casing");
         basic_coil = register(r, new Block(p), "basic_coil");
 
+        reinforced_glass = register(r, new GlassBlock(AbstractBlock.Properties.create(Material.IRON).notSolid().setRequiresTool().harvestTool(ToolType.PICKAXE)), "reinforced_glass");
+
+        display_stand = register(r, new BlockDisplayStand(), "display_stand");
+
+        empowerer = register(r, new BlockEmpowerer(), "empowerer");
+
+        rust = register(r, new Block(p), "rust");
+        rust2 = register(r, new Block(p), "rust2");
     }
 
     @SubscribeEvent
@@ -221,6 +253,7 @@ public class ModBlocks {
 
         register(r, new BlockItem(lv_steam_generator, p), "lv_steam_generator");
         register(r, new BlockItem(mv_steam_generator, p), "mv_steam_generator");
+        register(r, new BlockItem(hv_steam_generator, p), "hv_steam_generator");
 
         register(r, new BlockItem(lv_sawmill, p), "lv_sawmill");
         register(r, new BlockItem(mv_sawmill, p), "mv_sawmill");
@@ -256,6 +289,10 @@ public class ModBlocks {
 
         register(r, new BlockItem(mv_assembler, p), "mv_assembler");
 
+        register(r, new BlockItem(mv_charger, p), "mv_charger");
+
+        register(r, new BlockItem(hv_assembly_line, p), "hv_assembly_line");
+
         register(r, new BlockItem(iron_plating, p), "iron_plating");
 
         register(r, new BlockItem(lv_arc_furnace, p), "lv_arc_furnace");
@@ -267,11 +304,22 @@ public class ModBlocks {
         register(r, new BlockItem(fluid_output_hatch, p), "fluid_output_hatch");
 
         register(r, new BlockItem(heat_proof_casing, p), "heat_proof_casing");
+        register(r, new BlockItem(mechanical_casing, p), "mechanical_casing");
         register(r, new BlockItem(basic_coil, p), "basic_coil");
+
+        register(r, new BlockItem(reinforced_glass, p), "reinforced_glass");
+
+        register(r, new BlockItem(display_stand, p), "display_stand");
+
+        register(r, new BlockItem(empowerer, p), "empowerer");
+
+        register(r, new BlockItem(rust, p), "rust");
+        register(r, new BlockItem(rust2, p), "rust2");
     }
 
     public static void initRenderLayers() {
         setRenderLayer(distilled_water, RenderType.getTranslucent());
+        setRenderLayer(reinforced_glass, RenderType.getTranslucent());
     }
 
 }

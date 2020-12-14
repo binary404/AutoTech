@@ -18,6 +18,7 @@ public class Screens {
         ScreenManager.registerFactory(ModContainers.distillery, GuiDistillery::new);
         ScreenManager.registerFactory(ModContainers.assembler, GuiAssembler::new);
         ScreenManager.registerFactory(ModContainers.arc_furnace, GuiArcFurnace::new);
+        ScreenManager.registerFactory(ModContainers.charger, GuiCharger::new);
     }
 
 }

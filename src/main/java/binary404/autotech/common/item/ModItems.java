@@ -3,9 +3,8 @@ package binary404.autotech.common.item;
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.fluid.ItemBasicFluidBucket;
 import binary404.autotech.common.fluid.ModFluids;
-import net.minecraft.item.EnchantedGoldenAppleItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Rarity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.*;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -114,6 +113,13 @@ public class ModItems {
     public static Item mv_vacuum_tube;
     public static Item mv_resistor;
 
+    public static Item energy_leggings;
+    public static Item energy_boots;
+    public static Item energy_chestplate;
+    public static Item energy_helmet;
+
+    public static Item jetpack;
+
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
     @SubscribeEvent
@@ -220,6 +226,13 @@ public class ModItems {
         mv_centrifugal_component = register(r, new Item(properties), "mv_centrifugal_component");
         mv_vacuum_tube = register(r, new Item(properties), "mv_vacuum_tube");
         mv_resistor = register(r, new Item(properties), "mv_resistor");
+
+        energy_leggings = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.LEGS), "energy_leggings");
+        energy_boots = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.FEET), "energy_boots");
+        energy_chestplate = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.CHEST), "energy_chestplate");
+        energy_helmet = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.HEAD), "energy_helmet");
+
+        jetpack = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.CHEST), "jetpack");
     }
 
 }

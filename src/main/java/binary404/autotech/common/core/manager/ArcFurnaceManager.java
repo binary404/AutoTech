@@ -15,9 +15,9 @@ public class ArcFurnaceManager {
     private static ArrayList<ArcFurnaceRecipe> recipeMap = new ArrayList<>();
 
     public static void initTags() {
-        addRecipe(Tier.LV, 30000, Tags.Items.INGOTS_IRON, 1, null, 0, new ItemStack(ModItems.steel_ingot));
+        addRecipe(Tier.LV, 40000, Tags.Items.INGOTS_IRON, 1, null, 0, new ItemStack(ModItems.steel_ingot));
         addRecipe(Tier.LV, 20000, ModTags.Items.DUSTS_RED_ALLOY, 1, null, 0, new ItemStack(ModItems.red_alloy_ingot));
-        addRecipe(Tier.LV, 30000, ModTags.Items.INGOTS_COPPER, 1, Tags.Items.DUSTS_REDSTONE, 2, new ItemStack(ModItems.red_alloy_ingot, 2));
+        addRecipe(Tier.LV, 35000, ModTags.Items.INGOTS_COPPER, 1, Tags.Items.DUSTS_REDSTONE, 2, new ItemStack(ModItems.red_alloy_ingot, 2));
     }
 
     public static ArcFurnaceRecipe getRecipe(ItemStack input, ItemStack input2) {

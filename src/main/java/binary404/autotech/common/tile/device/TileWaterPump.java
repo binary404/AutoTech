@@ -1,17 +1,14 @@
 package binary404.autotech.common.tile.device;
 
 import binary404.autotech.common.block.device.BlockWaterPump;
-import binary404.autotech.common.core.logistics.Tank;
+import binary404.autotech.common.core.logistics.fluid.Tank;
 import binary404.autotech.common.tile.ModTiles;
-import binary404.autotech.common.tile.core.TileCore;
 import binary404.autotech.common.tile.core.TileTickable;
 import binary404.autotech.common.tile.util.IInventory;
 import binary404.autotech.common.tile.util.ITank;
-import com.google.gson.internal.$Gson$Preconditions;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;

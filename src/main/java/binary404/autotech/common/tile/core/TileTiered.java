@@ -52,10 +52,6 @@ public class TileTiered<B extends BlockTile> extends TileEnergy<B> {
         return tier.use;
     }
 
-    public int getBaseSpeed() {
-        return tier.speed;
-    }
-
     @Override
     public long getGeneration() {
         return this.tier.gen;

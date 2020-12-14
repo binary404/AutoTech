@@ -1,11 +1,8 @@
 package binary404.autotech.common.core.lib.multiblock;
 
-import binary404.autotech.common.core.logistics.Energy;
-import binary404.autotech.common.core.logistics.Inventory;
-import binary404.autotech.common.core.logistics.Tank;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.items.IItemHandlerModifiable;
+import binary404.autotech.common.core.logistics.energy.Energy;
+import binary404.autotech.common.core.logistics.item.Inventory;
+import binary404.autotech.common.core.logistics.fluid.Tank;
 
 public class MultiblockAbility<T> {
 

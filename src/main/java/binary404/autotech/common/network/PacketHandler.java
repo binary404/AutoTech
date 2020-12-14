@@ -27,6 +27,9 @@ public class PacketHandler {
 
         HANDLER.registerMessage(id++, PacketItemChange.class, PacketItemChange::encode, PacketItemChange::decode, PacketItemChange::handle);
         HANDLER.registerMessage(id++, PacketRedstoneChange.class, PacketRedstoneChange::encode, PacketRedstoneChange::decode, PacketRedstoneChange::handle);
+        HANDLER.registerMessage(id++, PacketEnergySuit.class, PacketEnergySuit::encode, PacketEnergySuit::decode, PacketEnergySuit::handle);
+        HANDLER.registerMessage(id++, PacketJetPack.class, PacketJetPack::encode, PacketJetPack::decode, PacketJetPack::handle);
+        HANDLER.registerMessage(id++, PacketLaser.class, PacketLaser::encode, PacketLaser::decode, PacketLaser::handle);
     }
 
     public static void sendToNearby(World world, BlockPos pos, Object toSend) {

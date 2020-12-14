@@ -34,7 +34,7 @@ public class AssemblerContainer extends ContainerTile<TileAssembler> {
             }
         }
 
-        addSlot(new SlotBase(te.getInventory(), 9, 145, 23));
+        addSlot(new SlotBase(te.getInventory(), 9, 132, 25));
 
         addPlayerInventory(inventory, 8, 84, 4);
     }

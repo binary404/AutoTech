@@ -3,21 +3,14 @@ package binary404.autotech.client.gui.machine;
 import binary404.autotech.client.gui.core.GuiEnergy;
 import binary404.autotech.client.gui.core.Texture;
 import binary404.autotech.common.container.machine.CentrifugeContainer;
-import binary404.autotech.common.core.logistics.Tank;
+import binary404.autotech.common.core.logistics.fluid.Tank;
 import binary404.autotech.common.tile.machine.TileCentrifuge;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import java.util.ArrayList;
@@ -32,7 +25,6 @@ public class GuiCentrifuge extends GuiEnergy<TileCentrifuge, CentrifugeContainer
     @Override
     protected void drawBackground(MatrixStack matrix, float partialTicks, int mouseX, int mouseY) {
         super.drawBackground(matrix, partialTicks, mouseX, mouseY);
-        Texture.ENERGY_GAUGE.drawScalableH(matrix, this.te.getEnergy().subSized(), this.guiLeft + 5, this.guiTop + 5);
         Texture.PROGRESS_ARROW.drawQuanity(this.te.getScaledProgress(), matrix, this.guiLeft + 72, this.guiTop + 25);
 
         FluidTank tank = this.te.getTank();

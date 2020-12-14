@@ -91,6 +91,9 @@ repositories {
     maven {
         url 'https://maven.blamejared.com'
     }
+    maven {
+        url 'https://www.cursemaven.com'
+    }
 }
 
 dependencies {
@@ -108,6 +111,8 @@ dependencies {
     compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.4:7.0.0.62")
 
     compile fg.deobf("curse.maven:jei:3062050")
+    compile fg.deobf("curse.maven:fx-lib:3133400")
+    compile fg.deobf("curse.maven:ctm-267602:3137659")
 }
 
 jar {

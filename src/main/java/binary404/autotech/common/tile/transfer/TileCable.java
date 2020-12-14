@@ -1,18 +1,15 @@
 package binary404.autotech.common.tile.transfer;
 
 import binary404.autotech.common.block.transfer.BlockCable;
-import binary404.autotech.common.core.logistics.Energy;
+import binary404.autotech.common.core.logistics.energy.Energy;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.EnergyProxy;
-import binary404.autotech.common.tile.core.TileEnergy;
 import binary404.autotech.common.tile.core.TileTiered;
-import binary404.autotech.common.tile.util.IInventory;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;

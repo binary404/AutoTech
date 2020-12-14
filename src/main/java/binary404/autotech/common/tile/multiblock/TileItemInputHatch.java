@@ -6,6 +6,10 @@ import binary404.autotech.common.core.lib.multiblock.MultiBlockPart;
 import binary404.autotech.common.core.lib.multiblock.MultiblockAbility;
 import binary404.autotech.common.core.lib.multiblock.MultiblockControllerBase;
 import binary404.autotech.common.core.logistics.*;
+import binary404.autotech.common.core.logistics.energy.Energy;
+import binary404.autotech.common.core.logistics.fluid.Tank;
+import binary404.autotech.common.core.logistics.item.Inventory;
+import binary404.autotech.common.core.logistics.item.ItemHandlerProxy;
 import binary404.autotech.common.tile.ModTiles;
 import net.minecraft.world.World;
 

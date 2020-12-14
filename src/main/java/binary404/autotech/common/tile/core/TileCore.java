@@ -2,16 +2,18 @@ package binary404.autotech.common.tile.core;
 
 import binary404.autotech.common.block.BlockTile;
 import binary404.autotech.common.core.logistics.*;
+import binary404.autotech.common.core.logistics.fluid.Tank;
+import binary404.autotech.common.core.logistics.item.DualInventoryWrapper;
+import binary404.autotech.common.core.logistics.item.InputInventoryWrapper;
+import binary404.autotech.common.core.logistics.item.Inventory;
+import binary404.autotech.common.core.logistics.item.OutputInventoryWrapper;
 import binary404.autotech.common.core.util.NBTUtil;
 import binary404.autotech.common.core.util.StackUtil;
 import binary404.autotech.common.tile.util.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -25,7 +27,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 

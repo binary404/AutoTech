@@ -52,15 +52,11 @@ public class GrinderManager {
         addRecipe(Tier.LV, 40000, Tags.Items.ORES_GOLD, 1, new ItemStack(ModItems.gold_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 45, 0);
         addRecipe(Tier.LV, 80000, Tags.Items.ORES_NETHERITE_SCRAP, 1, new ItemStack(ModItems.netherite_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
 
-        for (Item dust : ModTags.Items.ORE_DUSTS.getAllElements()) {
-            String dustName = dust.getRegistryName().getPath();
-            dustName = dustName.replace("_ore_dust", "");
-            for (Item dust2 : Tags.Items.DUSTS.getAllElements()) {
-                if (dustName.equals(dust2.getRegistryName().getPath().replace("_dust", "")) || dustName.equals(dust2.getRegistryName().getPath().replace("dust_", ""))) {
-                    addRecipe(Tier.LV, 20000, new ItemStack(dust), new ItemStack(dust2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
-                }
-            }
-        }
+        addRecipe(Tier.LV, 20000, ModTags.Items.ORE_DUSTS_COPPER, 1, new ItemStack(ModItems.copper_dust), new ItemStack(ModItems.iron_dust), new ItemStack(ModItems.lead_dust), 50, 30);
+        addRecipe(Tier.LV, 20000, ModTags.Items.ORE_DUSTS_TIN, 1, new ItemStack(ModItems.tin_dust), new ItemStack(ModItems.iron_dust), new ItemStack(ModItems.copper_dust), 40, 20);
+        addRecipe(Tier.LV, 20000, ModTags.Items.ORE_DUSTS_LEAD, 1, new ItemStack(ModItems.lead_dust), new ItemStack(ModItems.silver_dust), ItemStack.EMPTY, 75, 0);
+        addRecipe(Tier.LV, 20000, ModTags.Items.ORE_DUSTS_SILVER, 1, new ItemStack(ModItems.silver_dust), new ItemStack(ModItems.lead_dust), new ItemStack(ModItems.gold_dust), 80, 70);
+        addRecipe(Tier.LV, 20000, ModTags.Items.ORE_DUSTS_URANIUM, 1, new ItemStack(ModItems.uranium_dust), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
     }
 
     public static GrinderRecipe getRecipe(ItemStack input) {

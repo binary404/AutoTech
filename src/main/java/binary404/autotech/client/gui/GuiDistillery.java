@@ -3,7 +3,7 @@ package binary404.autotech.client.gui;
 import binary404.autotech.client.gui.core.GuiEnergy;
 import binary404.autotech.client.gui.core.Texture;
 import binary404.autotech.common.container.machine.ContainerDistillery;
-import binary404.autotech.common.core.logistics.Tank;
+import binary404.autotech.common.core.logistics.fluid.Tank;
 import binary404.autotech.common.tile.multiblock.TileDistillery;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;

@@ -1,10 +1,9 @@
 package binary404.autotech.common.tile.core;
 
 import binary404.autotech.common.block.BlockTile;
-import binary404.autotech.common.core.logistics.Energy;
+import binary404.autotech.common.core.logistics.energy.Energy;
 import binary404.autotech.common.core.util.Util;
 import binary404.autotech.common.tile.util.TransferType;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
