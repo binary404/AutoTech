@@ -1,0 +1,9 @@
+{
+    "ctm": {
+        "ctm_version": 1,
+        "type": "ctm",
+        "textures": [
+            "autotech:block/metal_scaffolding_top_ctm"
+        ]
+    }
+}

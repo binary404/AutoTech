@@ -1,0 +1,24 @@
+{
+  "name": "autotech:dungeon/rooms",
+  "fallback": "autotech:dungeon/boss_rooms",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "autotech:dungeon/rooms/big1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "autotech:dungeon/rooms/big2",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

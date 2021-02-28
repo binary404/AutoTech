@@ -22,7 +22,7 @@ mixin {
     add sourceSets.main, "autotech.refmap.json"
 }
 
-version = '1.16.4-0.0.4c-alpha'
+version = '1.16.4-0.0.5-alpha'
 group = 'binary404.autotech' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'autotech'
 
@@ -113,6 +113,7 @@ dependencies {
     compile fg.deobf("curse.maven:jei:3062050")
     compile fg.deobf("curse.maven:fx-lib:3133400")
     compile fg.deobf("curse.maven:ctm-267602:3137659")
+    compile fg.deobf("curse.maven:worldedit-225608:3135187")
 }
 
 jar {

@@ -71,6 +71,10 @@ public class AutoTech {
         ArcFurnaceManager.initTags();
     }
 
+    public static String sId(String name) {
+        return modid + ":" + name;
+    }
+
     public static ResourceLocation key(String path) {
         return new ResourceLocation("autotech", path);
     }

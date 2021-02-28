@@ -41,6 +41,11 @@ public class AutoTechBlockStateProvider extends BlockStateProvider {
 
         this.simpleBlockState(ModBlocks.rust);
         this.simpleBlockState(ModBlocks.rust2);
+
+        this.simpleBlockState(ModBlocks.radioactive);
+        this.simpleBlockState(ModBlocks.radioactive_fake);
+
+        this.simpleBlockState(ModBlocks.metal_scaffolding);
     }
 
     private void simpleBlockState(Block b) {

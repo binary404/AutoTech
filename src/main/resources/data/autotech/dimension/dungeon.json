@@ -1,0 +1,21 @@
+{
+  "type": "autotech:dungeon",
+  "generator": {
+    "type": "minecraft:flat",
+    "seed": 0,
+    "settings": {
+      "biome": "autotech:dungeon",
+      "features": true,
+      "layers": [
+        {
+          "block": "minecraft:bedrock",
+          "height": 256
+        }
+      ],
+      "structures": {
+        "structures": {
+        }
+      }
+    }
+  }
+}

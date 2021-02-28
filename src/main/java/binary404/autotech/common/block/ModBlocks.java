@@ -13,6 +13,7 @@ import binary404.autotech.common.block.transfer.BlockCable;
 import binary404.autotech.common.block.transfer.BlockConveyor;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.fluid.BlockBasicFlowingFluid;
+import binary404.autotech.common.fluid.BlockToxicFluid;
 import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.item.ModItems;
 import net.minecraft.block.AbstractBlock;
@@ -112,6 +113,8 @@ public class ModBlocks {
 
     public static BlockBasicFlowingFluid distilled_water;
 
+    public static BlockBasicFlowingFluid toxic;
+
     public static Block iron_plating;
 
     public static Block lv_arc_furnace;
@@ -134,6 +137,13 @@ public class ModBlocks {
 
     public static Block rust;
     public static Block rust2;
+
+    public static Block portal;
+
+    public static Block radioactive;
+    public static Block radioactive_fake;
+
+    public static Block metal_scaffolding;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -203,6 +213,8 @@ public class ModBlocks {
 
         distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water), "distilled_water");
 
+        toxic = (BlockBasicFlowingFluid) register(r, new BlockToxicFluid(() -> ModFluids.toxic), "toxic");
+
         p = AbstractBlock.Properties.create(Material.IRON).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(4.0F, 8.0F);
 
         iron_plating = register(r, new Block(p), "iron_plating");
@@ -227,6 +239,13 @@ public class ModBlocks {
 
         rust = register(r, new Block(p), "rust");
         rust2 = register(r, new Block(p), "rust2");
+
+        portal = register(r, new BlockPortal(), "portal");
+
+        radioactive = register(r, new BlockRadioActive(), "radioactive");
+        radioactive_fake = register(r, new BlockRadioActive(), "radioactive_fake");
+
+        metal_scaffolding = register(r, new Block(AbstractBlock.Properties.create(Material.IRON).notSolid().setRequiresTool().harvestTool(ToolType.PICKAXE)), "metal_scaffolding");
     }
 
     @SubscribeEvent
@@ -315,11 +334,22 @@ public class ModBlocks {
 
         register(r, new BlockItem(rust, p), "rust");
         register(r, new BlockItem(rust2, p), "rust2");
+
+        register(r, new BlockItem(portal, p), "portal");
+
+        register(r, new BlockItem(radioactive, p), "radioactive");
+        register(r, new BlockItem(radioactive_fake, p), "radioactive_fake");
+
+        register(r, new BlockItem(metal_scaffolding, p), "metal_scaffolding");
     }
 
     public static void initRenderLayers() {
         setRenderLayer(distilled_water, RenderType.getTranslucent());
+        setRenderLayer(toxic, RenderType.getTranslucent());
         setRenderLayer(reinforced_glass, RenderType.getTranslucent());
+        setRenderLayer(radioactive, RenderType.getTranslucent());
+        setRenderLayer(radioactive_fake, RenderType.getTranslucent());
+        setRenderLayer(metal_scaffolding, RenderType.getCutout());
     }
 
 }

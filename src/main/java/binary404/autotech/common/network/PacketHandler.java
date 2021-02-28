@@ -3,6 +3,7 @@ package binary404.autotech.common.network;
 import binary404.autotech.AutoTech;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -11,6 +12,9 @@ import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
+
+import java.util.UUID;
+import java.util.function.Consumer;
 
 public class PacketHandler {
 
@@ -30,6 +34,21 @@ public class PacketHandler {
         HANDLER.registerMessage(id++, PacketEnergySuit.class, PacketEnergySuit::encode, PacketEnergySuit::decode, PacketEnergySuit::handle);
         HANDLER.registerMessage(id++, PacketJetPack.class, PacketJetPack::encode, PacketJetPack::decode, PacketJetPack::handle);
         HANDLER.registerMessage(id++, PacketLaser.class, PacketLaser::encode, PacketLaser::decode, PacketLaser::handle);
+        HANDLER.registerMessage(id++, PacketDungeonTick.class, PacketDungeonTick::encode, PacketDungeonTick::decode, PacketDungeonTick::handle);
+    }
+
+    public static boolean runIfPresent(MinecraftServer server, UUID uuid, Consumer<ServerPlayerEntity> action) {
+        if (server == null)
+            return false;
+
+        ServerPlayerEntity player = server.getPlayerList().getPlayerByUUID(uuid);
+
+        if (player == null)
+            return false;
+
+        action.accept(player);
+
+        return true;
     }
 
     public static void sendToNearby(World world, BlockPos pos, Object toSend) {

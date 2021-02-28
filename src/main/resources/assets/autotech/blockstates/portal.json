@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "axis=z": { "model":  "autotech:block/portal_ew"},
+    "axis=x": { "model": "autotech:block/portal_ns"}
+  }
+}

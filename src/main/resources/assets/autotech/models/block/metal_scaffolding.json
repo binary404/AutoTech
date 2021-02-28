@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "autotech:block/metal_scaffolding",
+    "up": "autotech:block/metal_scaffolding_top",
+    "down": "autotech:block/metal_scaffolding",
+    "north": "autotech:block/metal_scaffolding",
+    "south": "autotech:block/metal_scaffolding",
+    "east": "autotech:block/metal_scaffolding",
+    "west": "autotech:block/metal_scaffolding"
+  }
+}

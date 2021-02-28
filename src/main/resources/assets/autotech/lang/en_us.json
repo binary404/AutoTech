@@ -146,5 +146,7 @@
   "info.autotech.side.config.receive": "Input",
   "info.autotech.side.config.none": "None",
 
+  "death.attack.dungeonCollapse.player": "Dungeon Failed!",
+
   "itemGroup.autotech": "AutoTech"
 }

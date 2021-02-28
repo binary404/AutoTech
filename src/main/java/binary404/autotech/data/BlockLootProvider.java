@@ -1,6 +1,7 @@
 package binary404.autotech.data;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.block.ModBlocks;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.minecraft.block.Block;
@@ -30,6 +31,8 @@ public class BlockLootProvider implements IDataProvider {
     public BlockLootProvider(DataGenerator generator) {
         this.generator = generator;
 
+
+        functionTable.put(ModBlocks.radioactive_fake, BlockLootProvider::empty);
     }
 
     @Override
