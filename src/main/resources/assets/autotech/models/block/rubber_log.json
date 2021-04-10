@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "autotech:block/rubber_log_top",
+    "side": "autotech:block/rubber_log_side"
+  }
+}

@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.World;
 
-public class TileTiered<B extends BlockTile> extends TileEnergy<B> {
+public class TileTiered extends TileEnergy {
 
     public Tier tier;
     int minimumTier = 0;

@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class TileCharger extends TileMachine<BlockCharger> {
+public class TileCharger extends TileMachine {
 
     private IEnergyContainerItem containerItem = null;
 

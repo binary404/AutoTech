@@ -14,7 +14,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuiEnergy<T extends TileEnergy<?> & IInventory, C extends ContainerTile<T>> extends GuiTile<T, C> {
+public class GuiEnergy<T extends TileEnergy & IInventory, C extends ContainerTile<T>> extends GuiTile<T, C> {
 
     public GuiEnergy(C container, PlayerInventory inv, ITextComponent title, Texture backGround) {
         super(container, inv, title, backGround);

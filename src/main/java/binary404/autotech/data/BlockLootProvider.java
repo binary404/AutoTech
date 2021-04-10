@@ -1,6 +1,7 @@
 package binary404.autotech.data;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.block.ModBlocks;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.minecraft.block.Block;
@@ -29,7 +30,6 @@ public class BlockLootProvider implements IDataProvider {
 
     public BlockLootProvider(DataGenerator generator) {
         this.generator = generator;
-
     }
 
     @Override
@@ -44,6 +44,17 @@ public class BlockLootProvider implements IDataProvider {
             Function<Block, LootTable.Builder> func = functionTable.getOrDefault(b, BlockLootProvider::genRegular);
             tables.put(id, func.apply(b));
         }
+
+        tables.remove(ModBlocks.copper_ore.getRegistryName());
+        tables.remove(ModBlocks.tin_ore.getRegistryName());
+        tables.remove(ModBlocks.lead_ore.getRegistryName());
+        tables.remove(ModBlocks.silver_ore.getRegistryName());
+        tables.remove(ModBlocks.uranium_ore.getRegistryName());
+        tables.remove(ModBlocks.nickel_ore.getRegistryName());
+        tables.remove(ModBlocks.platinum_ore.getRegistryName());
+        tables.remove(ModBlocks.titanium_ore.getRegistryName());
+        tables.remove(ModBlocks.rubber_leaves.getRegistryName());
+        tables.remove(ModBlocks.rubber_log.getRegistryName());
 
         for (Map.Entry<ResourceLocation, LootTable.Builder> e : tables.entrySet()) {
             Path path = getPath(generator.getOutputFolder(), e.getKey());
@@ -78,18 +89,10 @@ public class BlockLootProvider implements IDataProvider {
         return LootTable.builder().addLootPool(pool);
     }
 
-    private static LootTable.Builder genMultiBlockSpecial(Block a, Block b) {
-        LootEntry.Builder entryA = ItemLootEntry.builder(a);
-        LootEntry.Builder entryB = ItemLootEntry.builder(b);
-        LootPool.Builder poolA = LootPool.builder().name("a").rolls(ConstantRange.of(1)).addEntry(entryA).acceptCondition(SurvivesExplosion.builder());
-        LootPool.Builder poolB = LootPool.builder().name("b").rolls(ConstantRange.of(1)).addEntry(entryB).acceptCondition(SurvivesExplosion.builder());
-        return LootTable.builder().addLootPool(poolA).addLootPool(poolB);
-    }
-
     @Nonnull
     @Override
     public String getName() {
-        return "Runic block loot tables";
+        return "AutoTech block loot tables";
     }
 
 }

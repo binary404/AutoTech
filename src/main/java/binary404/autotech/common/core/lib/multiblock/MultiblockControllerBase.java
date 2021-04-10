@@ -21,7 +21,7 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-public abstract class MultiblockControllerBase<T extends BlockTile> extends TileMachine<T> {
+public abstract class MultiblockControllerBase extends TileMachine {
 
     protected BlockPattern structurePattern;
 

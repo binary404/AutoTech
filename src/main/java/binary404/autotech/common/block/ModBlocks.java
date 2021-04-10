@@ -1,6 +1,7 @@
 package binary404.autotech.common.block;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.block.device.BlockOilPump;
 import binary404.autotech.common.block.device.BlockWaterPump;
 import binary404.autotech.common.block.generator.BlockSteamGenerator;
 import binary404.autotech.common.block.machine.*;
@@ -11,14 +12,13 @@ import binary404.autotech.common.block.multiblock.BlockHatch;
 import binary404.autotech.common.block.multiblock.BlockDistillery;
 import binary404.autotech.common.block.transfer.BlockCable;
 import binary404.autotech.common.block.transfer.BlockConveyor;
+import binary404.autotech.common.block.world.BlockRubberSapling;
+import binary404.autotech.common.block.world.BlockRubberWood;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.fluid.BlockBasicFlowingFluid;
 import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.item.ModItems;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.GlassBlock;
-import net.minecraft.block.OreBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
@@ -94,7 +94,8 @@ public class ModBlocks {
 
     public static Block conveyor;
 
-    public static Block waterpump;
+    public static Block water_pump;
+    public static Block oil_pump;
 
     public static Block lv_compactor;
     public static Block mv_compactor;
@@ -111,6 +112,7 @@ public class ModBlocks {
     public static Block hv_assembly_line;
 
     public static BlockBasicFlowingFluid distilled_water;
+    public static BlockBasicFlowingFluid crude_oil;
 
     public static Block iron_plating;
 
@@ -134,6 +136,10 @@ public class ModBlocks {
 
     public static Block rust;
     public static Block rust2;
+
+    public static Block rubber_log;
+    public static Block rubber_sapling;
+    public static Block rubber_leaves;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -185,7 +191,8 @@ public class ModBlocks {
 
         conveyor = register(r, new BlockConveyor(), "conveyor");
 
-        waterpump = register(r, new BlockWaterPump(), "waterpump");
+        water_pump = register(r, new BlockWaterPump(), "water_pump");
+        oil_pump = register(r, new BlockOilPump(), "oil_pump");
 
         lv_compactor = register(r, new BlockCompactor(Tier.LV), "lv_compactor");
         mv_compactor = register(r, new BlockCompactor(Tier.MV), "mv_compactor");
@@ -202,6 +209,7 @@ public class ModBlocks {
         hv_assembly_line = register(r, new BlockAssemblyLine(Tier.HV), "hv_assembly_line");
 
         distilled_water = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.distilled_water), "distilled_water");
+        crude_oil = (BlockBasicFlowingFluid) register(r, new BlockBasicFlowingFluid(() -> ModFluids.crude_oil), "crude_oil");
 
         p = AbstractBlock.Properties.create(Material.IRON).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(4.0F, 8.0F);
 
@@ -227,6 +235,10 @@ public class ModBlocks {
 
         rust = register(r, new Block(p), "rust");
         rust2 = register(r, new Block(p), "rust2");
+
+        rubber_log = register(r, new BlockRubberWood(), "rubber_log");
+        rubber_sapling = register(r, new BlockRubberSapling(), "rubber_sapling");
+        rubber_leaves = register(r, new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid()), "rubber_leaves");
     }
 
     @SubscribeEvent
@@ -278,7 +290,8 @@ public class ModBlocks {
 
         register(r, new BlockItem(conveyor, p), "conveyor");
 
-        register(r, new BlockItem(waterpump, p), "waterpump");
+        register(r, new BlockItem(water_pump, p), "water_pump");
+        register(r, new BlockItem(oil_pump, p), "oil_pump");
 
         register(r, new BlockItem(lv_compactor, p), "lv_compactor");
         register(r, new BlockItem(mv_compactor, p), "mv_compactor");
@@ -315,11 +328,17 @@ public class ModBlocks {
 
         register(r, new BlockItem(rust, p), "rust");
         register(r, new BlockItem(rust2, p), "rust2");
+
+        register(r, new BlockItem(rubber_log, p), "rubber_log");
+        register(r, new BlockItem(rubber_sapling, p), "rubber_sapling");
+        register(r, new BlockItem(rubber_leaves, p), "rubber_leaves");
     }
 
     public static void initRenderLayers() {
         setRenderLayer(distilled_water, RenderType.getTranslucent());
+        setRenderLayer(crude_oil, RenderType.getTranslucent());
         setRenderLayer(reinforced_glass, RenderType.getTranslucent());
+        setRenderLayer(rubber_sapling, RenderType.getCutout());
     }
 
 }

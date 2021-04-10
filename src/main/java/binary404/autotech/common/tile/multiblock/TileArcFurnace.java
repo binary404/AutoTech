@@ -9,7 +9,7 @@ import binary404.autotech.common.tile.ModTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 
-public class TileArcFurnace extends MultiblockControllerBase<BlockBlastFurnace> {
+public class TileArcFurnace extends MultiblockControllerBase {
 
     ArcFurnaceManager.ArcFurnaceRecipe recipe;
 

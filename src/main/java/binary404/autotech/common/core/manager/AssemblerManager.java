@@ -23,10 +23,7 @@ public class AssemblerManager {
     private static List<AssemblerRecipe> recipeMap = new ArrayList<>();
 
     public static void init() {
-        addRecipe(Tier.MV, 240000, NonNullList.from(ItemStack.EMPTY,
-                new ItemStack(ModItems.red_alloy_ingot), new ItemStack(ModItems.red_alloy_ingot), new ItemStack(ModItems.red_alloy_ingot),
-                new ItemStack(ModItems.red_alloy_ingot), ItemStack.EMPTY, new ItemStack(ModItems.red_alloy_ingot),
-                new ItemStack(ModItems.red_alloy_ingot), new ItemStack(ModItems.red_alloy_ingot), new ItemStack(ModItems.red_alloy_ingot)), new FluidStack(ModFluids.distilled_water, 500), new ItemStack(ModItems.lv_machine_hull));
+
     }
 
     public static AssemblerRecipe getRecipe(List<ItemStack> inputs, FluidStack input) {

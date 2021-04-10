@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
 
-public class ContainerTile<T extends TileCore<?> & IInventory> extends ContainerCore {
+public class ContainerTile<T extends TileCore & IInventory> extends ContainerCore {
 
     public final T te;
 
@@ -40,11 +40,11 @@ public class ContainerTile<T extends TileCore<?> & IInventory> extends Container
     }
 
     @SuppressWarnings("unchecked")
-    protected static <T extends TileCore<?>> T getInventory(PlayerEntity player, BlockPos pos) {
+    protected static <T extends TileCore> T getInventory(PlayerEntity player, BlockPos pos) {
         TileEntity tile = player.world.getTileEntity(pos);
-        if (tile instanceof TileCore<?>)
+        if (tile instanceof TileCore)
             return (T) tile;
-        return (T) new TileCore<>(TileEntityType.SIGN);
+        return (T) new TileCore(TileEntityType.SIGN);
     }
 
     @Override

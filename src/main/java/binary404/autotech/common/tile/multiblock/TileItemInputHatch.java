@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class TileItemInputHatch extends MultiBlockPart<BlockMultiBlock> implements IMultiblockAbilityPart<Inventory> {
+public class TileItemInputHatch extends MultiBlockPart implements IMultiblockAbilityPart<Inventory> {
 
     public TileItemInputHatch() {
         super(ModTiles.item_input_hatch, Tier.LV);

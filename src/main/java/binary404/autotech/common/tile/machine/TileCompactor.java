@@ -7,7 +7,7 @@ import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.TileMachine;
 import net.minecraft.item.ItemStack;
 
-public class TileCompactor extends TileMachine<BlockCompactor> {
+public class TileCompactor extends TileMachine {
 
     CompactorManager.CompactorRecipe recipe;
 

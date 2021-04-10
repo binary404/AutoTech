@@ -10,7 +10,7 @@ import binary404.autotech.common.tile.util.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 
-public class TileGrinder extends TileMachine<BlockGrinder> {
+public class TileGrinder extends TileMachine {
 
     GrinderManager.GrinderRecipe recipe;
 

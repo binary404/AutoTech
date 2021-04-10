@@ -12,7 +12,7 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class TileCentrifuge extends TileMachine<BlockCentrifuge> implements ITank {
+public class TileCentrifuge extends TileMachine implements ITank {
 
     CentrifugeManager.CentrifugeRecipe recipe;
 

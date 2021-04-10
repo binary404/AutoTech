@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class TileWaterPump extends TileTickable<BlockWaterPump> implements IInventory, ITank {
+public class TileWaterPump extends TileTickable implements IInventory, ITank {
 
     public TileWaterPump() {
         super(ModTiles.waterpump);

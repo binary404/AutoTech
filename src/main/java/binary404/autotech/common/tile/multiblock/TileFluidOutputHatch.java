@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class TileFluidOutputHatch extends MultiBlockPart<BlockMultiBlock> implements IMultiblockAbilityPart<Tank>, ITank {
+public class TileFluidOutputHatch extends MultiBlockPart implements IMultiblockAbilityPart<Tank>, ITank {
 
     public TileFluidOutputHatch() {
         super(ModTiles.fluid_output_hatch, Tier.LV);

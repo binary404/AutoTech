@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class TileSmelter extends TileMachine<BlockSmelter> {
+public class TileSmelter extends TileMachine {
 
     FurnaceRecipe recipe;
 

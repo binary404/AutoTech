@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
+public class TileEnergy extends TileTickable {
 
     protected Energy energy = Energy.create(0);
 
@@ -180,15 +180,15 @@ public class TileEnergy<B extends BlockTile> extends TileTickable<B> {
     }
 
     protected long getEnergyCapacity() {
-        return 100000l;
+        return 100000L;
     }
 
     protected long getEnergyTransfer() {
-        return 100l;
+        return 100L;
     }
 
     public long getGeneration() {
-        return 20l;
+        return 20L;
     }
 
     public Energy getEnergy() {

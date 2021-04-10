@@ -2,26 +2,24 @@ package binary404.autotech.common.world;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.ModBlocks;
+import binary404.autotech.common.block.world.BlockRubberWood;
 import binary404.autotech.common.core.util.RegistryUtil;
 import binary404.autotech.common.world.ore.LargeOreFeature;
-import binary404.autotech.common.world.ore.LargeOreFeatureConfig;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeature;
+import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
+import net.minecraft.world.gen.foliageplacer.PineFoliagePlacer;
+import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
+import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,6 +29,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.lwjgl.system.CallbackI;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,19 +38,52 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = "autotech", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModFeatures {
 
-    public static final Feature<LargeOreFeatureConfig> LARGE_ORE = new LargeOreFeature();
-    public static final ConfiguredFeature<?, ?> LARGE_ORE_CONF = LARGE_ORE.withConfiguration(new LargeOreFeatureConfig(6, 5, 3, 5, 3, 0, 80, 56, 30)).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final Feature<NoFeatureConfig> LARGE_ORE = new LargeOreFeature();
+    public static final ConfiguredFeature<?, ?> LARGE_ORE_CONF = LARGE_ORE.withConfiguration(new NoFeatureConfig()).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+
+    public static final OilLakeFeature OIL_LAKE = new OilLakeFeature(BlockStateFeatureConfig.field_236455_a_);
+    private static ConfiguredFeature<?, ?> OIL_LAKE_CONF;
+
+    public static ConfiguredFeature<BaseTreeFeatureConfig, ?> RUBBER_TREE;
 
     @SubscribeEvent
     public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
         IForgeRegistry<Feature<?>> r = event.getRegistry();
 
         RegistryUtil.register(r, LARGE_ORE, "large_ores");
+        RegistryUtil.register(r, OIL_LAKE, "oil_lakes");
+
+        Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, AutoTech.key("large_ores"), LARGE_ORE_CONF);
+
+        OIL_LAKE_CONF = OilLakeFeature.createOilLakeFeature(0.7F);
+        Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, AutoTech.key("oil_lakes"), OIL_LAKE_CONF);
+
+        RUBBER_TREE = Feature.TREE.withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.rubber_log.getDefaultState().with(BlockRubberWood.NATURAL, true)), new SimpleBlockStateProvider(ModBlocks.rubber_leaves.getDefaultState()), new PineFoliagePlacer(FeatureSpread.func_242252_a(1), FeatureSpread.func_242252_a(1), FeatureSpread.func_242253_a(3, 1)), new StraightTrunkPlacer(6, 4, 0), new TwoLayerFeature(2, 0, 2)).setIgnoreVines().build());
+        Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, AutoTech.key("rubber_tree"), RUBBER_TREE);
     }
 
     public static void onBiomeLoad(BiomeLoadingEvent event) {
-        LargeOreFeature.configs = Lists.newArrayList(new LargeOreFeature.VeinConfig(1, ModBlocks.copper_ore, ModBlocks.tin_ore, Blocks.IRON_ORE, Blocks.COAL_ORE), new LargeOreFeature.VeinConfig(2, Blocks.GOLD_ORE, Blocks.REDSTONE_ORE, ModBlocks.lead_ore, ModBlocks.silver_ore, ModBlocks.uranium_ore, ModBlocks.nickel_ore), new LargeOreFeature.VeinConfig(3, Blocks.DIAMOND_ORE, Blocks.LAPIS_ORE, ModBlocks.platinum_ore, ModBlocks.titanium_ore));
+        List<LargeOreFeature.VeinConfig> configs = new ArrayList<>();
+
+        configs.add(new LargeOreFeature.VeinConfig(16, 40, 80, 4, ModBlocks.copper_ore));
+        configs.add(new LargeOreFeature.VeinConfig(16, 30, 80, 5, ModBlocks.tin_ore));
+        configs.add(new LargeOreFeature.VeinConfig(20, 10, 50, 3, Blocks.IRON_ORE));
+        configs.add(new LargeOreFeature.VeinConfig(20, 50, 130, 8, Blocks.COAL_ORE));
+        configs.add(new LargeOreFeature.VeinConfig(12, 10, 30, 3, Blocks.GOLD_ORE, Blocks.IRON_ORE));
+        configs.add(new LargeOreFeature.VeinConfig(16, 10, 40, 4, Blocks.REDSTONE_ORE));
+        configs.add(new LargeOreFeature.VeinConfig(16, 40, 70, 6, ModBlocks.lead_ore));
+        configs.add(new LargeOreFeature.VeinConfig(16, 20, 50, 6, ModBlocks.silver_ore));
+        configs.add(new LargeOreFeature.VeinConfig(12, 30, 60, 5, ModBlocks.lead_ore, ModBlocks.silver_ore));
+        configs.add(new LargeOreFeature.VeinConfig(12, 20, 30, 3, ModBlocks.uranium_ore));
+        configs.add(new LargeOreFeature.VeinConfig(12, 10, 40, 3, ModBlocks.nickel_ore));
+        configs.add(new LargeOreFeature.VeinConfig(12, 5, 20, 2, Blocks.DIAMOND_ORE));
+        configs.add(new LargeOreFeature.VeinConfig(12, 20, 50, 5, Blocks.LAPIS_ORE));
+
+        LargeOreFeature.configs = configs;
+
         event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, LARGE_ORE_CONF);
+        event.getGeneration().withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, OIL_LAKE_CONF);
+        event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, RUBBER_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.06F, 1))));
     }
 
 }

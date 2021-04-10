@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class TileCable extends TileTiered<BlockCable> {
+public class TileCable extends TileTiered {
     public final Map<Direction, EnergyProxy> proxyMap = new HashMap<>();
     public final Set<Direction> energySides = new HashSet<>();
 

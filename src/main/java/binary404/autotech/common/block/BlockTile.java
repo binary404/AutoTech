@@ -117,27 +117,31 @@ public class BlockTile extends Block {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCore) {
-            INamedContainerProvider provider = new INamedContainerProvider() {
-                @Override
-                public ITextComponent getDisplayName() {
-                    return new ItemStack(BlockTile.this).getDisplayName();
-                }
-
-                @Nullable
-                @Override
-                public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-                    return getContainer(i, playerInventory, (TileCore) tile, result);
-                }
-            };
-            if (player instanceof ServerPlayerEntity) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, provider, buffer -> {
-                    buffer.writeBlockPos(pos);
-                    additionalGuiData(buffer, state, world, pos, player, hand, result);
-                });
-            }
+            openContainer(tile, state, world, pos, player, hand, result);
             return ActionResultType.SUCCESS;
         }
         return super.onBlockActivated(state, world, pos, player, hand, result);
+    }
+
+    public void openContainer(TileEntity tile, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+        INamedContainerProvider provider = new INamedContainerProvider() {
+            @Override
+            public ITextComponent getDisplayName() {
+                return new ItemStack(BlockTile.this).getDisplayName();
+            }
+
+            @Nullable
+            @Override
+            public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+                return getContainer(i, playerInventory, (TileCore) tile, result);
+            }
+        };
+        if (player instanceof ServerPlayerEntity) {
+            NetworkHooks.openGui((ServerPlayerEntity) player, provider, buffer -> {
+                buffer.writeBlockPos(pos);
+                additionalGuiData(buffer, state, world, pos, player, hand, result);
+            });
+        }
     }
 
     @Nullable

@@ -23,9 +23,12 @@ import static binary404.autotech.common.core.util.RegistryUtil.register;
 public class ModFluids {
 
     public static ForgeFlowingFluid.Properties distilled_water_properties;
-
     public static BasicFlowingFluid.Flowing distilled_water_flowing;
     public static BasicFlowingFluid.Source distilled_water;
+
+    public static ForgeFlowingFluid.Properties crude_oil_properties;
+    public static BasicFlowingFluid.Flowing crude_oil_flowing;
+    public static BasicFlowingFluid.Source crude_oil;
 
     @SubscribeEvent
     public static void registerFluids(RegistryEvent.Register<Fluid> event) {
@@ -34,10 +37,14 @@ public class ModFluids {
 
         distilled_water = (BasicFlowingFluid.Source) register(r, new BasicFlowingFluid.Source(distilled_water_properties), "distilled_water");
         distilled_water_flowing = (BasicFlowingFluid.Flowing) register(r, new BasicFlowingFluid.Flowing(distilled_water_properties), "distilled_water_flowing");
+
+        crude_oil = (BasicFlowingFluid.Source) register(r, new BasicFlowingFluid.Source(crude_oil_properties), "crude_oil");
+        crude_oil_flowing = (BasicFlowingFluid.Flowing) register(r, new BasicFlowingFluid.Flowing(crude_oil_properties), "crude_oil_flowing");
     }
 
     private static void makeProperties() {
-        distilled_water_properties = makeProperties("distilled_water", BasicFlowingFluid::addAttributes, () -> distilled_water, () -> distilled_water_flowing).block(() -> ModBlocks.distilled_water).bucket(() -> ModItems.distilled_water_bucket);
+        distilled_water_properties = makeProperties("distilled_water", FluidAttributeHolder::distilledWater, () -> distilled_water, () -> distilled_water_flowing).block(() -> ModBlocks.distilled_water).bucket(() -> ModItems.distilled_water_bucket);
+        crude_oil_properties = makeProperties("crude_oil", FluidAttributeHolder::crudeOil, () -> crude_oil, () -> crude_oil_flowing).block(() -> ModBlocks.crude_oil).bucket(() -> ModItems.crude_oil_bucket);
     }
 
     private static ForgeFlowingFluid.Properties makeProperties(String name, Function<FluidAttributes.Builder, FluidAttributes.Builder> postProcess, Supplier<ForgeFlowingFluid> stillFluidSupplier, Supplier<ForgeFlowingFluid> flowingFluidSupplier) {

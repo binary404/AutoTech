@@ -13,10 +13,6 @@ public abstract class BasicFlowingFluid extends ForgeFlowingFluid {
         super(properties);
     }
 
-    public static FluidAttributes.Builder addAttributes(FluidAttributes.Builder builder) {
-        return builder.density(20000).viscosity(600);
-    }
-
     public static class Flowing extends BasicFlowingFluid {
 
         protected Flowing(Properties properties) {

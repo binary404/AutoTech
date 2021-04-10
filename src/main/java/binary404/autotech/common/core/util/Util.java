@@ -6,7 +6,11 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.Random;
+
 public class Util {
+
+    private static final Random RANDOM = new Random();
 
     public static int safeInt(long value) {
         return value > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) value;
@@ -40,6 +44,14 @@ public class Util {
 
     public static boolean isEnergyHandler(ItemStack stack) {
         return !stack.isEmpty() && stack.getCapability(CapabilityEnergy.ENERGY).isPresent();
+    }
+
+    public static boolean tryPercentage(double percent) {
+        return RANDOM.nextDouble() < percent;
+    }
+
+    public static boolean tryPercentage(Random random, double percent) {
+        return random.nextDouble() < percent;
     }
 
 }

@@ -7,7 +7,7 @@ import binary404.autotech.common.tile.ModTiles;
 import binary404.autotech.common.tile.core.TileMachine;
 import net.minecraft.item.ItemStack;
 
-public class TileSawMill extends TileMachine<BlockSawMill> {
+public class TileSawMill extends TileMachine {
 
     private SawMillManager.SawMillRecipe recipe;
 

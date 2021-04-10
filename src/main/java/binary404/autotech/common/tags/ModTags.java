@@ -77,11 +77,21 @@ public class ModTags {
         public static final ITag.INamedTag<Item> ORES_COPPER = forgeTag("ores/copper");
         public static final ITag.INamedTag<Item> ORES_TIN = forgeTag("ores/tin");
         public static final ITag.INamedTag<Item> ORES_LEAD = forgeTag("ores/lead");
-        public static final ITag.INamedTag<Item> ORE_SILVER = forgeTag("ores/silver");
-        public static final ITag.INamedTag<Item> ORE_URANIUM = forgeTag("ores/uranium");
-        public static final ITag.INamedTag<Item> ORE_NICKEL = forgeTag("ores/nickel");
-        public static final ITag.INamedTag<Item> ORE_PLATINUM = forgeTag("ores/platinum");
-        public static final ITag.INamedTag<Item> ORE_TITANIUM = forgeTag("ores/titanium");
+        public static final ITag.INamedTag<Item> ORES_SILVER = forgeTag("ores/silver");
+        public static final ITag.INamedTag<Item> ORES_URANIUM = forgeTag("ores/uranium");
+        public static final ITag.INamedTag<Item> ORES_NICKEL = forgeTag("ores/nickel");
+        public static final ITag.INamedTag<Item> ORES_PLATINUM = forgeTag("ores/platinum");
+        public static final ITag.INamedTag<Item> ORES_TITANIUM = forgeTag("ores/titanium");
+
+        public static final ITag.INamedTag<Item> RAW = forgeTag("raw");
+        public static final ITag.INamedTag<Item> RAW_COPPER = forgeTag("raw/copper");
+        public static final ITag.INamedTag<Item> RAW_TIN = forgeTag("raw/tin");
+        public static final ITag.INamedTag<Item> RAW_LEAD = forgeTag("raw/lead");
+        public static final ITag.INamedTag<Item> RAW_SILVER = forgeTag("raw/silver");
+        public static final ITag.INamedTag<Item> RAW_URANIUM = forgeTag("raw/uranium");
+        public static final ITag.INamedTag<Item> RAW_NICKEL = forgeTag("raw/nickel");
+        public static final ITag.INamedTag<Item> RAW_PLATINUM = forgeTag("raw/platinum");
+        public static final ITag.INamedTag<Item> RAW_TITANIUM = forgeTag("raw/titanium");
 
         private static ITag.INamedTag<Item> tag(String name) {
             return ItemTags.makeWrapperTag(AutoTech.key(name).toString());

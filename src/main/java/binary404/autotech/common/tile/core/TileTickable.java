@@ -7,7 +7,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.World;
 
-public class TileTickable<B extends BlockTile> extends TileCore<B> implements ITickableTileEntity {
+public class TileTickable extends TileCore implements ITickableTileEntity {
 
     private int syncTicks;
     public int ticks;

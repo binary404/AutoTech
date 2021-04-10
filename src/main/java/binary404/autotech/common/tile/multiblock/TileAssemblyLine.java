@@ -16,7 +16,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class TileAssemblyLine extends MultiblockControllerBase<BlockAssemblyLine> implements ITank {
+public class TileAssemblyLine extends MultiblockControllerBase implements ITank {
 
     private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {
             MultiblockAbility.INPUT_ENERGY,

@@ -15,6 +15,15 @@ import static binary404.autotech.common.core.util.RegistryUtil.register;
 @Mod.EventBusSubscriber(modid = AutoTech.modid, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModItems {
 
+    public static Item raw_copper;
+    public static Item raw_tin;
+    public static Item raw_lead;
+    public static Item raw_silver;
+    public static Item raw_uranium;
+    public static Item raw_nickel;
+    public static Item raw_platinum;
+    public static Item raw_titanium;
+
     public static Item copper_ingot;
     public static Item tin_ingot;
     public static Item lead_ingot;
@@ -97,6 +106,7 @@ public class ModItems {
     public static Item mv_transmitter_circuit;
 
     public static Item distilled_water_bucket;
+    public static Item crude_oil_bucket;
 
     public static Item flour;
 
@@ -120,11 +130,22 @@ public class ModItems {
 
     public static Item jetpack;
 
+    public static Item rubber_drop;
+
     public static Item.Properties properties = new Item.Properties().group(AutoTech.group);
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> r = event.getRegistry();
+
+        raw_copper = register(r, new Item(properties), "raw_copper");
+        raw_tin = register(r, new Item(properties), "raw_tin");
+        raw_lead = register(r, new Item(properties), "raw_lead");
+        raw_silver = register(r, new Item(properties), "raw_silver");
+        raw_uranium = register(r, new Item(properties), "raw_uranium");
+        raw_nickel = register(r, new Item(properties), "raw_nickel");
+        raw_platinum = register(r, new Item(properties), "raw_platinum");
+        raw_titanium = register(r, new Item(properties), "raw_titanium");
 
         copper_ingot = register(r, new Item(properties), "copper_ingot");
         tin_ingot = register(r, new Item(properties), "tin_ingot");
@@ -205,10 +226,11 @@ public class ModItems {
         lv_machine_hull = register(r, new Item(properties), "lv_machine_hull");
         mv_machine_hull = register(r, new Item(properties), "mv_machine_hull");
 
-        mortar = register(r, new ItemDamagable(properties.maxDamage(200), 5), "mortar");
-        hammer = register(r, new ItemDamagable(properties.maxDamage(300), 10), "hammer");
+        mortar = register(r, new ItemDamageable(properties.maxDamage(200), 5), "mortar");
+        hammer = register(r, new ItemDamageable(properties.maxDamage(300), 10), "hammer");
 
         distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water), "distilled_water_bucket");
+        crude_oil_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.crude_oil), "crude_oil_bucket");
 
         flour = register(r, new Item(properties.maxDamage(0).maxStackSize(64)), "flour");
 
@@ -233,6 +255,8 @@ public class ModItems {
         energy_helmet = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.HEAD), "energy_helmet");
 
         jetpack = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.CHEST), "jetpack");
+
+        rubber_drop = register(r, new Item(properties), "rubber_drop");
     }
 
 }

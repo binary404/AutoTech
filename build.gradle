@@ -2,7 +2,10 @@ buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
         mavenCentral()
-        maven { url = 'https://dist.creeper.host/Sponge/maven' }
+        maven {
+            name "Sponge"
+            url "https://repo.spongepowered.org/repository/maven-public/"
+        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
@@ -22,14 +25,14 @@ mixin {
     add sourceSets.main, "autotech.refmap.json"
 }
 
-version = '1.16.4-0.0.4c-alpha'
+version = '1.16.5-0.0.4c-alpha'
 group = 'binary404.autotech' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'autotech'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200916-1.16.2'
+    mappings channel: 'snapshot', version: '20201028-1.16.3'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
@@ -76,9 +79,7 @@ sourceSets.main.resources {
 
 repositories {
     mavenCentral()
-    maven {
-        url "https://modmaven.k-4u.nl"
-    }
+    mavenLocal()
     maven {
         url "https://dvs1.progwml6.com/files/maven"
     }
@@ -97,7 +98,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.7'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.0.46'
 
     annotationProcessor 'org.spongepowered:mixin:0.8'
     annotationProcessor 'com.google.code.gson:gson:2.8.0'
@@ -105,13 +106,14 @@ dependencies {
     annotationProcessor 'org.ow2.asm:asm-tree:7.2'
     annotationProcessor 'org.ow2.asm:asm-commons:7.2'
     annotationProcessor 'org.ow2.asm:asm-util:7.2'
+    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 
     compile 'org.spongepowered:mixin:0.8'
 
     compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.4:7.0.0.62")
 
     compile fg.deobf("curse.maven:jei:3062050")
-    compile fg.deobf("curse.maven:fx-lib:3133400")
+    compile fg.deobf("binary404.fx_lib:fx_lib:1.16.4-1.7")
     compile fg.deobf("curse.maven:ctm-267602:3137659")
 }
 

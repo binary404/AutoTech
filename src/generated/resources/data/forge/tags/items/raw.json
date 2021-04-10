@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#forge:raw/copper",
+    "#forge:raw/tin",
+    "#forge:raw/lead",
+    "#forge:raw/silver",
+    "#forge:raw/uranium",
+    "#forge:raw/nickel",
+    "#forge:raw/platinum",
+    "#forge:raw/titanium"
+  ]
+}

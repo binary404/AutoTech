@@ -4,6 +4,7 @@ import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.tile.core.TileEnergy;
 import binary404.autotech.common.tile.device.TileDisplayStand;
+import binary404.autotech.common.tile.device.TileOilPump;
 import binary404.autotech.common.tile.device.TileWaterPump;
 import binary404.autotech.common.tile.generator.TileSteamGenerator;
 import binary404.autotech.common.tile.machine.*;
@@ -39,6 +40,8 @@ public class ModTiles {
 
     @ObjectHolder("autotech:waterpump")
     public static TileEntityType<TileWaterPump> waterpump;
+
+    public static TileEntityType<TileOilPump> oil_pump;
 
     @ObjectHolder("autotech:compactor")
     public static TileEntityType<TileCompactor> compactor;
@@ -77,7 +80,7 @@ public class ModTiles {
         register(r, TileEntityType.Builder.create(TileGrinder::new, ModBlocks.lv_grinder, ModBlocks.mv_grinder, ModBlocks.hv_grinder, ModBlocks.ev_grinder, ModBlocks.iv_grinder, ModBlocks.maxv_grinder).build(null), "grinder");
         register(r, TileEntityType.Builder.create(TileSawMill::new, ModBlocks.lv_sawmill, ModBlocks.mv_sawmill, ModBlocks.hv_sawmill, ModBlocks.ev_sawmill, ModBlocks.iv_sawmill, ModBlocks.maxv_sawmill).build(null), "sawmill");
         register(r, TileEntityType.Builder.create(TileCable::new, ModBlocks.lv_cable, ModBlocks.mv_cable, ModBlocks.hv_cable, ModBlocks.ev_cable, ModBlocks.iv_cable, ModBlocks.maxv_cable).build(null), "cable");
-        register(r, TileEntityType.Builder.create(TileWaterPump::new, ModBlocks.waterpump).build(null), "waterpump");
+        register(r, TileEntityType.Builder.create(TileWaterPump::new, ModBlocks.water_pump).build(null), "waterpump");
         register(r, TileEntityType.Builder.create(TileCompactor::new, ModBlocks.lv_compactor, ModBlocks.mv_compactor).build(null), "compactor");
         register(r, TileEntityType.Builder.create(TileCentrifuge::new, ModBlocks.mv_centrifuge).build(null), "centrifuge");
         distillery = (TileEntityType<TileDistillery>) register(r, TileEntityType.Builder.create(TileDistillery::new, ModBlocks.mv_distillery).build(null), "distillery");
@@ -93,6 +96,7 @@ public class ModTiles {
         assembly_line = (TileEntityType<TileAssemblyLine>) register(r, TileEntityType.Builder.create(TileAssemblyLine::new, ModBlocks.hv_assembly_line).build(null), "assembly_line");
         display_stand = (TileEntityType<TileDisplayStand>) register(r, TileEntityType.Builder.create(TileDisplayStand::new, ModBlocks.display_stand).build(null), "display_stand");
         empowerer = (TileEntityType<TileEmpowerer>) register(r, TileEntityType.Builder.create(TileEmpowerer::new, ModBlocks.empowerer).build(null), "empowerer");
+        oil_pump = (TileEntityType<TileOilPump>) register(r, TileEntityType.Builder.create(TileOilPump::new, ModBlocks.oil_pump).build(null), "oil_pump");
     }
 
 }

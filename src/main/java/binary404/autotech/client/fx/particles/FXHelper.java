@@ -1,6 +1,5 @@
 package binary404.autotech.client.fx.particles;
-
-import binary404.fx_lib.fx.ParticleDispatcher;
+import binary404.fx_lib.fx.particles.ParticleDispatcher;
 import net.minecraft.client.particle.IParticleRenderType;
 import net.minecraft.util.ResourceLocation;
 

@@ -36,11 +36,17 @@ public class AutoTechBlockStateProvider extends BlockStateProvider {
 
         this.simpleBlockState(ModBlocks.reinforced_glass);
 
+        this.simpleBlockState(ModBlocks.distilled_water);
+        this.simpleBlockState(ModBlocks.crude_oil);
+
         this.simpleBlockState(ModBlocks.display_stand);
         this.simpleBlockState(ModBlocks.empowerer);
 
         this.simpleBlockState(ModBlocks.rust);
         this.simpleBlockState(ModBlocks.rust2);
+
+        this.simpleBlockState(ModBlocks.rubber_sapling);
+        this.simpleBlockState(ModBlocks.rubber_leaves);
     }
 
     private void simpleBlockState(Block b) {

@@ -30,7 +30,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 
-public class TileCore<B extends BlockTile> extends TileEntity implements IBlockEntity, INBTDrop {
+public class TileCore extends TileEntity implements IBlockEntity, INBTDrop {
 
     /**
      * Used when this is instance of {@link IInventory}
@@ -59,10 +59,6 @@ public class TileCore<B extends BlockTile> extends TileEntity implements IBlockE
         if (this instanceof IInventory) {
             this.inv.setTile(this);
         }
-    }
-
-    public B getBlock() {
-        return (B) getBlockState().getBlock();
     }
 
     @Override

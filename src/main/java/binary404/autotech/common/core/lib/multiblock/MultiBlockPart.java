@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public abstract class MultiBlockPart<T extends BlockTile> extends TileMachine<T> implements IMultiblockPart {
+public abstract class MultiBlockPart extends TileMachine implements IMultiblockPart {
 
     private BlockPos controllerPos;
     private MultiblockControllerBase controllerTile;

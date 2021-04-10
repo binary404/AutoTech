@@ -18,7 +18,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class TileSteamGenerator extends TileTiered<BlockSteamGenerator> implements IInventory, IRedstoneInteract, ITank {
+public class TileSteamGenerator extends TileTiered implements IInventory, IRedstoneInteract, ITank {
     protected final Counter burner;
     protected boolean burning;
 

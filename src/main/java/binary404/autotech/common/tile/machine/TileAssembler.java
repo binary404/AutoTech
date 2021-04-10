@@ -13,7 +13,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileAssembler extends TileMachine<BlockAssembler> implements ITank {
+public class TileAssembler extends TileMachine implements ITank {
 
     AssemblerManager.AssemblerRecipe recipe;
 

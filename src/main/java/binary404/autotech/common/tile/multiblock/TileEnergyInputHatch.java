@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class TileEnergyInputHatch extends MultiBlockPart<BlockMultiBlock> implements IMultiblockAbilityPart<Energy> {
+public class TileEnergyInputHatch extends MultiBlockPart implements IMultiblockAbilityPart<Energy> {
 
     public TileEnergyInputHatch() {
         super(ModTiles.energy_input_hatch, Tier.LV);

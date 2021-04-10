@@ -23,7 +23,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
 
-public class TileDistillery extends MultiblockControllerBase<BlockDistillery> implements ITank, IOutputTank {
+public class TileDistillery extends MultiblockControllerBase implements ITank, IOutputTank {
 
     private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {
             MultiblockAbility.INPUT_ENERGY,

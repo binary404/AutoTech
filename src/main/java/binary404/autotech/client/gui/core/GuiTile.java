@@ -19,7 +19,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
-public class GuiTile<T extends TileCore<?> & IInventory, C extends ContainerTile<T>> extends GuiCore<C> {
+public class GuiTile<T extends TileCore & IInventory, C extends ContainerTile<T>> extends GuiCore<C> {
 
     protected final T te;
 

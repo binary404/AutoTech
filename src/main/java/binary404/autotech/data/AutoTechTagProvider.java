@@ -1,6 +1,7 @@
 package binary404.autotech.data;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.item.ModItems;
 import binary404.autotech.common.tags.ModTags;
 import binary404.autotech.data.tag.BaseTagProvider;
@@ -24,6 +25,8 @@ public class AutoTechTagProvider extends BaseTagProvider {
         addCircuits();
         addIngots();
         addDusts();
+        addRawOres();
+        addOres();
     }
 
     private void addIngots() {
@@ -37,7 +40,6 @@ public class AutoTechTagProvider extends BaseTagProvider {
 
         getItemBuilder(Tags.Items.DUSTS).add(ModTags.Items.DUSTS_RED_ALLOY);
     }
-
 
     private void addCircuits() {
         addToTag(ModTags.Items.MV_CIRCUITS_LOGIC, ModItems.mv_logic_circuit);
@@ -64,5 +66,22 @@ public class AutoTechTagProvider extends BaseTagProvider {
 
     private void addBeaconTags() {
         addToTag(ItemTags.BEACON_PAYMENT_ITEMS, ModItems.copper_ingot, ModItems.tin_ingot, ModItems.lead_ingot, ModItems.silver_ingot, ModItems.uranium_ingot, ModItems.nickel_ingot, ModItems.platinum_ingot, ModItems.titanium_ingot, ModItems.bronze_ingot, ModItems.steel_ingot);
+    }
+
+    private void addRawOres() {
+        addToTag(ModTags.Items.RAW_COPPER, ModItems.raw_copper);
+        addToTag(ModTags.Items.RAW_TIN, ModItems.raw_tin);
+        addToTag(ModTags.Items.RAW_LEAD, ModItems.raw_lead);
+        addToTag(ModTags.Items.RAW_SILVER, ModItems.raw_silver);
+        addToTag(ModTags.Items.RAW_URANIUM, ModItems.raw_uranium);
+        addToTag(ModTags.Items.RAW_NICKEL, ModItems.raw_nickel);
+        addToTag(ModTags.Items.RAW_PLATINUM, ModItems.raw_platinum);
+        addToTag(ModTags.Items.RAW_TITANIUM, ModItems.raw_titanium);
+        getItemBuilder(ModTags.Items.RAW).add(ModTags.Items.RAW_COPPER, ModTags.Items.RAW_TIN, ModTags.Items.RAW_LEAD, ModTags.Items.RAW_SILVER, ModTags.Items.RAW_URANIUM, ModTags.Items.RAW_NICKEL, ModTags.Items.RAW_PLATINUM, ModTags.Items.RAW_TITANIUM);
+    }
+
+    private void addOres() {
+        addToTags(ModTags.Items.ORES_COPPER, ModTags.Blocks.ORE_COPPER, ModBlocks.copper_ore);
+        addToTags(ModTags.Items.ORES_TIN, ModTags.Blocks.ORE_TIN, ModBlocks.tin_ore);
     }
 }

@@ -31,7 +31,7 @@ import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nullable;
 
-public class TileMachine<T extends BlockTile> extends TileTiered<T> implements IInventory, IRedstoneInteract {
+public class TileMachine extends TileTiered implements IInventory, IRedstoneInteract {
 
     public int processMax;
     public int processRem;

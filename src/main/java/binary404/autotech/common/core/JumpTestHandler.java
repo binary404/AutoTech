@@ -10,7 +10,6 @@ import binary404.autotech.common.item.ModItems;
 import binary404.autotech.common.network.PacketHandler;
 import binary404.autotech.common.network.PacketEnergySuit;
 import binary404.autotech.common.network.PacketJetPack;
-import binary404.fx_lib.fx.FXLaser;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;

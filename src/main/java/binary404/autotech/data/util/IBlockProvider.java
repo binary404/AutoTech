@@ -13,13 +13,4 @@ public interface IBlockProvider extends IItemProvider {
     @Nonnull
     Block getBlock();
 
-    default boolean blockMatches(ItemStack otherStack) {
-        Item item = otherStack.getItem();
-        return item instanceof BlockItem && blockMatches(((BlockItem) item).getBlock());
-    }
-
-    default boolean blockMatches(Block other) {
-        return getBlock() == other;
-    }
-
 }

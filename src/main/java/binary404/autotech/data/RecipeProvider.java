@@ -32,13 +32,13 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORES_LEAD), ModItems.lead_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.lead_ore))
                 .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_SILVER), ModItems.silver_ingot, 0.1F, 200)
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORES_SILVER), ModItems.silver_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.silver_ore))
                 .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_URANIUM), ModItems.uranium_ingot, 0.1F, 200)
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORES_URANIUM), ModItems.uranium_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.uranium_ore))
                 .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORE_NICKEL), ModItems.nickel_ingot, 0.1F, 200)
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ModTags.Items.ORES_NICKEL), ModItems.nickel_ingot, 0.1F, 200)
                 .addCriterion("has_item", hasItem(ModBlocks.nickel_ore))
                 .build(consumer);
 
@@ -83,38 +83,74 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.copper_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(ModTags.Items.ORES_COPPER)
-                .addCriterion("has_item", hasItem(ModBlocks.copper_ore))
+                .addIngredient(ModTags.Items.INGOTS_COPPER)
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_COPPER))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.tin_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(ModBlocks.tin_ore)
-                .addCriterion("has_item", hasItem(ModBlocks.tin_ore))
+                .addIngredient(ModTags.Items.INGOTS_TIN)
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_TIN))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.lead_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(ModBlocks.lead_ore)
-                .addCriterion("has_item", hasItem(ModBlocks.lead_ore))
+                .addIngredient(ModTags.Items.INGOTS_LEAD)
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_LEAD))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.silver_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(ModBlocks.silver_ore)
-                .addCriterion("has_item", hasItem(ModBlocks.silver_ore))
+                .addIngredient(ModTags.Items.INGOTS_SILVER)
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_SILVER))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.nickel_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(ModBlocks.nickel_ore)
-                .addCriterion("has_item", hasItem(ModBlocks.nickel_ore))
+                .addIngredient(ModTags.Items.INGOTS_NICKEL)
+                .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_NICKEL))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.iron_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(Blocks.IRON_ORE)
-                .addCriterion("has_item", hasItem(Blocks.IRON_ORE))
+                .addIngredient(Tags.Items.INGOTS_IRON)
+                .addCriterion("has_item", hasItem(Tags.Items.INGOTS_IRON))
                 .build(consumer);
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.gold_dust)
                 .addIngredient(ModItems.mortar)
-                .addIngredient(Blocks.GOLD_ORE)
-                .addCriterion("has_item", hasItem(Blocks.GOLD_ORE))
+                .addIngredient(Tags.Items.INGOTS_GOLD)
+                .addCriterion("has_item", hasItem(Tags.Items.INGOTS_GOLD))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.copper_ore_dust)
+                .addIngredient(ModItems.mortar)
+                .addIngredient(ModTags.Items.ORES_COPPER)
+                .addCriterion("has_item", hasItem(ModTags.Items.ORES_COPPER))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.tin_ore_dust)
+                .addIngredient(ModItems.mortar)
+                .addIngredient(ModTags.Items.ORES_TIN)
+                .addCriterion("has_item", hasItem(ModTags.Items.ORES_TIN))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.lead_ore_dust)
+                .addIngredient(ModItems.mortar)
+                .addIngredient(ModTags.Items.ORES_LEAD)
+                .addCriterion("has_item", hasItem(ModTags.Items.ORES_LEAD))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.silver_ore_dust)
+                .addIngredient(ModItems.mortar)
+                .addIngredient(ModTags.Items.ORES_SILVER)
+                .addCriterion("has_item", hasItem(ModTags.Items.ORES_SILVER))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.nickel_ore_dust)
+                .addIngredient(ModItems.mortar)
+                .addIngredient(ModTags.Items.ORES_NICKEL)
+                .addCriterion("has_item", hasItem(ModTags.Items.ORES_NICKEL))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.iron_ore_dust)
+                .addIngredient(ModItems.mortar)
+                .addIngredient(Tags.Items.ORES_IRON)
+                .addCriterion("has_item", hasItem(Tags.Items.ORES_IRON))
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.gold_ore_dust)
+                .addIngredient(ModItems.mortar)
+                .addIngredient(Tags.Items.ORES_GOLD)
+                .addCriterion("has_item", hasItem(Tags.Items.ORES_GOLD))
                 .build(consumer);
 
         ShapelessRecipeBuilder.shapelessRecipe(ModItems.copper_plate)
