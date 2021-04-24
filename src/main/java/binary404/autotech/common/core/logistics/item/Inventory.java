@@ -10,6 +10,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -22,25 +23,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class Inventory<I extends TileCore & IInventory> extends ItemStackHandler {
+public class Inventory extends ItemStackHandler implements INBTSerializable<CompoundNBT> {
 
     @Nullable
-    private I tile;
+    private TileCore tile;
 
     public Inventory(int size) {
         this(size, null);
     }
 
-    Inventory(int size, @Nullable I tile) {
+    Inventory(int size, @Nullable TileCore tile) {
         super(size);
         this.tile = tile;
     }
 
-    public static <I extends TileCore & IInventory> Inventory create(int size, @Nullable I tile) {
+    public static Inventory create(int size, @Nullable TileCore tile) {
         return new Inventory(size, tile);
     }
 
-    public static <I extends TileCore & IInventory> Inventory createBlank(@Nullable I tile) {
+    public static Inventory createBlank(@Nullable TileCore tile) {
         return new Inventory(0, tile);
     }
 
@@ -52,7 +53,7 @@ public class Inventory<I extends TileCore & IInventory> extends ItemStackHandler
         return new Inventory(0, null);
     }
 
-    public void setTile(@Nullable I tile) {
+    public void setTile(@Nullable TileCore tile) {
         this.tile = tile;
     }
 
@@ -78,40 +79,10 @@ public class Inventory<I extends TileCore & IInventory> extends ItemStackHandler
         return this;
     }
 
-    @Override
-    public int getSlotLimit(int slot) {
-        if (this.tile != null) {
-            return this.tile.getSlotLimit(slot);
-        }
-        return super.getSlotLimit(slot);
-    }
-
-    @Override
-    public boolean isItemValid(int slot, ItemStack stack) {
-        if (this.tile != null) {
-            return this.tile.canInsert(slot, stack);
-        }
-        return super.isItemValid(slot, stack);
-    }
-
     @Nonnull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return slot <= this.getSlots() && canExtract(slot, getStackInSlot(slot)) ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
-    }
-
-    public boolean canExtract(int slot, ItemStack stack) {
-        if (this.tile != null) {
-            return this.tile.canExtract(slot, stack);
-        }
-        return true;
-    }
-
-    @Override
-    protected void onContentsChanged(int slot) {
-        if (this.tile != null) {
-            this.tile.onSlotChanged(slot);
-        }
+        return slot <= this.getSlots() ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
     }
 
     @Nullable

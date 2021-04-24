@@ -7,6 +7,8 @@
     "#forge:raw/uranium",
     "#forge:raw/nickel",
     "#forge:raw/platinum",
-    "#forge:raw/titanium"
+    "#forge:raw/titanium",
+    "#forge:raw/iron",
+    "#forge:raw/gold"
   ]
 }

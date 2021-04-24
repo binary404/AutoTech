@@ -5,7 +5,7 @@
       "item": "autotech:mortar"
     },
     {
-      "item": "autotech:lead_ore"
+      "tag": "forge:ingots/lead"
     }
   ],
   "result": {

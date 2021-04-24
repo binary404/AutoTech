@@ -2,101 +2,43 @@ package binary404.autotech.common.tile;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.block.ModBlocks;
-import binary404.autotech.common.tile.core.TileEnergy;
-import binary404.autotech.common.tile.device.TileDisplayStand;
-import binary404.autotech.common.tile.device.TileOilPump;
-import binary404.autotech.common.tile.device.TileWaterPump;
-import binary404.autotech.common.tile.generator.TileSteamGenerator;
-import binary404.autotech.common.tile.machine.*;
+import binary404.autotech.common.block.machine.BlockMachine;
+import binary404.autotech.common.tile.core.TileSimpleGenerator;
+import binary404.autotech.common.tile.core.TileSimpleMachine;
 import binary404.autotech.common.tile.multiblock.*;
-import binary404.autotech.common.tile.transfer.TileCable;
-import binary404.autotech.common.tile.transfer.TileConveyor;
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
 
 import static binary404.autotech.common.core.util.RegistryUtil.register;
 
 @Mod.EventBusSubscriber(modid = AutoTech.modid, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModTiles {
 
-    @ObjectHolder("autotech:smelter")
-    public static TileEntityType<TileSmelter> smelter;
+    public static TileEntityType<TileItemHatch> item_hatch;
+    public static TileEntityType<TileFluidHatch> fluid_hatch;
+    public static TileEntityType<TileEnergyHatch> energy_hatch;
 
-    @ObjectHolder("autotech:bio_generator")
-    public static TileEntityType<TileSteamGenerator> bio_generator;
+    public static TileEntityType<TileSimpleMachine> simple_machine;
+    public static TileEntityType<TileSimpleGenerator> simple_generator;
 
-    @ObjectHolder("autotech:grinder")
-    public static TileEntityType<TileGrinder> grinder;
-
-    @ObjectHolder("autotech:sawmill")
-    public static TileEntityType<TileSawMill> sawmill;
-
-    @ObjectHolder("autotech:cable")
-    public static TileEntityType<TileCable> cable;
-
-    @ObjectHolder("autotech:waterpump")
-    public static TileEntityType<TileWaterPump> waterpump;
-
-    public static TileEntityType<TileOilPump> oil_pump;
-
-    @ObjectHolder("autotech:compactor")
-    public static TileEntityType<TileCompactor> compactor;
-
-    @ObjectHolder("autotech:centrifuge")
-    public static TileEntityType<TileCentrifuge> centrifuge;
-
-    public static TileEntityType<TileDistillery> distillery;
-
-    public static TileEntityType<TileConveyor> conveyor;
-
-    public static TileEntityType<TileAssembler> assembler;
-
-    public static TileEntityType<TileArcFurnace> arc_furnace;
-
-    public static TileEntityType<TileItemInputHatch> item_input_hatch;
-    public static TileEntityType<TileItemOutputHatch> item_output_hatch;
-    public static TileEntityType<TileEnergyInputHatch> energy_input_hatch;
-    public static TileEntityType<TileFluidInputHatch> fluid_input_hatch;
-    public static TileEntityType<TileFluidOutputHatch> fluid_output_hatch;
-
-    public static TileEntityType<TileCharger> charger;
-
-    public static TileEntityType<TileAssemblyLine> assembly_line;
-
-    public static TileEntityType<TileDisplayStand> display_stand;
-
-    public static TileEntityType<TileEmpowerer> empowerer;
+    public static TileEntityType<TileDistillationTower> distillation_tower;
 
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
         IForgeRegistry<TileEntityType<?>> r = event.getRegistry();
 
-        register(r, TileEntityType.Builder.create(TileSmelter::new, ModBlocks.lv_smelter, ModBlocks.mv_smelter, ModBlocks.hv_smelter, ModBlocks.ev_smelter, ModBlocks.iv_smelter, ModBlocks.maxv_smelter).build(null), "smelter");
-        register(r, TileEntityType.Builder.create(TileSteamGenerator::new, ModBlocks.lv_steam_generator, ModBlocks.mv_steam_generator, ModBlocks.hv_steam_generator).build(null), "bio_generator");
-        register(r, TileEntityType.Builder.create(TileGrinder::new, ModBlocks.lv_grinder, ModBlocks.mv_grinder, ModBlocks.hv_grinder, ModBlocks.ev_grinder, ModBlocks.iv_grinder, ModBlocks.maxv_grinder).build(null), "grinder");
-        register(r, TileEntityType.Builder.create(TileSawMill::new, ModBlocks.lv_sawmill, ModBlocks.mv_sawmill, ModBlocks.hv_sawmill, ModBlocks.ev_sawmill, ModBlocks.iv_sawmill, ModBlocks.maxv_sawmill).build(null), "sawmill");
-        register(r, TileEntityType.Builder.create(TileCable::new, ModBlocks.lv_cable, ModBlocks.mv_cable, ModBlocks.hv_cable, ModBlocks.ev_cable, ModBlocks.iv_cable, ModBlocks.maxv_cable).build(null), "cable");
-        register(r, TileEntityType.Builder.create(TileWaterPump::new, ModBlocks.water_pump).build(null), "waterpump");
-        register(r, TileEntityType.Builder.create(TileCompactor::new, ModBlocks.lv_compactor, ModBlocks.mv_compactor).build(null), "compactor");
-        register(r, TileEntityType.Builder.create(TileCentrifuge::new, ModBlocks.mv_centrifuge).build(null), "centrifuge");
-        distillery = (TileEntityType<TileDistillery>) register(r, TileEntityType.Builder.create(TileDistillery::new, ModBlocks.mv_distillery).build(null), "distillery");
-        conveyor = (TileEntityType<TileConveyor>) register(r, TileEntityType.Builder.create(TileConveyor::new, ModBlocks.conveyor).build(null), "conveyor");
-        assembler = (TileEntityType<TileAssembler>) register(r, TileEntityType.Builder.create(TileAssembler::new, ModBlocks.mv_assembler).build(null), "assembler");
-        arc_furnace = (TileEntityType<TileArcFurnace>) register(r, TileEntityType.Builder.create(TileArcFurnace::new, ModBlocks.lv_arc_furnace).build(null), "arc_furnace");
-        item_input_hatch = (TileEntityType<TileItemInputHatch>) register(r, TileEntityType.Builder.create(TileItemInputHatch::new, ModBlocks.item_input_hatch).build(null), "hatch");
-        item_output_hatch = (TileEntityType<TileItemOutputHatch>) register(r, TileEntityType.Builder.create(TileItemOutputHatch::new, ModBlocks.item_output_hatch).build(null), "item_output_hatch");
-        energy_input_hatch = (TileEntityType<TileEnergyInputHatch>) register(r, TileEntityType.Builder.create(TileEnergyInputHatch::new, ModBlocks.energy_input_hatch).build(null), "energy_input_hatch");
-        fluid_input_hatch = (TileEntityType<TileFluidInputHatch>) register(r, TileEntityType.Builder.create(TileFluidInputHatch::new, ModBlocks.fluid_input_hatch).build(null), "fluid_input_hatch");
-        fluid_output_hatch = (TileEntityType<TileFluidOutputHatch>) register(r, TileEntityType.Builder.create(TileFluidOutputHatch::new, ModBlocks.fluid_output_hatch).build(null), "fluid_output_hatch");
-        charger = (TileEntityType<TileCharger>) register(r, TileEntityType.Builder.create(TileCharger::new, ModBlocks.mv_charger).build(null), "charger");
-        assembly_line = (TileEntityType<TileAssemblyLine>) register(r, TileEntityType.Builder.create(TileAssemblyLine::new, ModBlocks.hv_assembly_line).build(null), "assembly_line");
-        display_stand = (TileEntityType<TileDisplayStand>) register(r, TileEntityType.Builder.create(TileDisplayStand::new, ModBlocks.display_stand).build(null), "display_stand");
-        empowerer = (TileEntityType<TileEmpowerer>) register(r, TileEntityType.Builder.create(TileEmpowerer::new, ModBlocks.empowerer).build(null), "empowerer");
-        oil_pump = (TileEntityType<TileOilPump>) register(r, TileEntityType.Builder.create(TileOilPump::new, ModBlocks.oil_pump).build(null), "oil_pump");
+        item_hatch = (TileEntityType<TileItemHatch>) register(r, TileEntityType.Builder.create(TileItemHatch::new, ModBlocks.lv_item_input_hatch, ModBlocks.lv_item_output_hatch).build(null), "item_hatch");
+        fluid_hatch = (TileEntityType<TileFluidHatch>) register(r, TileEntityType.Builder.create(TileFluidHatch::new, ModBlocks.lv_fluid_input_hatch, ModBlocks.lv_fluid_output_hatch).build(null), "fluid_hatch");
+        energy_hatch = (TileEntityType<TileEnergyHatch>) register(r, TileEntityType.Builder.create(TileEnergyHatch::new, ModBlocks.lv_energy_input_hatch, ModBlocks.lv_energy_output_hatch).build(null), "energy_hatch");
+
+        simple_machine = (TileEntityType<TileSimpleMachine>) register(r, TileEntityType.Builder.create(TileSimpleMachine::new, BlockMachine.machines.toArray(new Block[0])).build(null), "simple_machine");
+        simple_generator = (TileEntityType<TileSimpleGenerator>) register(r, TileEntityType.Builder.create(TileSimpleGenerator::new, ModBlocks.test).build(null), "simple_generator");
+
+        distillation_tower = (TileEntityType<TileDistillationTower>) register(r, TileEntityType.Builder.create(TileDistillationTower::new, ModBlocks.distillation_tower).build(null), "distillery");
     }
 
 }

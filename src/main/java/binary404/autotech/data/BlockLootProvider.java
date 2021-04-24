@@ -53,6 +53,11 @@ public class BlockLootProvider implements IDataProvider {
         tables.remove(ModBlocks.nickel_ore.getRegistryName());
         tables.remove(ModBlocks.platinum_ore.getRegistryName());
         tables.remove(ModBlocks.titanium_ore.getRegistryName());
+        tables.remove(ModBlocks.iron_ore.getRegistryName());
+        tables.remove(ModBlocks.gold_ore.getRegistryName());
+        tables.remove(ModBlocks.redstone_ore.getRegistryName());
+        tables.remove(ModBlocks.coal_ore.getRegistryName());
+        tables.remove(ModBlocks.diamond_ore.getRegistryName());
         tables.remove(ModBlocks.rubber_leaves.getRegistryName());
         tables.remove(ModBlocks.rubber_log.getRegistryName());
 

@@ -92,6 +92,8 @@ public class ModTags {
         public static final ITag.INamedTag<Item> RAW_NICKEL = forgeTag("raw/nickel");
         public static final ITag.INamedTag<Item> RAW_PLATINUM = forgeTag("raw/platinum");
         public static final ITag.INamedTag<Item> RAW_TITANIUM = forgeTag("raw/titanium");
+        public static final ITag.INamedTag<Item> RAW_IRON = forgeTag("raw/iron");
+        public static final ITag.INamedTag<Item> RAW_GOLD = forgeTag("raw/gold");
 
         private static ITag.INamedTag<Item> tag(String name) {
             return ItemTags.makeWrapperTag(AutoTech.key(name).toString());

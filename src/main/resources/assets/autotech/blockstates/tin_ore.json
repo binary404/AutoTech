@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "ore_type=stone": {"model": "autotech:block/tin_ore_stone"},
+    "ore_type=andesite": {"model": "autotech:block/tin_ore_andesite"},
+    "ore_type=granite": {"model": "autotech:block/tin_ore_granite"},
+    "ore_type=diorite": {"model": "autotech:block/tin_ore_diorite"}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "autotech:mortar"
+    },
+    {
+      "tag": "forge:raw/tin"
+    }
+  ],
+  "result": {
+    "item": "autotech:tin_ore_dust"
+  }
+}

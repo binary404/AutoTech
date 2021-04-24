@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "autotech:mortar"
+    },
+    {
+      "tag": "forge:raw/iron"
+    }
+  ],
+  "result": {
+    "item": "autotech:iron_ore_dust"
+  }
+}

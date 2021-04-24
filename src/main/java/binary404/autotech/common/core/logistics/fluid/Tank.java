@@ -2,12 +2,14 @@ package binary404.autotech.common.core.logistics.fluid;
 
 import com.google.common.base.Predicate;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 public class Tank extends FluidTank {
 
-    private Runnable changed = () -> {};
+    private Runnable changed = () -> {
+    };
 
     public Tank(int capacity) {
         this(capacity, e -> true);
@@ -47,7 +49,6 @@ public class Tank extends FluidTank {
     protected void onContentsChanged() {
         this.changed.run();
     }
-
 
 
 }

@@ -77,11 +77,16 @@ public class AutoTechTagProvider extends BaseTagProvider {
         addToTag(ModTags.Items.RAW_NICKEL, ModItems.raw_nickel);
         addToTag(ModTags.Items.RAW_PLATINUM, ModItems.raw_platinum);
         addToTag(ModTags.Items.RAW_TITANIUM, ModItems.raw_titanium);
-        getItemBuilder(ModTags.Items.RAW).add(ModTags.Items.RAW_COPPER, ModTags.Items.RAW_TIN, ModTags.Items.RAW_LEAD, ModTags.Items.RAW_SILVER, ModTags.Items.RAW_URANIUM, ModTags.Items.RAW_NICKEL, ModTags.Items.RAW_PLATINUM, ModTags.Items.RAW_TITANIUM);
+        addToTag(ModTags.Items.RAW_IRON, ModItems.raw_iron);
+        addToTag(ModTags.Items.RAW_GOLD, ModItems.raw_gold);
+        getItemBuilder(ModTags.Items.RAW).add(ModTags.Items.RAW_COPPER, ModTags.Items.RAW_TIN, ModTags.Items.RAW_LEAD, ModTags.Items.RAW_SILVER, ModTags.Items.RAW_URANIUM, ModTags.Items.RAW_NICKEL, ModTags.Items.RAW_PLATINUM, ModTags.Items.RAW_TITANIUM, ModTags.Items.RAW_IRON, ModTags.Items.RAW_GOLD);
     }
 
     private void addOres() {
         addToTags(ModTags.Items.ORES_COPPER, ModTags.Blocks.ORE_COPPER, ModBlocks.copper_ore);
         addToTags(ModTags.Items.ORES_TIN, ModTags.Blocks.ORE_TIN, ModBlocks.tin_ore);
+        addToTags(Tags.Items.ORES_COAL, Tags.Blocks.ORES_COAL, ModBlocks.coal_ore);
+        addToTags(Tags.Items.ORES_REDSTONE, Tags.Blocks.ORES_REDSTONE, ModBlocks.redstone_ore);
+        addToTags(Tags.Items.ORES_DIAMOND, Tags.Blocks.ORES_DIAMOND, ModBlocks.diamond_ore);
     }
 }

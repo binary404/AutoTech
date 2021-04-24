@@ -1,9 +1,6 @@
 package binary404.autotech.common.core;
 
 import binary404.autotech.AutoTech;
-import binary404.autotech.client.fx.LaserRenderHandler;
-import binary404.autotech.client.fx.LaserRenderHelper;
-import binary404.autotech.client.gui.core.Texture;
 import binary404.autotech.client.util.ModSounds;
 import binary404.autotech.common.item.ItemEnergySuit;
 import binary404.autotech.common.item.ModItems;
@@ -12,6 +9,7 @@ import binary404.autotech.common.network.PacketEnergySuit;
 import binary404.autotech.common.network.PacketJetPack;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.Texture;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,6 +33,7 @@ public class JumpTestHandler {
 
     @SubscribeEvent
     public static void renderCharge(RenderGameOverlayEvent.Pre event) {
+        /*
         if (Minecraft.getInstance().player.inventory.armorItemInSlot(1).getItem() == ModItems.energy_leggings) {
             MatrixStack stack = event.getMatrixStack();
             if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
@@ -42,7 +41,6 @@ public class JumpTestHandler {
                 stack.push();
                 stack.scale(2.1F, 2.1F, 2.1F);
                 stack.translate(0, 0, 10);
-                Texture.ENERGY_HUD.draw(stack, 1, 1);
                 stack.pop();
                 stack.push();
                 stack.translate(0.3, -0.1, 0);
@@ -53,6 +51,7 @@ public class JumpTestHandler {
                 stack.pop();
             }
         }
+         */
     }
 
     @SubscribeEvent

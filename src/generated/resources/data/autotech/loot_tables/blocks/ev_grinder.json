@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "autotech:ev_grinder"
+          "name": "autotech:extreme_grinder"
         }
       ],
       "conditions": [

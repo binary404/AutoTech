@@ -66,24 +66,23 @@ public class ModFeatures {
         List<LargeOreFeature.VeinConfig> configs = new ArrayList<>();
 
         configs.add(new LargeOreFeature.VeinConfig(16, 40, 80, 4, ModBlocks.copper_ore));
-        configs.add(new LargeOreFeature.VeinConfig(16, 30, 80, 5, ModBlocks.tin_ore));
-        configs.add(new LargeOreFeature.VeinConfig(20, 10, 50, 3, Blocks.IRON_ORE));
-        configs.add(new LargeOreFeature.VeinConfig(20, 50, 130, 8, Blocks.COAL_ORE));
-        configs.add(new LargeOreFeature.VeinConfig(12, 10, 30, 3, Blocks.GOLD_ORE, Blocks.IRON_ORE));
-        configs.add(new LargeOreFeature.VeinConfig(16, 10, 40, 4, Blocks.REDSTONE_ORE));
+        configs.add(new LargeOreFeature.VeinConfig(16, 30, 100, 5, ModBlocks.tin_ore));
+        configs.add(new LargeOreFeature.VeinConfig(20, 10, 50, 3, ModBlocks.iron_ore));
+        configs.add(new LargeOreFeature.VeinConfig(20, 50, 130, 8, ModBlocks.coal_ore));
+        configs.add(new LargeOreFeature.VeinConfig(12, 10, 30, 3, ModBlocks.gold_ore, ModBlocks.iron_ore));
+        configs.add(new LargeOreFeature.VeinConfig(16, 10, 40, 4, ModBlocks.redstone_ore));
         configs.add(new LargeOreFeature.VeinConfig(16, 40, 70, 6, ModBlocks.lead_ore));
         configs.add(new LargeOreFeature.VeinConfig(16, 20, 50, 6, ModBlocks.silver_ore));
         configs.add(new LargeOreFeature.VeinConfig(12, 30, 60, 5, ModBlocks.lead_ore, ModBlocks.silver_ore));
-        configs.add(new LargeOreFeature.VeinConfig(12, 20, 30, 3, ModBlocks.uranium_ore));
+        configs.add(new LargeOreFeature.VeinConfig(10, 20, 30, 3, ModBlocks.uranium_ore));
         configs.add(new LargeOreFeature.VeinConfig(12, 10, 40, 3, ModBlocks.nickel_ore));
-        configs.add(new LargeOreFeature.VeinConfig(12, 5, 20, 2, Blocks.DIAMOND_ORE));
-        configs.add(new LargeOreFeature.VeinConfig(12, 20, 50, 5, Blocks.LAPIS_ORE));
+        configs.add(new LargeOreFeature.VeinConfig(10, 5, 20, 2, ModBlocks.diamond_ore));
 
         LargeOreFeature.configs = configs;
 
         event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, LARGE_ORE_CONF);
         event.getGeneration().withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, OIL_LAKE_CONF);
-        event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, RUBBER_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.06F, 1))));
+        event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, RUBBER_TREE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.02F, 1))));
     }
 
 }

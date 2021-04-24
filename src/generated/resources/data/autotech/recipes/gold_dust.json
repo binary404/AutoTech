@@ -5,7 +5,7 @@
       "item": "autotech:mortar"
     },
     {
-      "item": "minecraft:gold_ore"
+      "tag": "forge:ingots/gold"
     }
   ],
   "result": {

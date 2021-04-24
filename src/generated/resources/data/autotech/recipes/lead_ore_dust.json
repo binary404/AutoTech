@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "autotech:mortar"
+    },
+    {
+      "tag": "forge:ores/lead"
+    }
+  ],
+  "result": {
+    "item": "autotech:lead_ore_dust"
+  }
+}

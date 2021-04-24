@@ -1,6 +1,5 @@
 package binary404.autotech.common.core.manager;
 
-import binary404.autotech.common.container.machine.AssemblerContainer;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.util.ComparableItemStack;
 import binary404.autotech.common.fluid.ModFluids;

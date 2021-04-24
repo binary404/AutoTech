@@ -43,11 +43,11 @@ public class GrinderManager {
         addRecipe(Tier.LV, 40000, ModTags.Items.ORES_COPPER, 1, new ItemStack(ModItems.copper_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.lead_ore_dust), 50, 30);
         addRecipe(Tier.LV, 40000, ModTags.Items.ORES_TIN, 1, new ItemStack(ModItems.tin_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.copper_ore_dust), 40, 20);
         addRecipe(Tier.LV, 50000, ModTags.Items.ORES_LEAD, 1, new ItemStack(ModItems.lead_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 75, 0);
-        addRecipe(Tier.LV, 35000, ModTags.Items.ORE_SILVER, 1, new ItemStack(ModItems.silver_ore_dust, 2), new ItemStack(ModItems.lead_ore_dust), new ItemStack(ModItems.gold_ore_dust), 80, 70);
-        addRecipe(Tier.EV, 80000, ModTags.Items.ORE_URANIUM, 1, new ItemStack(ModItems.uranium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
-        addRecipe(Tier.LV, 50000, ModTags.Items.ORE_NICKEL, 1, new ItemStack(ModItems.nickel_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.platinum_ore_dust), 60, 10);
-        addRecipe(Tier.HV, 40000, ModTags.Items.ORE_PLATINUM, 1, new ItemStack(ModItems.platinum_ore_dust, 2), new ItemStack(ModItems.nickel_ore_dust), new ItemStack(ModItems.copper_ore_dust), 70, 70);
-        addRecipe(Tier.MV, 65000, ModTags.Items.ORE_TITANIUM, 1, new ItemStack(ModItems.titanium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.LV, 35000, ModTags.Items.ORES_SILVER, 1, new ItemStack(ModItems.silver_ore_dust, 2), new ItemStack(ModItems.lead_ore_dust), new ItemStack(ModItems.gold_ore_dust), 80, 70);
+        addRecipe(Tier.EV, 80000, ModTags.Items.ORES_URANIUM, 1, new ItemStack(ModItems.uranium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
+        addRecipe(Tier.LV, 50000, ModTags.Items.ORES_NICKEL, 1, new ItemStack(ModItems.nickel_ore_dust, 2), new ItemStack(ModItems.iron_ore_dust), new ItemStack(ModItems.platinum_ore_dust), 60, 10);
+        addRecipe(Tier.HV, 40000, ModTags.Items.ORES_PLATINUM, 1, new ItemStack(ModItems.platinum_ore_dust, 2), new ItemStack(ModItems.nickel_ore_dust), new ItemStack(ModItems.copper_ore_dust), 70, 70);
+        addRecipe(Tier.MV, 65000, ModTags.Items.ORES_TITANIUM, 1, new ItemStack(ModItems.titanium_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 40000, Tags.Items.ORES_IRON, 1, new ItemStack(ModItems.iron_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);
         addRecipe(Tier.LV, 40000, Tags.Items.ORES_GOLD, 1, new ItemStack(ModItems.gold_ore_dust, 2), new ItemStack(ModItems.silver_ore_dust), ItemStack.EMPTY, 45, 0);
         addRecipe(Tier.LV, 80000, Tags.Items.ORES_NETHERITE_SCRAP, 1, new ItemStack(ModItems.netherite_ore_dust, 2), ItemStack.EMPTY, ItemStack.EMPTY, 0, 0);

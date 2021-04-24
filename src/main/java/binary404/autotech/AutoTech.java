@@ -2,6 +2,7 @@ package binary404.autotech;
 
 import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.core.manager.*;
+import binary404.autotech.common.core.recipe.RecipeHandler;
 import binary404.autotech.common.entity.ModEntities;
 import binary404.autotech.common.network.PacketHandler;
 import binary404.autotech.common.world.ModFeatures;
@@ -66,9 +67,7 @@ public class AutoTech {
     }
 
     private void onTagsUpdate(TagsUpdatedEvent event) {
-        GrinderManager.initTags();
-        SawMillManager.initTags();
-        ArcFurnaceManager.initTags();
+        RecipeHandler.init();
     }
 
     public static ResourceLocation key(String path) {

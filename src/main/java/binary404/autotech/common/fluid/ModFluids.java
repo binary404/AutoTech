@@ -30,6 +30,10 @@ public class ModFluids {
     public static BasicFlowingFluid.Flowing crude_oil_flowing;
     public static BasicFlowingFluid.Source crude_oil;
 
+    public static ForgeFlowingFluid.Properties biomass_properties;
+    public static BasicFlowingFluid.Flowing biomass_flowing;
+    public static BasicFlowingFluid.Source biomass;
+
     @SubscribeEvent
     public static void registerFluids(RegistryEvent.Register<Fluid> event) {
         IForgeRegistry<Fluid> r = event.getRegistry();
@@ -40,11 +44,15 @@ public class ModFluids {
 
         crude_oil = (BasicFlowingFluid.Source) register(r, new BasicFlowingFluid.Source(crude_oil_properties), "crude_oil");
         crude_oil_flowing = (BasicFlowingFluid.Flowing) register(r, new BasicFlowingFluid.Flowing(crude_oil_properties), "crude_oil_flowing");
+
+        biomass = (BasicFlowingFluid.Source) register(r, new BasicFlowingFluid.Source(biomass_properties), "biomass");
+        biomass_flowing = (BasicFlowingFluid.Flowing) register(r, new BasicFlowingFluid.Flowing(biomass_properties), "biomass_flowing");
     }
 
     private static void makeProperties() {
         distilled_water_properties = makeProperties("distilled_water", FluidAttributeHolder::distilledWater, () -> distilled_water, () -> distilled_water_flowing).block(() -> ModBlocks.distilled_water).bucket(() -> ModItems.distilled_water_bucket);
         crude_oil_properties = makeProperties("crude_oil", FluidAttributeHolder::crudeOil, () -> crude_oil, () -> crude_oil_flowing).block(() -> ModBlocks.crude_oil).bucket(() -> ModItems.crude_oil_bucket);
+        biomass_properties = makeProperties("biomass", FluidAttributeHolder::biomass, () -> biomass, () -> biomass_flowing).block(() -> ModBlocks.biomass).bucket(() -> ModItems.biomass_bucket);
     }
 
     private static ForgeFlowingFluid.Properties makeProperties(String name, Function<FluidAttributes.Builder, FluidAttributes.Builder> postProcess, Supplier<ForgeFlowingFluid> stillFluidSupplier, Supplier<ForgeFlowingFluid> flowingFluidSupplier) {

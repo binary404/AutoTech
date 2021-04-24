@@ -16,4 +16,8 @@ public class FluidAttributeHolder {
         return builder.viscosity(3000).density(1500);
     }
 
+    public static FluidAttributes.Builder biomass(FluidAttributes.Builder builder) {
+        return builder.viscosity(1500).density(1500);
+    }
+
 }

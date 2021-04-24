@@ -1,155 +1,322 @@
 package binary404.autotech.common.tile.core;
 
-import binary404.autotech.common.block.BlockTile;
+import binary404.autotech.client.gui.TileEntityUIFactory;
+import binary404.autotech.client.gui.core.IUIHolder;
+import binary404.autotech.client.gui.core.ModularUserInterface;
+import binary404.autotech.client.renders.core.Textures;
 import binary404.autotech.common.core.logistics.*;
-import binary404.autotech.common.core.logistics.fluid.Tank;
-import binary404.autotech.common.core.logistics.item.DualInventoryWrapper;
-import binary404.autotech.common.core.logistics.item.InputInventoryWrapper;
-import binary404.autotech.common.core.logistics.item.Inventory;
-import binary404.autotech.common.core.logistics.item.OutputInventoryWrapper;
+import binary404.autotech.common.core.logistics.fluid.FluidHandlerProxy;
+import binary404.autotech.common.core.logistics.fluid.FluidTankList;
+import binary404.autotech.common.core.logistics.item.*;
+import binary404.autotech.common.core.recipe.core.TETrait;
 import binary404.autotech.common.core.util.NBTUtil;
 import binary404.autotech.common.core.util.StackUtil;
+import binary404.autotech.common.core.util.Util;
 import binary404.autotech.common.tile.util.*;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.texture.TextureUtils;
+import codechicken.lib.vec.Cuboid6;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.NetworkManager;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.EmptyFluidHandler;
+import net.minecraftforge.items.*;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
 
-public class TileCore extends TileEntity implements IBlockEntity, INBTDrop {
+public abstract class TileCore extends TileEntity implements IBlockEntity, IUIHolder, ITickableTileEntity {
 
-    /**
-     * Used when this is instance of {@link IInventory}
-     **/
-    protected Inventory inv = Inventory.createBlank();
-    private final LazyOptional<Inventory> invHolder = LazyOptional.of(() -> this.inv);
-    /**
-     * Used when this is instance of {@link ITank}
-     **/
-    public SideConfigItem itemConfig = new SideConfigItem(this);
+    protected IItemHandlerModifiable importItems;
+    protected IItemHandlerModifiable exportItems;
 
-    protected Tank tank = new Tank(0);
-    protected final LazyOptional<FluidTank> tankHolder = LazyOptional.of(() -> this.tank);
+    protected IItemHandler itemInventory;
+
+    protected FluidTankList importFluids;
+    protected FluidTankList exportFluids;
+
+    protected IFluidHandler fluidInventory;
+
+    protected boolean newInventory = true;
 
     //Direction
     protected Direction facing = Direction.NORTH;
 
-    protected boolean isContainerOpen;
-    /**
-     * Used when this is instance of {@link IRedstoneInteract}
-     **/
+    private long timer = 0L;
+    private final int offset = Util.getRandomIntXSTR(20);
+
     private Redstone redstone = Redstone.IGNORE;
+
+    protected List<TETrait> teTraits = new ArrayList<>();
 
     public TileCore(TileEntityType<?> type) {
         super(type);
-        if (this instanceof IInventory) {
-            this.inv.setTile(this);
+    }
+
+    protected void initializeInventory() {
+        if (this.newInventory) {
+            this.importItems = createImportItemHandler();
+            this.exportItems = createExportItemHandler();
+            this.itemInventory = new ItemHandlerProxy(importItems, exportItems);
+
+            this.importFluids = createImportFluidHandler();
+            this.exportFluids = createExportFluidHandler();
+            this.fluidInventory = new FluidHandlerProxy(importFluids, exportFluids);
         }
     }
 
+    protected IItemHandlerModifiable createImportItemHandler() {
+        return new ItemStackHandler(0);
+    }
+
+    protected IItemHandlerModifiable createExportItemHandler() {
+        return new ItemStackHandler(0);
+    }
+
+    protected FluidTankList createImportFluidHandler() {
+        return new FluidTankList(false);
+    }
+
+    protected FluidTankList createExportFluidHandler() {
+        return new FluidTankList(false);
+    }
+
+    public void addTileEntityTrait(TETrait trait) {
+        teTraits.removeIf(otherTrait -> {
+            if (trait.getName().equals(otherTrait.getName())) {
+                return true;
+            }
+            if (otherTrait.getNetworkID() == trait.getNetworkID()) {
+                String message = "Trait %s is incompatible with trait %s as the both use the same network id %d";
+                throw new IllegalArgumentException(String.format(message, trait, otherTrait, trait.getNetworkID()));
+            }
+            return false;
+        });
+        this.teTraits.add(trait);
+    }
+
+    public abstract ModularUserInterface createUI(PlayerEntity playerEntity);
+
     @Override
-    public void read(BlockState state, CompoundNBT compound) {
-        super.read(state, compound);
-        readSync(compound);
+    public boolean isRemote() {
+        return getWorld().isRemote;
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        CompoundNBT nbt = super.write(compound);
-        return writeSync(nbt);
-    }
-
-    public void setDirection(Direction direction) {
-        this.facing = direction;
+    public void markAsDirty() {
+        markDirty();
     }
 
     @Override
-    public CompoundNBT getUpdateTag() {
-        return write(new CompoundNBT());
+    public boolean onRightClick(PlayerEntity player, Hand hand, Direction direction, BlockRayTraceResult hitResult) {
+        if (!player.isSneaking()) {
+            if (getWorld() != null && !getWorld().isRemote) {
+                TileEntityUIFactory.INSTANCE.openUI(this, (ServerPlayerEntity) player);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    protected boolean shouldSerializeInventories() {
+        return true;
+    }
+
+    public void scheduleChunkForRenderUpdate() {
+        BlockPos pos = getPos();
+        getWorld().markBlockRangeForRenderUpdate(pos, getBlockState(), getBlockState());
+    }
+
+    public void notifyBlockUpdate() {
+        getWorld().notifyNeighborsOfStateChange(pos, getBlockState().getBlock());
+    }
+
+    public void writeInitialSyncData(PacketBuffer buffer) {
+        buffer.writeByte(this.facing.getIndex());
+    }
+
+    public void receiveInitialSyncData(PacketBuffer buffer) {
+        this.facing = Direction.values()[buffer.readByte()];
+    }
+
+    public void receiveCustomData(int discriminator, PacketBuffer buffer) {
+        if (discriminator == -2) {
+            this.facing = Direction.values()[buffer.readByte()];
+            scheduleChunkForRenderUpdate();
+        }
+    }
+
+    private static class UpdateEntry {
+        private final int discriminator;
+        private final byte[] updateData;
+
+        public UpdateEntry(int discriminator, byte[] updateData) {
+            this.discriminator = discriminator;
+            this.updateData = updateData;
+        }
+    }
+
+    protected final List<UpdateEntry> updateEntries = new ArrayList<>();
+
+    public void writeCustomData(int discriminator, Consumer<PacketBuffer> dataWriter) {
+        ByteBuf backedBuffer = Unpooled.buffer();
+        dataWriter.accept(new PacketBuffer(backedBuffer));
+        byte[] updateData = Arrays.copyOfRange(backedBuffer.array(), 0, backedBuffer.writerIndex());
+        updateEntries.add(new UpdateEntry(discriminator, updateData));
+        BlockState blockState = getBlockState();
+        world.notifyBlockUpdate(getPos(), blockState, blockState, 0);
     }
 
     @Nullable
     @Override
     public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(getPos(), 3, getUpdateTag());
-    }
-
-    //INBT
-    @Override
-    public boolean dropNbt() {
-        return true;
+        CompoundNBT updateTag = new CompoundNBT();
+        ListNBT tagList = new ListNBT();
+        for (UpdateEntry updateEntry : updateEntries) {
+            CompoundNBT entryTag = new CompoundNBT();
+            entryTag.putInt("i", updateEntry.discriminator);
+            entryTag.putByteArray("d", updateEntry.updateData);
+            tagList.add(entryTag);
+        }
+        this.updateEntries.clear();
+        updateTag.put("d", tagList);
+        return new SUpdateTileEntityPacket(getPos(), 0, updateTag);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-        readSync(pkt.getNbtCompound());
+        CompoundNBT updateTag = pkt.getNbtCompound();
+        ListNBT tagList = updateTag.getList("d", Constants.NBT.TAG_COMPOUND);
+        for (int i = 0; i < tagList.size(); i++) {
+            CompoundNBT entryTag = tagList.getCompound(i);
+            int discriminator = entryTag.getInt("i");
+            byte[] updateData = entryTag.getByteArray("d");
+            ByteBuf backBuffer = Unpooled.copiedBuffer(updateData);
+            receiveCustomData(discriminator, new PacketBuffer(backBuffer));
+        }
     }
 
-    protected void readSync(CompoundNBT nbt) {
-        if (this instanceof IInventory && !keepInventory()) {
-            this.inv.deserializeNBT(nbt);
-        }
-        if (this instanceof ITank && !keepFluid()) {
-            this.tank.readFromNBT(nbt);
-        }
-        this.redstone = Redstone.values()[nbt.getInt("redstone_mode")];
-        readStorable(nbt);
+    @Override
+    public CompoundNBT getUpdateTag() {
+        CompoundNBT updateTag = super.getUpdateTag();
+        ByteBuf backedBuffer = Unpooled.buffer();
+        writeInitialSyncData(new PacketBuffer(backedBuffer));
+        byte[] updateData = Arrays.copyOfRange(backedBuffer.array(), 0, backedBuffer.writerIndex());
+        updateTag.putByteArray("d", updateData);
+        return updateTag;
     }
 
-    protected CompoundNBT writeSync(CompoundNBT nbt) {
-        this.itemConfig.write(nbt);
-        if (this instanceof IInventory && !keepInventory()) {
-            nbt.merge(this.inv.serializeNBT());
-        }
-        if (this instanceof ITank && !keepFluid()) {
-            this.tank.writeToNBT(nbt);
-        }
-        nbt.putInt("redstone_mode", this.redstone.ordinal());
-        return writeStorable(nbt);
+    @Override
+    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+        super.read(state, tag);
+        byte[] updateData = tag.getByteArray("d");
+        ByteBuf backedBuffer = Unpooled.copiedBuffer(updateData);
+        receiveInitialSyncData(new PacketBuffer(backedBuffer));
     }
 
-    public void readStorable(CompoundNBT nbt) {
-        this.itemConfig.read(nbt);
-        if (this instanceof IInventory && keepInventory()) {
-            this.inv.deserializeNBT(nbt);
+    @Override
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
+
+        if (shouldSerializeInventories()) {
+            if (importItems instanceof INBTSerializable)
+                ((INBTSerializable) importItems).deserializeNBT(nbt.getCompound("ImportInventory"));
+            else
+                NBTUtil.readItems(importItems, "ImportInventory", nbt);
+
+            if (exportItems instanceof INBTSerializable)
+                ((INBTSerializable) exportItems).deserializeNBT(nbt.get("ExportInventory"));
+            else
+                NBTUtil.readItems(exportItems, "ExportInventory", nbt);
+
+            importFluids.deserializeNBT(nbt.getCompound("ImportFluidInventory"));
+            exportFluids.deserializeNBT(nbt.getCompound("ExportFluidInventory"));
         }
-        if (this instanceof ITank && keepFluid()) {
-            this.tank.readFromNBT(nbt);
+
+        for (TETrait teTrait : this.teTraits) {
+            CompoundNBT traitCompound = nbt.getCompound(teTrait.getName());
+            teTrait.deserializeNBT(traitCompound);
         }
-        this.setDirection(Direction.values()[nbt.getInt("direction")]);
+
+        this.newInventory = false;
+
+        this.facing = Direction.values()[nbt.getInt("facing")];
     }
 
-    public CompoundNBT writeStorable(CompoundNBT nbt) {
-        if (this instanceof IInventory && keepInventory()) {
-            nbt.merge(this.inv.serializeNBT());
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        CompoundNBT nbt = super.write(compound);
+
+        if (shouldSerializeInventories()) {
+            if (importItems instanceof INBTSerializable)
+                compound.put("ImportInventory", ((INBTSerializable) importItems).serializeNBT());
+            else
+                NBTUtil.writeItems(importItems, "ImportInventory", nbt);
+
+            if (exportItems instanceof INBTSerializable)
+                compound.put("ExportInventory", ((INBTSerializable) exportItems).serializeNBT());
+            else
+                NBTUtil.writeItems(exportItems, "ExportInventory", nbt);
+
+            nbt.put("ImportFluidInventory", importFluids.serializeNBT());
+            nbt.put("ExportFluidInventory", exportFluids.serializeNBT());
         }
-        if (this instanceof ITank && keepFluid()) {
-            this.tank.writeToNBT(nbt);
+
+        for (TETrait teTrait : this.teTraits) {
+            nbt.put(teTrait.getName(), teTrait.serializeNBT());
         }
-        nbt.putInt("direction", facing.ordinal());
+
+        nbt.putInt("facing", facing.ordinal());
+
         return nbt;
+    }
+
+    public void setDirection(Direction direction) {
+        this.facing = direction;
+        if(getWorld() != null && !getWorld().isRemote) {
+            notifyBlockUpdate();
+            markDirty();
+            writeCustomData(-2, buffer -> buffer.writeByte(direction.getIndex()));
+        }
     }
 
     @Override
     public void onPlaced(World world, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        CompoundNBT tag = StackUtil.getTagOrEmpty(stack);
-        if (!tag.isEmpty()) {
-            readStorable(tag.getCompound(NBTUtil.TAG_STORABLE_STACK));
-        }
         if (state.hasProperty(BlockStateProperties.FACING))
             this.facing = state.get(BlockStateProperties.FACING);
     }
@@ -157,38 +324,11 @@ public class TileCore extends TileEntity implements IBlockEntity, INBTDrop {
     @Override
     public void onRemoved(World world, BlockState state, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
-            if (this instanceof IInventory) {
-                if (!keepInventory() || !keepStorable()) {
-                    getInventory().drop(world, this.pos);
-                }
+            for (int i = 0; i < this.getItemInventory().getSlots(); i++) {
+                ItemStack stack = this.getItemInventory().getStackInSlot(i);
+                InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
             }
         }
-    }
-
-    public ItemStack storeToStack(ItemStack stack) {
-        CompoundNBT nbt = writeStorable(new CompoundNBT());
-        CompoundNBT nbt1 = StackUtil.getTagOrEmpty(stack);
-        if (!nbt.isEmpty() && keepStorable()) {
-            nbt1.put(NBTUtil.TAG_STORABLE_STACK, nbt);
-            stack.setTag(nbt1);
-        }
-        return stack;
-    }
-
-    public boolean keepStorable() {
-        return true;
-    }
-
-    private boolean keepInventory() {
-        return false;
-    }
-
-    protected boolean keepFluid() {
-        return false;
-    }
-
-    public Tank getTank() {
-        return this.tank;
     }
 
     public Redstone getRedstoneMode() {
@@ -204,60 +344,234 @@ public class TileCore extends TileEntity implements IBlockEntity, INBTDrop {
         return Redstone.IGNORE.equals(getRedstoneMode()) || power && Redstone.ON.equals(getRedstoneMode()) || !power && Redstone.OFF.equals(getRedstoneMode());
     }
 
-    public void sync() {
-        if (this.world instanceof ServerWorld) {
-            final BlockState state = getBlockState();
-            this.world.notifyBlockUpdate(this.pos, state, state, 3);
-            this.world.markChunkDirty(this.pos, this);
+    @Override
+    public void tick() {
+        timer++;
+        for (TETrait teTrait : this.teTraits) {
+            if (shouldUpdate(teTrait)) {
+                teTrait.update();
+            }
         }
     }
 
-    public boolean isRemote() {
-        return this.world != null && this.world.isRemote;
-    }
-
-    public boolean canExtract(int slot) {
+    protected boolean shouldUpdate(TETrait trait) {
         return true;
     }
 
-    public boolean canInsert(int slot) {
-        return true;
+    public long getTimer() {
+        return timer;
+    }
+
+    public long getOffsetTimer() {
+        return timer + offset;
     }
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (this instanceof IInventory && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && !this.inv.isBlank()) {
-            if (this.itemConfig.getType(side).canExtract && !this.itemConfig.getType(side).canReceive) {
-                return LazyOptional.of(() -> new OutputInventoryWrapper(this.inv, this)).cast();
-            } else if (this.itemConfig.getType(side).canReceive && !this.itemConfig.getType(side).canExtract) {
-                return LazyOptional.of(() -> new InputInventoryWrapper(this.inv, this)).cast();
-            } else if (this.itemConfig.getType(side).canExtract && this.itemConfig.getType(side).canReceive) {
-                return LazyOptional.of(() -> new DualInventoryWrapper(this.inv, this)).cast();
-            }
-        }
-        if (this instanceof ITank && cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return this.tankHolder.cast();
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return LazyOptional.of(() -> getFluidInventory()).cast();
+        } else if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return LazyOptional.of(() -> getItemInventory()).cast();
         }
         return super.getCapability(cap, side);
     }
 
-    public void setContainerOpen(boolean value) {
-        final boolean b = this.isContainerOpen;
-        this.isContainerOpen = value;
-        if (b != value) {
-            sync();
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
+        return getCapability(cap, null);
+    }
+
+    public IItemHandler getItemInventory() {
+        return itemInventory;
+    }
+
+    public IFluidHandler getFluidInventory() {
+        return fluidInventory;
+    }
+
+    public IItemHandlerModifiable getImportItems() {
+        return importItems;
+    }
+
+    public IItemHandlerModifiable getExportItems() {
+        return exportItems;
+    }
+
+    public FluidTankList getImportFluids() {
+        return importFluids;
+    }
+
+    public FluidTankList getExportFluids() {
+        return exportFluids;
+    }
+
+    public void pushItemsIntoNearbyHandlers(Direction... allowed) {
+        BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+        for (Direction direction : allowed) {
+            mutablePos.setPos(getPos()).move(direction);
+            TileEntity tileEntity = getWorld().getTileEntity(mutablePos);
+            if (tileEntity == null)
+                continue;
+            IItemHandler handler = getItemHandlerCap(tileEntity, direction.getOpposite());
+            IItemHandler myHandler = getItemHandlerCap(this, direction);
+            if (handler.getSlots() == 0 || myHandler.getSlots() == 0)
+                continue;
+
+            moveInventoryItems(myHandler, handler);
         }
     }
 
-    public Inventory getInventory() {
-        return this.inv;
+    public void pullItemsFromNearbyHandlers(Direction... allowed) {
+        BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+        for (Direction direction : allowed) {
+            mutablePos.setPos(getPos()).move(direction);
+            TileEntity tileEntity = getWorld().getTileEntity(mutablePos);
+            if (tileEntity == null)
+                continue;
+            IItemHandler handler = getItemHandlerCap(tileEntity, direction.getOpposite());
+            IItemHandler myHandler = getItemHandlerCap(this, direction);
+            if (handler.getSlots() == 0 || myHandler.getSlots() == 0)
+                continue;
+
+            moveInventoryItems(handler, myHandler);
+        }
     }
 
-    public TransferType getTransferType() {
-        return TransferType.ALL;
+    protected static void moveInventoryItems(IItemHandler source, IItemHandler target) {
+        for (int srcIndex = 0; srcIndex < source.getSlots(); srcIndex++) {
+            ItemStack sourceStack = source.extractItem(srcIndex, Integer.MAX_VALUE, true);
+            if (sourceStack.isEmpty())
+                continue;
+            ItemStack remainder = ItemHandlerHelper.insertItemStacked(target, sourceStack, true);
+            int amountToInsert = sourceStack.getCount() - remainder.getCount();
+            if (amountToInsert > 0) {
+                sourceStack = source.extractItem(srcIndex, amountToInsert, false);
+                ItemHandlerHelper.insertItemStacked(target, sourceStack, false);
+            }
+        }
     }
 
-    public SideConfigItem getItemConfig() {
-        return this.itemConfig;
+    public void pullFluidsFromNearbyHandlers(Direction... allowed) {
+        BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+        for (Direction direction : allowed) {
+            mutablePos.setPos(getPos()).move(direction);
+            TileEntity tileEntity = getWorld().getTileEntity(mutablePos);
+            if (tileEntity == null)
+                continue;
+
+            IFluidHandler handler = getFluidHandlerCap(tileEntity, direction.getOpposite());
+            IFluidHandler myHandler = getFluidHandlerCap(this, direction);
+            if (handler == EmptyFluidHandler.INSTANCE || myHandler == EmptyFluidHandler.INSTANCE)
+                continue;
+
+            FluidStack drainStack = handler.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE);
+            int drainAmount = myHandler.fill(drainStack, IFluidHandler.FluidAction.EXECUTE);
+            if (drainAmount > 0) {
+                handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
+            }
+        }
     }
+
+    public void pushFluidsIntoNearbyHandlers(Direction... allowed) {
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        for (Direction direction : allowed) {
+            mutable.setPos(getPos()).move(direction);
+            TileEntity tileEntity = getWorld().getTileEntity(mutable);
+            if (tileEntity == null)
+                continue;
+
+            IFluidHandler handler = getFluidHandlerCap(tileEntity, direction.getOpposite());
+            IFluidHandler myHandler = getFluidHandlerCap(this, direction);
+            if (handler == EmptyFluidHandler.INSTANCE || myHandler == EmptyFluidHandler.INSTANCE)
+                continue;
+
+            int fillAmount = handler.fill(myHandler.getFluidInTank(0), IFluidHandler.FluidAction.EXECUTE);
+            if (fillAmount > 0)
+                myHandler.drain(fillAmount, IFluidHandler.FluidAction.EXECUTE);
+        }
+    }
+
+    public boolean fillInternalTankFromFluidContainer(IItemHandlerModifiable importItems, IItemHandlerModifiable exportItems, int inputSlot, int outputSlot) {
+        ItemStack inputStack = importItems.extractItem(inputSlot, 1, true);
+        FluidActionResult result = FluidUtil.tryEmptyContainer(inputStack, getImportFluids(), Integer.MAX_VALUE, null, true);
+        if (result.isSuccess()) {
+            ItemStack remainingItem = result.getResult();
+            if (ItemStack.areItemStacksEqual(inputStack, remainingItem))
+                return false;
+            if (!remainingItem.isEmpty() && !exportItems.insertItem(outputSlot, remainingItem, true).isEmpty())
+                return false;
+            importItems.extractItem(inputSlot, 1, false);
+            exportItems.insertItem(outputSlot, remainingItem, false);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean fillContainerFromInternalTank(IItemHandlerModifiable importItems, IItemHandlerModifiable exportItems, int inputSlot, int outputSlot) {
+        ItemStack emptyContainer = importItems.extractItem(inputSlot, 1, true);
+        FluidActionResult result = FluidUtil.tryFillContainer(emptyContainer, getExportFluids(), Integer.MAX_VALUE, null, true);
+        if (result.isSuccess()) {
+            ItemStack remainingItem = result.getResult();
+            if (!exportItems.insertItem(outputSlot, remainingItem, true).isEmpty())
+                return false;
+            importItems.extractItem(inputSlot, 1, false);
+            exportItems.insertItem(outputSlot, remainingItem, false);
+            return true;
+        }
+        return false;
+    }
+
+    public IFluidHandler getFluidHandlerCap(TileEntity tileEntity, Direction direction) {
+        return tileEntity == null ? EmptyFluidHandler.INSTANCE : tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, direction).orElse(EmptyFluidHandler.INSTANCE);
+    }
+
+    public IItemHandler getItemHandlerCap(TileEntity tileEntity, Direction direction) {
+        return tileEntity == null ? new ItemStackHandler(0) : tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, direction).orElse(new ItemStackHandler(0));
+    }
+
+    public static boolean addItemsToItemHandler(final IItemHandler handler,
+                                                final boolean simulate,
+                                                final List<ItemStack> items) {
+        // determine if there is sufficient room to insert all items into the target inventory
+        final boolean canMerge = Util.simulateItemStackMerge(items, handler);
+
+        // if we're not simulating and the merge should succeed, perform the merge.
+        if (!simulate && canMerge)
+            items.forEach(stack -> {
+                ItemStack rest = ItemHandlerHelper.insertItemStacked(handler, stack, simulate);
+                if (!rest.isEmpty())
+                    throw new IllegalStateException(
+                            String.format("Insertion failed, remaining stack contained %d items.", rest.getCount()));
+            });
+
+        return canMerge;
+    }
+
+    public static boolean addFluidsToFluidHandler(IFluidHandler handler, IFluidHandler.FluidAction action, List<FluidStack> items) {
+        boolean filledAll = true;
+        for (FluidStack stack : items) {
+            int filled = handler.fill(stack, action);
+            filledAll &= filled == stack.getAmount();
+            if (!filledAll && action.execute())
+                return false;
+        }
+        return filledAll;
+    }
+
+    public final String getName() {
+        return String.format("%s.machine.%s", this.getBlockState().getBlock().getRegistryName().getNamespace(), this.getBlockState().getBlock().getRegistryName().getPath());
+    }
+
+    public final String getFullName() {
+        return getName() + ".name";
+    }
+
+    public void renderTileEntity(CCRenderState renderState, IVertexOperation... pipeline) {
+        TextureAtlasSprite atlasSprite = TextureUtils.getMissingSprite();
+        for (Direction face : Direction.values()) {
+            Textures.renderFace(renderState, face, Cuboid6.full, atlasSprite, pipeline);
+        }
+    }
+
 }

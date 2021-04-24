@@ -1,8 +1,11 @@
 package binary404.autotech.common.world.ore;
 
+import binary404.autotech.common.block.ModBlocks;
+import binary404.autotech.common.block.world.BlockAutoTechOre;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
@@ -60,8 +63,18 @@ public class LargeOreFeature extends Feature<NoFeatureConfig> {
                 for (int y = yStart - range; y < yStart + range; y++) {
                     if (random.nextInt(10) > configOre.density)
                         continue;
-                    if (world.getBlockState(new BlockPos(currentX, y, currentZ)).getMaterial() == Material.ROCK)
-                        world.setBlockState(new BlockPos(currentX, y, currentZ), blocks.get(veinRandom.nextInt(blocks.size())).getDefaultState(), 18);
+                    BlockPos testPos = new BlockPos(currentX, y, currentZ);
+                    BlockState testState = world.getBlockState(testPos);
+                    if (testState.getBlock() == Blocks.STONE)
+                        world.setBlockState(testPos, blocks.get(veinRandom.nextInt(blocks.size())).getDefaultState(), 18);
+                    else if (testState.getBlock() == Blocks.ANDESITE)
+                        world.setBlockState(testPos, blocks.get(veinRandom.nextInt(blocks.size())).getDefaultState().with(BlockAutoTechOre.ORE_TYPE, BlockAutoTechOre.OreType.ANDESITE), 18);
+                    else if (testState.getBlock() == Blocks.GRANITE)
+                        world.setBlockState(testPos, blocks.get(veinRandom.nextInt(blocks.size())).getDefaultState().with(BlockAutoTechOre.ORE_TYPE, BlockAutoTechOre.OreType.GRANITE), 18);
+                    else if (testState.getBlock() == Blocks.DIORITE)
+                        world.setBlockState(testPos, blocks.get(veinRandom.nextInt(blocks.size())).getDefaultState().with(BlockAutoTechOre.ORE_TYPE, BlockAutoTechOre.OreType.DIORITE), 18);
+                    else if (testState.getMaterial() == Material.ROCK && testState.getBlock() != Blocks.BEDROCK)
+                        world.setBlockState(testPos, blocks.get(veinRandom.nextInt(blocks.size())).getDefaultState(), 18);
                 }
             }
         }

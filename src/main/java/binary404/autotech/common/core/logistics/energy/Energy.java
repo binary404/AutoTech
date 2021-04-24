@@ -138,19 +138,6 @@ public class Energy implements IEnergyStorage {
         this.stored = Math.max(this.stored - amount, 0);
     }
 
-    public long chargeInventory(PlayerEntity player, Predicate<ItemStack> checker) {
-        long l = 0L;
-        for (ItemStack stack1 : PlayerUtil.invStacks(player)) {
-            if (stack1.isEmpty() || !isPresent(stack1) || !checker.test(stack1)) continue;
-            long amount = Math.min(getMaxExtract(), getEnergyStored());
-            if (amount <= 0) break;
-            int received = Energy.receive(stack1, amount, false);
-            l += extractEnergy(received, false);
-        }
-
-        return l;
-    }
-
     public long getEmpty() {
         return getCapacity() - getStored();
     }

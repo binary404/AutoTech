@@ -1,22 +1,32 @@
 package binary404.autotech.common.core.logistics;
 
 public enum Tier {
-    LV(5000, 50, 300, 500, 100),
-    MV(10000, 100, 250, 100, 120),
-    HV(15000, 150, 200, 250, 140),
-    EV(30000, 300, 150, 700, 180),
-    IV(45000, 450, 100, 1000, 200),
-    MaxV(75000, 750, 20, 2500, 220);
+    LV(320, 32),
+    MV(640, 64),
+    HV(1280, 128),
+    EV(5120, 512),
+    IV(20480, 2048),
+    UV(81920, 8192),
+    MaxV(327680, 32768);
 
-    public long maxPower;
-    public int use, speed, gen, genSpeed;
+    public final int maxPower;
+    public final int use;
 
-    private Tier(long maxPower, int use, int speed, int gen, int genSpeed) {
+    private Tier(int maxPower, int use) {
         this.maxPower = maxPower;
         this.use = use;
-        this.speed = speed;
-        this.gen = gen;
-        this.genSpeed = genSpeed;
+    }
+
+    public static Tier getTierByVoltage(long voltage) {
+        int tier = 0;
+        while (++tier < Tier.values().length) {
+            if (voltage == Tier.values()[tier].use) {
+                return Tier.values()[tier];
+            } else if (voltage < Tier.values()[tier].use) {
+                return Tier.values()[Math.max(0, tier - 1)];
+            }
+        }
+        return Tier.values()[Math.min(Tier.values().length - 1, tier)];
     }
 
 }

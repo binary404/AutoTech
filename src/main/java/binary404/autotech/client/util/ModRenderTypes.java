@@ -3,6 +3,7 @@ package binary404.autotech.client.util;
 import binary404.autotech.AutoTech;
 import net.minecraft.client.renderer.RenderState;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
@@ -24,4 +25,9 @@ public class ModRenderTypes extends RenderType {
                     .lightmap(LIGHTMAP_DISABLED)
                     .writeMask(COLOR_WRITE)
                     .build(false));
+
+    public static RenderType TILE_BLOCK = makeType("TileBlock", DefaultVertexFormats.POSITION_COLOR_TEX, 7, 2097152, true, false,
+            RenderType.State.getBuilder().texture(new TextureState(AtlasTexture.LOCATION_BLOCKS_TEXTURE, false, false))
+                    .lightmap(LIGHTMAP_ENABLED)
+                    .shadeModel(RenderState.SHADE_ENABLED).build(true));
 }

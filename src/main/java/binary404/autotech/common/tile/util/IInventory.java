@@ -2,6 +2,7 @@ package binary404.autotech.common.tile.util;
 
 import binary404.autotech.common.core.logistics.item.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
 
 public interface IInventory {
 
@@ -13,6 +14,6 @@ public interface IInventory {
 
     default void onSlotChanged(int slot) {}
 
-    Inventory getInventory();
+    IItemHandler getInventory();
 
 }

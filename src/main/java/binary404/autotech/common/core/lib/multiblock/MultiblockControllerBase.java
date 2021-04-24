@@ -1,13 +1,21 @@
 package binary404.autotech.common.core.lib.multiblock;
 
-import binary404.autotech.common.block.BlockTile;
-import binary404.autotech.common.core.logistics.Tier;
-import binary404.autotech.common.tile.core.TileMachine;
+import binary404.autotech.client.renders.core.ICubeRenderer;
+import binary404.autotech.common.tile.core.TileCore;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.ColourMultiplier;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Cuboid6;
+import codechicken.lib.vec.Matrix4;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -21,7 +29,7 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-public abstract class MultiblockControllerBase extends TileMachine {
+public abstract class MultiblockControllerBase extends TileCore {
 
     protected BlockPattern structurePattern;
 
@@ -30,9 +38,10 @@ public abstract class MultiblockControllerBase extends TileMachine {
 
     private boolean structureFormed;
 
-    public MultiblockControllerBase(TileEntityType<?> type, Tier tier) {
-        super(type, tier);
+    public MultiblockControllerBase(TileEntityType<?> type) {
+        super(type);
         reinitializeStructurePattern();
+        initializeInventory();
     }
 
     @Override
@@ -48,18 +57,15 @@ public abstract class MultiblockControllerBase extends TileMachine {
     }
 
     @Override
-    protected int postTick(World world) {
+    public void tick() {
         if (!getWorld().isRemote) {
-            if (ticks % 20 == 0) {
+            if (getOffsetTimer() % 20 == 0 || getTimer() == 0) {
                 checkStructurePattern();
             }
             if (isStructureFormed()) {
                 updateFormedValid();
-                return super.postTick(world);
             }
         }
-
-        return -1;
     }
 
     protected abstract void updateFormedValid();
@@ -147,10 +153,10 @@ public abstract class MultiblockControllerBase extends TileMachine {
                 this.multiblockParts.addAll(parts);
                 this.multiblockAbilities.putAll(abilities);
                 this.structureFormed = true;
+                writeCustomData(400, buffer -> buffer.writeBoolean(true));
                 formStructure(context);
             }
         } else if (context == null && structureFormed) {
-            System.out.println("Invalidating structure");
             invalidateStructure();
         }
     }
@@ -164,6 +170,7 @@ public abstract class MultiblockControllerBase extends TileMachine {
         this.multiblockAbilities.clear();
         this.multiblockParts.clear();
         this.structureFormed = false;
+        writeCustomData(400, buffer -> buffer.writeBoolean(false));
     }
 
     @SuppressWarnings("unchecked")
@@ -181,4 +188,30 @@ public abstract class MultiblockControllerBase extends TileMachine {
         return structureFormed;
     }
 
+    @Override
+    public void writeInitialSyncData(PacketBuffer buffer) {
+        super.writeInitialSyncData(buffer);
+        buffer.writeBoolean(structureFormed);
+    }
+
+    @Override
+    public void receiveInitialSyncData(PacketBuffer buffer) {
+        super.receiveInitialSyncData(buffer);
+        this.structureFormed = buffer.readBoolean();
+    }
+
+    @Override
+    public void receiveCustomData(int discriminator, PacketBuffer buffer) {
+        super.receiveCustomData(discriminator, buffer);
+        if (discriminator == 400) {
+            this.structureFormed = buffer.readBoolean();
+        }
+    }
+
+    public abstract ICubeRenderer getBaseTexture(IMultiblockPart sourcePart);
+
+    @Override
+    public void renderTileEntity(CCRenderState renderState, IVertexOperation... pipeline) {
+        getBaseTexture(null).render(renderState, Cuboid6.full, pipeline);
+    }
 }

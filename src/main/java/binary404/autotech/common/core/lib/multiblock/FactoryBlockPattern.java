@@ -1,9 +1,9 @@
 package binary404.autotech.common.core.lib.multiblock;
 
 import binary404.autotech.common.core.util.IntRange;
-import binary404.autotech.gnu.trove.map.TIntObjectMap;
-import binary404.autotech.gnu.trove.map.hash.TIntObjectHashMap;
 import com.google.common.base.Joiner;
+import gnu.trove.map.TIntObjectMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;

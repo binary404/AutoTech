@@ -23,6 +23,8 @@ public class ModItems {
     public static Item raw_nickel;
     public static Item raw_platinum;
     public static Item raw_titanium;
+    public static Item raw_iron;
+    public static Item raw_gold;
 
     public static Item copper_ingot;
     public static Item tin_ingot;
@@ -107,6 +109,7 @@ public class ModItems {
 
     public static Item distilled_water_bucket;
     public static Item crude_oil_bucket;
+    public static Item biomass_bucket;
 
     public static Item flour;
 
@@ -146,6 +149,8 @@ public class ModItems {
         raw_nickel = register(r, new Item(properties), "raw_nickel");
         raw_platinum = register(r, new Item(properties), "raw_platinum");
         raw_titanium = register(r, new Item(properties), "raw_titanium");
+        raw_iron = register(r, new Item(properties), "raw_iron");
+        raw_gold = register(r, new Item(properties), "raw_gold");
 
         copper_ingot = register(r, new Item(properties), "copper_ingot");
         tin_ingot = register(r, new Item(properties), "tin_ingot");
@@ -231,6 +236,7 @@ public class ModItems {
 
         distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water), "distilled_water_bucket");
         crude_oil_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.crude_oil), "crude_oil_bucket");
+        biomass_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.biomass), "biomass_bucket");
 
         flour = register(r, new Item(properties.maxDamage(0).maxStackSize(64)), "flour");
 

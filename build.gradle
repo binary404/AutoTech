@@ -95,10 +95,16 @@ repositories {
     maven {
         url 'https://www.cursemaven.com'
     }
+    maven {
+        url 'http://chickenbones.net/maven/'
+    }
+    maven {
+        url 'https://repo1.maven.org/maven2'
+    }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.0.46'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
 
     annotationProcessor 'org.spongepowered:mixin:0.8'
     annotationProcessor 'com.google.code.gson:gson:2.8.0'
@@ -110,11 +116,15 @@ dependencies {
 
     compile 'org.spongepowered:mixin:0.8'
 
+    compile fg.deobf('codechicken:CodeChickenLib:1.16.5-4.0.1.418:universal')
+
     compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.4:7.0.0.62")
 
     compile fg.deobf("curse.maven:jei:3062050")
     compile fg.deobf("binary404.fx_lib:fx_lib:1.16.4-1.7")
     compile fg.deobf("curse.maven:ctm-267602:3137659")
+
+    implementation group: 'net.sf.trove4j', name: 'trove4j', version: '3.0.3'
 }
 
 jar {
