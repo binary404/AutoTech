@@ -6,7 +6,9 @@ import binary404.autotech.common.block.machine.BlockMachine;
 import binary404.autotech.common.tile.core.TileSimpleGenerator;
 import binary404.autotech.common.tile.core.TileSimpleMachine;
 import binary404.autotech.common.tile.multiblock.*;
+import binary404.autotech.common.tile.transfer.CableTileEntity;
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,6 +29,8 @@ public class ModTiles {
 
     public static TileEntityType<TileDistillationTower> distillation_tower;
 
+    public static TileEntityType<CableTileEntity> cable;
+
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
         IForgeRegistry<TileEntityType<?>> r = event.getRegistry();
@@ -39,6 +43,8 @@ public class ModTiles {
         simple_generator = (TileEntityType<TileSimpleGenerator>) register(r, TileEntityType.Builder.create(TileSimpleGenerator::new, ModBlocks.test).build(null), "simple_generator");
 
         distillation_tower = (TileEntityType<TileDistillationTower>) register(r, TileEntityType.Builder.create(TileDistillationTower::new, ModBlocks.distillation_tower).build(null), "distillery");
+
+        cable = (TileEntityType<CableTileEntity>) register(r, TileEntityType.Builder.create(CableTileEntity::new, ModBlocks.lv_cable).build(null), "cable");
     }
 
 }

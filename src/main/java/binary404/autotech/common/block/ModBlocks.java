@@ -10,6 +10,7 @@ import binary404.autotech.common.block.multiblock.BlockDistillationTower;
 import binary404.autotech.common.block.multiblock.BlockEnergyHatch;
 import binary404.autotech.common.block.multiblock.BlockFluidHatch;
 import binary404.autotech.common.block.multiblock.BlockItemHatch;
+import binary404.autotech.common.block.transfer.CableBlock;
 import binary404.autotech.common.block.world.BlockAutoTechOre;
 import binary404.autotech.common.block.world.BlockRubberSapling;
 import binary404.autotech.common.block.world.BlockRubberWood;
@@ -75,6 +76,9 @@ public class ModBlocks {
     public static Block lv_energy_input_hatch;
     public static Block lv_energy_output_hatch;
 
+    //Cables
+    public static Block lv_cable;
+
     //Misc blocks
     public static Block heat_proof_casing;
     public static Block stainless_steel_casing;
@@ -132,6 +136,8 @@ public class ModBlocks {
         lv_energy_input_hatch = register(r, new BlockEnergyHatch(false, Tier.LV), "lv_energy_input_hatch");
         lv_energy_output_hatch = register(r, new BlockEnergyHatch(true, Tier.LV), "lv_energy_output_hatch");
 
+        lv_cable = register(r, new CableBlock(p, Tier.LV), "lv_cable");
+
         heat_proof_casing = register(r, new Block(p), "heat_proof_casing");
         stainless_steel_casing = register(r, new Block(p), "stainless_steel_casing");
         basic_coil = register(r, new Block(p), "basic_coil");
@@ -183,6 +189,8 @@ public class ModBlocks {
         register(r, new BlockItem(lv_item_output_hatch, propertiesWithRenderer(tile, lv_item_output_hatch)), "lv_item_output_hatch");
         register(r, new BlockItem(lv_energy_input_hatch, propertiesWithRenderer(tile, lv_energy_input_hatch)), "lv_energy_input_hatch");
         register(r, new BlockItem(lv_energy_output_hatch, propertiesWithRenderer(tile, lv_energy_output_hatch)), "lv_energy_output_hatch");
+
+        register(r, new BlockItem(lv_cable, p), "lv_cable");
 
         register(r, new BlockItem(heat_proof_casing, p), "heat_proof_casing");
         register(r, new BlockItem(stainless_steel_casing, p), "stainless_steel_casing");

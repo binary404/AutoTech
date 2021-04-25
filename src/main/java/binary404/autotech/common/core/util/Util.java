@@ -7,8 +7,14 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenCustomHashMap;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -361,6 +367,17 @@ public class Util {
                     }
                 }
         }
+    }
+
+    public static IEnergyStorage getEnergy(IWorldReader world, BlockPos pos) {
+        if (!world.isAreaLoaded(pos, 1))
+            return null;
+        TileEntity tileEntity = world.getTileEntity(pos);
+        return tileEntity != null ? tileEntity.getCapability(CapabilityEnergy.ENERGY).orElse(null) : null;
+    }
+
+    public static IEnergyStorage getEnergyFromSideOrNull(ICapabilityProvider provider, Direction side) {
+        return provider.getCapability(CapabilityEnergy.ENERGY, side).orElse(provider.getCapability(CapabilityEnergy.ENERGY).orElse(null));
     }
 
 }
