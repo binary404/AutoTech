@@ -1,0 +1,6 @@
+{
+  "parent": "autotech:block/pipe/attachment/attachment",
+  "textures": {
+    "attachment": "autotech:blocks/pipe/attachment/extractor/basic"
+  }
+}

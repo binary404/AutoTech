@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ILI",
-    "LTL",
+    "L L",
     "ILI"
   ],
   "key": {
-    "I": {
-      "item": "autotech:iron_plating"
-    },
     "L": {
       "item": "autotech:lead_plate"
     },
-    "T": {
+    "I": {
       "item": "autotech:nickel_plate"
     }
   },

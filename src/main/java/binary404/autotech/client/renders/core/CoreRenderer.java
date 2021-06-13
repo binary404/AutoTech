@@ -31,7 +31,6 @@ public class CoreRenderer extends TileEntityRenderer<TileCore> {
 
         ccrs.brightness = combinedLightIn;
         ccrs.overlay = combinedOverlayIn;
-        ccrs.baseColour = 0xFFFFFFF0;
 
         ccrs.bind(Atlases.getCutoutBlockType(), bufferIn);
 

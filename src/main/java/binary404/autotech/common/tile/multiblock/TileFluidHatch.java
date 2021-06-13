@@ -6,12 +6,16 @@ import binary404.autotech.client.gui.core.widget.FluidContainerSlotWidget;
 import binary404.autotech.client.gui.core.widget.ImageWidget;
 import binary404.autotech.client.gui.core.widget.SlotWidget;
 import binary404.autotech.client.gui.core.widget.TankWidget;
+import binary404.autotech.client.renders.core.SimpleOverlayRenderer;
+import binary404.autotech.client.renders.core.Textures;
 import binary404.autotech.common.core.lib.multiblock.IMultiblockAbilityPart;
 import binary404.autotech.common.core.lib.multiblock.MultiblockPart;
 import binary404.autotech.common.core.lib.multiblock.MultiblockAbility;
 import binary404.autotech.common.core.logistics.*;
 import binary404.autotech.common.core.logistics.fluid.FluidTankList;
 import binary404.autotech.common.tile.ModTiles;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -85,6 +89,13 @@ public class TileFluidHatch extends MultiblockPart implements IMultiblockAbility
                 pullFluidsFromNearbyHandlers(facing);
             }
         }
+    }
+
+    @Override
+    public void renderTileEntity(CCRenderState renderState, IVertexOperation... pipeline) {
+        super.renderTileEntity(renderState, pipeline);
+        SimpleOverlayRenderer renderer = isExportHatch ? Textures.PIPE_OUT_OVERLAY : Textures.PIPE_IN_OVERLAY;
+        renderer.renderSided(this.facing, renderState, pipeline);
     }
 
     @Override

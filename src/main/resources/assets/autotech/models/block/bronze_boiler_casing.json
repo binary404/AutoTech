@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "autotech:block/casings/solid/bronze_boiler_casing"
+  }
+}

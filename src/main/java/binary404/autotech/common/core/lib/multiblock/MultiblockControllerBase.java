@@ -58,6 +58,7 @@ public abstract class MultiblockControllerBase extends TileCore {
 
     @Override
     public void tick() {
+        super.tick();
         if (!getWorld().isRemote) {
             if (getOffsetTimer() % 20 == 0 || getTimer() == 0) {
                 checkStructurePattern();

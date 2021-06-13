@@ -5,6 +5,8 @@ import binary404.autotech.common.core.manager.*;
 import binary404.autotech.common.core.recipe.RecipeHandler;
 import binary404.autotech.common.entity.ModEntities;
 import binary404.autotech.common.network.PacketHandler;
+import binary404.autotech.common.tile.transfer.pipe.PipeRegister;
+import binary404.autotech.common.tile.transfer.pipe.PipeRegistry;
 import binary404.autotech.common.world.ModFeatures;
 import binary404.autotech.proxy.ClientProxy;
 import binary404.autotech.proxy.CommonProxy;
@@ -48,6 +50,11 @@ public class AutoTech {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::onTagsUpdate);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModFeatures::onBiomeLoad);
+        init();
+    }
+
+    private void init() {
+        PipeRegister.init();
     }
 
     private void setup(FMLCommonSetupEvent event) {

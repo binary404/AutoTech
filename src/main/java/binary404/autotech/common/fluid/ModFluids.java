@@ -22,6 +22,10 @@ import static binary404.autotech.common.core.util.RegistryUtil.register;
 @Mod.EventBusSubscriber(modid = "autotech", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModFluids {
 
+    public static ForgeFlowingFluid.Properties steam_properties;
+    public static BasicFlowingFluid.Flowing steam_flowing;
+    public static BasicFlowingFluid.Source steam;
+
     public static ForgeFlowingFluid.Properties distilled_water_properties;
     public static BasicFlowingFluid.Flowing distilled_water_flowing;
     public static BasicFlowingFluid.Source distilled_water;
@@ -39,6 +43,9 @@ public class ModFluids {
         IForgeRegistry<Fluid> r = event.getRegistry();
         makeProperties();
 
+        steam = (BasicFlowingFluid.Source) register(r, new BasicFlowingFluid.Source(steam_properties), "steam");
+        steam_flowing = (BasicFlowingFluid.Flowing) register(r, new BasicFlowingFluid.Flowing(steam_properties), "steam_flowing");
+
         distilled_water = (BasicFlowingFluid.Source) register(r, new BasicFlowingFluid.Source(distilled_water_properties), "distilled_water");
         distilled_water_flowing = (BasicFlowingFluid.Flowing) register(r, new BasicFlowingFluid.Flowing(distilled_water_properties), "distilled_water_flowing");
 
@@ -50,6 +57,7 @@ public class ModFluids {
     }
 
     private static void makeProperties() {
+        steam_properties = makeProperties("steam", FluidAttributeHolder::distilledWater, () -> steam, () -> steam_flowing).block(() -> ModBlocks.steam).bucket(() -> ModItems.steam_bucket);
         distilled_water_properties = makeProperties("distilled_water", FluidAttributeHolder::distilledWater, () -> distilled_water, () -> distilled_water_flowing).block(() -> ModBlocks.distilled_water).bucket(() -> ModItems.distilled_water_bucket);
         crude_oil_properties = makeProperties("crude_oil", FluidAttributeHolder::crudeOil, () -> crude_oil, () -> crude_oil_flowing).block(() -> ModBlocks.crude_oil).bucket(() -> ModItems.crude_oil_bucket);
         biomass_properties = makeProperties("biomass", FluidAttributeHolder::biomass, () -> biomass, () -> biomass_flowing).block(() -> ModBlocks.biomass).bucket(() -> ModItems.biomass_bucket);

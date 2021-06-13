@@ -206,12 +206,12 @@ public class Energy implements IEnergyStorage {
 
     @Override
     public boolean canExtract() {
-        return this.maxExtract > 0 && !isEmpty();
+        return this.maxExtract > 0;
     }
 
     @Override
     public boolean canReceive() {
-        return this.maxReceive > 0 && !isFull();
+        return this.maxReceive > 0;
     }
 
     public int toComparatorPower() {

@@ -3,12 +3,15 @@ package binary404.autotech.common.item;
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.fluid.ItemBasicFluidBucket;
 import binary404.autotech.common.fluid.ModFluids;
+import binary404.autotech.common.tile.transfer.attachment.AttachmentFactory;
+import binary404.autotech.common.tile.transfer.attachment.AttachmentRegistry;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.ObjectHolder;
 
 import static binary404.autotech.common.core.util.RegistryUtil.register;
 
@@ -107,6 +110,7 @@ public class ModItems {
     public static Item mv_receiver_circuit;
     public static Item mv_transmitter_circuit;
 
+    public static Item steam_bucket;
     public static Item distilled_water_bucket;
     public static Item crude_oil_bucket;
     public static Item biomass_bucket;
@@ -234,6 +238,7 @@ public class ModItems {
         mortar = register(r, new ItemDamageable(properties.maxDamage(200), 5), "mortar");
         hammer = register(r, new ItemDamageable(properties.maxDamage(300), 10), "hammer");
 
+        steam_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.steam), "steam_bucket");
         distilled_water_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.distilled_water), "distilled_water_bucket");
         crude_oil_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.crude_oil), "crude_oil_bucket");
         biomass_bucket = register(r, new ItemBasicFluidBucket(() -> ModFluids.biomass), "biomass_bucket");
@@ -263,6 +268,21 @@ public class ModItems {
         jetpack = register(r, new ItemEnergySuit(ArmorMaterial.DIAMOND, EquipmentSlotType.CHEST), "jetpack");
 
         rubber_drop = register(r, new Item(properties), "rubber_drop");
+
+        for(AttachmentFactory factory : AttachmentRegistry.INSTANCE.all()) {
+            register(r, new AttachmentItem(factory), factory.getItemId());
+        }
     }
+
+    @ObjectHolder("autotech:basic_extractor")
+    public static Item basic_extractor;
+    @ObjectHolder("autotech:improved_extractor")
+    public static Item improved_extractor;
+    @ObjectHolder("autotech:advanced_extractor")
+    public static Item advanced_extractor;
+    @ObjectHolder("autotech:elite_extractor")
+    public static Item elite_extractor;
+    @ObjectHolder("autotech:ultimate_extractor")
+    public static Item ultimate_extractor;
 
 }

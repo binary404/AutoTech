@@ -1,6 +1,8 @@
 package binary404.autotech.common.tile.multiblock;
 
 import binary404.autotech.client.gui.core.ModularUserInterface;
+import binary404.autotech.client.renders.core.SimpleOverlayRenderer;
+import binary404.autotech.client.renders.core.Textures;
 import binary404.autotech.common.core.lib.multiblock.IMultiblockAbilityPart;
 import binary404.autotech.common.core.lib.multiblock.IMultiblockPart;
 import binary404.autotech.common.core.lib.multiblock.MultiblockAbility;
@@ -8,6 +10,8 @@ import binary404.autotech.common.core.lib.multiblock.MultiblockPart;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.logistics.energy.Energy;
 import binary404.autotech.common.tile.ModTiles;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,6 +38,13 @@ public class TileEnergyHatch extends MultiblockPart implements IMultiblockAbilit
         super(ModTiles.energy_hatch, tier);
         this.isExportHatch = isExportHatch;
         initializeInventory();
+    }
+
+    @Override
+    public void renderTileEntity(CCRenderState renderState, IVertexOperation... pipeline) {
+        super.renderTileEntity(renderState, pipeline);
+        SimpleOverlayRenderer renderer = isExportHatch ? Textures.ENERGY_OUT_MULTI : Textures.ENERGY_IN_MULTI;
+        renderer.renderSided(this.facing, renderState, pipeline);
     }
 
     @Override

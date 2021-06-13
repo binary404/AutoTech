@@ -27,9 +27,21 @@ public class Textures {
 
     public static OrientedOverlayRenderer MULTIBLOCK_WORKABLE_OVERLAY = new OrientedOverlayRenderer("machines/multiblock_workable", FRONT);
 
-    public static SimpleCubeRenderer STAINLESS_STEEL_CASING = new SimpleCubeRenderer("casings/solid/machine_casing_stainless_steel");
+    public static SimpleCubeRenderer STAINLESS_STEEL_CASING = new SimpleCubeRenderer("casings/solid/stainless_steel_casing");
+    public static SimpleCubeRenderer HEAT_PROOF_CASING = new SimpleCubeRenderer("casings/solid/heat_proof_casing");
+    public static SimpleCubeRenderer BRONZE_BRICKS = new SimpleCubeRenderer("casings/solid/bronze_bricks");
+    public static SimpleCubeRenderer BRONZE_BOILER_CASING = new SimpleCubeRenderer("casings/solid/bronze_boiler_casing");
+    public static SimpleCubeRenderer BRONZE_BOILER_CASING_ACTIVE = new SimpleCubeRenderer("casings/solid/bronze_boiler_casing_active");
 
     public static OrientedOverlayRenderer GRINDER = new OrientedOverlayRenderer("machines/grinder", FRONT, TOP);
+    public static OrientedOverlayRenderer FURNACE = new OrientedOverlayRenderer("machines/furnace", FRONT);
+    public static OrientedOverlayRenderer STEAM_TURBINE = new OrientedOverlayRenderer("generators/steam_turbine", SIDE);
+
+    public static SimpleOverlayRenderer PIPE_OUT_OVERLAY = new SimpleOverlayRenderer("overlay/machine/overlay_pipe_out");
+    public static SimpleOverlayRenderer PIPE_IN_OVERLAY = new SimpleOverlayRenderer("overlay/machine/overlay_pipe_in");
+
+    public static SimpleOverlayRenderer ENERGY_OUT_MULTI = new SimpleOverlayRenderer("overlay/machine/overlay_energy_out_multi");
+    public static SimpleOverlayRenderer ENERGY_IN_MULTI = new SimpleOverlayRenderer("overlay/machine/overlay_energy_in_multi");
 
     public static SimpleSidedCubeRenderer[] CASINGS = new SimpleSidedCubeRenderer[Tier.values().length];
 

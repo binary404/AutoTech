@@ -1,6 +1,0 @@
-{
-  "parent": "autotech:block/cable_multipart",
-  "textures": {
-    "mp": "autotech:block/mv_cable"
-  }
-}

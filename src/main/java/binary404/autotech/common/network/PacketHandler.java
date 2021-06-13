@@ -1,6 +1,8 @@
 package binary404.autotech.common.network;
 
 import binary404.autotech.AutoTech;
+import binary404.autotech.common.network.pipe.FluidPipeMessage;
+import binary404.autotech.common.tile.transfer.fluid.FluidPipe;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -32,6 +34,8 @@ public class PacketHandler {
         HANDLER.registerMessage(id++, PacketUIWidgetUpdate.class, PacketUIWidgetUpdate::encode, PacketUIWidgetUpdate::decode, PacketUIWidgetUpdate::handle);
         HANDLER.registerMessage(id++, PacketUIClientAction.class, PacketUIClientAction::encode, PacketUIClientAction::decode, PacketUIClientAction::handle);
         HANDLER.registerMessage(id++, PacketUIOpen.class, PacketUIOpen::encode, PacketUIOpen::decode, PacketUIOpen::handle);
+
+        HANDLER.registerMessage(id++, FluidPipeMessage.class, FluidPipeMessage::encode, FluidPipeMessage::decode, FluidPipeMessage::handle);
     }
 
     public static void sendToNearby(World world, BlockPos pos, Object toSend) {
@@ -56,6 +60,16 @@ public class PacketHandler {
         if (playerMP.server.isDedicatedServer() || !playerMP.getGameProfile().getName().equals(playerMP.server.getServerOwner())) {
             sendTo(playerMP, toSend);
         }
+    }
+
+    public static void sendInArea(World world, BlockPos pos, int radius, Object message) {
+        HANDLER.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(
+                pos.getX(),
+                pos.getY(),
+                pos.getZ(),
+                radius,
+                world.getDimensionKey()
+        )), message);
     }
 
     public static void sendToServer(Object msg) {

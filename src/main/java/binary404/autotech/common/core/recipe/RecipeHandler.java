@@ -13,8 +13,7 @@ import net.minecraft.tags.ITag;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
 
-import static binary404.autotech.common.core.recipe.RecipeMaps.BREWING_RECIPES;
-import static binary404.autotech.common.core.recipe.RecipeMaps.DISTILLATION_RECIPES;
+import static binary404.autotech.common.core.recipe.RecipeMaps.*;
 
 public class RecipeHandler {
 
@@ -24,6 +23,7 @@ public class RecipeHandler {
         addBrewingRecipes();
 
         addDistillationRecipes();
+        addBlastFurnaceRecipes();
 
         addFuelRecipes();
     }
@@ -52,7 +52,7 @@ public class RecipeHandler {
         addOreDustGrinderRecipe(ModTags.Items.ORE_DUSTS_LEAD, ModItems.lead_dust, ModItems.silver_dust);
         addOreDustGrinderRecipe(ModTags.Items.ORE_DUSTS_SILVER, ModItems.silver_dust, ModItems.lead_dust, ModItems.gold_dust);
         addOreDustGrinderRecipe(ModTags.Items.ORE_DUSTS_URANIUM, ModItems.uranium_dust, null);
-        addOreDustGrinderRecipe(ModTags.Items.ORE_DUSTS_NICKEL, ModItems.nickel_dust, ModItems.iron_dust,ModItems.platinum_dust);
+        addOreDustGrinderRecipe(ModTags.Items.ORE_DUSTS_NICKEL, ModItems.nickel_dust, ModItems.iron_dust, ModItems.platinum_dust);
         addOreDustGrinderRecipe(ModTags.Items.ORE_DUSTS_IRON, ModItems.iron_dust, null);
         addOreDustGrinderRecipe(ModTags.Items.ORE_DUSTS_GOLD, ModItems.gold_dust, ModItems.silver_dust);
     }
@@ -73,8 +73,12 @@ public class RecipeHandler {
                 .duration(120).energyPerTick(4).buildAndRegister();
     }
 
+    public static void addBlastFurnaceRecipes() {
+        BLAST_RECIPES.recipeBuilder().duration(400).energyPerTick(100).input(ModTags.Items.DUSTS_TITANIUM, 1).output(ModItems.titanium_ingot).blastFurnaceTemp(1200).buildAndRegister();
+    }
+
     public static void addFuelRecipes() {
-        addFuelRecipe(RecipeMaps.STEAM_TURBINE_FUELS, new FluidStack(Fluids.WATER, 100), 10, Tier.LV);
+        addFuelRecipe(RecipeMaps.STEAM_TURBINE_FUELS, new FluidStack(ModFluids.steam, 100), 1, Tier.LV);
     }
 
     public static void addFuelRecipe(FuelRecipeMap map, FluidStack fuelStack, int duration, Tier tier) {

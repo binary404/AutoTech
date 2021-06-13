@@ -15,6 +15,8 @@ public class GuiTextures {
     public static final TextureArea IN_SLOT_OVERLAY = TextureArea.fullImage("textures/gui/overlay/in_slot_overlay.png");
     public static final TextureArea OUT_SLOT_OVERLAY = TextureArea.fullImage("textures/gui/overlay/out_slot_overlay.png");
 
+    public static final TextureArea FURNACE_OVERLAY = TextureArea.fullImage("textures/gui/overlay/furnace_overlay.png");
+
     public static final TextureArea DISPLAY = TextureArea.fullImage("textures/gui/base/display.png");
 
     public static final TextureArea TANK_ICON = TextureArea.fullImage("textures/gui/base/tank_icon.png");

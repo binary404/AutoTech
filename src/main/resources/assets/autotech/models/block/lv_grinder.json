@@ -1,6 +1,0 @@
-{
-  "parent": "autotech:block/lv_model",
-  "textures": {
-    "north": "autotech:block/lv_grinder"
-  }
-}

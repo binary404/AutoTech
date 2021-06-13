@@ -19,8 +19,12 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.FluidUtil;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockFluidHatch extends BlockTile {
+
+    public static List<BlockFluidHatch> fluidHatches = new ArrayList<>();
 
     boolean isExportHatch;
     Tier tier;
@@ -29,11 +33,16 @@ public class BlockFluidHatch extends BlockTile {
         super();
         this.isExportHatch = isExportHatch;
         this.tier = tier;
+        fluidHatches.add(this);
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new TileFluidHatch(isExportHatch, tier);
+    }
+
+    public Tier getTier() {
+        return tier;
     }
 }

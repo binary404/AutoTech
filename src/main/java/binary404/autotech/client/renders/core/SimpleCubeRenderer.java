@@ -32,6 +32,10 @@ public class SimpleCubeRenderer implements ICubeRenderer, ISpriteRegister {
         this.sprite = TextureUtils.getTexture(new ResourceLocation(AutoTech.modid, "block/" + basePath));
     }
 
+    public ResourceLocation getParticleTexture() {
+        return new ResourceLocation(AutoTech.modid, "block/" + basePath);
+    }
+
     public void renderSided(Direction side, Cuboid6 bounds, CCRenderState renderState, IVertexOperation[] pipeline) {
         Textures.renderFace(renderState, side, bounds, this.sprite, pipeline);
     }

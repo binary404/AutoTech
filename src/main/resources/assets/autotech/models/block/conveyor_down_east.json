@@ -1,6 +1,0 @@
-{
-  "parent": "autotech:block/conveyor_ramp",
-  "textures": {
-    "2": "autotech:blocks/conveyor_color"
-  }
-}

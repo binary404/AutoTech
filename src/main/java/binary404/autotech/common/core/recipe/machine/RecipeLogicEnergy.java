@@ -32,11 +32,12 @@ public class RecipeLogicEnergy extends AbstractRecipeLogic {
         if (resultEnergy >= 0L && resultEnergy <= getEnergyCapacity()) {
             energyStorage.get().extractEnergy(recipeEnergyPerTick, false);
             return true;
-        } else return false;
+        } else
+            return false;
     }
 
     @Override
     protected long getMaxEnergyPerTick() {
-        return Math.max(energyStorage.get().getMaxReceive(), energyStorage.get().getMaxExtract());
+        return energyStorage.get().getMaxExtract();
     }
 }

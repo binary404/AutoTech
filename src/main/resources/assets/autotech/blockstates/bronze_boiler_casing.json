@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "active=false": {"model": "autotech:block/bronze_boiler_casing"},
+    "active=true": {"model": "autotech:block/bronze_boiler_casing_active"}
+  }
+}

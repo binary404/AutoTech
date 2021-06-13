@@ -314,15 +314,6 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .addCriterion("has_item", hasItem(ModTags.Items.INGOTS_STEEL))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.iron_plating, 8)
-                .key('I', ModItems.iron_plate)
-                .key('H', ModItems.hammer)
-                .patternLine("III")
-                .patternLine("IHI")
-                .patternLine("III")
-                .addCriterion("has_item", hasItem(ModItems.iron_plate))
-                .build(consumer);
-
         ShapedRecipeBuilder.shapedRecipe(ModItems.thermo_electric_component)
                 .key('I', Items.IRON_INGOT)
                 .key('C', ModItems.copper_ingot)
@@ -334,11 +325,10 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.heat_proof_casing, 4)
-                .key('I', ModBlocks.iron_plating)
                 .key('L', ModItems.lead_plate)
-                .key('T', ModItems.nickel_plate)
+                .key('I', ModItems.nickel_plate)
                 .patternLine("ILI")
-                .patternLine("LTL")
+                .patternLine("L L")
                 .patternLine("ILI")
                 .addCriterion("has_item", hasItem(ModItems.lead_plate))
                 .build(consumer);

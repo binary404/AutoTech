@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": {"model": "autotech:block/lv_compactor"},
-    "facing=south": {"model": "autotech:block/lv_compactor", "y": 180},
-    "facing=west": {"model": "autotech:block/lv_compactor", "y": 270},
-    "facing=east": {"model": "autotech:block/lv_compactor", "y": 90}
-  }
-}

@@ -11,7 +11,6 @@ import binary404.autotech.common.core.recipe.RecipeMaps;
 import binary404.autotech.common.core.recipe.map.RecipeMap;
 import binary404.autotech.common.tile.ModTiles;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.TileEntityType;
 
 public class TileSimpleMachine extends TileWorkable {
 
@@ -19,10 +18,19 @@ public class TileSimpleMachine extends TileWorkable {
         this(RecipeMaps.EMPTY, Textures.GRINDER, Tier.LV);
     }
 
+    public TileSimpleMachine(OrientedOverlayRenderer renderer, Tier tier) {
+        this(RecipeMaps.EMPTY, renderer, tier);
+    }
+
     public TileSimpleMachine(RecipeMap<?> recipeMap, OrientedOverlayRenderer renderer, Tier tier) {
         super(ModTiles.simple_machine, recipeMap, renderer, tier);
         initializeInventory();
         reinitializeEnergyContainer();
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
     }
 
     protected ModularUserInterface.Builder createGuiTemplate(PlayerEntity player) {

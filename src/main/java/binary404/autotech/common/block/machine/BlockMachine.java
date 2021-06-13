@@ -35,4 +35,12 @@ public class BlockMachine extends BlockTile {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new TileSimpleMachine(this.recipeMap, this.renderer, this.tier);
     }
+
+    public Tier getTier() {
+        return tier;
+    }
+
+    public OrientedOverlayRenderer getRenderer() {
+        return renderer;
+    }
 }

@@ -1,42 +1,62 @@
 {
   "multipart": [
     {
-      "apply": {"model": "autotech:block/hv_cable"}
-    }, {
-      "when": {
-        "north": true
-      },
-      "apply": {"model": "autotech:block/hv_cable_multipart"}
+      "apply": {
+        "model": "autotech:block/hv_cable"
+      }
     },
     {
       "when": {
-        "east": true
+        "north": "true"
       },
-      "apply": {"model": "autotech:block/hv_cable_multipart", "y": 90}
+      "apply": {
+        "model": "autotech:block/hv_cable_side"
+      }
     },
     {
       "when": {
-        "south": true
+        "east": "true"
       },
-      "apply": {"model": "autotech:block/hv_cable_multipart", "x": 180}
+      "apply": {
+        "model": "autotech:block/hv_cable_side",
+        "y": 90
+      }
     },
     {
       "when": {
-        "west": true
+        "south": "true"
       },
-      "apply": {"model": "autotech:block/hv_cable_multipart", "y": 270}
+      "apply": {
+        "model": "autotech:block/hv_cable_side",
+        "y": 180
+      }
     },
     {
       "when": {
-        "up": true
+        "west": "true"
       },
-      "apply": {"model": "autotech:block/hv_cable_multipart", "x": 270}
+      "apply": {
+        "model": "autotech:block/hv_cable_side",
+        "y": 270
+      }
     },
     {
       "when": {
-        "down": true
+        "up": "true"
       },
-      "apply": {"model": "autotech:block/hv_cable_multipart", "x": 90}
+      "apply": {
+        "model": "autotech:block/hv_cable_side",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "autotech:block/hv_cable_side",
+        "x": 90
+      }
     }
   ]
 }

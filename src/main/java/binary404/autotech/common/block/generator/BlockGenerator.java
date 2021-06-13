@@ -10,8 +10,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockGenerator extends BlockTile {
+
+    public static List<BlockGenerator> generators = new ArrayList<>();
 
     FuelRecipeMap recipeMap;
     Tier tier;
@@ -22,11 +26,20 @@ public class BlockGenerator extends BlockTile {
         this.recipeMap = recipeMap;
         this.tier = tier;
         this.renderer = renderer;
+        generators.add(this);
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new TileSimpleGenerator(recipeMap, renderer, tier);
+    }
+
+    public OrientedOverlayRenderer getRenderer() {
+        return renderer;
+    }
+
+    public Tier getTier() {
+        return tier;
     }
 }

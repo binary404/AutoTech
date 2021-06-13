@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 public class BlockTile extends Block {
 
     public BlockTile() {
-        super(Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(2.0F, 100.0F).notSolid());
+        super(Properties.create(Material.IRON).sound(SoundType.METAL).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(2.0F, 10.0F).notSolid());
     }
 
     @Override

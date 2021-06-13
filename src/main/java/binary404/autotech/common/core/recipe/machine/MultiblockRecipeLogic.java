@@ -84,6 +84,6 @@ public class MultiblockRecipeLogic extends AbstractRecipeLogic {
 
     @Override
     protected long getMaxEnergyPerTick() {
-        return getEnergy() instanceof EnergyList ? Math.max(((EnergyList) getEnergy()).getMaxReceive(), ((EnergyList) getEnergy()).getMaxExtract()) : getEnergy().getMaxEnergyStored() / 10;
+        return getEnergy() instanceof EnergyList ? ((EnergyList) getEnergy()).getMaxExtract() : getEnergy().getMaxEnergyStored() / 10;
     }
 }

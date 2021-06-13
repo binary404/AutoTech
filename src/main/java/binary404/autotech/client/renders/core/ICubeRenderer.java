@@ -6,9 +6,11 @@ import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.util.ResourceLocation;
 
 public interface ICubeRenderer {
 
     void render(CCRenderState renderState, Cuboid6 bounds, IVertexOperation... ops);
 
+    ResourceLocation  getParticleTexture();
 }

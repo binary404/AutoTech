@@ -9,10 +9,12 @@ import binary404.autotech.client.gui.core.widget.TankWidget;
 import binary404.autotech.client.renders.core.OrientedOverlayRenderer;
 import binary404.autotech.client.renders.core.Textures;
 import binary404.autotech.common.core.logistics.Tier;
+import binary404.autotech.common.core.logistics.energy.Energy;
 import binary404.autotech.common.core.logistics.fluid.FluidTankList;
 import binary404.autotech.common.core.recipe.RecipeMaps;
 import binary404.autotech.common.core.recipe.machine.FuelRecipeLogic;
 import binary404.autotech.common.core.recipe.map.FuelRecipeMap;
+import binary404.autotech.common.core.recipe.map.RecipeMap;
 import binary404.autotech.common.tile.ModTiles;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
@@ -35,6 +37,10 @@ public class TileSimpleGenerator extends TileTiered {
 
     public TileSimpleGenerator() {
         this(RecipeMaps.EMPTY_FUELS, Textures.GRINDER, Tier.LV);
+    }
+
+    public TileSimpleGenerator(OrientedOverlayRenderer renderer, Tier tier) {
+        this(RecipeMaps.EMPTY_FUELS, renderer, tier);
     }
 
     public TileSimpleGenerator(FuelRecipeMap recipeMap, OrientedOverlayRenderer renderer, Tier tier) {

@@ -8,12 +8,16 @@ import binary404.autotech.common.block.ModBlocks;
 import binary404.autotech.common.core.JumpTestHandler;
 import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.tile.ModTiles;
+import binary404.autotech.common.tile.transfer.attachment.AttachmentFactory;
+import binary404.autotech.common.tile.transfer.attachment.AttachmentRegistry;
+import binary404.autotech.common.tile.transfer.pipe.PipeModelHandler;
 import codechicken.lib.texture.SpriteRegistryHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -35,12 +39,15 @@ public class ClientProxy implements IProxy {
         JumpTestHandler.init();
         ClientRegistry.bindTileEntityRenderer(ModTiles.simple_machine, CoreRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTiles.simple_generator, CoreRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTiles.simple_furnace, CoreRenderer::new);
 
         ClientRegistry.bindTileEntityRenderer(ModTiles.fluid_hatch, CoreRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTiles.item_hatch, CoreRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTiles.energy_hatch, CoreRenderer::new);
 
         ClientRegistry.bindTileEntityRenderer(ModTiles.distillation_tower, CoreRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTiles.blast_furnace, CoreRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTiles.large_boiler, CoreRenderer::new);
     }
 
     private void populateSprites(ModelBakeEvent event) {
@@ -50,6 +57,7 @@ public class ClientProxy implements IProxy {
     @Override
     public void init() {
         Screens.register();
+        PipeModelHandler.init();
     }
 
     @Override

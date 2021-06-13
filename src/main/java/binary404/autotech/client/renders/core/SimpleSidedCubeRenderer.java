@@ -62,6 +62,11 @@ public class SimpleSidedCubeRenderer implements ICubeRenderer, ISpriteRegister {
         }
     }
 
+    public ResourceLocation getParticleTexture() {
+        ResourceLocation resourceLocation = new ResourceLocation(AutoTech.modid, String.format("block/%s/%s", basePath, RenderSide.SIDE.name().toLowerCase()));
+        return resourceLocation;
+    }
+
     public TextureAtlasSprite getSpriteOnSide(RenderSide renderSide) {
         return sprites.get(renderSide);
     }

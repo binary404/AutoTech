@@ -6,6 +6,7 @@ import binary404.autotech.common.item.ModItems;
 import binary404.autotech.common.tags.ModTags;
 import binary404.autotech.data.tag.BaseTagProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -27,6 +28,7 @@ public class AutoTechTagProvider extends BaseTagProvider {
         addDusts();
         addRawOres();
         addOres();
+        addTree();
     }
 
     private void addIngots() {
@@ -88,5 +90,11 @@ public class AutoTechTagProvider extends BaseTagProvider {
         addToTags(Tags.Items.ORES_COAL, Tags.Blocks.ORES_COAL, ModBlocks.coal_ore);
         addToTags(Tags.Items.ORES_REDSTONE, Tags.Blocks.ORES_REDSTONE, ModBlocks.redstone_ore);
         addToTags(Tags.Items.ORES_DIAMOND, Tags.Blocks.ORES_DIAMOND, ModBlocks.diamond_ore);
+    }
+
+    private void addTree() {
+        addToTags(ItemTags.LOGS, BlockTags.LOGS, ModBlocks.rubber_log);
+        addToTags(ItemTags.LEAVES, BlockTags.LEAVES, ModBlocks.rubber_leaves);
+        addToTags(ItemTags.SAPLINGS, BlockTags.SAPLINGS, ModBlocks.rubber_sapling);
     }
 }

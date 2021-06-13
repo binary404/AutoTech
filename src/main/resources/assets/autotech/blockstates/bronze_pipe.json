@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "autotech:block/pipe/fluid/basic/core"
+    }
+  }
+}

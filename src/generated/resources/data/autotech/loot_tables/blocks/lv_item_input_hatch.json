@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "autotech:item_input_hatch"
+          "name": "autotech:lv_item_input_hatch"
         }
       ],
       "conditions": [

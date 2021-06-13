@@ -1,5 +1,6 @@
 package binary404.autotech.common.core.recipe.machine;
 
+import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.logistics.energy.Energy;
 import binary404.autotech.common.core.logistics.fluid.IMultipleTankHandler;
 import binary404.autotech.common.core.recipe.map.FuelRecipeMap;
@@ -205,6 +206,10 @@ public class FuelRecipeLogic extends TETrait implements IFuelable {
 
     public static int getEnergyMultiplier(long maxEnergy, long minEnergy) {
         return (int) (maxEnergy / minEnergy);
+    }
+
+    public static long getTieredVoltage(long voltage) {
+        return Tier.getTierByVoltage(voltage).use;
     }
 
     protected void setActive(boolean active) {

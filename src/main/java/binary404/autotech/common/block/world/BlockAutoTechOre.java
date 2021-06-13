@@ -7,13 +7,19 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.IStringSerializable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BlockAutoTechOre extends OreBlock {
 
     public static EnumProperty<OreType> ORE_TYPE = EnumProperty.create("ore_type", OreType.class);
 
+    public static List<BlockAutoTechOre> ores = new ArrayList<>();
+
     public BlockAutoTechOre(Properties properties) {
         super(properties);
         this.setDefaultState(this.getDefaultState().with(ORE_TYPE, OreType.STONE));
+        ores.add(this);
     }
 
     @Override

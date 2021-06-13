@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "autotech:block/casings/solid/bronze_bricks"
+  }
+}
