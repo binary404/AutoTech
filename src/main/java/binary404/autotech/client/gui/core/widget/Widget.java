@@ -7,8 +7,12 @@ import binary404.autotech.client.gui.core.math.Position;
 import binary404.autotech.client.gui.core.math.Size;
 import com.google.common.base.Preconditions;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.ITextProperties;
+import net.minecraftforge.fml.client.gui.GuiUtils;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import java.awt.*;
@@ -184,6 +188,13 @@ public abstract class Widget extends AbstractGui {
         if (uiAccess != null) {
             uiAccess.writeClientAction(this, id, packetBufferWriter);
         }
+    }
+
+    protected void drawHoveringText(MatrixStack stack, ItemStack itemStack, List<ITextProperties> tooltip, int maxTextWidth, int mouseX, int mouseY) {
+        Minecraft mc = Minecraft.getInstance();
+        GuiUtils.drawHoveringText(itemStack, stack, tooltip, mouseX, mouseY,
+                sizes.getScreenWidth(),
+                sizes.getScreenHeight(), maxTextWidth, mc.fontRenderer);
     }
 
     protected static boolean isClientSide() {

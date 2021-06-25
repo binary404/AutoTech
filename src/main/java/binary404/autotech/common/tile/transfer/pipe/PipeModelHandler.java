@@ -4,6 +4,7 @@ import binary404.autotech.AutoTech;
 import binary404.autotech.common.tile.transfer.attachment.AttachmentFactory;
 import binary404.autotech.common.tile.transfer.attachment.AttachmentRegistry;
 import binary404.autotech.common.tile.transfer.fluid.FluidPipeType;
+import binary404.autotech.common.tile.transfer.item.ItemPipeType;
 import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
@@ -12,7 +13,6 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.apache.http.auth.AUTH;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +44,14 @@ public class PipeModelHandler {
         }
 
         Map<ResourceLocation, PipeBakedModel> pipeModels = new HashMap<>();
+
+        pipeModels.put(ItemPipeType.BASIC.getId(), new PipeBakedModel(
+                event.getModelRegistry().get(new ResourceLocation(AutoTech.modid + ":block/pipe/item/basic/core")),
+                event.getModelRegistry().get(new ResourceLocation(AutoTech.modid + ":block/pipe/item/basic/extension")),
+                event.getModelRegistry().get(new ResourceLocation(AutoTech.modid + ":block/pipe/item/basic/straight")),
+                event.getModelRegistry().get(new ResourceLocation(AutoTech.modid + ":block/pipe/attachment/inventory_attachment")),
+                attachmentModels
+        ));
 
         pipeModels.put(FluidPipeType.BASIC.getId(), new PipeBakedModel(
                 event.getModelRegistry().get(new ResourceLocation(AutoTech.modid + ":block/pipe/fluid/basic/core")),

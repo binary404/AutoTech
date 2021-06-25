@@ -7,16 +7,23 @@ import binary404.autotech.client.gui.core.texture.TextureArea;
 import binary404.autotech.client.util.RenderUtil;
 import binary404.autotech.common.core.util.FluidHelper;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.ITextProperties;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -26,6 +33,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankWidget extends Widget implements IIngredientSlot {
 
@@ -129,7 +138,31 @@ public class TankWidget extends Widget implements IIngredientSlot {
 
     @Override
     public void drawInForeground(MatrixStack stack, int mouseX, int mouseY) {
-        super.drawInForeground(stack, mouseX, mouseY);
+        if (!hideToolTip && !gui.isJEIHandled && isMouseOverElement(mouseX, mouseY)) {
+            List<ITextProperties> tooltips = new ArrayList<>();
+            if (lastFluidInTank != null) {
+                Fluid fluid = lastFluidInTank.getFluid();
+                tooltips.add(new TranslationTextComponent(fluid.getAttributes().getTranslationKey(lastFluidInTank)));
+
+                tooltips.add(new StringTextComponent(I18n.format("autotech.fluid.amount", lastFluidInTank.getAmount(), lastTankCapacity)));
+                tooltips.add(new StringTextComponent(I18n.format("autotech.fluid.temperature", fluid.getAttributes().getTemperature(lastFluidInTank))));
+            } else {
+                tooltips.add(new TranslationTextComponent("autotech.fluid.empty"));
+                tooltips.add(new StringTextComponent(I18n.format("autotech.fluid.amount", 0, lastTankCapacity)));
+            }
+            if (allowClickFilling) {
+                tooltips.add(new StringTextComponent("")); //add empty line to separate things
+                tooltips.add(new TranslationTextComponent("autotech.fluid.click_to_fill"));
+                tooltips.add(new TranslationTextComponent("autotech.fluid.click_to_fill.shift"));
+            }
+            if (allowClickEmptying) {
+                tooltips.add(new StringTextComponent("")); //add empty line to separate things
+                tooltips.add(new TranslationTextComponent("autotech.fluid.click_to_empty"));
+                tooltips.add(new TranslationTextComponent("autotech.fluid.click_to_empty.shift"));
+            }
+            drawHoveringText(stack, ItemStack.EMPTY, tooltips, 300, mouseX, mouseY);
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        }
     }
 
     @Override

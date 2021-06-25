@@ -34,6 +34,7 @@ public class Textures {
     public static SimpleCubeRenderer BRONZE_BOILER_CASING_ACTIVE = new SimpleCubeRenderer("casings/solid/bronze_boiler_casing_active");
 
     public static OrientedOverlayRenderer GRINDER = new OrientedOverlayRenderer("machines/grinder", FRONT, TOP);
+    public static OrientedOverlayRenderer MIXER = new OrientedOverlayRenderer("machines/mixer", FRONT, TOP);
     public static OrientedOverlayRenderer FURNACE = new OrientedOverlayRenderer("machines/furnace", FRONT);
     public static OrientedOverlayRenderer STEAM_TURBINE = new OrientedOverlayRenderer("generators/steam_turbine", SIDE);
 

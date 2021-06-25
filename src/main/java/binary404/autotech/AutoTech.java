@@ -46,29 +46,17 @@ public class AutoTech {
         instance = this;
         proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         proxy.registerEventHandlers();
-        proxy.init();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::onTagsUpdate);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModFeatures::onBiomeLoad);
-        init();
-    }
-
-    private void init() {
         PipeRegister.init();
+        proxy.init();
     }
 
     private void setup(FMLCommonSetupEvent event) {
         PacketHandler.init();
 
         DeferredWorkQueue.runLater(() -> {
-            GrinderManager.init();
-            SawMillManager.init();
-            CompactorManager.init();
-            DistilleryManager.init();
-            CentrifugeManager.init();
-            AssemblerManager.init();
-            EmpowererManager.init();
-
             ModEntities.registerAttributes();
         });
     }

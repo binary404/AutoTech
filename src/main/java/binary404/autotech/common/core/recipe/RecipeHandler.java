@@ -1,8 +1,11 @@
 package binary404.autotech.common.core.recipe;
 
 import binary404.autotech.common.core.logistics.Tier;
+import binary404.autotech.common.core.recipe.core.CountableIngredient;
 import binary404.autotech.common.core.recipe.core.FuelRecipe;
+import binary404.autotech.common.core.recipe.machine.builder.SimpleRecipeBuilder;
 import binary404.autotech.common.core.recipe.map.FuelRecipeMap;
+import binary404.autotech.common.core.recipe.map.RecipeMap;
 import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.item.ModItems;
 import binary404.autotech.common.tags.ModTags;
@@ -13,11 +16,15 @@ import net.minecraft.tags.ITag;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
 
+import static binary404.autotech.common.core.recipe.RecipeHelper.*;
 import static binary404.autotech.common.core.recipe.RecipeMaps.*;
 
 public class RecipeHandler {
 
     public static void init() {
+        for(RecipeMap<?> recipeMap : RecipeMap.getRecipeMaps()) {
+            recipeMap.clearRecipes();
+        }
         addOreRecipes();
 
         addBrewingRecipes();
@@ -26,6 +33,10 @@ public class RecipeHandler {
         addBlastFurnaceRecipes();
 
         addFuelRecipes();
+
+        addMixerRecipes();
+
+        addCompactorRecipes();
     }
 
     public static void addOreRecipes() {
@@ -81,46 +92,12 @@ public class RecipeHandler {
         addFuelRecipe(RecipeMaps.STEAM_TURBINE_FUELS, new FluidStack(ModFluids.steam, 100), 1, Tier.LV);
     }
 
-    public static void addFuelRecipe(FuelRecipeMap map, FluidStack fuelStack, int duration, Tier tier) {
-        map.addRecipe(new FuelRecipe(fuelStack, duration, tier.use));
+    public static void addMixerRecipes() {
+        addMixerRecipe(new ItemStack(ModItems.bronze_dust, 4), ItemStack.EMPTY, CountableIngredient.from(ModTags.Items.DUSTS_COPPER, 3), CountableIngredient.from(ModTags.Items.DUSTS_TIN, 1));
     }
 
-    public static void addOreGrinderRecipe(ITag.INamedTag<Item> input, Item output1, Item output2, int chance, int tierBoost) {
-        RecipeMaps.GRINDER_RECIPES.recipeBuilder()
-                .input(input, 1)
-                .output(output1, 2)
-                .chancedOutput(new ItemStack(output2), chance, tierBoost)
-                .duration(400).energyPerTick(12)
-                .buildAndRegister();
-    }
-
-    public static void addOreGrinderRecipe(ITag.INamedTag<Item> input, Item output1, Item output2, int chance, int tierBoost, Item output3, int chance2, int tierBoost2) {
-        RecipeMaps.GRINDER_RECIPES.recipeBuilder()
-                .input(input, 1)
-                .output(output1, 2)
-                .chancedOutput(new ItemStack(output2), chance, tierBoost)
-                .chancedOutput(new ItemStack(output3), chance2, tierBoost2)
-                .duration(400).energyPerTick(12)
-                .buildAndRegister();
-    }
-
-    public static void addOreDustGrinderRecipe(ITag.INamedTag<Item> input, Item output1, Item output2) {
-        RecipeMaps.GRINDER_RECIPES.recipeBuilder()
-                .input(input, 1)
-                .output(output1, 1)
-                .chancedOutput(new ItemStack(output2), 1400, 850)
-                .duration(200).energyPerTick(12)
-                .buildAndRegister();
-    }
-
-    public static void addOreDustGrinderRecipe(ITag.INamedTag<Item> input, Item output1, Item output2, Item output3) {
-        RecipeMaps.GRINDER_RECIPES.recipeBuilder()
-                .input(input, 1)
-                .output(output1, 1)
-                .chancedOutput(new ItemStack(output2), 1400, 850)
-                .chancedOutput(new ItemStack(output3), 1000, 850)
-                .duration(200).energyPerTick(12)
-                .buildAndRegister();
+    public static void addCompactorRecipes() {
+        addCompactorRecipe(ModTags.Items.INGOTS_BRONZE, 3, new ItemStack(ModItems.bronze_plate, 2));
     }
 
 }

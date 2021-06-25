@@ -28,11 +28,6 @@ public class TileSimpleMachine extends TileWorkable {
         reinitializeEnergyContainer();
     }
 
-    @Override
-    public void tick() {
-        super.tick();
-    }
-
     protected ModularUserInterface.Builder createGuiTemplate(PlayerEntity player) {
         ModularUserInterface.Builder builder = workable.recipeMap.createUITemplate(workable::getProgressPercent, importItems, exportItems, importFluids, exportFluids)
                 .widget(new LabelWidget(5, 5, getFullName()))

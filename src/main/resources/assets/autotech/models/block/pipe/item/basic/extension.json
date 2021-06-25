@@ -1,7 +1,7 @@
 {
   "parent": "autotech:block/pipe/item/extension",
   "textures": {
-    "0": "autotech:blocks/pipe/item/basic",
-    "particle": "autotech:blocks/pipe/item/basic"
+    "0": "autotech:block/pipe/item/basic",
+    "particle": "autotech:block/pipe/item/basic"
   }
 }

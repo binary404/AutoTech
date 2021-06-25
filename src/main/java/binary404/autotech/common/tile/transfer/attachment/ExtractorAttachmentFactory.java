@@ -1,19 +1,14 @@
 package binary404.autotech.common.tile.transfer.attachment;
 
 import binary404.autotech.common.block.transfer.BlockFluidPipe;
+import binary404.autotech.common.block.transfer.BlockItemPipe;
 import binary404.autotech.common.core.util.DirectionUtil;
-import binary404.autotech.common.core.util.StringUtil;
 import binary404.autotech.common.tile.transfer.pipe.Pipe;
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-
-import java.util.List;
 
 public class ExtractorAttachmentFactory implements AttachmentFactory {
 
@@ -86,7 +81,7 @@ public class ExtractorAttachmentFactory implements AttachmentFactory {
 
     @Override
     public boolean canPlaceOnPipe(Block pipe) {
-        return pipe instanceof BlockFluidPipe;
+        return pipe instanceof BlockFluidPipe || pipe instanceof BlockItemPipe;
     }
 
 }

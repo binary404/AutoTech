@@ -276,6 +276,7 @@ public abstract class TileCore extends TileEntity implements IBlockEntity, IUIHo
         this.newInventory = false;
 
         this.facing = Direction.values()[nbt.getInt("facing")];
+        System.out.println(this.facing);
     }
 
     @Override
@@ -302,7 +303,7 @@ public abstract class TileCore extends TileEntity implements IBlockEntity, IUIHo
         }
 
         nbt.putInt("facing", facing.ordinal());
-
+        System.out.println(this.facing);
         return nbt;
     }
 
@@ -311,7 +312,7 @@ public abstract class TileCore extends TileEntity implements IBlockEntity, IUIHo
         if(getWorld() != null && !getWorld().isRemote) {
             notifyBlockUpdate();
             markDirty();
-            writeCustomData(-2, buffer -> buffer.writeByte(direction.getIndex()));
+            writeCustomData(-2, buffer -> buffer.writeByte(direction.ordinal()));
         }
     }
 

@@ -9,6 +9,8 @@ import binary404.autotech.common.tile.core.TileSimpleMachine;
 import binary404.autotech.common.tile.multiblock.*;
 import binary404.autotech.common.tile.transfer.cable.TileCable;
 import binary404.autotech.common.tile.transfer.fluid.TileFluidPipe;
+import binary404.autotech.common.tile.transfer.item.ItemPipeType;
+import binary404.autotech.common.tile.transfer.item.TileItemPipe;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
@@ -35,6 +37,9 @@ public class ModTiles {
 
     public static TileEntityType<TileCable> cable;
     public static TileEntityType<TileFluidPipe> fluid_pipe;
+    public static TileEntityType<TileItemPipe> basic_item_pipe;
+    public static TileEntityType<TileItemPipe> improved_item_pipe;
+    public static TileEntityType<TileItemPipe> advanced_item_pipe;
 
     @SubscribeEvent
     public static void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event) {
@@ -54,6 +59,7 @@ public class ModTiles {
 
         cable = (TileEntityType<TileCable>) register(r, TileEntityType.Builder.create(TileCable::new, ModBlocks.lv_cable, ModBlocks.mv_cable, ModBlocks.hv_cable, ModBlocks.ev_cable).build(null), "cable");
         fluid_pipe = (TileEntityType<TileFluidPipe>) register(r, TileEntityType.Builder.create(TileFluidPipe::new, ModBlocks.bronze_pipe).build(null), "fluid_pipe");
+        basic_item_pipe = (TileEntityType<TileItemPipe>) register(r, TileEntityType.Builder.create(() -> new TileItemPipe(ItemPipeType.BASIC), ModBlocks.basic_item_pipe).build(null), "basic_item_pipe");
     }
 
 }

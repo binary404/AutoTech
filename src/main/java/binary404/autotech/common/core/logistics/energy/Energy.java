@@ -86,6 +86,21 @@ public class Energy implements IEnergyStorage {
         return this;
     }
 
+    public static Energy deserialize(CompoundNBT nbt, String key, boolean capacity, boolean transfer) {
+        long capacityLong = 0;
+        if (capacity) {
+            capacityLong = nbt.getLong("energy_capacity_" + key);
+        }
+        long stored = nbt.getLong("energy_stored_" + key);
+        long maxExtract = 0;
+        long maxReceive = 0;
+        if(transfer) {
+            maxExtract = nbt.getLong("max_extract_" + key);
+            maxReceive = nbt.getLong("max_receive_" + key);
+        }
+        return Energy.create(capacityLong, maxExtract, maxReceive).setStored(stored);
+    }
+
     public CompoundNBT write(boolean capacity, boolean transfer) {
         return write("main_energy", capacity, transfer);
     }

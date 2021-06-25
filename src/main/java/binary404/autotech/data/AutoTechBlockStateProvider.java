@@ -43,6 +43,8 @@ public class AutoTechBlockStateProvider extends BlockStateProvider {
         remainingBlocks.remove(ModBlocks.rubber_log);
         remainingBlocks.remove(ModBlocks.bronze_boiler_casing);
         remainingBlocks.removeAll(BlockBasicFlowingFluid.fluids);
+        remainingBlocks.remove(ModBlocks.bronze_pipe);
+        remainingBlocks.remove(ModBlocks.basic_item_pipe);
 
         particleOnly(remainingBlocks, ModBlocks.lv_furnace, Textures.CASINGS[0].getParticleTexture());
         remainingBlocks.remove(ModBlocks.lv_furnace);

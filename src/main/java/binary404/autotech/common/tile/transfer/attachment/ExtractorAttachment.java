@@ -2,11 +2,16 @@ package binary404.autotech.common.tile.transfer.attachment;
 
 import binary404.autotech.common.tile.transfer.fluid.FluidNetwork;
 import binary404.autotech.common.tile.transfer.item.ItemNetwork;
-import binary404.autotech.common.tile.transfer.item.Path;
+import binary404.autotech.common.tile.transfer.item.ItemPipe;
+import binary404.autotech.common.tile.transfer.item.callback.ItemBounceBackTransportCallback;
+import binary404.autotech.common.tile.transfer.item.callback.ItemInsertTransportCallback;
+import binary404.autotech.common.tile.transfer.item.callback.ItemPipeGoneTransportCallback;
+import binary404.autotech.common.tile.transfer.item.util.Path;
 import binary404.autotech.common.tile.transfer.network.Destination;
 import binary404.autotech.common.tile.transfer.network.Network;
 import binary404.autotech.common.tile.transfer.network.NetworkManager;
 import binary404.autotech.common.tile.transfer.pipe.Pipe;
+import binary404.autotech.common.tile.transfer.pipe.item.ItemTransport;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -120,7 +125,15 @@ public class ExtractorAttachment extends Attachment {
 
         BlockPos fromPos = pipe.getPos().offset(getDirection());
 
-        //((ItemPipe) pipe).addTransport(new ItemTransport(extracted.copy(),fromPos,destination.getReceiver(),path.toQueue(),new ItemInsertTransportCallback(destination.getReceiver(), destination.getIncomingDirection(), extracted),new ItemBounceBackTransportCallback(destination.getReceiver(), sourcePos, extracted),new ItemPipeGoneTransportCallback(extracted));
+        ((ItemPipe) pipe).addTransport(new ItemTransport(
+                extracted.copy(),
+                fromPos,
+                destination.getReceiver(),
+                path.toQueue(),
+                new ItemInsertTransportCallback(destination.getReceiver(), destination.getIncomingDirection(), extracted),
+                new ItemBounceBackTransportCallback(destination.getReceiver(), sourcePos, extracted),
+                new ItemPipeGoneTransportCallback(extracted)
+        ));
     }
 
     private Pair<Destination, Integer> findDestinationAndSourceSlot(BlockPos sourcePos, IItemHandler source) {
@@ -245,6 +258,11 @@ public class ExtractorAttachment extends Attachment {
         }
 
         return false;
+    }
+
+    @Override
+    public void openContainer(ServerPlayerEntity player) {
+        super.openContainer(player);
     }
 
     @Override

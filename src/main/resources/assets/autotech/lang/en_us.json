@@ -112,6 +112,7 @@
   "item.autotech.enchanted_golden_apple_pie": "Enchanted Golden Apple Pie",
 
   "fluid.autotech.crude_oil": "Crude Oil",
+  "fluid.autotech.biomass": "Biomass",
 
   "autotech.multiblock.running": "Running perfectly.",
   "autotech.multiblock.idling": "Idling.",
@@ -122,6 +123,12 @@
   "autotech.multiblock.large_boiler.temperature": "Temperature: %s / %s C",
   "autotech.multiblock.large_boiler.steam_output": "Steam Output: %s mb/t",
   "autotech.multiblock.large_boiler.heat_efficiency": "Heat Efficiency: %d%%",
+
+  "autotech.fluid.amount": "§7%,d/%,d",
+  "autotech.fluid.temperature": "§7Temperature: %,dK",
+
+  "autotech.fluid.click_to_fill": "§7Click with a empty fluid container to fill it from tank.",
+  "autotech.fluid.click_to_fill.shift": "§7(Shift-clicking will fill all containers in your hand)",
 
   "info.autotech.stored_energy": "Stored Energy: %s",
   "info.autotech.max_transfer": "Max Transfer: %s",

@@ -12,11 +12,15 @@ public class RecipeMaps {
 
     public static final RecipeMap<SimpleRecipeBuilder> GRINDER_RECIPES = new RecipeMap<>("grinder", 1, 1, 1, 3, 0, 0, 0, 0, new SimpleRecipeBuilder().duration(150).energyPerTick(8));
 
+    public static final RecipeMap<SimpleRecipeBuilder> MIXER_RECIPES = new RecipeMap<>("mixer", 0, 4, 1, 2, 0, 2, 0, 1, new SimpleRecipeBuilder().duration(200).energyPerTick(8));
+
     public static final RecipeMap<SimpleRecipeBuilder> BREWING_RECIPES = new RecipeMap<>("brewer", 1, 1, 0, 0, 1, 1, 1, 1, new SimpleRecipeBuilder().duration(128).energyPerTick(4));
 
-    public static final RecipeMap<SimpleRecipeBuilder> SMELTING_RECIPES = new RecipeMap<>("furnace", 1, 1, 1, 1, 0,0,0,0, new SimpleRecipeBuilder())
+    public static final RecipeMap<SimpleRecipeBuilder> SMELTING_RECIPES = new RecipeMap<>("furnace", 1, 1, 1, 1, 0, 0, 0, 0, new SimpleRecipeBuilder())
             .setSlotOverlay(false, false, GuiTextures.FURNACE_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
+
+    public static final RecipeMap<SimpleRecipeBuilder> COMPACTOR_RECIPES = new RecipeMap<>("compactor", 1, 1, 1, 1, 0, 0, 0,0, new SimpleRecipeBuilder().duration(300).energyPerTick(8));
 
     public static final RecipeMap<UniversalDistillationRecipeBuilder> DISTILLATION_RECIPES = new RecipeMap<>("distillation_tower", 0, 0, 0, 1, 1, 1, 1, 13, new UniversalDistillationRecipeBuilder());
 

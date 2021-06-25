@@ -56,7 +56,7 @@ public abstract class TileTiered extends TileCore {
 
     @Override
     public void read(BlockState state, CompoundNBT nbt) {
-         this.energyStorage.read(nbt, "EnergyStorage", true, true);
+        this.energyStorage = Energy.deserialize(nbt, "EnergyStorage", true, true);
         this.tier = Tier.values()[nbt.getInt("Tier")];
         super.read(state, nbt);
     }

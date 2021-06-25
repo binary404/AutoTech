@@ -2,7 +2,9 @@ package binary404.autotech.common.network;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.common.network.pipe.FluidPipeMessage;
+import binary404.autotech.common.network.pipe.ItemTransportMessage;
 import binary404.autotech.common.tile.transfer.fluid.FluidPipe;
+import binary404.autotech.common.tile.transfer.pipe.item.ItemTransport;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -36,6 +38,7 @@ public class PacketHandler {
         HANDLER.registerMessage(id++, PacketUIOpen.class, PacketUIOpen::encode, PacketUIOpen::decode, PacketUIOpen::handle);
 
         HANDLER.registerMessage(id++, FluidPipeMessage.class, FluidPipeMessage::encode, FluidPipeMessage::decode, FluidPipeMessage::handle);
+        HANDLER.registerMessage(id++, ItemTransportMessage.class, ItemTransportMessage::encode, ItemTransportMessage::decode, ItemTransportMessage::handle);
     }
 
     public static void sendToNearby(World world, BlockPos pos, Object toSend) {

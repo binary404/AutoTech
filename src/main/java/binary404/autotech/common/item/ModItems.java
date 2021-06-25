@@ -58,6 +58,7 @@ public class ModItems {
     public static Item iron_rod;
     public static Item steel_rod;
 
+    public static Item lv_machine_frame;
     public static Item lv_machine_hull;
     public static Item mv_machine_hull;
 
@@ -232,6 +233,7 @@ public class ModItems {
         mv_transmitter_circuit = register(r, new Item(properties), "mv_transmitter_circuit");
         mv_receiver_circuit = register(r, new Item(properties), "mv_receiver_circuit");
 
+        lv_machine_frame = register(r, new Item(properties), "lv_machine_frame");
         lv_machine_hull = register(r, new Item(properties), "lv_machine_hull");
         mv_machine_hull = register(r, new Item(properties), "mv_machine_hull");
 
@@ -269,7 +271,7 @@ public class ModItems {
 
         rubber_drop = register(r, new Item(properties), "rubber_drop");
 
-        for(AttachmentFactory factory : AttachmentRegistry.INSTANCE.all()) {
+        for (AttachmentFactory factory : AttachmentRegistry.INSTANCE.all()) {
             register(r, new AttachmentItem(factory), factory.getItemId());
         }
     }

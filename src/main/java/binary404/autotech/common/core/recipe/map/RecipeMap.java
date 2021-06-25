@@ -77,6 +77,10 @@ public class RecipeMap<R extends RecipeBuilder<R>> {
         RECIPE_MAPS.add(this);
     }
 
+    public void clearRecipes() {
+        this.recipeList.clear();
+    }
+
     @ZenCodeType.Method
     public static List<RecipeMap<?>> getRecipeMaps() {
         return Collections.unmodifiableList(RECIPE_MAPS);

@@ -27,7 +27,7 @@ public class TileFurnace extends TileTiered {
     protected OrientedOverlayRenderer renderer;
 
     public TileFurnace() {
-        super(ModTiles.simple_furnace, Tier.LV);
+        this(Tier.LV);
     }
 
     public TileFurnace(Tier tier) {

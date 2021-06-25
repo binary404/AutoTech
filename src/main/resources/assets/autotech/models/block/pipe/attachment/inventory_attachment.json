@@ -1,6 +1,6 @@
 {
   "parent": "autotech:block/pipe/attachment/attachment",
   "textures": {
-    "attachment": "autotech:blocks/pipe/attachment/inventory_attachment"
+    "attachment": "autotech:block/pipe/attachment/inventory_attachment"
   }
 }

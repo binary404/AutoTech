@@ -2,6 +2,7 @@ package binary404.autotech.proxy;
 
 import binary404.autotech.AutoTech;
 import binary404.autotech.client.gui.Screens;
+import binary404.autotech.client.render.ItemPipeRenderer;
 import binary404.autotech.client.renders.core.CoreRenderer;
 import binary404.autotech.client.renders.core.Textures;
 import binary404.autotech.common.block.ModBlocks;
@@ -48,6 +49,8 @@ public class ClientProxy implements IProxy {
         ClientRegistry.bindTileEntityRenderer(ModTiles.distillation_tower, CoreRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTiles.blast_furnace, CoreRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTiles.large_boiler, CoreRenderer::new);
+
+        ClientRegistry.bindTileEntityRenderer(ModTiles.basic_item_pipe, ItemPipeRenderer::new);
     }
 
     private void populateSprites(ModelBakeEvent event) {

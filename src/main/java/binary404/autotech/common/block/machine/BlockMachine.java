@@ -12,11 +12,14 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BlockMachine extends BlockTile {
 
     public static List<BlockMachine> machines = new ArrayList<>();
+    public static Map<RecipeMap<?>, BlockMachine> machineMap = new HashMap<>();
 
     RecipeMap<?> recipeMap;
     Tier tier;
@@ -28,6 +31,7 @@ public class BlockMachine extends BlockTile {
         this.tier = tier;
         this.renderer = renderer;
         machines.add(this);
+        machineMap.put(recipeMap, this);
     }
 
     @Nullable
@@ -42,5 +46,9 @@ public class BlockMachine extends BlockTile {
 
     public OrientedOverlayRenderer getRenderer() {
         return renderer;
+    }
+
+    public RecipeMap<?> getRecipeMap() {
+        return recipeMap;
     }
 }

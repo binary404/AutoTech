@@ -13,6 +13,7 @@ import binary404.autotech.common.block.misc.BlockCasing;
 import binary404.autotech.common.block.misc.BlockCoil;
 import binary404.autotech.common.block.multiblock.*;
 import binary404.autotech.common.block.transfer.BlockFluidPipe;
+import binary404.autotech.common.block.transfer.BlockItemPipe;
 import binary404.autotech.common.block.transfer.CableBlock;
 import binary404.autotech.common.block.transfer.shape.PipeShapeCache;
 import binary404.autotech.common.block.transfer.shape.PipeShapeFactory;
@@ -21,11 +22,13 @@ import binary404.autotech.common.block.world.BlockRubberSapling;
 import binary404.autotech.common.block.world.BlockRubberWood;
 import binary404.autotech.common.core.logistics.Tier;
 import binary404.autotech.common.core.recipe.RecipeMaps;
+import binary404.autotech.common.core.recipe.map.RecipeMap;
 import binary404.autotech.common.fluid.BlockBasicFlowingFluid;
 import binary404.autotech.common.fluid.ModFluids;
 import binary404.autotech.common.item.ModItems;
 import binary404.autotech.common.tile.multiblock.TileLargeBoiler;
 import binary404.autotech.common.tile.transfer.fluid.FluidPipeType;
+import binary404.autotech.common.tile.transfer.item.ItemPipeType;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -70,8 +73,12 @@ public class ModBlocks {
     public static BlockBasicFlowingFluid biomass;
 
     //Machines
-    public static Block lv_grinder;
 
+    //LV
+    public static Block lv_grinder;
+    public static Block lv_mixer;
+
+    //MV
     public static Block mv_brewer;
 
     public static Block distillation_tower;
@@ -100,6 +107,9 @@ public class ModBlocks {
 
     //Fluid Pipes
     public static Block bronze_pipe;
+
+    //Item Pipes
+    public static Block basic_item_pipe;
 
     //Misc blocks
     public static Block heat_proof_casing;
@@ -148,6 +158,7 @@ public class ModBlocks {
         bronze_boiler_casing = register(r, new BlockBoilerCasing(), "bronze_boiler_casing");
 
         lv_grinder = register(r, new BlockMachine(RecipeMaps.GRINDER_RECIPES, Textures.GRINDER, Tier.LV), "lv_grinder");
+        lv_mixer = register(r, new BlockMachine(RecipeMaps.MIXER_RECIPES, Textures.MIXER, Tier.LV), "lv_mixer");
 
         mv_brewer = register(r, new BlockMachine(RecipeMaps.BREWING_RECIPES, Textures.GRINDER, Tier.MV), "mv_brewer");
 
@@ -176,6 +187,8 @@ public class ModBlocks {
         ev_cable = register(r, new CableBlock(p, Tier.EV, 0.3125F), "ev_cable");
 
         bronze_pipe = register(r, new BlockFluidPipe(pipeShapeCache, FluidPipeType.BASIC), "bronze_pipe");
+
+        basic_item_pipe = register(r, new BlockItemPipe(pipeShapeCache, ItemPipeType.BASIC), "basic_item_pipe");
 
         cupronickel_coil = register(r, new BlockCoil(CoilType.CUPRONICKEL), "cupronickel_coil");
 
@@ -214,6 +227,7 @@ public class ModBlocks {
         register(r, new BlockItem(bronze_boiler_casing, p), "bronze_boiler_casing");
 
         register(r, new BlockItem(lv_grinder, propertiesWithRenderer(tile, lv_grinder)), "lv_grinder");
+        register(r, new BlockItem(lv_mixer, propertiesWithRenderer(tile, lv_mixer)), "lv_mixer");
 
         register(r, new BlockItem(mv_brewer, propertiesWithRenderer(tile, mv_brewer)), "mv_brewer");
 
@@ -240,6 +254,7 @@ public class ModBlocks {
         register(r, new BlockItem(ev_cable, p), "ev_cable");
 
         register(r, new BlockItem(bronze_pipe, p), "bronze_pipe");
+        register(r, new BlockItem(basic_item_pipe, p), "basic_item_pipe");
 
         register(r, new BlockItem(cupronickel_coil, p), "cupronickel_coil");
 
@@ -256,6 +271,7 @@ public class ModBlocks {
         setRenderLayer(reinforced_glass, RenderType.getTranslucent());
         setRenderLayer(rubber_sapling, RenderType.getCutout());
         setRenderLayer(bronze_pipe, RenderType.getCutout());
+        setRenderLayer(basic_item_pipe, RenderType.getCutout());
     }
 
     public static Item.Properties propertiesWithRenderer(Item.Properties properties, Block block) {
